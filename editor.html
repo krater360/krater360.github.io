@@ -129,10 +129,20 @@
       font-size: 15px;
       color: #111;
     }
-    .news-item-date {
+    .news-item-meta {
       font-size: 12px;
-      color: #666;
-      margin-top: 4px;
+      color: #555;
+      margin-top: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .views-pill {
+      background: #e3f2fd;
+      color: #0d47a1;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: bold;
     }
     .edit-btn {
       background: #0d47a1;
@@ -190,8 +200,8 @@
   </div>
 
   <div class="box">
-    <h2 class="section-title">تعديل الأخبار المنشورة</h2>
-    <button type="button" class="btn btn-secondary" id="loadNewsBtn" onclick="loadPublishedNews()">عرض / تحديث قائمة الأخبار المنشورة</button>
+    <h2 class="section-title">إدارة وتعديل الأخبار ومشاهداتها (لك فقط)</h2>
+    <button type="button" class="btn btn-secondary" id="loadNewsBtn" onclick="loadPublishedNews()">عرض / تحديث قائمة الأخبار ومشاهداتها</button>
     <div class="msg" id="manageMsg"></div>
     <div id="newsList"></div>
 
@@ -226,6 +236,7 @@
     const REPO = "krater360.github.io";
     const FILE_PATH = "index.html";
     const BRANCH = "main";
+    const FIREBASE_DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
 
     const tokenInput = document.getElementById("ghToken");
     const fileInput = document.getElementById("imageFile");
@@ -412,6 +423,14 @@
         .join("\n");
     }
 
+    async function fetchAllViewsFromFirebase() {
+      if (!FIREBASE_DB_URL) return {};
+      const res = await fetch(`${FIREBASE_DB_URL}/views.json`);
+      if (!res.ok) return {};
+      const data = await res.json();
+      return data && typeof data === "object" ? data : {};
+    }
+
     async function publishNews() {
       const token = tokenInput.value.trim();
       const title = escapeHtml(document.getElementById("title").value.trim());
@@ -536,11 +555,15 @@ ${paragraphs}
       }
 
       manageMsg.style.color = "#0d47a1";
-      manageMsg.textContent = "جاري تحميل الأخبار المنشورة...";
+      manageMsg.textContent = "جاري تحميل الأخبار وعدد المشاهدات...";
       listEl.innerHTML = "";
 
       try {
-        const { html } = await fetchIndexHtml(token);
+        const [{ html }, viewsMap] = await Promise.all([
+          fetchIndexHtml(token),
+          fetchAllViewsFromFirebase()
+        ]);
+
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
         const cards = Array.from(doc.querySelectorAll(".news-card"));
@@ -550,11 +573,13 @@ ${paragraphs}
           return;
         }
 
-        manageMsg.style.color = "#1b5e20";
-        manageMsg.textContent = `تم العثور على ${cards.length} خبر منشور:`;
+        let totalViews = 0;
 
         cards.forEach((card, index) => {
           const cardId = card.id || `card-idx-${index}`;
+          const viewCount = Number(viewsMap[cardId] || 0);
+          totalViews += viewCount;
+
           const h2Text = card.querySelector("h2") ? card.querySelector("h2").textContent.trim() : "خبر بدون عنوان";
           const dateText = card.querySelector(".news-date") ? card.querySelector(".news-date").textContent.trim() : "";
           const bodyParagraphs = Array.from(card.querySelectorAll("p")).map(p => p.textContent.trim()).join("\n\n");
@@ -566,7 +591,13 @@ ${paragraphs}
 
           const info = document.createElement("div");
           info.className = "news-item-info";
-          info.innerHTML = `<div class="news-item-title">${escapeHtml(h2Text)}</div><div class="news-item-date">${escapeHtml(dateText)}</div>`;
+          info.innerHTML = `
+            <div class="news-item-title">${escapeHtml(h2Text)}</div>
+            <div class="news-item-meta">
+              <span>${escapeHtml(dateText)}</span>
+              <span class="views-pill">👁️ ${viewCount} مشاهدة</span>
+            </div>
+          `;
 
           const editBtn = document.createElement("button");
           editBtn.type = "button";
@@ -578,6 +609,9 @@ ${paragraphs}
           row.appendChild(editBtn);
           listEl.appendChild(row);
         });
+
+        manageMsg.style.color = "#1b5e20";
+        manageMsg.textContent = `تم العثور على ${cards.length} خبر — إجمالي المشاهدات: ${totalViews} مشاهدة`;
       } catch (err) {
         manageMsg.style.color = "#c62828";
         manageMsg.textContent = "خطأ: " + err.message;
@@ -645,4 +679,56 @@ ${paragraphs}
         if (newVideo) {
           manageMsg.textContent = "جاري رفع الفيديو الجديد إلى GitHub...";
           const vidUrl = await uploadVideoToGitHub(newVideo, token, 1);
-          allVids.push
+          allVids.push(vidUrl);
+        }
+
+        manageMsg.textContent = "جاري حفظ التعديلات في index.html...";
+        const { apiUrl, sha, html } = await fetchIndexHtml(token);
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+        const cards = Array.from(doc.querySelectorAll(".news-card"));
+        const targetCard = doc.getElementById(cardId) || cards[currentEditIndex];
+
+        if (!targetCard) throw new Error("تعذر العثور على بطاقة الخبر المحددة للتعديل.");
+
+        const actualId = targetCard.id || ("news-" + Date.now());
+        const paragraphsHtml = newBodyRaw
+          .split(/\n+/)
+          .map(p => `<p>${escapeHtml(p.trim())}</p>`)
+          .join("\n");
+
+        const imgsHtml = allImgs
+          .map(src => `<img src="${escapeHtml(src)}" alt="${newTitle}" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">`)
+          .join("\n");
+
+        const vidsHtml = allVids
+          .map(src => `<video src="${escapeHtml(src)}" controls preload="metadata" style="width:100%; max-height:440px; border-radius:6px; margin-bottom:12px; background:#000;"></video>`)
+          .join("\n");
+
+        targetCard.id = actualId;
+        targetCard.innerHTML = `
+${imgsHtml}
+${vidsHtml}
+<h2>${newTitle}</h2>
+<div class="news-date">${newDate}</div>
+${paragraphsHtml}
+<button type="button" onclick="copyNewsLink('${actualId}')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
+        `.trim();
+
+        const updatedFullHtml = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
+        await saveIndexHtml(apiUrl, token, updatedFullHtml, sha, `تعديل خبر: ${newTitle}`);
+
+        manageMsg.style.color = "#1b5e20";
+        manageMsg.textContent = "تم حفظ التعديلات بنجاح! سيظهر التحديث خلال دقيقة.";
+        cancelEdit();
+        await loadPublishedNews();
+      } catch (err) {
+        manageMsg.style.color = "#c62828";
+        manageMsg.textContent = "خطأ: " + err.message;
+      } finally {
+        saveBtn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
