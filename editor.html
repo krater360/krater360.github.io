@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة نشر الأخبار - krater360</title>
+  <style>
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background-color: #f4f6f9;
+      color: #222;
+      margin: 0;
+      padding: 15px;
+    }
+    .box {
+      max-width: 750px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    h1 {
+      margin-top: 0;
+      color: #0d47a1;
+      font-size: 22px;
+      border-bottom: 2px solid #e3f2fd;
+      padding-bottom: 10px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    input, textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 15px;
+    }
+    textarea {
+      min-height: 130px;
+      line-height: 1.7;
+    }
+    .btn {
+      margin-top: 16px;
+      width: 100%;
+      background-color: #0d47a1;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #08306b;
+    }
+    .msg {
+      margin-top: 10px;
+      color: #1b5e20;
+      font-weight: bold;
+      font-size: 14px;
+      min-height: 20px;
+    }
+    .note {
+      background: #fff8e1;
+      border-right: 4px solid #ffb300;
+      padding: 10px 12px;
+      margin-top: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>لوحة تجهيز الأخبار - krater360</h1>
+
+    <label>عنوان الخبر</label>
+    <input type="text" id="title" placeholder="اكتب عنوان الخبر هنا...">
+
+    <label>التاريخ</label>
+    <input type="text" id="date" value="22 نوفمبر 2026">
+
+    <label>رابط الصورة (اختياري)</label>
+    <input type="url" id="image" placeholder="https://example.com/image.jpg">
+
+    <label>نص الخبر أو المقال</label>
+    <textarea id="body" placeholder="اكتب تفاصيل الخبر أو المقال هنا..."></textarea>
+
+    <button class="btn" onclick="generateAndCopy()">تجهيز ونسخ كود الخبر</button>
+    <div class="msg" id="statusMsg"></div>
+
+    <textarea id="outputCode" readonly placeholder="سيظهر كود الخبر الجاهز هنا للنسخ..." style="margin-top:12px; min-height:140px; direction:ltr; text-align:left; background:#fafafa;"></textarea>
+
+    <div class="note">
+      <strong>طريقة النشر:</strong> بعد نسخ الكود، افتح ملف <code>index.html</code> في GitHub واضغط تعديل، ثم الصق الكود مباشرة تحت <code>&lt;div class="container"&gt;</code> واحفظ التغييرات.
+    </div>
+  </div>
+
+  <script>
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function generateAndCopy() {
+      const title = escapeHtml(document.getElementById("title").value.trim());
+      const date = escapeHtml(document.getElementById("date").value.trim());
+      const image = document.getElementById("image").value.trim();
+      const rawBody = document.getElementById("body").value.trim();
+
+      if (!title || !rawBody) {
+        document.getElementById("statusMsg").style.color = "#c62828";
+        document.getElementById("statusMsg").textContent = "يرجى إدخال عنوان الخبر ونصه على الأقل.";
+        return;
+      }
+
+      const paragraphs = rawBody
+        .split(/\n+/)
+        .map(p => `      <p>${escapeHtml(p.trim())}</p>`)
+        .join("\n");
+
+      const imgTag = image
+        ? `\n      <img src="${escapeHtml(image)}" alt="${title}" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">`
+        : "";
+
+      const cardCode = `    <div class="news-card">${imgTag}
+      <h2>${title}</h2>
+      <div class="news-date">${date}</div>
+${paragraphs}
+    </div>`;
+
+      const output = document.getElementById("outputCode");
+      output.value = cardCode;
+      output.select();
+      output.setSelectionRange(0, 999999);
+
+      try {
+        navigator.clipboard.writeText(cardCode);
+      } catch (e) {
+        document.execCommand("copy");
+      }
+
+      document.getElementById("statusMsg").style.color = "#1b5e20";
+      document.getElementById("statusMsg").textContent = "تم تجهيز الكود ونسخه! الصقه الآن في index.html داخل container.";
+    }
+  </script>
+</body>
+</html>
