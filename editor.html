@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>لوحة نشر الأخبار - krater360</title>
+  <title>نشر الأخبار تلقائياً - krater360</title>
   <style>
     body {
       font-family: Tahoma, Arial, sans-serif;
@@ -50,28 +50,28 @@
     .btn {
       margin-top: 16px;
       width: 100%;
-      background-color: #0d47a1;
+      background-color: #1b5e20;
       color: #fff;
       border: none;
-      padding: 12px;
+      padding: 13px;
       font-size: 16px;
       font-weight: bold;
       border-radius: 6px;
       cursor: pointer;
     }
-    .btn:hover {
-      background-color: #08306b;
+    .btn:disabled {
+      background-color: #888;
+      cursor: not-allowed;
     }
     .msg {
-      margin-top: 10px;
-      color: #1b5e20;
+      margin-top: 12px;
       font-weight: bold;
       font-size: 14px;
-      min-height: 20px;
+      line-height: 1.6;
     }
     .note {
-      background: #fff8e1;
-      border-right: 4px solid #ffb300;
+      background: #e8f5e9;
+      border-right: 4px solid #2e7d32;
       padding: 10px 12px;
       margin-top: 16px;
       font-size: 13px;
@@ -81,7 +81,10 @@
 </head>
 <body>
   <div class="box">
-    <h1>لوحة تجهيز الأخبار - krater360</h1>
+    <h1>نشر الأخبار تلقائياً - krater360</h1>
+
+    <label>مفتاح GitHub Token (يُحفظ في متصفحك فقط)</label>
+    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
 
     <label>عنوان الخبر</label>
     <input type="text" id="title" placeholder="اكتب عنوان الخبر هنا...">
@@ -95,17 +98,27 @@
     <label>نص الخبر أو المقال</label>
     <textarea id="body" placeholder="اكتب تفاصيل الخبر أو المقال هنا..."></textarea>
 
-    <button class="btn" onclick="generateAndCopy()">تجهيز ونسخ كود الخبر</button>
+    <button class="btn" id="publishBtn" onclick="publishNews()">نشر الخبر تلقائياً في الموقع</button>
     <div class="msg" id="statusMsg"></div>
 
-    <textarea id="outputCode" readonly placeholder="سيظهر كود الخبر الجاهز هنا للنسخ..." style="margin-top:12px; min-height:140px; direction:ltr; text-align:left; background:#fafafa;"></textarea>
-
     <div class="note">
-      <strong>طريقة النشر:</strong> بعد نسخ الكود، افتح ملف <code>index.html</code> في GitHub واضغط تعديل، ثم الصق الكود مباشرة تحت <code>&lt;div class="container"&gt;</code> واحفظ التغييرات.
+      <strong>ملاحظة:</strong> أدخل مفتاح Token مرة واحدة وسيحفظه متصفحك على جهازك لتنشر الأخبار مباشرة في <code>index.html</code> بضغطة زر.
     </div>
   </div>
 
   <script>
+    const OWNER = "krater360";
+    const REPO = "krater360.github.io";
+    const FILE_PATH = "index.html";
+
+    const tokenInput = document.getElementById("ghToken");
+    const savedToken = localStorage.getItem("krater360_gh_token");
+    if (savedToken) tokenInput.value = savedToken;
+
+    tokenInput.addEventListener("input", () => {
+      localStorage.setItem("krater360_gh_token", tokenInput.value.trim());
+    });
+
     function escapeHtml(text) {
       return text
         .replace(/&/g, "&amp;")
@@ -114,46 +127,107 @@
         .replace(/"/g, "&quot;");
     }
 
-    function generateAndCopy() {
+    function utf8ToBase64(str) {
+      const bytes = new TextEncoder().encode(str);
+      let bin = "";
+      for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+      return btoa(bin);
+    }
+
+    function base64ToUtf8(b64) {
+      const bin = atob(b64.replace(/\n/g, ""));
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return new TextDecoder().decode(bytes);
+    }
+
+    async function publishNews() {
+      const token = tokenInput.value.trim();
       const title = escapeHtml(document.getElementById("title").value.trim());
       const date = escapeHtml(document.getElementById("date").value.trim());
       const image = document.getElementById("image").value.trim();
       const rawBody = document.getElementById("body").value.trim();
+      const statusMsg = document.getElementById("statusMsg");
+      const btn = document.getElementById("publishBtn");
 
+      if (!token) {
+        statusMsg.style.color = "#c62828";
+        statusMsg.textContent = "يرجى إدخال مفتاح GitHub Token أولاً.";
+        return;
+      }
       if (!title || !rawBody) {
-        document.getElementById("statusMsg").style.color = "#c62828";
-        document.getElementById("statusMsg").textContent = "يرجى إدخال عنوان الخبر ونصه على الأقل.";
+        statusMsg.style.color = "#c62828";
+        statusMsg.textContent = "يرجى إدخال عنوان الخبر ونصه.";
         return;
       }
 
-      const paragraphs = rawBody
-        .split(/\n+/)
-        .map(p => `      <p>${escapeHtml(p.trim())}</p>`)
-        .join("\n");
+      btn.disabled = true;
+      statusMsg.style.color = "#0d47a1";
+      statusMsg.textContent = "جاري جلب ملف الموقع وإضافة الخبر...";
 
-      const imgTag = image
-        ? `\n      <img src="${escapeHtml(image)}" alt="${title}" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">`
-        : "";
+      try {
+        const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`;
+        const getRes = await fetch(apiUrl, {
+          headers: { Authorization: `token ${token}` }
+        });
+        if (!getRes.ok) throw new Error("تعذر الوصول إلى الملف. تأكد من صحة Token وصلاحية repo.");
 
-      const cardCode = `    <div class="news-card">${imgTag}
+        const fileData = await getRes.json();
+        const currentHtml = base64ToUtf8(fileData.content);
+
+        const paragraphs = rawBody
+          .split(/\n+/)
+          .map(p => `      <p>${escapeHtml(p.trim())}</p>`)
+          .join("\n");
+
+        const imgTag = image
+          ? `\n      <img src="${escapeHtml(image)}" alt="${title}" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">`
+          : "";
+
+        const newCard = `    <div class="news-card">${imgTag}
       <h2>${title}</h2>
       <div class="news-date">${date}</div>
 ${paragraphs}
-    </div>`;
+    </div>\n`;
 
-      const output = document.getElementById("outputCode");
-      output.value = cardCode;
-      output.select();
-      output.setSelectionRange(0, 999999);
+        const containerMarker = '<div class="container">';
+        const idx = currentHtml.indexOf(containerMarker);
+        if (idx === -1) throw new Error('لم يتم العثور على <div class="container"> داخل index.html.');
 
-      try {
-        navigator.clipboard.writeText(cardCode);
-      } catch (e) {
-        document.execCommand("copy");
+        const insertPos = idx + containerMarker.length;
+        const updatedHtml =
+          currentHtml.slice(0, insertPos) +
+          "\n" +
+          newCard +
+          currentHtml.slice(insertPos);
+
+        const putRes = await fetch(apiUrl, {
+          method: "PUT",
+          headers: {
+            Authorization: `token ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: `نشر خبر: ${title}`,
+            content: utf8ToBase64(updatedHtml),
+            sha: fileData.sha,
+            branch: "main"
+          })
+        });
+
+        if (!putRes.ok) throw new Error("فشل حفظ التعديل في GitHub.");
+
+        statusMsg.style.color = "#1b5e20";
+        statusMsg.textContent = "تم نشر الخبر تلقائياً في الموقع! سيظهر للزوار خلال دقيقة واحدة.";
+        document.getElementById("title").value = "";
+        document.getElementById("image").value = "";
+        document.getElementById("body").value = "";
+      } catch (err) {
+        statusMsg.style.color = "#c62828";
+        statusMsg.textContent = "خطأ: " + err.message;
+      } finally {
+        btn.disabled = false;
       }
-
-      document.getElementById("statusMsg").style.color = "#1b5e20";
-      document.getElementById("statusMsg").textContent = "تم تجهيز الكود ونسخه! الصقه الآن في index.html داخل container.";
     }
   </script>
 </body>
