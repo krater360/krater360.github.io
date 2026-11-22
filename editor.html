@@ -102,7 +102,7 @@
     <div class="msg" id="statusMsg"></div>
 
     <div class="note">
-      <strong>ملاحظة:</strong> يحدّث النظام تلقائياً بطاقات الأخبار في الصفحة الرئيسية وعنوان الخبر داخل شريط الأخبار المتحرك.
+      <strong>ملاحظة:</strong> يحدّث النظام تلقائياً بطاقات الأخبار، وشريط الأخبار المتحرك، ويضيف زر نسخ رابط مباشر لكل خبر جديد.
     </div>
   </div>
 
@@ -185,7 +185,18 @@
           });
         }
 
-        // 2. تجهيز بطاقة الخبر الجديدة وإضافتها أعلى حاوية الأخبار
+        // 2. إضافة دالة نسخ رابط الخبر مرة واحدة في الصفحة إن لم تكن موجودة
+        if (!updatedHtml.includes("function copyNewsLink(")) {
+          const copyScript = `\n<script>\nfunction copyNewsLink(id) {\n  const url = window.location.origin + window.location.pathname + "#" + id;\n  if (navigator.clipboard && navigator.clipboard.writeText) {\n    navigator.clipboard.writeText(url).then(() => alert("تم نسخ رابط الخبر"));\n  } else {\n    const temp = document.createElement("input");\n    temp.value = url;\n    document.body.appendChild(temp);\n    temp.select();\n    document.execCommand("copy");\n    document.body.removeChild(temp);\n    alert("تم نسخ رابط الخبر");\n  }\n}\n<\/script>\n`;
+          if (updatedHtml.includes("</body>")) {
+            updatedHtml = updatedHtml.replace("</body>", copyScript + "</body>");
+          } else {
+            updatedHtml += copyScript;
+          }
+        }
+
+        // 3. تجهيز بطاقة الخبر الجديدة مع معرف فريد وزر نسخ الرابط
+        const newsId = "news-" + Date.now();
         const paragraphs = rawBody
           .split(/\n+/)
           .map(p => `      <p>${escapeHtml(p.trim())}</p>`)
@@ -195,10 +206,11 @@
           ? `\n      <img src="${escapeHtml(image)}" alt="${title}" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">`
           : "";
 
-        const newCard = `    <div class="news-card">${imgTag}
+        const newCard = `    <div class="news-card" id="${newsId}">${imgTag}
       <h2>${title}</h2>
       <div class="news-date">${date}</div>
 ${paragraphs}
+      <button type="button" onclick="copyNewsLink('${newsId}')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
     </div>\n`;
 
         const containerMarker = '<div class="container">';
@@ -219,7 +231,7 @@ ${paragraphs}
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            message: `نشر خبر وتحديث الشريط: ${title}`,
+            message: `نشر خبر مع رابط مباشر: ${title}`,
             content: utf8ToBase64(updatedHtml),
             sha: fileData.sha,
             branch: "main"
@@ -229,7 +241,7 @@ ${paragraphs}
         if (!putRes.ok) throw new Error("فشل حفظ التعديل في GitHub.");
 
         statusMsg.style.color = "#1b5e20";
-        statusMsg.textContent = "تم نشر الخبر وتحديث شريط الأخبار تلقائياً! سيظهر خلال دقيقة واحدة.";
+        statusMsg.textContent = "تم نشر الخبر وإضافة زر نسخ الرابط بنجاح! سيظهر خلال دقيقة واحدة.";
         document.getElementById("title").value = "";
         document.getElementById("image").value = "";
         document.getElementById("body").value = "";
