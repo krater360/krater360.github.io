@@ -43,9 +43,24 @@
       font-family: Tahoma, Arial, sans-serif;
       font-size: 15px;
     }
+    input[type="file"] {
+      padding: 8px;
+      background: #fafafa;
+      font-size: 14px;
+    }
     textarea {
       min-height: 130px;
       line-height: 1.7;
+    }
+    .preview-box {
+      margin-top: 10px;
+      display: none;
+    }
+    .preview-box img {
+      max-width: 100%;
+      max-height: 220px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
     }
     .btn {
       margin-top: 16px;
@@ -92,7 +107,13 @@
     <label>التاريخ</label>
     <input type="text" id="date" value="22 نوفمبر 2026">
 
-    <label>رابط الصورة (اختياري)</label>
+    <label>رفع صورة من الهاتف (اختياري)</label>
+    <input type="file" id="imageFile" accept="image/*">
+    <div class="preview-box" id="previewBox">
+      <img id="previewImg" alt="معاينة الصورة">
+    </div>
+
+    <label>أو رابط الصورة مباشرة (اختياري)</label>
     <input type="url" id="image" placeholder="https://example.com/image.jpg">
 
     <label>نص الخبر أو المقال</label>
@@ -102,7 +123,7 @@
     <div class="msg" id="statusMsg"></div>
 
     <div class="note">
-      <strong>ملاحظة:</strong> يحدّث النظام تلقائياً بطاقات الأخبار، وشريط الأخبار المتحرك، ويضيف زر نسخ رابط مباشر لكل خبر جديد.
+      <strong>ملاحظة:</strong> يحدّث النظام تلقائياً بطاقات الأخبار، وشريط الأخبار المتحرك، ويضيف زر نسخ رابط مباشر لكل خبر جديد، كما يرفع صورة الهاتف تلقائياً إلى مجلد <code>images/</code> في المستودع عند اختيارها.
     </div>
   </div>
 
@@ -110,13 +131,34 @@
     const OWNER = "krater360";
     const REPO = "krater360.github.io";
     const FILE_PATH = "index.html";
+    const BRANCH = "main";
 
     const tokenInput = document.getElementById("ghToken");
+    const fileInput = document.getElementById("imageFile");
+    const imageUrlInput = document.getElementById("image");
+    const previewBox = document.getElementById("previewBox");
+    const previewImg = document.getElementById("previewImg");
+
     const savedToken = localStorage.getItem("krater360_gh_token");
     if (savedToken) tokenInput.value = savedToken;
 
     tokenInput.addEventListener("input", () => {
       localStorage.setItem("krater360_gh_token", tokenInput.value.trim());
+    });
+
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files[0];
+      if (!file) {
+        previewBox.style.display = "none";
+        previewImg.removeAttribute("src");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        previewImg.src = e.target.result;
+        previewBox.style.display = "block";
+      };
+      reader.readAsDataURL(file);
     });
 
     function escapeHtml(text) {
@@ -141,11 +183,61 @@
       return new TextDecoder().decode(bytes);
     }
 
+    function fileToBase64Pure(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = String(reader.result || "");
+          const parts = result.split(",");
+          if (parts.length < 2) return reject(new Error("تعذر قراءة بيانات الصورة."));
+          resolve(parts[1]);
+        };
+        reader.onerror = () => reject(new Error("حدث خطأ أثناء قراءة ملف الصورة من الهاتف."));
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function sanitizeFileName(name) {
+      const dotIdx = name.lastIndexOf(".");
+      const rawBase = dotIdx > 0 ? name.slice(0, dotIdx) : name;
+      const rawExt = dotIdx > 0 ? name.slice(dotIdx + 1).toLowerCase() : "jpg";
+      const safeBase = rawBase.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 30) || "news-img";
+      const safeExt = rawExt.replace(/[^a-z0-9]/g, "") || "jpg";
+      return `${Date.now()}-${safeBase}.${safeExt}`;
+    }
+
+    async function uploadImageToGitHub(file, token) {
+      const fileName = sanitizeFileName(file.name);
+      const imagePath = `images/${fileName}`;
+      const base64Content = await fileToBase64Pure(file);
+      const uploadUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${imagePath}`;
+
+      const uploadRes = await fetch(uploadUrl, {
+        method: "PUT",
+        headers: {
+          Authorization: `token ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: `رفع صورة خبر: ${fileName}`,
+          content: base64Content,
+          branch: BRANCH
+        })
+      });
+
+      if (!uploadRes.ok) {
+        throw new Error("فشل رفع الصورة من الهاتف إلى مستودع GitHub.");
+      }
+
+      return `https://${OWNER}.github.io/${imagePath}`;
+    }
+
     async function publishNews() {
       const token = tokenInput.value.trim();
       const title = escapeHtml(document.getElementById("title").value.trim());
       const date = escapeHtml(document.getElementById("date").value.trim());
-      const image = document.getElementById("image").value.trim();
+      const manualImage = imageUrlInput.value.trim();
+      const selectedFile = fileInput.files[0];
       const rawBody = document.getElementById("body").value.trim();
       const statusMsg = document.getElementById("statusMsg");
       const btn = document.getElementById("publishBtn");
@@ -163,9 +255,17 @@
 
       btn.disabled = true;
       statusMsg.style.color = "#0d47a1";
-      statusMsg.textContent = "جاري جلب ملف الموقع وتحديث البطاقة وشريط الأخبار...";
 
       try {
+        let finalImageUrl = manualImage;
+
+        if (selectedFile) {
+          statusMsg.textContent = "جاري رفع الصورة من الهاتف إلى GitHub...";
+          finalImageUrl = await uploadImageToGitHub(selectedFile, token);
+        }
+
+        statusMsg.textContent = "جاري جلب ملف الموقع وتحديث البطاقة وشريط الأخبار...";
+
         const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`;
         const getRes = await fetch(apiUrl, {
           headers: { Authorization: `token ${token}` }
@@ -202,8 +302,8 @@
           .map(p => `      <p>${escapeHtml(p.trim())}</p>`)
           .join("\n");
 
-        const imgTag = image
-          ? `\n      <img src="${escapeHtml(image)}" alt="${title}" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">`
+        const imgTag = finalImageUrl
+          ? `\n      <img src="${escapeHtml(finalImageUrl)}" alt="${title}" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">`
           : "";
 
         const newCard = `    <div class="news-card" id="${newsId}">${imgTag}
@@ -231,10 +331,10 @@ ${paragraphs}
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            message: `نشر خبر مع رابط مباشر: ${title}`,
+            message: `نشر خبر: ${title}`,
             content: utf8ToBase64(updatedHtml),
             sha: fileData.sha,
-            branch: "main"
+            branch: BRANCH
           })
         });
 
@@ -243,7 +343,10 @@ ${paragraphs}
         statusMsg.style.color = "#1b5e20";
         statusMsg.textContent = "تم نشر الخبر وإضافة زر نسخ الرابط بنجاح! سيظهر خلال دقيقة واحدة.";
         document.getElementById("title").value = "";
-        document.getElementById("image").value = "";
+        imageUrlInput.value = "";
+        fileInput.value = "";
+        previewBox.style.display = "none";
+        previewImg.removeAttribute("src");
         document.getElementById("body").value = "";
       } catch (err) {
         statusMsg.style.color = "#c62828";
