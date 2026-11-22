@@ -102,7 +102,7 @@
     <div class="msg" id="statusMsg"></div>
 
     <div class="note">
-      <strong>ملاحظة:</strong> أدخل مفتاح Token مرة واحدة وسيحفظه متصفحك على جهازك لتنشر الأخبار مباشرة في <code>index.html</code> بضغطة زر.
+      <strong>ملاحظة:</strong> يحدّث النظام تلقائياً بطاقات الأخبار في الصفحة الرئيسية وعنوان الخبر داخل شريط الأخبار المتحرك.
     </div>
   </div>
 
@@ -163,7 +163,7 @@
 
       btn.disabled = true;
       statusMsg.style.color = "#0d47a1";
-      statusMsg.textContent = "جاري جلب ملف الموقع وإضافة الخبر...";
+      statusMsg.textContent = "جاري جلب ملف الموقع وتحديث البطاقة وشريط الأخبار...";
 
       try {
         const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`;
@@ -173,8 +173,19 @@
         if (!getRes.ok) throw new Error("تعذر الوصول إلى الملف. تأكد من صحة Token وصلاحية repo.");
 
         const fileData = await getRes.json();
-        const currentHtml = base64ToUtf8(fileData.content);
+        let updatedHtml = base64ToUtf8(fileData.content);
 
+        // 1. تحديث نص شريط الأخبار داخل <marquee>
+        const marqueeRegex = /(<marquee[^>]*>)([\s\S]*?)(<\/marquee>)/i;
+        if (marqueeRegex.test(updatedHtml)) {
+          updatedHtml = updatedHtml.replace(marqueeRegex, (match, openTag, oldText, closeTag) => {
+            const cleanOld = oldText.trim();
+            const mergedText = cleanOld ? `${title}   ★   ${cleanOld}` : title;
+            return `${openTag}\n    ${mergedText}\n  ${closeTag}`;
+          });
+        }
+
+        // 2. تجهيز بطاقة الخبر الجديدة وإضافتها أعلى حاوية الأخبار
         const paragraphs = rawBody
           .split(/\n+/)
           .map(p => `      <p>${escapeHtml(p.trim())}</p>`)
@@ -191,15 +202,15 @@ ${paragraphs}
     </div>\n`;
 
         const containerMarker = '<div class="container">';
-        const idx = currentHtml.indexOf(containerMarker);
+        const idx = updatedHtml.indexOf(containerMarker);
         if (idx === -1) throw new Error('لم يتم العثور على <div class="container"> داخل index.html.');
 
         const insertPos = idx + containerMarker.length;
-        const updatedHtml =
-          currentHtml.slice(0, insertPos) +
+        updatedHtml =
+          updatedHtml.slice(0, insertPos) +
           "\n" +
           newCard +
-          currentHtml.slice(insertPos);
+          updatedHtml.slice(insertPos);
 
         const putRes = await fetch(apiUrl, {
           method: "PUT",
@@ -208,7 +219,7 @@ ${paragraphs}
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            message: `نشر خبر: ${title}`,
+            message: `نشر خبر وتحديث الشريط: ${title}`,
             content: utf8ToBase64(updatedHtml),
             sha: fileData.sha,
             branch: "main"
@@ -218,7 +229,7 @@ ${paragraphs}
         if (!putRes.ok) throw new Error("فشل حفظ التعديل في GitHub.");
 
         statusMsg.style.color = "#1b5e20";
-        statusMsg.textContent = "تم نشر الخبر تلقائياً في الموقع! سيظهر للزوار خلال دقيقة واحدة.";
+        statusMsg.textContent = "تم نشر الخبر وتحديث شريط الأخبار تلقائياً! سيظهر خلال دقيقة واحدة.";
         document.getElementById("title").value = "";
         document.getElementById("image").value = "";
         document.getElementById("body").value = "";
