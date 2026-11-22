@@ -65,6 +65,13 @@
       border-radius: 6px;
       border: 1px solid #ddd;
     }
+    .preview-box video {
+      max-width: 100%;
+      max-height: 220px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      background: #000;
+    }
     .btn {
       margin-top: 16px;
       width: 100%;
@@ -164,8 +171,12 @@
     <input type="file" id="imageFile" accept="image/*" multiple>
     <div class="preview-box" id="previewBox"></div>
 
-    <label>أو روابط صور مباشرة مفصولة بفاصلة أو سطر جديد (اختياري)</label>
-    <textarea id="image" style="min-height: 65px;" placeholder="https://example.com/img1.jpg&#10;https://example.com/img2.jpg"></textarea>
+    <label>رفع فيديو من الهاتف (اختياري)</label>
+    <input type="file" id="videoFile" accept="video/*">
+    <div class="preview-box" id="videoPreviewBox"></div>
+
+    <label>أو روابط صور أو فيديو مباشرة مفصولة بفاصلة أو سطر جديد (اختياري)</label>
+    <textarea id="image" style="min-height: 65px;" placeholder="https://example.com/img1.jpg&#10;https://example.com/video.mp4"></textarea>
 
     <label>نص الخبر أو المقال</label>
     <textarea id="body" placeholder="اكتب تفاصيل الخبر أو المقال هنا..."></textarea>
@@ -174,7 +185,7 @@
     <div class="msg" id="statusMsg"></div>
 
     <div class="note">
-      <strong>ملاحظة:</strong> يدعم النشر رفع عدة صور من الهاتف في خبر واحد، وتحديث شريط الأخبار، وإضافة زر نسخ الرابط المباشر لكل خبر.
+      <strong>ملاحظة:</strong> يدعم النشر رفع عدة صور وفيديو من الهاتف في خبر واحد، وتحديث شريط الأخبار، وإضافة زر نسخ الرابط المباشر لكل خبر. يُفضّل أن يكون الفيديو خفيف الحجم.
     </div>
   </div>
 
@@ -198,6 +209,10 @@
       <input type="file" id="editImageFiles" accept="image/*" multiple>
       <div class="preview-box" id="editPreviewBox"></div>
 
+      <label>إضافة أو استبدال فيديو من الهاتف (اختياري)</label>
+      <input type="file" id="editVideoFile" accept="video/*">
+      <div class="preview-box" id="editVideoPreviewBox"></div>
+
       <label>نص الخبر</label>
       <textarea id="editBody"></textarea>
 
@@ -214,10 +229,14 @@
 
     const tokenInput = document.getElementById("ghToken");
     const fileInput = document.getElementById("imageFile");
+    const videoFileInput = document.getElementById("videoFile");
     const imageUrlInput = document.getElementById("image");
     const previewBox = document.getElementById("previewBox");
+    const videoPreviewBox = document.getElementById("videoPreviewBox");
     const editFileInput = document.getElementById("editImageFiles");
+    const editVideoFileInput = document.getElementById("editVideoFile");
     const editPreviewBox = document.getElementById("editPreviewBox");
+    const editVideoPreviewBox = document.getElementById("editVideoPreviewBox");
 
     const savedToken = localStorage.getItem("krater360_gh_token");
     if (savedToken) tokenInput.value = savedToken;
@@ -241,8 +260,20 @@
       });
     }
 
+    function renderVideoPreview(file, containerEl) {
+      containerEl.innerHTML = "";
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      const video = document.createElement("video");
+      video.src = url;
+      video.controls = true;
+      containerEl.appendChild(video);
+    }
+
     fileInput.addEventListener("change", () => renderFilePreviews(fileInput.files, previewBox));
+    videoFileInput.addEventListener("change", () => renderVideoPreview(videoFileInput.files[0], videoPreviewBox));
     editFileInput.addEventListener("change", () => renderFilePreviews(editFileInput.files, editPreviewBox));
+    editVideoFileInput.addEventListener("change", () => renderVideoPreview(editVideoFileInput.files[0], editVideoPreviewBox));
 
     function escapeHtml(text) {
       return text
@@ -278,28 +309,31 @@
         reader.onload = () => {
           const result = String(reader.result || "");
           const parts = result.split(",");
-          if (parts.length < 2) return reject(new Error("تعذر قراءة بيانات الصورة."));
+          if (parts.length < 2) return reject(new Error("تعذر قراءة بيانات الملف."));
           resolve(parts[1]);
         };
-        reader.onerror = () => reject(new Error("حدث خطأ أثناء قراءة ملف الصورة من الهاتف."));
+        reader.onerror = () => reject(new Error("حدث خطأ أثناء قراءة الملف من الهاتف."));
         reader.readAsDataURL(file);
       });
     }
 
-    function sanitizeFileName(name, idx) {
+    function sanitizeFileName(name, idx, fallbackPrefix) {
       const dotIdx = name.lastIndexOf(".");
       const rawBase = dotIdx > 0 ? name.slice(0, dotIdx) : name;
-      const rawExt = dotIdx > 0 ? name.slice(dotIdx + 1).toLowerCase() : "jpg";
-      const safeBase = rawBase.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 25) || "news-img";
-      const safeExt = rawExt.replace(/[^a-z0-9]/g, "") || "jpg";
+      const rawExt = dotIdx > 0 ? name.slice(dotIdx + 1).toLowerCase() : "";
+      const safeBase = rawBase.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 25) || fallbackPrefix;
+      const safeExt = rawExt.replace(/[^a-z0-9]/g, "") || (fallbackPrefix === "vid" ? "mp4" : "jpg");
       return `${Date.now()}-${idx}-${safeBase}.${safeExt}`;
     }
 
-    async function uploadImageToGitHub(file, token, idx) {
-      const fileName = sanitizeFileName(file.name, idx);
-      const imagePath = `images/${fileName}`;
+    async function uploadMediaToGitHub(file, token, idx, folder, fallbackPrefix, labelText) {
+      if (file.size > 24 * 1024 * 1024) {
+        throw new Error(`حجم ${labelText} (${file.name}) كبير جداً لرفعه مباشرة عبر GitHub.`);
+      }
+      const fileName = sanitizeFileName(file.name, idx, fallbackPrefix);
+      const mediaPath = `${folder}/${fileName}`;
       const base64Content = await fileToBase64Pure(file);
-      const uploadUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${imagePath}`;
+      const uploadUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${mediaPath}`;
 
       const uploadRes = await fetch(uploadUrl, {
         method: "PUT",
@@ -308,17 +342,29 @@
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          message: `رفع صورة خبر: ${fileName}`,
+          message: `رفع ${labelText}: ${fileName}`,
           content: base64Content,
           branch: BRANCH
         })
       });
 
       if (!uploadRes.ok) {
-        throw new Error(`فشل رفع الصورة (${file.name}) إلى GitHub.`);
+        throw new Error(`فشل رفع ${labelText} (${file.name}) إلى GitHub.`);
       }
 
-      return `https://${OWNER}.github.io/${imagePath}`;
+      return `https://${OWNER}.github.io/${mediaPath}`;
+    }
+
+    function uploadImageToGitHub(file, token, idx) {
+      return uploadMediaToGitHub(file, token, idx, "images", "news-img", "صورة خبر");
+    }
+
+    function uploadVideoToGitHub(file, token, idx = 1) {
+      return uploadMediaToGitHub(file, token, idx, "videos", "vid", "فيديو خبر");
+    }
+
+    function isVideoUrl(url) {
+      return /\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i.test(url);
     }
 
     async function fetchIndexHtml(token) {
@@ -359,15 +405,23 @@
         .join("\n");
     }
 
+    function buildVideosHtml(urls) {
+      if (!urls.length) return "";
+      return "\n" + urls
+        .map(url => `      <video src="${escapeHtml(url)}" controls preload="metadata" style="width:100%; max-height:440px; border-radius:6px; margin-bottom:12px; background:#000;"></video>`)
+        .join("\n");
+    }
+
     async function publishNews() {
       const token = tokenInput.value.trim();
       const title = escapeHtml(document.getElementById("title").value.trim());
       const date = escapeHtml(document.getElementById("date").value.trim());
-      const manualUrls = imageUrlInput.value
+      const manualEntries = imageUrlInput.value
         .split(/[\n,،]+/)
         .map(u => u.trim())
         .filter(Boolean);
       const selectedFiles = Array.from(fileInput.files || []);
+      const selectedVideo = videoFileInput.files[0] || null;
       const rawBody = document.getElementById("body").value.trim();
       const statusMsg = document.getElementById("statusMsg");
       const btn = document.getElementById("publishBtn");
@@ -387,12 +441,19 @@
       statusMsg.style.color = "#0d47a1";
 
       try {
-        const finalImages = [...manualUrls];
+        const finalImages = manualEntries.filter(u => !isVideoUrl(u));
+        const finalVideos = manualEntries.filter(u => isVideoUrl(u));
 
         for (let i = 0; i < selectedFiles.length; i++) {
           statusMsg.textContent = `جاري رفع الصورة ${i + 1} من ${selectedFiles.length}...`;
           const uploadedUrl = await uploadImageToGitHub(selectedFiles[i], token, i + 1);
           finalImages.push(uploadedUrl);
+        }
+
+        if (selectedVideo) {
+          statusMsg.textContent = "جاري رفع الفيديو إلى GitHub...";
+          const uploadedVideoUrl = await uploadVideoToGitHub(selectedVideo, token, 1);
+          finalVideos.push(uploadedVideoUrl);
         }
 
         statusMsg.textContent = "جاري جلب ملف الموقع وتحديث البطاقة وشريط الأخبار...";
@@ -424,8 +485,9 @@
           .join("\n");
 
         const imgsHtml = buildImagesHtml(finalImages, title);
+        const vidsHtml = buildVideosHtml(finalVideos);
 
-        const newCard = `    <div class="news-card" id="${newsId}">${imgsHtml}
+        const newCard = `    <div class="news-card" id="${newsId}">${imgsHtml}${vidsHtml}
       <h2>${title}</h2>
       <div class="news-date">${date}</div>
 ${paragraphs}
@@ -450,7 +512,9 @@ ${paragraphs}
         document.getElementById("title").value = "";
         imageUrlInput.value = "";
         fileInput.value = "";
+        videoFileInput.value = "";
         previewBox.innerHTML = "";
+        videoPreviewBox.innerHTML = "";
         document.getElementById("body").value = "";
       } catch (err) {
         statusMsg.style.color = "#c62828";
@@ -495,6 +559,7 @@ ${paragraphs}
           const dateText = card.querySelector(".news-date") ? card.querySelector(".news-date").textContent.trim() : "";
           const bodyParagraphs = Array.from(card.querySelectorAll("p")).map(p => p.textContent.trim()).join("\n\n");
           const existingImgs = Array.from(card.querySelectorAll("img")).map(img => img.getAttribute("src")).filter(Boolean);
+          const existingVids = Array.from(card.querySelectorAll("video")).map(vid => vid.getAttribute("src")).filter(Boolean);
 
           const row = document.createElement("div");
           row.className = "news-item";
@@ -507,7 +572,7 @@ ${paragraphs}
           editBtn.type = "button";
           editBtn.className = "edit-btn";
           editBtn.textContent = "تعديل";
-          editBtn.onclick = () => openEditPanel(cardId, index, h2Text, dateText, bodyParagraphs, existingImgs);
+          editBtn.onclick = () => openEditPanel(cardId, index, h2Text, dateText, bodyParagraphs, existingImgs, existingVids);
 
           row.appendChild(info);
           row.appendChild(editBtn);
@@ -520,17 +585,21 @@ ${paragraphs}
     }
 
     let currentEditExistingImgs = [];
+    let currentEditExistingVids = [];
     let currentEditIndex = -1;
 
-    function openEditPanel(cardId, index, title, date, body, existingImgs) {
+    function openEditPanel(cardId, index, title, date, body, existingImgs, existingVids) {
       currentEditExistingImgs = existingImgs || [];
+      currentEditExistingVids = existingVids || [];
       currentEditIndex = index;
       document.getElementById("editNewsId").value = cardId;
       document.getElementById("editTitle").value = decodeHtmlEntities(title);
       document.getElementById("editDate").value = decodeHtmlEntities(date);
       document.getElementById("editBody").value = decodeHtmlEntities(body);
       editFileInput.value = "";
+      editVideoFileInput.value = "";
       editPreviewBox.innerHTML = "";
+      editVideoPreviewBox.innerHTML = "";
       document.getElementById("editPanel").style.display = "block";
       document.getElementById("editPanel").scrollIntoView({ behavior: "smooth" });
     }
@@ -538,7 +607,9 @@ ${paragraphs}
     function cancelEdit() {
       document.getElementById("editPanel").style.display = "none";
       editFileInput.value = "";
+      editVideoFileInput.value = "";
       editPreviewBox.innerHTML = "";
+      editVideoPreviewBox.innerHTML = "";
     }
 
     async function saveEditedNews() {
@@ -548,6 +619,7 @@ ${paragraphs}
       const newDate = escapeHtml(document.getElementById("editDate").value.trim());
       const newBodyRaw = document.getElementById("editBody").value.trim();
       const newFiles = Array.from(editFileInput.files || []);
+      const newVideo = editVideoFileInput.files[0] || null;
       const manageMsg = document.getElementById("manageMsg");
       const saveBtn = document.getElementById("saveEditBtn");
 
@@ -562,54 +634,15 @@ ${paragraphs}
 
       try {
         const allImgs = [...currentEditExistingImgs];
+        const allVids = [...currentEditExistingVids];
+
         for (let i = 0; i < newFiles.length; i++) {
           manageMsg.textContent = `جاري رفع الصورة الجديدة ${i + 1} من ${newFiles.length}...`;
           const url = await uploadImageToGitHub(newFiles[i], token, i + 1);
           allImgs.push(url);
         }
 
-        manageMsg.textContent = "جاري حفظ التعديلات في index.html...";
-        const { apiUrl, sha, html } = await fetchIndexHtml(token);
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        const cards = Array.from(doc.querySelectorAll(".news-card"));
-        const targetCard = doc.getElementById(cardId) || cards[currentEditIndex];
-
-        if (!targetCard) throw new Error("تعذر العثور على بطاقة الخبر المحددة للتعديل.");
-
-        const actualId = targetCard.id || ("news-" + Date.now());
-        const paragraphsHtml = newBodyRaw
-          .split(/\n+/)
-          .map(p => `<p>${escapeHtml(p.trim())}</p>`)
-          .join("\n");
-
-        const imgsHtml = allImgs
-          .map(src => `<img src="${escapeHtml(src)}" alt="${newTitle}" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">`)
-          .join("\n");
-
-        targetCard.id = actualId;
-        targetCard.innerHTML = `
-${imgsHtml}
-<h2>${newTitle}</h2>
-<div class="news-date">${newDate}</div>
-${paragraphsHtml}
-<button type="button" onclick="copyNewsLink('${actualId}')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
-        `.trim();
-
-        const updatedFullHtml = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
-        await saveIndexHtml(apiUrl, token, updatedFullHtml, sha, `تعديل خبر: ${newTitle}`);
-
-        manageMsg.style.color = "#1b5e20";
-        manageMsg.textContent = "تم حفظ التعديلات بنجاح! سيظهر التحديث خلال دقيقة.";
-        cancelEdit();
-        await loadPublishedNews();
-      } catch (err) {
-        manageMsg.style.color = "#c62828";
-        manageMsg.textContent = "خطأ: " + err.message;
-      } finally {
-        saveBtn.disabled = false;
-      }
-    }
-  </script>
-</body>
-</html>
+        if (newVideo) {
+          manageMsg.textContent = "جاري رفع الفيديو الجديد إلى GitHub...";
+          const vidUrl = await uploadVideoToGitHub(newVideo, token, 1);
+          allVids.push
