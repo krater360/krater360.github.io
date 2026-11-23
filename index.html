@@ -58,8 +58,19 @@
     header {
       background-color: #0d47a1;
       color: #ffffff;
-      padding: 20px 15px;
+      padding: 16px 15px;
+    }
+    .header-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+    .header-brand {
       text-align: center;
+      padding: 0 10px;
     }
     header h1 {
       margin: 0;
@@ -69,6 +80,43 @@
       margin: 5px 0 0;
       font-size: 14px;
       color: #bbdefb;
+    }
+    .header-ad-slot {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px dashed rgba(255, 255, 255, 0.45);
+      border-radius: 6px;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #fff;
+      overflow: hidden;
+    }
+    .header-ad-slot a {
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+    .header-ad-slot img {
+      max-height: 48px;
+      max-width: 100%;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+    @media (max-width: 768px) {
+      .header-grid {
+        grid-template-columns: 1fr;
+      }
+      .header-brand {
+        order: -1;
+      }
     }
     .ticker-wrap {
       background-color: #d32f2f;
@@ -159,6 +207,98 @@
       font-size: 13px;
       cursor: pointer;
     }
+    .btn-delete-post {
+      background: #37474f;
+      color: #fff;
+      border: none;
+      padding: 7px 12px;
+      border-radius: 5px;
+      font-size: 13px;
+      cursor: pointer;
+      display: none;
+    }
+    body.admin-mode .btn-delete-post {
+      display: inline-block;
+    }
+    .admin-panel {
+      display: none;
+      background: #ffffff;
+      border: 2px solid #0d47a1;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    }
+    body.admin-mode .admin-panel {
+      display: block;
+    }
+    .admin-panel h3 {
+      margin: 0 0 12px;
+      color: #0d47a1;
+      font-size: 17px;
+    }
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 700px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .admin-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 12px;
+    }
+    .admin-box h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #1e293b;
+    }
+    .admin-box label {
+      display: block;
+      font-size: 12px;
+      margin-top: 6px;
+      color: #475569;
+    }
+    .admin-box input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 7px 9px;
+      margin-top: 3px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+    .admin-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-admin-save {
+      background: #2e7d32;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    .btn-admin-reset {
+      background: #64748b;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+    }
     .comments-section {
       margin-top: 18px;
       padding-top: 14px;
@@ -233,13 +373,29 @@
       margin-top: 30px;
       font-size: 13px;
     }
+    .admin-trigger {
+      background: transparent;
+      color: #bbdefb;
+      border: 1px solid rgba(187, 222, 251, 0.4);
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: pointer;
+      margin-right: 8px;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>krater360</h1>
-    <p>منصة الأخبار والمقالات المستقلة</p>
+    <div class="header-grid">
+      <div class="header-ad-slot" id="headerAdRight">مساحة إعلانية يمين</div>
+      <div class="header-brand">
+        <h1>krater360</h1>
+        <p>منصة الأخبار والمقالات المستقلة</p>
+      </div>
+      <div class="header-ad-slot" id="headerAdLeft">مساحة إعلانية يسار</div>
+    </div>
   </header>
 
   <div class="ticker-wrap">
@@ -249,70 +405,128 @@
   </div>
 
   <div class="container">
+    <div class="admin-panel" id="adminPanel">
+      <h3>لوحة إدارة الإعلانات والمنشورات</h3>
+      <div class="admin-grid">
+        <div class="admin-box">
+          <h4>إعلان رأس الصفحة (يمين)</h4>
+          <label>نص الإعلان</label>
+          <input type="text" id="adRightText" placeholder="مثال: أعلن معنا الآن">
+          <label>رابط الصورة (اختياري)</label>
+          <input type="url" id="adRightImg" placeholder="https://...">
+          <label>رابط الوجهة عند النقر (اختياري)</label>
+          <input type="url" id="adRightUrl" placeholder="https://...">
+        </div>
+        <div class="admin-box">
+          <h4>إعلان رأس الصفحة (يسار)</h4>
+          <label>نص الإعلان</label>
+          <input type="text" id="adLeftText" placeholder="مثال: تغطية خاصة">
+          <label>رابط الصورة (اختياري)</label>
+          <input type="url" id="adLeftImg" placeholder="https://...">
+          <label>رابط الوجهة عند النقر (اختياري)</label>
+          <input type="url" id="adLeftUrl" placeholder="https://...">
+        </div>
+      </div>
+      <div class="admin-actions">
+        <button type="button" class="btn-admin-save" onclick="saveAdsConfig()">حفظ وتعديل الإعلانات</button>
+        <button type="button" class="btn-admin-reset" onclick="restoreAllPosts()">استعادة المنشورات المحذوفة</button>
+        <button type="button" class="btn-admin-reset" onclick="toggleAdminMode(false)">إغلاق لوحة الإدارة</button>
+      </div>
+    </div>
+
     <div class="news-card" id="news-1795428076522">
       <img src="https://krater360.github.io/images/1795428073056-1-images92.jpeg" alt="انفراجه كبيرة بشأن صرف العلاوات والزيادة 20٪" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>انفراجه كبيرة بشأن صرف العلاوات والزيادة 20٪</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>*بشرى سارة لموظفي محافظة عدن بشأن خروج التعزيز المالي للزيادات لعدد من المرافق الحكومية*</p>
-      <p>بحسب المعلومات التي وصلتني، فقد تم إرسال التعزيز المالي الخاص بالزيادات المستحقة لعدد من المرافق الحكومية في محافظة عدن إلى البنك المركزي، وذلك تمهيداً لاستكمال الإجراءات المالية المتعلقة بصرف الزيادات للموظفين المستفيدين.</p>
-      <p>ونأمل استكمال بقية الإجراءات وصرف المستحقات في أقرب وقت، بما يسهم في تخفيف معاناة الموظفين وتحسين أوضاعهم المعيشية.</p>
-      <button type="button" onclick="copyNewsLink('news-1795428076522')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
+      <div class="news-body">
+        <p>*بشرى سارة لموظفي محافظة عدن بشأن خروج التعزيز المالي للزيادات لعدد من المرافق الحكومية*</p>
+        <p>بحسب المعلومات التي وصلتني، فقد تم إرسال التعزيز المالي الخاص بالزيادات المستحقة لعدد من المرافق الحكومية في محافظة عدن إلى البنك المركزي، وذلك تمهيداً لاستكمال الإجراءات المالية المتعلقة بصرف الزيادات للموظفين المستفيدين.</p>
+        <p>ونأمل استكمال بقية الإجراءات وصرف المستحقات في أقرب وقت، بما يسهم في تخفيف معاناة الموظفين وتحسين أوضاعهم المعيشية.</p>
+      </div>
+      <div class="news-actions">
+        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795428076522', this)">قراءة المزيد</button>
+        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795428076522')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795428076522')">حذف المنشور</button>
+      </div>
     </div>
-
     <div class="news-card" id="news-1795427847550">
       <img src="https://krater360.github.io/images/1795427840397-1-1795427708303.jpg" alt="تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>عاجل | تحرك سياسي وعسكري طارئ لبحث التطورات الميدانية</p>
-      <p>​تعقد قيادات من القوات المسلحة الجنوبية والمجلس الانتقالي الجنوبي والأمانة العامة، عصر اليوم، اجتماعاً استثنائياً وطوارئياً للوقوف أمام المستجدات الميدانية والسياسية المتسارعة، وذلك في أعقاب التطورات الأخيرة التي شهدتها المديرية، والتي تمثل نحو 75% من إجمالي مساحة المحافظة.</p>
-      <p>​ووفقاً لما ورد في نص الدعوة الصادرة عن الجهات المنظمة، يهدف هذا اللقاء رفيع المستوى إلى صياغة خطة تحرك جادة ومسؤولة، واتخاذ مواقف حازمة للتصدي لأي ترتيبات أو تفاهمات سياسية أو ميدانية قد تفضي إلى تسليم المحافظة لمليشيات الحوثي، مؤكدين أن مثل هذه التحركات تتم بمعزل عن إرادة أبناء المحافظة وتطلعاتهم.</p>
-      <p>​وشدد البيان على رفض أي مساومات تمس أمن واستقرار المنطقة، موضحاً أن &quot;المحافظة ليست للبيع، وأن قرارها السيادي والميداني يجب أن يظل حصراً بيد أبنائها&quot;، وسط ترقب واسع في الأوساط السياسية والشعبية لما ستسفر عنه مخرجات هذا الاجتماع خلال الساعات القليلة المقبلة.</p>
-      <button type="button" onclick="copyNewsLink('news-1795427847550')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
+      <div class="news-body">
+        <p>عاجل | تحرك سياسي وعسكري طارئ لبحث التطورات الميدانية</p>
+        <p>تعقد قيادات من القوات المسلحة الجنوبية والمجلس الانتقالي الجنوبي والأمانة العامة، عصر اليوم، اجتماعاً استثنائياً وطوارئياً للوقوف أمام المستجدات الميدانية والسياسية المتسارعة، وذلك في أعقاب التطورات الأخيرة التي شهدتها المديرية، والتي تمثل نحو 75% من إجمالي مساحة المحافظة.</p>
+        <p>ووفقاً لما ورد في نص الدعوة الصادرة عن الجهات المنظمة، يهدف هذا اللقاء رفيع المستوى إلى صياغة خطة تحرك جادة ومسؤولة، واتخاذ مواقف حازمة للتصدي لأي ترتيبات أو تفاهمات سياسية أو ميدانية قد تفضي إلى تسليم المحافظة لمليشيات الحوثي، مؤكدين أن مثل هذه التحركات تتم بمعزل عن إرادة أبناء المحافظة وتطلعاتهم.</p>
+        <p>وشدد البيان على رفض أي مساومات تمس أمن واستقرار المنطقة، موضحاً أن &quot;المحافظة ليست للبيع، وأن قرارها السيادي والميداني يجب أن يظل حصراً بيد أبنائها&quot;، وسط ترقب واسع في الأوساط السياسية والشعبية لما ستسفر عنه مخرجات هذا الاجتماع خلال الساعات القليلة المقبلة.</p>
+      </div>
+      <div class="news-actions">
+        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795427847550', this)">قراءة المزيد</button>
+        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795427847550')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795427847550')">حذف المنشور</button>
+      </div>
     </div>
 
     <div class="news-card" id="news-1795406996756">
       <img src="https://krater360.github.io/images/1795406992904-1-IMG-20261123-WA0000.jpg" alt="مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>أثارت وثيقة متداولة منسوبة إلى رئاسة مجلس القيادة الرئاسي، تتضمن توجيهاً إلى وزير المالية باعتماد مخصص شهري قدره خمسة آلاف ريال سعودي لصالح أحد الأشخاص تحت مسمى &quot;المواقف الوطنية&quot;، موجة انتقادات حادة وتساؤلات واسعة حول إدارة المال العام وأولويات الإنفاق.</p>
-      <p>​وبحسب مضمون الخطاب المتداول، فإن التوجيه يقضي بصرف المبلغ الشهري بالعملة السعودية للمدعو عبد الإله الصايدي (أبو مرتاح) نظير وقوفه مع الوطن ضد المليشيات الانقلابية، مع المطالبة باستكمال إجراءات الصرف فوراً.</p>
-      <p>​ويأتي التفاعل الغاضب مع هذه الوثيقة في ظل أوضاع معيشية واقتصادية ضاغطة، ومع استمرار شكاوى عدد من المقاتلين في الجبهات والعاملين في قطاعات مختلفة من تأخر أو انقطاع الرواتب، وهو ما اعتبره منتقدون مؤشراً على خلل واضح في ترتيب الأولويات وغياب معايير العدالة والشفافية في صرف المخصصات المالية.</p>
-      <p>​ويرى مراقبون ومنتقدون أن استمرار اعتماد مخصصات فردية بالعملة الأجنبية دون إطار مؤسسي واضح ومعلن يعمّق حالة السخط الشعبي، ويضعف الثقة في آليات الرقابة المالية، خاصة في وقت تتزايد فيه الدعوات إلى ترشيد النفقات وتوجيه الموارد نحو الالتزامات الأساسية وحقوق المقاتلين والمواطنين.</p>
-      <button type="button" onclick="copyNewsLink('news-1795406996756')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
+      <div class="news-body">
+        <p>أثارت وثيقة متداولة منسوبة إلى رئاسة مجلس القيادة الرئاسي، تتضمن توجيهاً إلى وزير المالية باعتماد مخصص شهري قدره خمسة آلاف ريال سعودي لصالح أحد الأشخاص تحت مسمى &quot;المواقف الوطنية&quot;، موجة انتقادات حادة وتساؤلات واسعة حول إدارة المال العام وأولويات الإنفاق.</p>
+        <p>وبحسب مضمون الخطاب المتداول، فإن التوجيه يقضي بصرف المبلغ الشهري بالعملة السعودية للمدعو عبد الإله الصايدي (أبو مرتاح) نظير وقوفه مع الوطن ضد المليشيات الانقلابية، مع المطالبة باستكمال إجراءات الصرف فوراً.</p>
+        <p>ويأتي التفاعل الغاضب مع هذه الوثيقة في ظل أوضاع معيشية واقتصادية ضاغطة، ومع استمرار شكاوى عدد من المقاتلين في الجبهات والعاملين في قطاعات مختلفة من تأخر أو انقطاع الرواتب، وهو ما اعتبره منتقدون مؤشراً على خلل واضح في ترتيب الأولويات وغياب معايير العدالة والشفافية في صرف المخصصات المالية.</p>
+        <p>ويرى مراقبون ومنتقدون أن استمرار اعتماد مخصصات فردية بالعملة الأجنبية دون إطار مؤسسي واضح ومعلن يعمّق حالة السخط الشعبي، ويضعف الثقة في آليات الرقابة المالية، خاصة في وقت تتزايد فيه الدعوات إلى ترشيد النفقات وتوجيه الموارد نحو الالتزامات الأساسية وحقوق المقاتلين والمواطنين.</p>
+      </div>
+      <div class="news-actions">
+        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795406996756', this)">قراءة المزيد</button>
+        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795406996756')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795406996756')">حذف المنشور</button>
+      </div>
     </div>
 
     <div class="news-card" id="news-1795378247723">
       <img src="https://krater360.github.io/images/1795378241972-1-1795378186808.jpg" alt="20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>20 مليار دولار.. تقديرات مثيرة للجدل حول قيمة السلاح الواصل للحوثيين في الساحل الغربي</p>
-      <p>​أثارت تقديرات منسوبة إلى وكالة الاستخبارات الأمريكية حالة من الجدل والترقب، بعدما تحدثت عن وصول شحنات أسلحة إلى الحوثيين في منطقة الساحل الغربي تُقدّر قيمتها بنحو 20 مليار دولار.</p>
-      <p>​وبحسب ما ورد في هذه التقديرات، فإن حجم التسليح المشار إليه يطرح تساؤلات واسعة حول طبيعة هذه الإمدادات وقيمتها الفعلية، ومدى تأثيرها على موازين القوى والمشهد الميداني والأمني في المنطقة، في ظل استمرار التوترات المرتبطة بملف السلاح والمسارات البحرية.</p>
-      <p>​ولم يصدر حتى اللحظة تأكيد مستقل أو تفصيل رسمي يوضح آلية احتساب هذا الرقم أو تفاصيل الشحنات المقصودة، ما يجعل هذه التقديرات محل متابعة ونقاش واسع لدى المتابعين والمهتمين بالشأن الإقليمي.</p>
-      <button type="button" onclick="copyNewsLink('news-1795378247723')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
+      <div class="news-body">
+        <p>20 مليار دولار.. تقديرات مثيرة للجدل حول قيمة السلاح الواصل للحوثيين في الساحل الغربي</p>
+        <p>أثارت تقديرات منسوبة إلى وكالة الاستخبارات الأمريكية حالة من الجدل والترقب، بعدما تحدثت عن وصول شحنات أسلحة إلى الحوثيين في منطقة الساحل الغربي تُقدّر قيمتها بنحو 20 مليار دولار.</p>
+        <p>وبحسب ما ورد في هذه التقديرات، فإن حجم التسليح المشار إليه يطرح تساؤلات واسعة حول طبيعة هذه الإمدادات وقيمتها الفعلية، ومدى تأثيرها على موازين القوى والمشهد الميداني والأمني في المنطقة، في ظل استمرار التوترات المرتبطة بملف السلاح والمسارات البحرية.</p>
+        <p>ولم يصدر حتى اللحظة تأكيد مستقل أو تفصيل رسمي يوضح آلية احتساب هذا الرقم أو تفاصيل الشحنات المقصودة، ما يجعل هذه التقديرات محل متابعة ونقاش واسع لدى المتابعين والمهتمين بالشأن الإقليمي.</p>
+      </div>
+      <div class="news-actions">
+        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795378247723', this)">قراءة المزيد</button>
+        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795378247723')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795378247723')">حذف المنشور</button>
+      </div>
     </div>
 
     <div class="news-card" id="news-1795374032860">
       <img src="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg" alt="عاجل.. القوات المسلحة الجنوبية تحبط هجوماً حوثياً في جبهات لحج وتحسم الجدل حول صفة المتحدث العسكري" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>عاجل.. القوات المسلحة الجنوبية تحبط هجوماً حوثياً في جبهات لحج وتحسم الجدل حول صفة المتحدث العسكري</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>أعلنت القوات المسلحة الجنوبية، اليوم الأحد 22 نوفمبر 2026م، عن تمكن وحداتها المرابطة في جبهات محافظة لحج من التصدي لهجوم شنته مليشيات الحوثي وإفشال محاولة تسلل استهدفت مواقعها، مؤكدة في الوقت ذاته حسم الجدل الإعلامي بشأن المتحدث العسكري الرسمي المعتمد.</p>
-      <p>​إحباط هجوم وتسلل حوثي في لحج</p>
-      <p>​أوضحت القوات المسلحة الجنوبية أن قواتها أحبطت محاولة التسلل والهجوم الحوثي ضمن سلسلة المحاولات العدائية المتكررة التي تستهدف جبهات الجنوب. وأشادت القيادة العسكرية بيقظة المقاتلين وثباتهم وجاهزيتهم القتالية العالية التي أفشلت أهداف المهاجمين، مشددة على استمرار أداء واجبها الوطني في الدفاع عن المواقع وحماية أمن واستقرار الجنوب.</p>
-      <p>​توضيح رسمي حول المتحدث العسكري</p>
-      <p>​وفي سياق متصل، وحرصاً من القوات المسلحة الجنوبية على منع أي التباس لدى وسائل الإعلام والرأي العام، أصدرت توضيحاً إعلامياً حددت فيه النقاط التالية:</p>
-      <p>​عدم تمثيل العقيد ماجد النزيلي: أكدت القوات المسلحة الجنوبية أن العقيد الركن ماجد عبدالله النزيلي، الذي يتحدث بصفته المتحدث الرسمي باسم القوات المسلحة اليمنية، لا يمثل القوات المسلحة الجنوبية ولا تعبر تصريحاته أو مواقفه عن توجهاتها أو قيادتها.</p>
-      <p>​المتحدث الرسمي المعتمد: شددت على أن المتحدث الرسمي المخوّل بإصدار التصريحات والبيانات والتوضيحات الرسمية باسم القوات المسلحة الجنوبية هو المقدم محمد النقيب.</p>
-      <p>​الاستقلالية التنظيمية: أوضحت أن العقيد الركن المذكور لا يتبع هيئة الأركان العامة للقوات المسلحة الجنوبية ولا يخضع لقيادتها أو هيكلها التنظيمي، ولا يحمل أي صفة تخوله التحدث باسمها إعلامياً.</p>
-      <p>​دعوة لتحري الدقة الإعلامية: دعت وسائل الإعلام المحلية والعربية والدولية، والصحفيين والناشطين، إلى تحري الدقة وعدم الخلط بين التشكيلات العسكرية، واعتماد البيانات الصادرة عن القنوات الرسمية للقوات المسلحة الجنوبية، وفي مقدمتها تصريحات المقدم محمد النقيب.</p>
-      <p>​واختتمت القوات المسلحة الجنوبية بيانها الصادر من العاصمة عدن بالتأكيد على أن مواقفها وبياناتها تصدر حصراً عبر قنواتها المعتمدة، وأن أي تصريحات صادرة عن جهات أو شخصيات أخرى لا تمثلها ولا تعكس موقفها الرسمي.</p>
-      <button type="button" onclick="copyNewsLink('news-1795374032860')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
+      <div class="news-body">
+        <p>أعلنت القوات المسلحة الجنوبية، اليوم الأحد 22 نوفمبر 2026م، عن تمكن وحداتها المرابطة في جبهات محافظة لحج من التصدي لهجوم شنته مليشيات الحوثي وإفشال محاولة تسلل استهدفت مواقعها، مؤكدة في الوقت ذاته حسم الجدل الإعلامي بشأن المتحدث العسكري الرسمي المعتمد.</p>
+        <p>إحباط هجوم وتسلل حوثي في لحج</p>
+        <p>أوضحت القوات المسلحة الجنوبية أن قواتها أحبطت محاولة التسلل والهجوم الحوثي ضمن سلسلة المحاولات العدائية المتكررة التي تستهدف جبهات الجنوب. وأشادت القيادة العسكرية بيقظة المقاتلين وثباتهم وجاهزيتهم القتالية العالية التي أفشلت أهداف المهاجمين، مشددة على استمرار أداء واجبها الوطني في الدفاع عن المواقع وحماية أمن واستقرار الجنوب.</p>
+        <p>توضيح رسمي حول المتحدث العسكري</p>
+        <p>وفي سياق متصل، وحرصاً من القوات المسلحة الجنوبية على منع أي التباس لدى وسائل الإعلام والرأي العام، أصدرت توضيحاً إعلامياً حددت فيه النقاط التالية:</p>
+        <p>عدم تمثيل العقيد ماجد النزيلي: أكدت القوات المسلحة الجنوبية أن العقيد الركن ماجد عبدالله النزيلي، الذي يتحدث بصفته المتحدث الرسمي باسم القوات المسلحة اليمنية، لا يمثل القوات المسلحة الجنوبية ولا تعبر تصريحاته أو مواقفه عن توجهاتها أو قيادتها.</p>
+        <p>المتحدث الرسمي المعتمد: شددت على أن المتحدث الرسمي المخوّل بإصدار التصريحات والبيانات والتوضيحات الرسمية باسم القوات المسلحة الجنوبية هو المقدم محمد النقيب.</p>
+        <p>الاستقلالية التنظيمية: أوضحت أن العقيد الركن المذكور لا يتبع هيئة الأركان العامة للقوات المسلحة الجنوبية ولا يخضع لقيادتها أو هيكلها التنظيمي، ولا يحمل أي صفة تخوله التحدث باسمها إعلامياً.</p>
+        <p>دعوة لتحري الدقة الإعلامية: دعت وسائل الإعلام المحلية والعربية والدولية، والصحفيين والناشطين، إلى تحري الدقة وعدم الخلط بين التشكيلات العسكرية، واعتماد البيانات الصادرة عن القنوات الرسمية للقوات المسلحة الجنوبية، وفي مقدمتها تصريحات المقدم محمد النقيب.</p>
+        <p>واختتمت القوات المسلحة الجنوبية بيانها الصادر من العاصمة عدن بالتأكيد على أن مواقفها وبياناتها تصدر حصراً عبر قنواتها المعتمدة، وأن أي تصريحات صادرة عن جهات أو شخصيات أخرى لا تمثلها ولا تعكس موقفها الرسمي.</p>
+      </div>
+      <div class="news-actions">
+        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795374032860', this)">قراءة المزيد</button>
+        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795374032860')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795374032860')">حذف المنشور</button>
+      </div>
     </div>
 
     <div class="news-card" id="news-1795370347739">
       <img src="https://krater360.github.io/images/1795370337853-1-1795370316795.jpg" alt="الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
         <p>أعربت دولة الإمارات عن إدانتها واستنكارها بأشد العبارات لتجدد الهجوم الإيراني العدواني الذي استهدف أراضي مملكة البحرين، مؤكدة تضامنها الكامل ووقوفها إلى جانب المنامة في مواجهة كل ما يمس أمنها وسلامتها.</p>
         <p>انتهاك للسيادة وتهديد للاستقرار الإقليمي</p>
@@ -323,12 +537,13 @@
       <div class="news-actions">
         <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795370347739', this)">قراءة المزيد</button>
         <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795370347739')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795370347739')">حذف المنشور</button>
       </div>
     </div>
 
     <div class="news-card" id="news-1795367125381">
       <h2>بشرى ساره لموظفي لحج بشأن خروج التعزيزات</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
         <p>بشرى سارة لموظفي محافظة عدن بشأن خروج التعزيز المالي للزيادات لعدد من المرافق الحكومية*</p>
         <p>بحسب المعلومات التي وصلتني، فقد تم إرسال التعزيز المالي الخاص بالزيادات المستحقة لعدد من المرافق الحكومية في محافظة عدن إلى البنك المركزي، وذلك تمهيداً لاستكمال الإجراءات المالية المتعلقة بصرف الزيادات للموظفين المستفيدين.</p>
@@ -337,13 +552,14 @@
       <div class="news-actions">
         <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795367125381', this)">قراءة المزيد</button>
         <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795367125381')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795367125381')">حذف المنشور</button>
       </div>
     </div>
 
     <div class="news-card" id="news-1795367011757">
       <img src="https://krater360.github.io/images/1795367006273-1795366948729.jpg" alt="استقالات عديده من كليه الشرطه بحضرموت" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>استقالات عديده من كليه الشرطه بحضرموت</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
         <p>استقالات جماعية في كلية الشرطة بحضرموت احتجاجًا على وقائع تزوير شهادات</p>
         <p>قدم ثمانية من قيادات وأعضاء هيئة التدريس بكلية الشرطة في حضرموت استقالاتهم الجماعية من مهامهم وأعمالهم، احتجاجًا على ما وصفوه باختلالات إدارية وأكاديمية خطيرة، في مقدمتها وقائع تزوير شهادات أكاديمية ومنحها لأشخاص لم يلتحقوا بالكلية ولم يخضعوا لأي دراسة أو تأهيل أكاديمي.</p>
@@ -352,13 +568,14 @@
       <div class="news-actions">
         <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795367011757', this)">قراءة المزيد</button>
         <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795367011757')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795367011757')">حذف المنشور</button>
       </div>
     </div>
 
     <div class="news-card" id="news-1795357745757">
       <img src="https://krater360.github.io/images/1795357740872-1795357649043.jpg" alt="الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
         <p>في أجواء امتزجت فيها مشاعر الفرح بالحزن.. الجمعية الوطنية تودّع الدكتور طارق بازرعة</p>
         <p>الأحد 22 نوفمبر 2026م</p>
@@ -373,12 +590,13 @@
       <div class="news-actions">
         <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795357745757', this)">قراءة المزيد</button>
         <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795357745757')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795357745757')">حذف المنشور</button>
       </div>
     </div>
 
     <div class="news-card" id="news-1795355763844">
       <h2>تغيير العقيدة النووية الإيرانية.. هل تتراجع طهران عن فتوى تحريم القنبلة تحت الضغط؟</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
         <p>تشهد الساحة السياسية والإعلامية داخل إيران نقاشاً متصاعداً حول مستقبل العقيدة النووية للبلاد، وسط تساؤلات متزايدة بشأن ما إذا كانت طهران تتجه نحو مراجعة موقفها التاريخي الرافض لامتلاك السلاح النووي، في ظل الضغوط الأميركية المتواصلة وتصاعد التوترات الداخلية والإقليمية.</p>
         <p>ولطالما استندت السياسة الرسمية الإيرانية إلى فتوى تحريم إنتاج واستخدام الأسلحة النووية، باعتبارها ركيزة أساسية للخطاب المعلن تجاه المجتمع الدولي، غير أن أصواتاً داخلية وخطابات سياسية بدأت تلوّح بإمكانية إعادة النظر في هذا التوجه، معتبرة أن معادلات الردع والتحديات الأمنية الراهنة تفرض مقاربات مختلفة.</p>
@@ -394,12 +612,13 @@
       <div class="news-actions">
         <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795355763844', this)">قراءة المزيد</button>
         <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795355763844')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795355763844')">حذف المنشور</button>
       </div>
     </div>
 
     <div class="news-card" id="news-default-1">
       <h2>قصف هستيري حوثي على هدن</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
         <p>عاجل استشهاد اطفال بعدن الان بقصف حو ثي</p>
         <p>استشهاد 3 أطفال وإصابة 7 آخرين جراء استهداف طائرة مسيّرة حوثية لهم في منطقة بئر أحمد بالعاصمة عدن</p>
@@ -407,12 +626,13 @@
       <div class="news-actions">
         <button type="button" class="btn-read-more" onclick="toggleReadMore('news-default-1', this)">قراءة المزيد</button>
         <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-default-1')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-default-1')">حذف المنشور</button>
       </div>
     </div>
 
     <div class="news-card" id="news-default-2">
       <h2>مأمور صيرة يزور مجمع القطيع ويدعوا الى التبرع بالدم</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
         <p>برعاية وزير الدولة، محافظ العاصمة عدن، الأستاذ عبدالرحمن شيخ، دشّن مدير عام مديرية صيرة بالعاصمة عدن، الدكتور محمود نجيب بن جرادي، اليوم، في مجمع القطيع الصحي، حملة التبرع الطوعي بالدم، التي ينظمها المركز الوطني لنقل الدم وأبحاثه، تحت شعار: تبرعك بالدم يصنع الفرق.</p>
         <p>وخلال التدشين، أكد بن جرادي أهمية إقامة هذه الحملة الإنسانية، لا سيما في ظل الظروف الاستثنائية التي تمر بها البلاد، وما تفرضه من ضرورة تعزيز مخزون الدم وتوفير الوحدات اللازمة لإنقاذ حياة المرضى والمصابين، مشيداً بالجهود التي يبذلها المركز الوطني لنقل الدم وأبحاثه في تنظيم الحملات التوعوية والإنسانية وتوفير الدم للمحتاجين.</p>
@@ -421,36 +641,40 @@
       <div class="news-actions">
         <button type="button" class="btn-read-more" onclick="toggleReadMore('news-default-2', this)">قراءة المزيد</button>
         <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-default-2')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-default-2')">حذف المنشور</button>
       </div>
     </div>
 
     <div class="news-card" id="news-1795367441677">
       <h2>انطلاق الموقع الرسمي بحلته الجديدة</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
         <p>نرحب بجميع القراء والمتابعين في منصتنا الجديدة والمستقلة بالكامل، حيث نقدم تغطية إخبارية ومقالات متنوعة بحرية واستقلالية تامة.</p>
       </div>
       <div class="news-actions">
         <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795367441677', this)">قراءة المزيد</button>
         <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795367441677')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795367441677')">حذف المنشور</button>
       </div>
     </div>
 
     <div class="news-card" id="news-default-3">
       <h2>عنوان الخبر أو المقال الثاني</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
+      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
         <p>يمكنك تعديل هذا النص بسهولة لإضافة أخبارك وتقاريرك اليومية مع إمكانية إضافة الصور والروابط لكل مقال.</p>
       </div>
       <div class="news-actions">
         <button type="button" class="btn-read-more" onclick="toggleReadMore('news-default-3', this)">قراءة المزيد</button>
         <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-default-3')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-default-3')">حذف المنشور</button>
       </div>
     </div>
   </div>
 
   <footer>
     جميع الحقوق محفوظة © 2026 - krater360
+    <button type="button" class="admin-trigger" onclick="handleAdminClick()">إدارة الموقع</button>
   </footer>
 
 <script>
@@ -472,6 +696,7 @@
 
 <script>
 const FIREBASE_DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
+const ADMIN_PASSCODE = "2026";
 
 function escapeText(str) {
   return String(str || "")
@@ -479,6 +704,185 @@ function escapeText(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function formatDatesToAden() {
+  document.querySelectorAll(".news-date").forEach(el => {
+    const raw = el.getAttribute("data-date");
+    const d = raw ? new Date(raw + "T12:00:00+03:00") : new Date();
+    if (!isNaN(d.getTime())) {
+      el.textContent = new Intl.DateTimeFormat("ar-YE", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timeZone: "Asia/Aden"
+      }).format(d);
+    }
+  });
+}
+
+function renderAdSlot(slotEl, adData, fallbackLabel) {
+  if (!slotEl) return;
+  const text = (adData && adData.text) ? adData.text.trim() : "";
+  const img = (adData && adData.img) ? adData.img.trim() : "";
+  const url = (adData && adData.url) ? adData.url.trim() : "";
+
+  if (!text && !img) {
+    slotEl.innerHTML = `<span>${escapeText(fallbackLabel)}</span>`;
+    return;
+  }
+
+  const content = `
+    ${img ? `<img src="${escapeText(img)}" alt="${escapeText(text || fallbackLabel)}">` : ""}
+    ${text ? `<span>${escapeText(text)}</span>` : ""}
+  `;
+
+  if (url) {
+    slotEl.innerHTML = `<a href="${escapeText(url)}" target="_blank" rel="noopener noreferrer">${content}</a>`;
+  } else {
+    slotEl.innerHTML = content;
+  }
+}
+
+function loadAdsConfig() {
+  const localRaw = localStorage.getItem("krater360_header_ads");
+  if (localRaw) {
+    try {
+      const parsed = JSON.parse(localRaw);
+      applyAdsToUI(parsed);
+    } catch (_) {}
+  }
+
+  if (!FIREBASE_DB_URL) return;
+  fetch(`${FIREBASE_DB_URL}/settings/headerAds.json`)
+    .then(r => r.json())
+    .then(data => {
+      if (data && typeof data === "object") {
+        localStorage.setItem("krater360_header_ads", JSON.stringify(data));
+        applyAdsToUI(data);
+      }
+    })
+    .catch(() => {});
+}
+
+function applyAdsToUI(data) {
+  const rightData = data.right || {};
+  const leftData = data.left || {};
+  renderAdSlot(document.getElementById("headerAdRight"), rightData, "إعلان يمين");
+  renderAdSlot(document.getElementById("headerAdLeft"), leftData, "إعلان يسار");
+
+  const rText = document.getElementById("adRightText");
+  const rImg = document.getElementById("adRightImg");
+  const rUrl = document.getElementById("adRightUrl");
+  const lText = document.getElementById("adLeftText");
+  const lImg = document.getElementById("adLeftImg");
+  const lUrl = document.getElementById("adLeftUrl");
+
+  if (rText) rText.value = rightData.text || "";
+  if (rImg) rImg.value = rightData.img || "";
+  if (rUrl) rUrl.value = rightData.url || "";
+  if (lText) lText.value = leftData.text || "";
+  if (lImg) lImg.value = leftData.img || "";
+  if (lUrl) lUrl.value = leftData.url || "";
+}
+
+function saveAdsConfig() {
+  const payload = {
+    right: {
+      text: document.getElementById("adRightText").value.trim(),
+      img: document.getElementById("adRightImg").value.trim(),
+      url: document.getElementById("adRightUrl").value.trim()
+    },
+    left: {
+      text: document.getElementById("adLeftText").value.trim(),
+      img: document.getElementById("adLeftImg").value.trim(),
+      url: document.getElementById("adLeftUrl").value.trim()
+    }
+  };
+
+  localStorage.setItem("krater360_header_ads", JSON.stringify(payload));
+  applyAdsToUI(payload);
+
+  if (FIREBASE_DB_URL) {
+    fetch(`${FIREBASE_DB_URL}/settings/headerAds.json`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(() => alert("تم حفظ وتحديث الإعلانات بنجاح"))
+      .catch(() => alert("تم الحفظ محلياً، تعذر المزامنة مع قاعدة البيانات"));
+  } else {
+    alert("تم حفظ وتحديث الإعلانات بنجاح");
+  }
+}
+
+function applyDeletedPosts(deletedIds) {
+  const set = new Set(Array.isArray(deletedIds) ? deletedIds : Object.keys(deletedIds || {}));
+  document.querySelectorAll(".news-card").forEach(card => {
+    card.style.display = set.has(card.id) ? "none" : "";
+  });
+}
+
+function loadDeletedPosts() {
+  const localDeleted = JSON.parse(localStorage.getItem("krater360_deleted_posts") || "[]");
+  applyDeletedPosts(localDeleted);
+
+  if (!FIREBASE_DB_URL) return;
+  fetch(`${FIREBASE_DB_URL}/settings/deletedPosts.json`)
+    .then(r => r.json())
+    .then(data => {
+      if (data) {
+        const ids = Array.isArray(data) ? data : Object.keys(data);
+        localStorage.setItem("krater360_deleted_posts", JSON.stringify(ids));
+        applyDeletedPosts(ids);
+      }
+    })
+    .catch(() => {});
+}
+
+function deletePost(newsId) {
+  if (!newsId) return;
+  if (!confirm("هل أنت متأكد من حذف هذا المنشور من الموقع؟")) return;
+
+  const current = JSON.parse(localStorage.getItem("krater360_deleted_posts") || "[]");
+  if (!current.includes(newsId)) current.push(newsId);
+  localStorage.setItem("krater360_deleted_posts", JSON.stringify(current));
+  applyDeletedPosts(current);
+
+  if (FIREBASE_DB_URL) {
+    fetch(`${FIREBASE_DB_URL}/settings/deletedPosts/${encodeURIComponent(newsId)}.json`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(true)
+    }).catch(() => {});
+  }
+}
+
+function restoreAllPosts() {
+  if (!confirm("استعادة جميع المنشورات المخفية؟")) return;
+  localStorage.removeItem("krater360_deleted_posts");
+  applyDeletedPosts([]);
+  if (FIREBASE_DB_URL) {
+    fetch(`${FIREBASE_DB_URL}/settings/deletedPosts.json`, { method: "DELETE" }).catch(() => {});
+  }
+  alert("تمت استعادة المنشورات");
+}
+
+function toggleAdminMode(enable) {
+  document.body.classList.toggle("admin-mode", Boolean(enable));
+}
+
+function handleAdminClick() {
+  if (document.body.classList.contains("admin-mode")) {
+    toggleAdminMode(false);
+    return;
+  }
+  const code = prompt("أدخل رمز الإدارة:");
+  if (code === ADMIN_PASSCODE) {
+    toggleAdminMode(true);
+  } else if (code !== null) {
+    alert("رمز الإدارة غير صحيح");
+  }
 }
 
 function recordNewsView(newsId) {
@@ -566,7 +970,7 @@ function submitComment(e, newsId) {
     author: author,
     text: text,
     time: now.getTime(),
-    dateLabel: now.toLocaleDateString("ar-EG", { day: "numeric", month: "short", year: "numeric" })
+    dateLabel: now.toLocaleDateString("ar-YE", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Aden" })
   };
 
   fetch(`${FIREBASE_DB_URL}/comments/${encodeURIComponent(newsId)}.json`, {
@@ -620,6 +1024,10 @@ function copyNewsLink(id) {
 }
 
 window.addEventListener("DOMContentLoaded", function () {
+  formatDatesToAden();
+  loadAdsConfig();
+  loadDeletedPosts();
+
   if (window.location.hash) {
     const targetId = window.location.hash.slice(1);
     const card = document.getElementById(targetId);
