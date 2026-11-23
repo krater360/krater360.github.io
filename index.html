@@ -1208,11 +1208,80 @@ window.addEventListener("DOMContentLoaded", function () {
     const targetId = window.location.hash.slice(1);
     const card = document.getElementById(targetId);
     if (card) {
-      const btn = card.querySelector(".btn-read-more");
+            const btn = card.querySelector(".btn-read-more");
+
       toggleReadMore(targetId, btn);
     }
   }
 });
+</script>
+<script>
+(function () {
+  function fixAllNewsCards() {
+    document.querySelectorAll(".news-card").forEach(function (card, index) {
+      if (!card.id) card.id = "news-item-" + index;
+
+      var bodyEl = card.querySelector(".news-body");
+      var actionsEl = card.querySelector(".news-actions");
+
+      if (!bodyEl) {
+        var extraPs = [];
+        Array.prototype.slice.call(card.children).forEach(function (child) {
+          if (child.tagName === "P") extraPs.push(child);
+        });
+        if (extraPs.length > 0) {
+          bodyEl = document.createElement("div");
+          bodyEl.className = "news-body";
+          extraPs.forEach(function (p) {
+            bodyEl.appendChild(p);
+          });
+          card.appendChild(bodyEl);
+        }
+      }
+
+      if (!actionsEl) {
+        actionsEl = document.createElement("div");
+        actionsEl.className = "news-actions";
+        card.appendChild(actionsEl);
+      }
+
+      var oldInlineBtn = card.querySelector(":scope > button");
+      if (oldInlineBtn && !actionsEl.contains(oldInlineBtn)) {
+        actionsEl.appendChild(oldInlineBtn);
+      }
+
+      if (bodyEl && !actionsEl.querySelector(".btn-read-more")) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "btn-read-more";
+        btn.textContent = bodyEl.classList.contains("open") ? "إخفاء التفاصيل" : "قراءة المزيد";
+        btn.addEventListener("click", function () {
+          var opened = bodyEl.classList.toggle("open");
+          btn.textContent = opened ? "إخفاء التفاصيل" : "قراءة المزيد";
+          if (opened && typeof ensureCommentsBox === "function") {
+            ensureCommentsBox(card, card.id);
+          }
+          if (opened && typeof recordNewsView === "function") {
+            recordNewsView(card.id);
+          }
+        });
+        actionsEl.insertBefore(btn, actionsEl.firstChild);
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      fixAllNewsCards();
+      setTimeout(fixAllNewsCards, 600);
+      setTimeout(fixAllNewsCards, 1600);
+    });
+  } else {
+    fixAllNewsCards();
+    setTimeout(fixAllNewsCards, 600);
+    setTimeout(fixAllNewsCards, 1600);
+  }
+})();
 </script>
 
 </body></html>
