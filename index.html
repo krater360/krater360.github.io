@@ -809,7 +809,19 @@
         <div class="posts-overview-list" id="adminPostsOverviewList">
           جاري تحميل قائمة المنشورات...
         </div>
-      </div>
+      </div><!-- قسم الرسائل الواردة في الإدارة -->
+<div id="adminMessagesSection" style="display: none; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 12px;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+    <h4 style="margin: 0; color: #0f3460;">رسائل زوار موقع k360</h4>
+    <button type="button" onclick="loadMessagesFromGitHub()" style="padding: 5px 10px; background: #16a34a; color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">
+      🔄 تحديث
+    </button>
+  </div>
+  <div id="messagesListContainer">
+    <p style="text-align: center; color: #64748b; font-size: 14px;">اضغط على تبويب الرسائل أو تحديث لتحميلها.</p>
+  </div>
+</div>
+
 
       <div class="admin-actions">
         <button type="button" class="btn-admin-save" onclick="saveAdsConfig()">حفظ وتعديل الإعلانات</button>
