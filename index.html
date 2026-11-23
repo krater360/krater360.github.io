@@ -70,24 +70,46 @@
       color: #222;
     }
 
-    /* الواجهة العلوية الجديدة */
+    /* الواجهة العلوية وشعار k360 المكبر */
     .top-hero{
       background: linear-gradient(180deg, var(--blue), var(--blue2));
-      padding: 18px 14px 22px;
+      padding: 20px 14px 24px;
       text-align: center;
+    }
+
+    .hero-brand-wrap{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .hero-logo-lg{
+      width: 156px;
+      height: 156px;
+      max-width: 68vw;
+      object-fit: cover;
+      border-radius: 22px;
+      border: 4px solid rgba(255,255,255,.92);
+      box-shadow: 0 12px 28px rgba(0,0,0,.28);
+      background: #ffffff;
     }
 
     .brand{
       color: var(--text);
       font-weight: 900;
-      letter-spacing: .2px;
-      margin: 0 0 6px;
-      font-size: 24px;
+      letter-spacing: .5px;
+      margin: 0;
+      font-size: 36px;
+      line-height: 1.15;
+      text-shadow: 0 3px 10px rgba(0,0,0,.25);
     }
 
     .subtitle{
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
       margin: 0 0 14px;
       opacity: .95;
     }
@@ -168,6 +190,13 @@
     @media (max-width: 700px) {
       .header-grid {
         grid-template-columns: 1fr;
+      }
+      .hero-logo-lg {
+        width: 136px;
+        height: 136px;
+      }
+      .brand {
+        font-size: 32px;
       }
     }
 
@@ -362,6 +391,30 @@
       font-family: inherit;
       font-size: 13px;
     }
+    .phone-upload-box {
+      margin-top: 8px;
+      padding: 8px;
+      background: #eef4ff;
+      border: 1px dashed #1f5fa8;
+      border-radius: 6px;
+    }
+    .btn-phone-upload {
+      margin-top: 6px;
+      background: #1f5fa8;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .upload-status-msg {
+      margin: 5px 0 0;
+      font-size: 12px;
+      color: #0f4e9a;
+      font-weight: 600;
+    }
     .admin-actions {
       margin-top: 12px;
       display: flex;
@@ -409,7 +462,8 @@
     }
     .post-overview-title {
       font-weight: 700;
-      color: #0f172a;
+      color: #
+0f172a;
       flex: 1;
       min-width: 180px;
     }
@@ -501,6 +555,62 @@
       white-space: pre-line;
     }
 
+    /* بريد الموقع لاستقبال الرسائل */
+    .site-mail-box {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid #e2e8f0;
+      border-right: 5px solid #1f5fa8;
+    }
+    .site-mail-box h3 {
+      margin: 0 0 6px;
+      color: #0d47a1;
+      font-size: 18px;
+    }
+    .site-mail-box p.mail-desc {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: #475569;
+    }
+    .site-mail-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .site-mail-form input,
+    .site-mail-form textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 9px 11px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+    }
+    .site-mail-form textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+    .btn-mail-send {
+      align-self: flex-start;
+      background: #0f4e9a;
+      color: #fff;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .mail-status {
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
     footer {
       background-color: #1a237e;
       color: #fff;
@@ -523,19 +633,24 @@
 </head>
 <body>
 
-  <!-- الواجهة العلوية -->
+  <!-- الواجهة العلوية مع شعار k360 المكبر -->
   <header class="top-hero">
-    <h1 class="brand">krater360</h1>
+    <div class="hero-brand-wrap">
+      <img
+        src="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg"
+        alt="شعار k360"
+        class="hero-logo-lg"
+      >
+      <h1 class="brand">k360</h1>
+    </div>
     <div class="subtitle">منصة الأخبار والتحليلات والمقالات المستقلة</div>
 
-          <a class="action-box" href="https://www.goal.com/ar" target="_blank" rel="noopener noreferrer">
+    <div class="actions">
+      <a class="action-box" href="https://www.goal.com/ar" target="_blank" rel="noopener noreferrer">
         مباريات اليوم عبر المدير
       </a>
-اشترك الآن
-      </div>
-      <div class="action-box" role="button" tabindex="0" onclick="alert('http://www.youtube.com/channel/UCoJxQlG7KfJIW1zxK5O1bRQ
- ')">
-   
+      <div class="action-box" role="button" tabindex="0" onclick="alert('http://www.youtube.com/channel/UCoJxQlG7KfJIW1zxK5O1bRQ')">
+        البث المباشر — قناة عدن المستقلة
       </div>
     </div>
   </header>
@@ -577,8 +692,6 @@
       <p>راح ضحيتها عدد من المواطنين بعد استهداف شاحنات قادمة من عدن باتجاه تعز من قبل مليشيات الحوثي بحسب المعلومات المتداولة إلى متى يظل المواطن يدفع الثمن ويُحرم حتى من حقه في الطريق والبحث عن لقمة عيشه</p>
       <button type="button" onclick="copyNewsLink('news-1795443555689')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
     </div>
-
-
     <!-- إعلان علوي ضمن الواجهة -->
     <section class="ad-wrap" aria-label="إعلان علوي">
       <div class="ad-box">
@@ -597,15 +710,28 @@
           <input type="text" id="adRightText" placeholder="مثال: أعلن معنا الآن">
           <label>رابط الصورة (اختياري)</label>
           <input type="url" id="adRightImg" placeholder="https://...">
+          <div class="phone-upload-box">
+            <label>تحميل صورة الإعلان من الهاتف:</label>
+            <input type="file" id="adRightFile" accept="image/*">
+            <button type="button" class="btn-phone-upload" onclick="uploadPhoneImage('adRightFile', 'adRightImg', 'adRightUploadStatus')">رفع صورة الإعلان (يمين)</button>
+            <p class="upload-status-msg" id="adRightUploadStatus"></p>
+          </div>
           <label>رابط الوجهة عند النقر (اختياري)</label>
           <input type="url" id="adRightUrl" placeholder="https://...">
         </div>
+
         <div class="admin-box">
           <h4>إعلان رأس الصفحة (يسار)</h4>
           <label>نص الإعلان</label>
           <input type="text" id="adLeftText" placeholder="مثال: تغطية خاصة">
           <label>رابط الصورة (اختياري)</label>
           <input type="url" id="adLeftImg" placeholder="https://...">
+          <div class="phone-upload-box">
+            <label>تحميل صورة الإعلان من الهاتف:</label>
+            <input type="file" id="adLeftFile" accept="image/*">
+            <button type="button" class="btn-phone-upload" onclick="uploadPhoneImage('adLeftFile', 'adLeftImg', 'adLeftUploadStatus')">رفع صورة الإعلان (يسار)</button>
+            <p class="upload-status-msg" id="adLeftUploadStatus"></p>
+          </div>
           <label>رابط الوجهة عند النقر (اختياري)</label>
           <input type="url" id="adLeftUrl" placeholder="https://...">
         </div>
@@ -617,6 +743,12 @@
         <input type="text" id="newPostTitle" placeholder="اكتب عنوان الخبر هنا...">
         <label>رابط الصورة (اختياري)</label>
         <input type="url" id="newPostImg" placeholder="https://krater360.github.io/images/...">
+        <div class="phone-upload-box">
+          <label>إدراج صورة للخبر من الهاتف:</label>
+          <input type="file" id="newPostFile" accept="image/*">
+          <button type="button" class="btn-phone-upload" onclick="uploadPhoneImage('newPostFile', 'newPostImg', 'newPostUploadStatus')">رفع صورة الخبر من الهاتف</button>
+          <p class="upload-status-msg" id="newPostUploadStatus"></p>
+        </div>
         <label>تاريخ الخبر (اختياري - الافتراضي اليوم)</label>
         <input type="date" id="newPostDate" value="2026-11-23">
         <label>نص الخبر (كل سطر يصبح فقرة)</label>
@@ -693,7 +825,6 @@
         <button type="button" class="btn-delete-post" onclick="deletePost('news-1795428076522')">حذف المنشور</button>
       </div>
     </div>
-
     <div class="news-card" id="news-1795427847550">
       <img src="https://krater360.github.io/images/1795427840397-1-1795427708303.jpg" alt="تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين</h2>
@@ -923,6 +1054,20 @@
       </div>
     </section>
 
+    <!-- بريد الموقع لاستقبال رسائل الزوار -->
+    <section class="site-mail-box" id="siteMailSection" aria-label="بريد الموقع">
+      <h3>بريد موقع k360 لاستقبال الرسائل</h3>
+      <p class="mail-desc">أرسل خبراً أو رسالة أو ملاحظة مباشرة إلى بريد الموقع.</p>
+      <form class="site-mail-form" id="siteMailForm" onsubmit="sendSiteMail(event)">
+        <input type="text" id="mailSenderName" placeholder="الاسم" required maxlength="80">
+        <input type="email" id="mailSenderEmail" placeholder="البريد الإلكتروني (اختياري)" maxlength="100">
+        <input type="text" id="mailSubject" placeholder="عنوان الرسالة" required maxlength="120">
+        <textarea id="mailMessage" placeholder="اكتب رسالتك هنا..." required maxlength="2000"></textarea>
+        <button type="submit" class="btn-mail-send" id="mailSendBtn">إرسال الرسالة</button>
+        <div class="mail-status" id="mailStatus"></div>
+      </form>
+    </section>
+
   </div>
 
   <footer>
@@ -949,6 +1094,192 @@
 <script>
 const FIREBASE_DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
 const ADMIN_PASSCODE = "9270268911";
+
+// إعدادات رفع الصور من الهاتف إلى GitHub (يقرأ GITHUB_TOKEN المحفوظ لديك في index.html)
+const GITHUB_OWNER = "krater360";
+const GITHUB_REPO = "krater360";
+const GITHUB_BRANCH = "main";
+const GITHUB_FOLDER = "images";
+const SITE_MAIL_TO = "Cojee2829@gmail.com";
+
+function getSavedGithubToken() {
+  if (typeof GITHUB_TOKEN !== "undefined" && typeof GITHUB_TOKEN === "string" && GITHUB_TOKEN.trim()) {
+    return GITHUB_TOKEN.trim();
+  }
+  return "";
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = String(reader.result || "");
+      const parts = result.split(",");
+      resolve(parts.length > 1 ? parts[1] : "");
+    };
+    reader.onerror = err => reject(err);
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadPhoneImage(fileInputId, targetUrlInputId, statusElId) {
+  const fileInput = document.getElementById(fileInputId);
+  const urlInput = document.getElementById(targetUrlInputId);
+  const statusEl = document.getElementById(statusElId);
+
+  if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+    if (statusEl) {
+      statusEl.style.color = "#c62828";
+      statusEl.textContent = "اختر صورة من الهاتف أولاً.";
+    }
+    return;
+  }
+
+  const file = fileInput.files[0];
+  if (!file.type || !file.type.startsWith("image/")) {
+    if (statusEl) {
+      statusEl.style.color = "#c62828";
+      statusEl.textContent = "يُسمح برفع الصور فقط.";
+    }
+    return;
+  }
+
+  const token = getSavedGithubToken();
+  if (!token) {
+    if (statusEl) {
+      statusEl.style.color = "#c62828";
+      statusEl.textContent = "تعذر العثور على GITHUB_TOKEN في الملف.";
+    }
+    return;
+  }
+
+  if (statusEl) {
+    statusEl.style.color = "#0f4e9a";
+    statusEl.textContent = "جاري رفع الصورة إلى الموقع...";
+  }
+
+  try {
+    const base64Content = await fileToBase64(file);
+    const ext = (file.name.split(".").pop() || "jpg").replace(/[^a-zA-Z0-9]/g, "") || "jpg";
+    const cleanBase = file.name
+      .replace(/\.[^/.]+$/, "")
+      .replace(/\s+/g, "-")
+      .replace(/[^a-zA-Z0-9_-]/g, "")
+      .slice(0, 30) || "img";
+    const fileName = `${Date.now()}-${cleanBase}.${ext}`;
+    const filePath = `${GITHUB_FOLDER}/${fileName}`;
+
+    const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${filePath}`;
+    const response = await fetch(apiUrl, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: `Upload ${fileName} from phone`,
+        content: base64Content,
+        branch: GITHUB_BRANCH
+      })
+    });
+
+    if (!response.ok) {
+      const errJson = await response.json().catch(() => ({}));
+      throw new Error(errJson.message || "فشل الرفع إلى GitHub");
+    }
+
+    const finalUrl = `https://${GITHUB_OWNER}.github.io/${GITHUB_FOLDER}/${fileName}`;
+    if (urlInput) {
+      urlInput.value = finalUrl;
+      urlInput.dispatchEvent(new Event("input", { bubbles: true }));
+      urlInput.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+
+    if (statusEl) {
+      statusEl.style.color = "#2e7d32";
+      statusEl.textContent = "تم رفع الصورة وإدراج رابطها بنجاح.";
+    }
+  } catch (err) {
+    if (statusEl) {
+      statusEl.style.color = "#c62828";
+      statusEl.textContent = "خطأ أثناء الرفع: " + (err && err.message ? err.message : "تعذر الرفع");
+    }
+  }
+}
+
+function sendSiteMail(e) {
+  e.preventDefault();
+  const nameEl = document.getElementById("mailSenderName");
+  const emailEl = document.getElementById("mailSenderEmail");
+  const subjectEl = document.getElementById("mailSubject");
+  const msgEl = document.getElementById("mailMessage");
+  const btnEl = document.getElementById("mailSendBtn");
+  const statusEl = document.getElementById("mailStatus");
+
+  const senderName = (nameEl.value || "").trim();
+  const senderEmail = (emailEl.value || "").trim();
+  const subject = (subjectEl.value || "").trim();
+  const message = (msgEl.value || "").trim();
+
+  if (!senderName || !subject || !message) return;
+
+  btnEl.disabled = true;
+  btnEl.textContent = "جاري الإرسال...";
+  if (statusEl) {
+    statusEl.style.color = "#0f4e9a";
+    statusEl.textContent = "جاري إرسال رسالتك إلى بريد الموقع...";
+  }
+
+  const payload = {
+    name: senderName,
+    email: senderEmail || "غير محدد",
+    _subject: `رسالة من موقع k360: ${subject}`,
+    message: message,
+    _captcha: "false",
+    sentAt: new Date().toISOString()
+  };
+
+  if (FIREBASE_DB_URL) {
+    fetch(`${FIREBASE_DB_URL}/siteMessages.json`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  }
+
+  fetch(`https://formsubmit.co/ajax/${encodeURIComponent(SITE_MAIL_TO)}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Mail error");
+      return res.json();
+    })
+    .then(() => {
+      nameEl.value = "";
+      emailEl.value = "";
+      subjectEl.value = "";
+      msgEl.value = "";
+      if (statusEl) {
+        statusEl.style.color = "#2e7d32";
+        statusEl.textContent = "تم إرسال رسالتك إلى بريد الموقع بنجاح.";
+      }
+    })
+    .catch(() => {
+      if (statusEl) {
+        statusEl.style.color = "#c62828";
+        statusEl.textContent = "تعذر الإرسال المباشر الآن، حاول مرة أخرى لاحقاً.";
+      }
+    })
+    .finally(() => {
+      btnEl.disabled = false;
+      btnEl.textContent = "إرسال الرسالة";
+    });
+}
 
 function escapeText(str) {
   return String(str || "")
