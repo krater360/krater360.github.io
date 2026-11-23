@@ -793,6 +793,15 @@
           <button type="button" class="btn-admin-save" onclick="publishNewPost()">نشر الخبر الآن</button>
         </div>
       </div>
+<!-- تبويبات إدارة الموقع -->
+<div style="display: flex; gap: 10px; margin: 15px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
+  <button type="button" onclick="switchAdminTab('posts')" id="tabPostsBtn" style="flex: 1; padding: 10px; background: #0f3460; color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+    📰 المنشورات
+  </button>
+  <button type="button" onclick="switchAdminTab('messages')" id="tabMessagesBtn" style="flex: 1; padding: 10px; background: #e2e8f0; color: #1e293b; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+    📩 الرسائل (<span id="msgCount">0</span>)
+  </button>
+</div>
 
       <!-- رؤية المنشورات داخل إدارة الموقع -->
       <div class="admin-box" style="margin-top:12px;" id="adminPostsOverviewBox">
