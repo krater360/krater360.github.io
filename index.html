@@ -264,7 +264,8 @@
       margin-top: 6px;
       color: #475569;
     }
-    .admin-box input {
+    .admin-box input,
+    .admin-box textarea {
       width: 100%;
       box-sizing: border-box;
       padding: 7px 9px;
@@ -427,6 +428,22 @@
           <input type="url" id="adLeftUrl" placeholder="https://...">
         </div>
       </div>
+
+      <div class="admin-box" style="margin-top:12px;">
+        <h4>نشر خبر جديد (يُحفظ في Firebase)</h4>
+        <label>عنوان الخبر</label>
+        <input type="text" id="newPostTitle" placeholder="اكتب عنوان الخبر هنا...">
+        <label>رابط الصورة (اختياري)</label>
+        <input type="url" id="newPostImg" placeholder="https://krater360.github.io/images/...">
+        <label>تاريخ الخبر (اختياري - الافتراضي اليوم)</label>
+        <input type="date" id="newPostDate" value="2026-11-23">
+        <label>نص الخبر (كل سطر يصبح فقرة)</label>
+        <textarea id="newPostBody" rows="4" placeholder="اكتب تفاصيل الخبر هنا..."></textarea>
+        <div class="admin-actions">
+          <button type="button" class="btn-admin-save" onclick="publishNewPost()">نشر الخبر الآن</button>
+        </div>
+      </div>
+
       <div class="admin-actions">
         <button type="button" class="btn-admin-save" onclick="saveAdsConfig()">حفظ وتعديل الإعلانات</button>
         <button type="button" class="btn-admin-reset" onclick="restoreAllPosts()">استعادة المنشورات المحذوفة</button>
@@ -435,7 +452,7 @@
     </div>
 
     <div class="news-card" id="news-1795428076522">
-      <img src="https://krater360.github.io/images/1795428073056-1-images92.jpeg" alt="انفراجه كبيرة بشأن صرف العلاوات والزيادة 20٪" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <img src="https://krater360.github.io/images/1795428073056-1-images92.jpeg" alt="انفراجه كبيرة بشأن صرف العلاوات والزيادة 20٪" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>انفراجه كبيرة بشأن صرف العلاوات والزيادة 20٪</h2>
       <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
@@ -450,7 +467,7 @@
       </div>
     </div>
     <div class="news-card" id="news-1795427847550">
-      <img src="https://krater360.github.io/images/1795427840397-1-1795427708303.jpg" alt="تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <img src="https://krater360.github.io/images/1795427840397-1-1795427708303.jpg" alt="تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين</h2>
       <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
@@ -467,7 +484,7 @@
     </div>
 
     <div class="news-card" id="news-1795406996756">
-      <img src="https://krater360.github.io/images/1795406992904-1-IMG-20261123-WA0000.jpg" alt="مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <img src="https://krater360.github.io/images/1795406992904-1-IMG-20261123-WA0000.jpg" alt="مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر</h2>
       <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
@@ -484,7 +501,7 @@
     </div>
 
     <div class="news-card" id="news-1795378247723">
-      <img src="https://krater360.github.io/images/1795378241972-1-1795378186808.jpg" alt="20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <img src="https://krater360.github.io/images/1795378241972-1-1795378186808.jpg" alt="20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي</h2>
       <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
@@ -501,7 +518,7 @@
     </div>
 
     <div class="news-card" id="news-1795374032860">
-      <img src="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg" alt="عاجل.. القوات المسلحة الجنوبية تحبط هجوماً حوثياً في جبهات لحج وتحسم الجدل حول صفة المتحدث العسكري" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <img src="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg" alt="عاجل.. القوات المسلحة الجنوبية تحبط هجوماً حوثياً في جبهات لحج وتحسم الجدل حول صفة المتحدث العسكري" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>عاجل.. القوات المسلحة الجنوبية تحبط هجوماً حوثياً في جبهات لحج وتحسم الجدل حول صفة المتحدث العسكري</h2>
       <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
@@ -524,7 +541,7 @@
     </div>
 
     <div class="news-card" id="news-1795370347739">
-      <img src="https://krater360.github.io/images/1795370337853-1-1795370316795.jpg" alt="الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <img src="https://krater360.github.io/images/1795370337853-1-1795370316795.jpg" alt="الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن</h2>
       <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
@@ -557,7 +574,7 @@
     </div>
 
     <div class="news-card" id="news-1795367011757">
-      <img src="https://krater360.github.io/images/1795367006273-1795366948729.jpg" alt="استقالات عديده من كليه الشرطه بحضرموت" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <img src="https://krater360.github.io/images/1795367006273-1795366948729.jpg" alt="استقالات عديده من كليه الشرطه بحضرموت" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>استقالات عديده من كليه الشرطه بحضرموت</h2>
       <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
@@ -573,7 +590,7 @@
     </div>
 
     <div class="news-card" id="news-1795357745757">
-      <img src="https://krater360.github.io/images/1795357740872-1795357649043.jpg" alt="الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <img src="https://krater360.github.io/images/1795357740872-1795357649043.jpg" alt="الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية</h2>
       <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
@@ -885,6 +902,114 @@ function handleAdminClick() {
   }
 }
 
+function publishNewPost() {
+  const titleEl = document.getElementById("newPostTitle");
+  const imgEl = document.getElementById("newPostImg");
+  const dateEl = document.getElementById("newPostDate");
+  const bodyEl = document.getElementById("newPostBody");
+
+  const title = (titleEl.value || "").trim();
+  const img = (imgEl.value || "").trim();
+  const rawDate = (dateEl.value || "").trim();
+  const rawBody = (bodyEl.value || "").trim();
+
+  if (!title || !rawBody) {
+    alert("يرجى إدخال عنوان الخبر ونص الخبر.");
+    return;
+  }
+
+  const id = "news-" + Date.now();
+  const paragraphs = rawBody
+    .split(/\n+/)
+    .map(p => p.trim())
+    .filter(Boolean);
+
+  const postData = {
+    id: id,
+    title: title,
+    img: img,
+    date: rawDate || new Date().toISOString().slice(0, 10),
+    paragraphs: paragraphs,
+    createdAt: Date.now()
+  };
+
+  if (!FIREBASE_DB_URL) {
+    renderDynamicPost(postData, true);
+    formatDatesToAden();
+    titleEl.value = "";
+    imgEl.value = "";
+    bodyEl.value = "";
+    alert("تمت إضافة الخبر محلياً.");
+    return;
+  }
+
+  fetch(`${FIREBASE_DB_URL}/posts/${encodeURIComponent(id)}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(postData)
+  })
+    .then(r => {
+      if (!r.ok) throw new Error("Failed");
+      renderDynamicPost(postData, true);
+      formatDatesToAden();
+      titleEl.value = "";
+      imgEl.value = "";
+      bodyEl.value = "";
+      alert("تم نشر الخبر وحفظه في قاعدة البيانات بنجاح.");
+    })
+    .catch(() => {
+      alert("تعذر نشر الخبر، تحقق من اتصال الإنترنت وقواعد Firebase.");
+    });
+}
+
+function renderDynamicPost(post, prepend) {
+  const container = document.querySelector(".container");
+  if (!container || !post || !post.id) return;
+  if (document.getElementById(post.id)) return;
+
+  const card = document.createElement("div");
+  card.className = "news-card";
+  card.id = post.id;
+
+  const paragraphsHtml = (Array.isArray(post.paragraphs) ? post.paragraphs : [post.body || ""])
+    .filter(Boolean)
+    .map(p => `<p>${escapeText(p)}</p>`)
+    .join("");
+
+  card.innerHTML = `
+    ${post.img ? `<img src="${escapeText(post.img)}" alt="${escapeText(post.title)}" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">` : ""}
+    <h2>${escapeText(post.title)}</h2>
+    <div class="news-date" data-date="${escapeText(post.date || "2026-11-23")}"></div>
+    <div class="news-body">${paragraphsHtml}</div>
+    <div class="news-actions">
+      <button type="button" class="btn-read-more" onclick="toggleReadMore('${escapeText(post.id)}', this)">قراءة المزيد</button>
+      <button type="button" class="btn-copy-link" onclick="copyNewsLink('${escapeText(post.id)}')">نسخ رابط الخبر</button>
+      <button type="button" class="btn-delete-post" onclick="deletePost('${escapeText(post.id)}')">حذف المنشور</button>
+    </div>
+  `;
+
+  const adminPanel = document.getElementById("adminPanel");
+  if (prepend && adminPanel && adminPanel.nextSibling) {
+    container.insertBefore(card, adminPanel.nextSibling);
+  } else {
+    container.appendChild(card);
+  }
+}
+
+function loadFirebasePosts() {
+  if (!FIREBASE_DB_URL) return;
+  fetch(`${FIREBASE_DB_URL}/posts.json`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data || typeof data !== "object") return;
+      const list = Object.values(data).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      list.forEach(post => renderDynamicPost(post, true));
+      formatDatesToAden();
+      loadDeletedPosts();
+    })
+    .catch(() => {});
+}
+
 function recordNewsView(newsId) {
   if (!FIREBASE_DB_URL || !newsId) return;
   const seenKey = "krater360_v_" + newsId;
@@ -1027,12 +1152,13 @@ window.addEventListener("DOMContentLoaded", function () {
   formatDatesToAden();
   loadAdsConfig();
   loadDeletedPosts();
+  loadFirebasePosts();
 
   if (window.location.hash) {
     const targetId = window.location.hash.slice(1);
     const card = document.getElementById(targetId);
     if (card) {
-      const btn = card.querySelector(".btn-read-more");
+      const btn = card.querySelector(".btn-read-
       toggleReadMore(targetId, btn);
     }
   }
