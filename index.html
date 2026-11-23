@@ -407,12 +407,18 @@
 
   <div class="container">
     <div class="news-card" id="news-1795432333211">
-      <img src="https://krater360.github.io/images/1795432321288-1-IMG__.jpg" alt="زيلينسكي يعلن مسؤولية أوكرانيا عن ضرب سفينتين روسيتين قبالة سواحل ليبيا وإغراق الطراد ميركوري" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <img src="https://krater360.github.io/images/1795432321288-1-IMG__.jpg" alt="زيلينسكي يعلن مسؤولية أوكرانيا عن ضرب سفينتين روسيتين قبالة سواحل ليبيا وإغراق الطراد ميركوري" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>زيلينسكي يعلن مسؤولية أوكرانيا عن ضرب سفينتين روسيتين قبالة سواحل ليبيا وإغراق الطراد ميركوري</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>أعلن الرئيس الأوكراني فولوديمير زيلينسكي، اليوم الإثنين، مسؤولية قوات بلاده عن تنفيذ هجوم استهدف سفينتين تابعتين للبحرية الروسية قبالة سواحل ليبيا، في تطور يعكس اتساع نطاق العمليات الأوكرانية خارج منطقة البحر الأسود.</p>
-      <p>​وأوضح زيلينسكي أن الجيش الأوكراني تمكن من إغراق الطراد الروسي ميركوري باستخدام سبعة زوارق مسيرة أوكرانية الصنع، مشيراً إلى أن العملية طالت كذلك سفينة الشحن الروسية أنجارا.</p>
-      <button type="button" onclick="copyNewsLink('news-1795432333211')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
+      <div class="news-date" data-date="2026-11-23">23 نوفمبر 2026</div>
+      <div class="news-body">
+        <p>أعلن الرئيس الأوكراني فولوديمير زيلينسكي، اليوم الإثنين، مسؤولية قوات بلاده عن تنفيذ هجوم استهدف سفينتين تابعتين للبحرية الروسية قبالة سواحل ليبيا، في تطور يعكس اتساع نطاق العمليات الأوكرانية خارج منطقة البحر الأسود.</p>
+        <p>وأوضح زيلينسكي أن الجيش الأوكراني تمكن من إغراق الطراد الروسي ميركوري باستخدام سبعة زوارق مسيرة أوكرانية الصنع، مشيراً إلى أن العملية طالت كذلك سفينة الشحن الروسية أنجارا.</p>
+      </div>
+      <div class="news-actions">
+        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795432333211', this)">قراءة المزيد</button>
+        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795432333211')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795432333211')">حذف المنشور</button>
+      </div>
     </div>
 
     <div class="admin-panel" id="adminPanel">
@@ -470,7 +476,8 @@
         <p>ونأمل استكمال بقية الإجراءات وصرف المستحقات في أقرب وقت، بما يسهم في تخفيف معاناة الموظفين وتحسين أوضاعهم المعيشية.</p>
       </div>
       <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795428076522', this)">قراءة المزيد</button>
+        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795428076522', this
+')">قراءة المزيد</button>
         <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795428076522')">نسخ رابط الخبر</button>
         <button type="button" class="btn-delete-post" onclick="deletePost('news-1795428076522')">حذف المنشور</button>
       </div>
@@ -508,7 +515,6 @@
         <button type="button" class="btn-delete-post" onclick="deletePost('news-1795406996756')">حذف المنشور</button>
       </div>
     </div>
-
     <div class="news-card" id="news-1795378247723">
       <img src="https://krater360.github.io/images/1795378241972-1-1795378186808.jpg" alt="20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي</h2>
@@ -911,6 +917,23 @@ function handleAdminClick() {
   }
 }
 
+function getAdenTodayISO() {
+  try {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Aden",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).formatToParts(new Date());
+    const y = parts.find(p => p.type === "year")?.value || "2026";
+    const m = parts.find(p => p.type === "month")?.value || "11";
+    const d = parts.find(p => p.type === "day")?.value || "23";
+    return `${y}-${m}-${d}`;
+  } catch (_) {
+    return new Date().toISOString().slice(0, 10);
+  }
+}
+
 function publishNewPost() {
   const titleEl = document.getElementById("newPostTitle");
   const imgEl = document.getElementById("newPostImg");
@@ -919,7 +942,7 @@ function publishNewPost() {
 
   const title = (titleEl.value || "").trim();
   const img = (imgEl.value || "").trim();
-  const rawDate = (dateEl.value || "").trim();
+  const rawDate = (dateEl.value || "").trim() || getAdenTodayISO();
   const rawBody = (bodyEl.value || "").trim();
 
   if (!title || !rawBody) {
@@ -937,7 +960,7 @@ function publishNewPost() {
     id: id,
     title: title,
     img: img,
-    date: rawDate || new Date().toISOString().slice(0, 10),
+    date: rawDate,
     paragraphs: paragraphs,
     createdAt: Date.now()
   };
@@ -947,6 +970,7 @@ function publishNewPost() {
     formatDatesToAden();
     titleEl.value = "";
     imgEl.value = "";
+    dateEl.value = getAdenTodayISO();
     bodyEl.value = "";
     alert("تمت إضافة الخبر محلياً.");
     return;
@@ -963,6 +987,7 @@ function publishNewPost() {
       formatDatesToAden();
       titleEl.value = "";
       imgEl.value = "";
+      dateEl.value = getAdenTodayISO();
       bodyEl.value = "";
       alert("تم نشر الخبر وحفظه في قاعدة البيانات بنجاح.");
     })
@@ -988,7 +1013,7 @@ function renderDynamicPost(post, prepend) {
   card.innerHTML = `
     ${post.img ? `<img src="${escapeText(post.img)}" alt="${escapeText(post.title)}" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">` : ""}
     <h2>${escapeText(post.title)}</h2>
-    <div class="news-date" data-date="${escapeText(post.date || "2026-11-23")}"></div>
+    <div class="news-date" data-date="${escapeText(post.date || getAdenTodayISO())}"></div>
     <div class="news-body">${paragraphsHtml}</div>
     <div class="news-actions">
       <button type="button" class="btn-read-more" onclick="toggleReadMore('${escapeText(post.id)}', this)">قراءة المزيد</button>
@@ -1158,6 +1183,11 @@ function copyNewsLink(id) {
 }
 
 window.addEventListener("DOMContentLoaded", function () {
+  const dateInput = document.getElementById("newPostDate");
+  if (dateInput) {
+    dateInput.value = getAdenTodayISO();
+  }
+
   formatDatesToAden();
   loadAdsConfig();
   loadDeletedPosts();
@@ -1167,7 +1197,7 @@ window.addEventListener("DOMContentLoaded", function () {
     const targetId = window.location.hash.slice(1);
     const card = document.getElementById(targetId);
     if (card) {
-      const btn = card.querySelector(".btn-read-
+      const btn = card.querySelector(".btn-read-more");
       toggleReadMore(targetId, btn);
     }
   }
