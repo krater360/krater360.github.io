@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl"><head>
   <meta property="og:site_name" content="K360" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="K360 | موقع الأخبار والتحليلات" />
-<meta property="og:description" content="تغطيات إخبارية وتحليلات مستمرة على مدار الساعة." />
-<meta property="og:image" content="الرابط_الكامل_للشعار" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="الرابط_الكامل_للشعار" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="K360 | موقع الأخبار والتحليلات" />
+  <meta property="og:description" content="تغطيات إخبارية وتحليلات مستمرة على مدار الساعة." />
+  <meta property="og:image" content="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg" />
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +16,8 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://krater360.github.io/">
   <link rel="icon" type="image/svg+xml" href="https://krater360.github.io/favicon.svg">
-  <meta property="og:type" content="website">
   <meta property="og:locale" content="ar_AR">
-  <meta property="og:site_name" content="krater360">
-  <meta property="og:title" content="krater360 | موقع الأخبار والتحليلات والمقالات المستقلة">
-  <meta property="og:description" content="منصة الأخبار والتحليلات والمقالات المستقلة عبر krater360.">
   <meta property="og:url" content="https://krater360.github.io/">
-  <meta property="og:image" content="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="krater360 | موقع الأخبار والتحليلات والمقالات المستقلة">
-  <meta name="twitter:description" content="منصة الأخبار والتحليلات والمقالات المستقلة عبر krater360.">
-  <meta name="twitter:image" content="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,55 +47,111 @@
   }
   </script>
   <style>
+    :root{
+      --blue:#0f4e9a;
+      --blue2:#1f5fa8;
+      --red:#c62828;
+      --card:#ffffff;
+      --text:#ffffff;
+      --muted:#d7e6ff;
+      --shadow:0 10px 25px rgba(0,0,0,.15);
+      --radius:12px;
+      --ink:#0f172a;
+      --dash: rgba(15,78,154,.45);
+    }
+
+    *{ box-sizing:border-box; }
+
     body {
-      font-family: Tahoma, Arial, sans-serif;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f6f9;
+      background-color: #f2f5ff;
       color: #222;
     }
-    header {
-      background-color: #0d47a1;
-      color: #ffffff;
-      padding: 16px 15px;
-    }
-    .header-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 12px;
-      align-items: center;
-    }
-    .header-brand {
+
+    /* الواجهة العلوية الجديدة */
+    .top-hero{
+      background: linear-gradient(180deg, var(--blue), var(--blue2));
+      padding: 18px 14px 22px;
       text-align: center;
-      padding: 0 10px;
     }
-    header h1 {
-      margin: 0;
-      font-size: 26px;
+
+    .brand{
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: .2px;
+      margin: 0 0 6px;
+      font-size: 24px;
     }
-    header p {
-      margin: 5px 0 0;
-      font-size: 14px;
-      color: #bbdefb;
+
+    .subtitle{
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0 0 14px;
+      opacity: .95;
     }
-    .header-ad-slot {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px dashed rgba(255, 255, 255, 0.45);
-      border-radius: 6px;
-      min-height: 58px;
+
+    .actions{
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 0 12px;
+    }
+
+    .action-box{
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.25);
+      color: #eaf3ff;
+      padding: 13px 14px;
+      border-radius: var(--radius);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6px 10px;
+      font-weight: 700;
+      margin: 10px 0;
+      cursor: pointer;
+      user-select: none;
+      transition: .2s ease;
+      text-align: center;
+      text-decoration: none;
+    }
+    .action-box:hover{ transform: translateY(-1px); }
+    .action-box:focus{ outline: 3px solid rgba(255,255,255,.35); outline-offset: 2px; }
+
+    .redbar{
+      height: 14px;
+      background: var(--red);
+    }
+
+    /* حاوية الإعلانات العلوية المتوافقة مع لوحة الإدارة */
+    .header-ads-bar{
+      max-width: 900px;
+      margin: 12px auto 0;
+      padding: 0 15px;
+    }
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+    .header-ad-slot {
+      background: rgba(15,78,154,.06);
+      border: 1px dashed var(--dash);
+      border-radius: 12px;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 10px;
       text-align: center;
       font-size: 12px;
-      color: #fff;
+      color: #1f5fa8;
+      font-weight: 700;
       overflow: hidden;
     }
     .header-ad-slot a {
-      color: #fff;
+      color: #1f5fa8;
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -113,19 +160,18 @@
       width: 100%;
     }
     .header-ad-slot img {
-      max-height: 48px;
+      max-height: 54px;
       max-width: 100%;
-      border-radius: 4px;
+      border-radius: 6px;
       object-fit: cover;
     }
-    @media (max-width: 768px) {
+    @media (max-width: 700px) {
       .header-grid {
         grid-template-columns: 1fr;
       }
-      .header-brand {
-        order: -1;
-      }
     }
+
+    /* شريط الأخبار المتحرك */
     .ticker-wrap {
       background-color: #d32f2f;
       color: #fff;
@@ -135,6 +181,7 @@
       overflow: hidden;
       white-space: nowrap;
       position: relative;
+      margin-top: 10px;
     }
     .ticker-track {
       display: inline-block;
@@ -146,30 +193,60 @@
       animation-play-state: paused;
     }
     @keyframes tickerMoveRight {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(100%);
-      }
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
-    .container {
+
+    /* المحتوى الرئيسي */
+    .container, .content {
       max-width: 900px;
       margin: 20px auto;
       padding: 0 15px;
     }
+
+    .ad-wrap{
+      margin: 12px 0;
+      padding: 0;
+    }
+    .ad-box{
+      background: rgba(15,78,154,.06);
+      border: 1px dashed var(--dash);
+      border-radius: 12px;
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+      padding: 10px;
+      text-align: center;
+    }
+    .ad-title{
+      font-weight: 900;
+      font-size: 12px;
+      color: #1f5fa8;
+      opacity: .9;
+    }
+    .ad-size{
+      font-size: 12px;
+      color: #6b7a99;
+    }
+
+    /* بطاقة الخبر */
     .news-card {
-      background: #ffffff;
-      border-radius: 8px;
+      background: var(--card);
+      border-radius: 14px;
       padding: 18px;
       margin-bottom: 18px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      box-shadow: var(--shadow);
+      border: 1px solid #edf1ff;
       border-right: 5px solid #0d47a1;
     }
     .news-card h2 {
       margin-top: 0;
       color: #0d47a1;
       font-size: 20px;
+      line-height: 1.5;
     }
     .news-date {
       font-size: 12px;
@@ -228,6 +305,8 @@
     body.admin-mode .btn-delete-post {
       display: inline-block;
     }
+
+    /* لوحة الإدارة */
     .admin-panel {
       display: none;
       background: #ffffff;
@@ -308,6 +387,53 @@
       cursor: pointer;
       font-size: 13px;
     }
+
+    /* قسم رؤية المنشورات داخل إدارة الموقع */
+    .posts-overview-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .post-overview-row {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .post-overview-title {
+      font-weight: 700;
+      color: #0f172a;
+      flex: 1;
+      min-width: 180px;
+    }
+    .post-overview-meta {
+      font-size: 12px;
+      color: #475569;
+    }
+    .post-overview-btns {
+      display: flex;
+      gap: 6px;
+    }
+    .btn-mini {
+      border: none;
+      border-radius: 4px;
+      padding: 4px 9px;
+      font-size: 12px;
+      cursor: pointer;
+      color: #fff;
+    }
+    .btn-mini-view { background: #0d47a1; }
+    .btn-mini-hide { background: #c62828; }
+    .btn-mini-show { background: #2e7d32; }
+
+    /* التعليقات */
     .comments-section {
       margin-top: 18px;
       padding-top: 14px;
@@ -374,6 +500,7 @@
       line-height: 1.5;
       white-space: pre-line;
     }
+
     footer {
       background-color: #1a237e;
       color: #fff;
@@ -396,17 +523,32 @@
 </head>
 <body>
 
-  <header>
-    <div class="header-grid">
-      <div class="header-ad-slot" id="headerAdRight">مساحة إعلانية يمين</div>
-      <div class="header-brand">
-        <h1>krater360</h1>
-        <p>منصة الأخبار والمقالات المستقلة</p>
+  <!-- الواجهة العلوية -->
+  <header class="top-hero">
+    <h1 class="brand">krater360</h1>
+    <div class="subtitle">منصة الأخبار والتحليلات والمقالات المستقلة</div>
+
+    <div class="actions">
+      <div class="action-box" role="button" tabindex="0" onclick="alert('يمكنك ربط هذا الزر برابط/صفحة!')">
+        اشترك الآن
       </div>
-      <div class="header-ad-slot" id="headerAdLeft">مساحة إعلانية يسار</div>
+      <div class="action-box" role="button" tabindex="0" onclick="alert('يمكنك ربط هذا الزر برابط/صفحة!')">
+        مباريات اليوم عبر المدير
+      </div>
     </div>
   </header>
 
+  <div class="redbar"></div>
+
+  <!-- مساحات إعلانات الرأس المرتبطة بلوحة الإدارة -->
+  <div class="header-ads-bar">
+    <div class="header-grid">
+      <div class="header-ad-slot" id="headerAdRight">مساحة إعلانية يمين</div>
+      <div class="header-ad-slot" id="headerAdLeft">مساحة إعلانية يسار</div>
+    </div>
+  </div>
+
+  <!-- شريط الأخبار المتحرك -->
   <div class="ticker-wrap">
     <div class="ticker-track">
       <span id="tickerText">الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن   ★   بشرى ساره لموظفي لحج بشأن خروج التعزيزات   ★   استقالات عديده من كليه الشرطه بحضرموت   ★   الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية   ★   تغيير العقيدة النووية الإيرانية.. هل تتراجع طهران عن فتوى تحريم القنبلة تحت الضغط؟   ★   قصف هستيري حوثي على هدن   ★   أهلاً بكم في الانطلاقة الرسمية لموقع krater360 — مساحة حرة للأخبار والتحليلات والمقالات المستقلة.</span>
@@ -414,41 +556,16 @@
   </div>
 
   <div class="container">
-    <div class="news-card" id="news-1795434586104">
-      <img src="https://krater360.github.io/images/1795434580724-1-1795434455963.jpg" alt="تحرك ناقلات نفط إيرانية نحو خط الحظر الأمريكي في بحر العرب وسط تهديدات بتصعيد إقليمي" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>تحرك ناقلات نفط إيرانية نحو خط الحظر الأمريكي في بحر العرب وسط تهديدات بتصعيد إقليمي</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>تفيد معطيات متداولة بأن طليعة ناقلات النفط الإيرانية العملاقة تقترب من خط الحظر الذي تفرضه الولايات المتحدة عند مدخل بحر العرب جنوبي الساحل العماني، ضمن مساعٍ لنقل شحنات متجهة إلى الصين.</p>
-      <p>​وبحسب المعلومات المتداولة، فإن طواقم الناقلات الأربع عشرة تضم بحارة متطوعين في حالة استعداد قصوى، بالتوازي مع حديث عن توجيه الحرس الثوري الإيراني صواريخ باليستية نحو منشآت وموانئ نفطية في المنطقة، ومنح قادة المنصات صلاحية الرد المباشر في حال تعرضت الناقلات لأي اعتداء.</p>
-      <button type="button" onclick="copyNewsLink('news-1795434586104')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
-    </div>
 
-    <div class="news-card" id="news-1795433650742">
-      <img src="https://krater360.github.io/images/1795433636214-1-1795433601268.jpg" alt="بتوجيهات المحافظ شيخ.. بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن بإجمالي مبلغ قدره 413 مليون ريال." style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>بتوجيهات المحافظ شيخ.. بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن بإجمالي مبلغ قدره 413 مليون ريال.</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>بتوجيهات المحافظ شيخ..</p>
-      <p>بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن</p>
-      <p>بدأت اليوم الإثنين عملية صرف الحافز الشهري المقدم من السلطة المحلية في العاصمة عدن للمعلمين والمعلمات، في عموم مديريات العاصمة، عن شهر نوفمبر الجاري.</p>
-      <p>وأوضح وكيل العاصمة عدن لشؤون التعليم، عوض مبجر، أن توجيهات وزير الدولة، محافظ العاصمة عدن، عبدالرحمن شيخ، قضت بالبدء بعملية الصرف فورا، عقب استكمال إجراءات التوقيع على شيكات الصرف بإجمالي مبلغ قدره 413 مليون ريال.</p>
-      <button type="button" onclick="copyNewsLink('news-1795433650742')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
-    </div>
-
-    <div class="news-card" id="news-1795432333211">
-      <img src="https://krater360.github.io/images/1795432321288-1-IMG__.jpg" alt="زيلينسكي يعلن مسؤولية أوكرانيا عن ضرب سفينتين روسيتين قبالة سواحل ليبيا وإغراق الطراد ميركوري" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>زيلينسكي يعلن مسؤولية أوكرانيا عن ضرب سفينتين روسيتين قبالة سواحل ليبيا وإغراق الطراد ميركوري</h2>
-      <div class="news-date" data-date="2026-11-23">23 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>أعلن الرئيس الأوكراني فولوديمير زيلينسكي، اليوم الإثنين، مسؤولية قوات بلاده عن تنفيذ هجوم استهدف سفينتين تابعتين للبحرية الروسية قبالة سواحل ليبيا، في تطور يعكس اتساع نطاق العمليات الأوكرانية خارج منطقة البحر الأسود.</p>
-        <p>وأوضح زيلينسكي أن الجيش الأوكراني تمكن من إغراق الطراد الروسي ميركوري باستخدام سبعة زوارق مسيرة أوكرانية الصنع، مشيراً إلى أن العملية طالت كذلك سفينة الشحن الروسية أنجارا.</p>
+    <!-- إعلان علوي ضمن الواجهة -->
+    <section class="ad-wrap" aria-label="إعلان علوي">
+      <div class="ad-box">
+        <div class="ad-title">Advertisement</div>
+        <div class="ad-size">شريط علوي (ضع كود AdSense/شبكتك هنا)</div>
       </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795432333211', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795432333211')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795432333211')">حذف المنشور</button>
-      </div>
-    </div>
+    </section>
 
+    <!-- لوحة إدارة الموقع -->
     <div class="admin-panel" id="adminPanel">
       <h3>لوحة إدارة الإعلانات والمنشورات</h3>
       <div class="admin-grid">
@@ -487,10 +604,55 @@
         </div>
       </div>
 
+      <!-- رؤية المنشورات داخل إدارة الموقع -->
+      <div class="admin-box" style="margin-top:12px;" id="adminPostsOverviewBox">
+        <h4>رؤية المنشورات في إدارة الموقع</h4>
+        <div class="posts-overview-list" id="adminPostsOverviewList">
+          جاري تحميل قائمة المنشورات...
+        </div>
+      </div>
+
       <div class="admin-actions">
         <button type="button" class="btn-admin-save" onclick="saveAdsConfig()">حفظ وتعديل الإعلانات</button>
+        <button type="button" class="btn-admin-reset" onclick="renderAdminPostsOverview()">تحديث رؤية المنشورات</button>
         <button type="button" class="btn-admin-reset" onclick="restoreAllPosts()">استعادة المنشورات المحذوفة</button>
         <button type="button" class="btn-admin-reset" onclick="toggleAdminMode(false)">إغلاق لوحة الإدارة</button>
+      </div>
+    </div>
+
+    <!-- المنشورات (الجزء الأول) -->
+    <div class="news-card" id="news-1795434586104">
+      <img src="https://krater360.github.io/images/1795434580724-1-1795434455963.jpg" alt="تحرك ناقلات نفط إيرانية نحو خط الحظر الأمريكي في بحر العرب وسط تهديدات بتصعيد إقليمي" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <h2>تحرك ناقلات نفط إيرانية نحو خط الحظر الأمريكي في بحر العرب وسط تهديدات بتصعيد إقليمي</h2>
+      <div class="news-date">22 نوفمبر 2026</div>
+      <p>تفيد معطيات متداولة بأن طليعة ناقلات النفط الإيرانية العملاقة تقترب من خط الحظر الذي تفرضه الولايات المتحدة عند مدخل بحر العرب جنوبي الساحل العماني، ضمن مساعٍ لنقل شحنات متجهة إلى الصين.</p>
+      <p>​وبحسب المعلومات المتداولة، فإن طواقم الناقلات الأربع عشرة تضم بحارة متطوعين في حالة استعداد قصوى، بالتوازي مع حديث عن توجيه الحرس الثوري الإيراني صواريخ باليستية نحو منشآت وموانئ نفطية في المنطقة، ومنح قادة المنصات صلاحية الرد المباشر في حال تعرضت الناقلات لأي اعتداء.</p>
+      <button type="button" onclick="copyNewsLink('news-1795434586104')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
+    </div>
+
+    <div class="news-card" id="news-1795433650742">
+      <img src="https://krater360.github.io/images/1795433636214-1-1795433601268.jpg" alt="بتوجيهات المحافظ شيخ.. بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن بإجمالي مبلغ قدره 413 مليون ريال." style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <h2>بتوجيهات المحافظ شيخ.. بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن بإجمالي مبلغ قدره 413 مليون ريال.</h2>
+      <div class="news-date">22 نوفمبر 2026</div>
+      <p>بتوجيهات المحافظ شيخ..</p>
+      <p>بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن</p>
+      <p>بدأت اليوم الإثنين عملية صرف الحافز الشهري المقدم من السلطة المحلية في العاصمة عدن للمعلمين والمعلمات، في عموم مديريات العاصمة، عن شهر نوفمبر الجاري.</p>
+      <p>وأوضح وكيل العاصمة عدن لشؤون التعليم، عوض مبجر، أن توجيهات وزير الدولة، محافظ العاصمة عدن، عبدالرحمن شيخ، قضت بالبدء بعملية الصرف فورا، عقب استكمال إجراءات التوقيع على شيكات الصرف بإجمالي مبلغ قدره 413 مليون ريال.</p>
+      <button type="button" onclick="copyNewsLink('news-1795433650742')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
+    </div>
+
+    <div class="news-card" id="news-1795432333211">
+      <img src="https://krater360.github.io/images/1795432321288-1-IMG__.jpg" alt="زيلينسكي يعلن مسؤولية أوكرانيا عن ضرب سفينتين روسيتين قبالة سواحل ليبيا وإغراق الطراد ميركوري" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <h2>زيلينسكي يعلن مسؤولية أوكرانيا عن ضرب سفينتين روسيتين قبالة سواحل ليبيا وإغراق الطراد ميركوري</h2>
+      <div class="news-date" data-date="2026-11-23">23 نوفمبر 2026</div>
+      <div class="news-body">
+        <p>أعلن الرئيس الأوكراني فولوديمير زيلينسكي، اليوم الإثنين، مسؤولية قوات بلاده عن تنفيذ هجوم استهدف سفينتين تابعتين للبحرية الروسية قبالة سواحل ليبيا، في تطور يعكس اتساع نطاق العمليات الأوكرانية خارج منطقة البحر الأسود.</p>
+        <p>وأوضح زيلينسكي أن الجيش الأوكراني تمكن من إغراق الطراد الروسي ميركوري باستخدام سبعة زوارق مسيرة أوكرانية الصنع، مشيراً إلى أن العملية طالت كذلك سفينة الشحن الروسية أنجارا.</p>
+      </div>
+      <div class="news-actions">
+        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795432333211', this)">قراءة المزيد</button>
+        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795432333211')">نسخ رابط الخبر</button>
+        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795432333211')">حذف المنشور</button>
       </div>
     </div>
 
@@ -504,12 +666,12 @@
         <p>ونأمل استكمال بقية الإجراءات وصرف المستحقات في أقرب وقت، بما يسهم في تخفيف معاناة الموظفين وتحسين أوضاعهم المعيشية.</p>
       </div>
       <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795428076522', this
-')">قراءة المزيد</button>
+        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795428076522', this)">قراءة المزيد</button>
         <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795428076522')">نسخ رابط الخبر</button>
         <button type="button" class="btn-delete-post" onclick="deletePost('news-1795428076522')">حذف المنشور</button>
       </div>
     </div>
+
     <div class="news-card" id="news-1795427847550">
       <img src="https://krater360.github.io/images/1795427840397-1-1795427708303.jpg" alt="تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين</h2>
@@ -526,7 +688,6 @@
         <button type="button" class="btn-delete-post" onclick="deletePost('news-1795427847550')">حذف المنشور</button>
       </div>
     </div>
-
     <div class="news-card" id="news-1795406996756">
       <img src="https://krater360.github.io/images/1795406992904-1-IMG-20261123-WA0000.jpg" alt="مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر</h2>
@@ -543,6 +704,7 @@
         <button type="button" class="btn-delete-post" onclick="deletePost('news-1795406996756')">حذف المنشور</button>
       </div>
     </div>
+
     <div class="news-card" id="news-1795378247723">
       <img src="https://krater360.github.io/images/1795378241972-1-1795378186808.jpg" alt="20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي</h2>
@@ -730,13 +892,21 @@
         <button type="button" class="btn-delete-post" onclick="deletePost('news-default-3')">حذف المنشور</button>
       </div>
     </div>
+
+    <!-- إعلان سفلي ضمن الواجهة -->
+    <section class="ad-wrap" aria-label="إعلان سفلي">
+      <div class="ad-box">
+        <div class="ad-title">Advertisement</div>
+        <div class="ad-size">مربع/سفلي (ضع كود AdSense/شبكتك هنا)</div>
+      </div>
+    </section>
+
   </div>
 
   <footer>
     جميع الحقوق محفوظة © 2026 - krater360
     <button type="button" class="admin-trigger" onclick="handleAdminClick()">إدارة الموقع</button>
   </footer>
-
 <script>
   (function () {
     const MAX_TICKER_ITEMS = 15;
@@ -876,11 +1046,17 @@ function saveAdsConfig() {
   }
 }
 
+function getDeletedSet() {
+  const localDeleted = JSON.parse(localStorage.getItem("krater360_deleted_posts") || "[]");
+  return new Set(Array.isArray(localDeleted) ? localDeleted : Object.keys(localDeleted || {}));
+}
+
 function applyDeletedPosts(deletedIds) {
   const set = new Set(Array.isArray(deletedIds) ? deletedIds : Object.keys(deletedIds || {}));
   document.querySelectorAll(".news-card").forEach(card => {
     card.style.display = set.has(card.id) ? "none" : "";
   });
+  renderAdminPostsOverview();
 }
 
 function loadDeletedPosts() {
@@ -918,6 +1094,20 @@ function deletePost(newsId) {
   }
 }
 
+function restoreSinglePost(newsId) {
+  if (!newsId) return;
+  const current = JSON.parse(localStorage.getItem("krater360_deleted_posts") || "[]")
+    .filter(id => id !== newsId);
+  localStorage.setItem("krater360_deleted_posts", JSON.stringify(current));
+  applyDeletedPosts(current);
+
+  if (FIREBASE_DB_URL) {
+    fetch(`${FIREBASE_DB_URL}/settings/deletedPosts/${encodeURIComponent(newsId)}.json`, {
+      method: "DELETE"
+    }).catch(() => {});
+  }
+}
+
 function restoreAllPosts() {
   if (!confirm("استعادة جميع المنشورات المخفية؟")) return;
   localStorage.removeItem("krater360_deleted_posts");
@@ -928,8 +1118,71 @@ function restoreAllPosts() {
   alert("تمت استعادة المنشورات");
 }
 
+function renderAdminPostsOverview() {
+  const listEl = document.getElementById("adminPostsOverviewList");
+  if (!listEl) return;
+
+  const deletedSet = getDeletedSet();
+  const cards = Array.from(document.querySelectorAll(".news-card"));
+  if (!cards.length) {
+    listEl.innerHTML = `<p class="post-overview-meta">لا توجد منشورات حالياً.</p>`;
+    return;
+  }
+
+  const fetchViewsPromise = FIREBASE_DB_URL
+    ? fetch(`${FIREBASE_DB_URL}/views.json`).then(r => r.json()).catch(() => ({}))
+    : Promise.resolve({});
+
+  fetchViewsPromise.then(viewsMap => {
+    const viewsObj = (viewsMap && typeof viewsMap === "object") ? viewsMap : {};
+    listEl.innerHTML = cards.map((card, idx) => {
+      const id = card.id || ("news-item-" + idx);
+      const title = (card.querySelector("h2")?.textContent || "منشور بدون عنوان").trim();
+      const dateText = (card.querySelector(".news-date")?.textContent || "").trim();
+      const viewsCount = Number(viewsObj[id]) || 0;
+      const isHidden = deletedSet.has(id);
+
+      return `
+        <div class="post-overview-row">
+          <div class="post-overview-title">${escapeText(title)}</div>
+          <div class="post-overview-meta">
+            ${dateText ? `${escapeText(dateText)} • ` : ""}
+            المشاهدات: <strong>${viewsCount}</strong> •
+            الحالة: <strong>${isHidden ? "مخفي" : "ظاهر"}</strong>
+          </div>
+          <div class="post-overview-btns">
+            <button type="button" class="btn-mini btn-mini-view" onclick="jumpToPostFromAdmin('${escapeText(id)}')">عرض</button>
+            ${
+              isHidden
+                ? `<button type="button" class="btn-mini btn-mini-show" onclick="restoreSinglePost('${escapeText(id)}')">إظهار</button>`
+                : `<button type="button" class="btn-mini btn-mini-hide" onclick="deletePost('${escapeText(id)}')">إخفاء</button>`
+            }
+          </div>
+        </div>
+      `;
+    }).join("");
+  });
+}
+
+function jumpToPostFromAdmin(newsId) {
+  const card = document.getElementById(newsId);
+  if (!card) return;
+  restoreSinglePost(newsId);
+  card.style.display = "";
+  const btn = card.querySelector(".btn-read-more");
+  const bodyEl = card.querySelector(".news-body");
+  if (bodyEl && !bodyEl.classList.contains("open")) {
+    toggleReadMore(newsId, btn);
+  }
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
 function toggleAdminMode(enable) {
-  document.body.classList.toggle("admin-mode", Boolean(enable));
+  const active = Boolean(enable);
+  document.body.classList.toggle("admin-mode", active);
+  if (active) {
+    renderAdminPostsOverview();
+  }
 }
 
 function handleAdminClick() {
@@ -996,6 +1249,7 @@ function publishNewPost() {
   if (!FIREBASE_DB_URL) {
     renderDynamicPost(postData, true);
     formatDatesToAden();
+    renderAdminPostsOverview();
     titleEl.value = "";
     imgEl.value = "";
     dateEl.value = getAdenTodayISO();
@@ -1013,6 +1267,7 @@ function publishNewPost() {
       if (!r.ok) throw new Error("Failed");
       renderDynamicPost(postData, true);
       formatDatesToAden();
+      renderAdminPostsOverview();
       titleEl.value = "";
       imgEl.value = "";
       dateEl.value = getAdenTodayISO();
@@ -1068,6 +1323,9 @@ function loadFirebasePosts() {
       list.forEach(post => renderDynamicPost(post, true));
       formatDatesToAden();
       loadDeletedPosts();
+      if (document.body.classList.contains("admin-mode")) {
+        renderAdminPostsOverview();
+      }
     })
     .catch(() => {});
 }
@@ -1225,8 +1483,7 @@ window.addEventListener("DOMContentLoaded", function () {
     const targetId = window.location.hash.slice(1);
     const card = document.getElementById(targetId);
     if (card) {
-            const btn = card.querySelector(".btn-read-more");
-
+      const btn = card.querySelector(".btn-read-more");
       toggleReadMore(targetId, btn);
     }
   }
