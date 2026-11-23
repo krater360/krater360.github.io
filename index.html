@@ -1931,5 +1931,39 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 })();
 </script>
+<script>
+(function () {
+  function runTicker() {
+    var el = document.getElementById("tickerText");
+    if (!el) return;
+
+    var titles = Array.prototype.slice.call(document.querySelectorAll(".news-card"))
+      .filter(function (c) { return c.style.display !== "none"; })
+      .map(function (c) {
+        var h2 = c.querySelector("h2");
+        return h2 ? h2.textContent.trim() : "";
+      })
+      .filter(Boolean);
+
+    var oldItems = el.textContent.split("★").map(function (s) { return s.trim(); }).filter(Boolean);
+    var all = [];
+    var seen = {};
+
+    titles.concat(oldItems).forEach(function (t) {
+      if (!seen[t]) {
+        seen[t] = true;
+        all.push(t);
+      }
+    });
+
+    if (all.length) {
+      el.textContent = all.slice(0, 15).join("   ★   ");
+    }
+  }
+
+  setInterval(runTicker, 1500);
+  window.addEventListener("load", runTicker);
+})();
+</script>
 
 </body></html>
