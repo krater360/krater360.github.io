@@ -1181,15 +1181,17 @@ function getSavedGithubToken() {
   let token = (localStorage.getItem(storageKey) || "").trim();
 
   if (!token) {
-    const entered = prompt("أدخل رمز GitHub Token الخاص برفع الصور (سيُحفظ في متصفح هذا الجهاز فقط):");
+    const entered = prompt("أدخل رمز GitHub Token الخاص برفع الصور:");
     if (entered && entered.trim()) {
       token = entered.trim();
       localStorage.setItem(storageKey, token);
     }
+  }
 
   return token;
 }
-function fileToBase64(file) {
+
+  function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => {
