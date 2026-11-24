@@ -462,8 +462,7 @@
     }
     .post-overview-title {
       font-weight: 700;
-      color: #
-0f172a;
+      color: #0f172a;
       flex: 1;
       min-width: 180px;
     }
@@ -628,7 +627,8 @@
       font-size: 11px;
       cursor: pointer;
       margin-right: 8px;
-    }    .k360-badge-box {
+    }
+    .k360-badge-box {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -652,7 +652,6 @@
     .ticker-track {
       animation-duration: 80s !important;
     }
-
   </style>
 </head>
 <body>
@@ -660,7 +659,6 @@
   <!-- الواجهة العلوية مع شعار k360 المكبر -->
   <header class="top-hero">
     <div class="hero-brand-wrap">
-      
       <h1 class="brand">k360</h1>
     </div>
     <div class="subtitle">منصة الأخبار والتحليلات والمقالات المستقلة</div>
@@ -745,6 +743,7 @@
       <p>راح ضحيتها عدد من المواطنين بعد استهداف شاحنات قادمة من عدن باتجاه تعز من قبل مليشيات الحوثي بحسب المعلومات المتداولة إلى متى يظل المواطن يدفع الثمن ويُحرم حتى من حقه في الطريق والبحث عن لقمة عيشه</p>
       <button type="button" onclick="copyNewsLink('news-1795443555689')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
     </div>
+
     <!-- إعلان علوي ضمن الواجهة -->
     <section class="ad-wrap" aria-label="إعلان علوي">
       <div class="ad-box">
@@ -791,7 +790,7 @@
       </div>
 
       <div class="admin-box" style="margin-top:12px;">
-        <h4>نشر خبر جديد (يُحفظ في Firebase)</h4>
+        <h4>نشر خبر جديد (يُحفظ في Firebase ويظهر أولاً)</h4>
         <label>عنوان الخبر</label>
         <input type="text" id="newPostTitle" placeholder="اكتب عنوان الخبر هنا...">
         <label>رابط الصورة (اختياري)</label>
@@ -810,15 +809,16 @@
           <button type="button" class="btn-admin-save" onclick="publishNewPost()">نشر الخبر الآن</button>
         </div>
       </div>
-<!-- تبويبات إدارة الموقع -->
-<div style="display: flex; gap: 10px; margin: 15px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
-  <button type="button" onclick="switchAdminTab('posts')" id="tabPostsBtn" style="flex: 1; padding: 10px; background: #0f3460; color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-    📰 المنشورات
-  </button>
-  <button type="button" onclick="switchAdminTab('messages')" id="tabMessagesBtn" style="flex: 1; padding: 10px; background: #e2e8f0; color: #1e293b; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-    📩 الرسائل (<span id="msgCount">0</span>)
-  </button>
-</div>
+
+      <!-- تبويبات إدارة الموقع -->
+      <div style="display: flex; gap: 10px; margin: 15px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
+        <button type="button" onclick="switchAdminTab('posts')" id="tabPostsBtn" style="flex: 1; padding: 10px; background: #0f3460; color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+          📰 المنشورات
+        </button>
+        <button type="button" onclick="switchAdminTab('messages')" id="tabMessagesBtn" style="flex: 1; padding: 10px; background: #e2e8f0; color: #1e293b; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+          📩 الرسائل (<span id="msgCount">0</span>)
+        </button>
+      </div>
 
       <!-- رؤية المنشورات داخل إدارة الموقع -->
       <div class="admin-box" style="margin-top:12px;" id="adminPostsOverviewBox">
@@ -826,28 +826,29 @@
         <div class="posts-overview-list" id="adminPostsOverviewList">
           جاري تحميل قائمة المنشورات...
         </div>
-      </div><!-- قسم الرسائل الواردة في الإدارة -->
-<div id="adminMessagesSection" style="display: none; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 12px;">
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-    <h4 style="margin: 0; color: #0f3460;">رسائل زوار موقع k360</h4>
-    <button type="button" onclick="loadMessagesFromGitHub()" style="padding: 5px 10px; background: #16a34a; color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">
-      🔄 تحديث
-    </button>
-  </div>
-  <div id="messagesListContainer">
-    <p style="text-align: center; color: #64748b; font-size: 14px;">اضغط على تبويب الرسائل أو تحديث لتحميلها.</p>
-  </div>
-</div>
+      </div>
 
+      <!-- قسم الرسائل الواردة في الإدارة -->
+      <div id="adminMessagesSection" style="display: none; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h4 style="margin: 0; color: #0f3460;">رسائل زوار موقع k360</h4>
+          <button type="button" onclick="loadMessagesFromGitHub()" style="padding: 5px 10px; background: #16a34a; color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">
+            🔄 تحديث
+          </button>
+        </div>
+        <div id="messagesListContainer">
+          <p style="text-align: center; color: #64748b; font-size: 14px;">اضغط على تبويب الرسائل أو تحديث لتحميلها.</p>
+        </div>
+      </div>
 
       <div class="admin-actions">
         <button type="button" class="btn-admin-save" onclick="saveAdsConfig()">حفظ وتعديل الإعلانات</button>
+        <button type="button" class="btn-admin-reset" onclick="resetGithubToken()">تغيير / مسح Token</button>
         <button type="button" class="btn-admin-reset" onclick="renderAdminPostsOverview()">تحديث رؤية المنشورات</button>
         <button type="button" class="btn-admin-reset" onclick="restoreAllPosts()">استعادة المنشورات المحذوفة</button>
         <button type="button" class="btn-admin-reset" onclick="toggleAdminMode(false)">إغلاق لوحة الإدارة</button>
       </div>
     </div>
-
     <!-- المنشورات (الجزء الأول) -->
     <div class="news-card" id="news-1795434586104">
       <img src="https://krater360.github.io/images/1795434580724-1-1795434455963.jpg" alt="تحرك ناقلات نفط إيرانية نحو خط الحظر الأمريكي في بحر العرب وسط تهديدات بتصعيد إقليمي" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
@@ -899,6 +900,7 @@
         <button type="button" class="btn-delete-post" onclick="deletePost('news-1795428076522')">حذف المنشور</button>
       </div>
     </div>
+
     <div class="news-card" id="news-1795427847550">
       <img src="https://krater360.github.io/images/1795427840397-1-1795427708303.jpg" alt="تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين</h2>
@@ -915,6 +917,7 @@
         <button type="button" class="btn-delete-post" onclick="deletePost('news-1795427847550')">حذف المنشور</button>
       </div>
     </div>
+
     <div class="news-card" id="news-1795406996756">
       <img src="https://krater360.github.io/images/1795406992904-1-IMG-20261123-WA0000.jpg" alt="مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر</h2>
@@ -1169,29 +1172,43 @@
 const FIREBASE_DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
 const ADMIN_PASSCODE = "9270268911";
 
-// إعدادات رفع الصور من الهاتف إلى GitHub (يقرأ GITHUB_TOKEN المحفوظ لديك في index.html)
+// إعدادات رفع الصور من الهاتف إلى GitHub
 const GITHUB_OWNER = "krater360";
 const GITHUB_REPO = "krater360.github.io";
 const GITHUB_BRANCH = "main";
 const GITHUB_FOLDER = "images";
 const SITE_MAIL_TO = "Cojee2829@gmail.com";
+const TOKEN_STORAGE_KEY = "krater360_gh_token_new";
 
-function getSavedGithubToken() {
-  const storageKey = "krater360_gh_token_new";
-  let token = (localStorage.getItem(storageKey) || "").trim();
+function getSavedGithubToken(forcePrompt = false) {
+  let token = (localStorage.getItem(TOKEN_STORAGE_KEY) || "").trim();
 
-  if (!token) {
-    const entered = prompt("أدخل رمز GitHub Token الخاص برفع الصور:");
-    if (entered && entered.trim()) {
-      token = entered.trim();
-      localStorage.setItem(storageKey, token);
+  if (!token || forcePrompt) {
+    const entered = prompt("أدخل رمز GitHub Token الخاص برفع الصور:", token);
+    if (entered === null) {
+      return "";
+    }
+    const clean = entered.trim();
+    if (clean) {
+      localStorage.setItem(TOKEN_STORAGE_KEY, clean);
+      token = clean;
     }
   }
 
   return token;
 }
 
-  function fileToBase64(file) {
+function resetGithubToken() {
+  localStorage.removeItem(TOKEN_STORAGE_KEY);
+  const newToken = getSavedGithubToken(true);
+  if (newToken) {
+    alert("تم تحديث رمز GitHub Token بنجاح.");
+  } else {
+    alert("تم مسح رمز GitHub Token.");
+  }
+}
+
+function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => {
@@ -1230,7 +1247,7 @@ async function uploadPhoneImage(fileInputId, targetUrlInputId, statusElId) {
   if (!token) {
     if (statusEl) {
       statusEl.style.color = "#c62828";
-      statusEl.textContent = "تعذر العثور على GITHUB_TOKEN في الملف.";
+      statusEl.textContent = "لم يتم إدخال رمز GitHub Token.";
     }
     return;
   }
@@ -1256,6 +1273,7 @@ async function uploadPhoneImage(fileInputId, targetUrlInputId, statusElId) {
       method: "PUT",
       headers: {
         "Authorization": `Bearer ${token}`,
+        "Accept": "application/vnd.github+json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -1267,7 +1285,11 @@ async function uploadPhoneImage(fileInputId, targetUrlInputId, statusElId) {
 
     if (!response.ok) {
       const errJson = await response.json().catch(() => ({}));
-      throw new Error(errJson.message || "فشل الرفع إلى GitHub");
+      const errMsg = errJson.message || "فشل الرفع إلى GitHub";
+      if (response.status === 401 || /bad credentials/i.test(errMsg)) {
+        localStorage.removeItem(TOKEN_STORAGE_KEY);
+      }
+      throw new Error(errMsg);
     }
 
     const finalUrl = `https://${GITHUB_OWNER}.github.io/${GITHUB_FOLDER}/${fileName}`;
@@ -1643,7 +1665,7 @@ function getAdenTodayISO() {
     }).formatToParts(new Date());
     const y = parts.find(p => p.type === "year")?.value || "2026";
     const m = parts.find(p => p.type === "month")?.value || "11";
-    const d = parts.find(p => p.type === "day")?.value || "23";
+    const d = parts.find(p => p.type === "day")?.value || "24";
     return `${y}-${m}-${d}`;
   } catch (_) {
     return new Date().toISOString().slice(0, 10);
@@ -1689,7 +1711,7 @@ function publishNewPost() {
     imgEl.value = "";
     dateEl.value = getAdenTodayISO();
     bodyEl.value = "";
-    alert("تمت إضافة الخبر محلياً.");
+    alert("تمت إضافة الخبر في مقدمة الموقع.");
     return;
   }
 
@@ -1707,14 +1729,15 @@ function publishNewPost() {
       imgEl.value = "";
       dateEl.value = getAdenTodayISO();
       bodyEl.value = "";
-      alert("تم نشر الخبر وحفظه في قاعدة البيانات بنجاح.");
+      alert("تم نشر الخبر في مقدمة الموقع وحفظه في قاعدة البيانات بنجاح.");
     })
     .catch(() => {
       alert("تعذر نشر الخبر، تحقق من اتصال الإنترنت وقواعد Firebase.");
     });
 }
 
-function renderDynamicPost(post, prepend) {
+// يضع الخبر الجديد في أعلى قائمة الأخبار (أول خبر في الموقع)
+function renderDynamicPost(post, prepend = true) {
   const container = document.querySelector(".container");
   if (!container || !post || !post.id) return;
   if (document.getElementById(post.id)) return;
@@ -1740,9 +1763,11 @@ function renderDynamicPost(post, prepend) {
     </div>
   `;
 
-  const adminPanel = document.getElementById("adminPanel");
-  if (prepend && adminPanel && adminPanel.nextSibling) {
-    container.insertBefore(card, adminPanel.nextSibling);
+  const firstNewsCard = container.querySelector(".news-card");
+  if (prepend && firstNewsCard) {
+    container.insertBefore(card, firstNewsCard);
+  } else if (prepend && container.firstChild) {
+    container.insertBefore(card, container.firstChild);
   } else {
     container.appendChild(card);
   }
@@ -1754,7 +1779,8 @@ function loadFirebasePosts() {
     .then(r => r.json())
     .then(data => {
       if (!data || typeof data !== "object") return;
-      const list = Object.values(data).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      // نرتب من الأقدم للأحدث عند الإدراج في المقدمة حتى يصبح الأحدث هو الأول فعلياً
+      const list = Object.values(data).sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
       list.forEach(post => renderDynamicPost(post, true));
       formatDatesToAden();
       loadDeletedPosts();
@@ -1763,6 +1789,82 @@ function loadFirebasePosts() {
       }
     })
     .catch(() => {});
+}
+
+function switchAdminTab(tabName) {
+  const postsBox = document.getElementById("adminPostsOverviewBox");
+  const messagesSection = document.getElementById("adminMessagesSection");
+  const postsBtn = document.getElementById("tabPostsBtn");
+  const messagesBtn = document.getElementById("tabMessagesBtn");
+
+  const isMessages = tabName === "messages";
+
+  if (postsBox) postsBox.style.display = isMessages ? "none" : "block";
+  if (messagesSection) messagesSection.style.display = isMessages ? "block" : "none";
+
+  if (postsBtn) {
+    postsBtn.style.background = isMessages ? "#e2e8f0" : "#0f3460";
+    postsBtn.style.color = isMessages ? "#1e293b" : "#ffffff";
+  }
+  if (messagesBtn) {
+    messagesBtn.style.background = isMessages ? "#0f3460" : "#e2e8f0";
+    messagesBtn.style.color = isMessages ? "#ffffff" : "#1e293b";
+  }
+
+  if (isMessages) {
+    loadMessagesFromGitHub();
+  } else {
+    renderAdminPostsOverview();
+  }
+}
+
+function loadMessagesFromGitHub() {
+  const container = document.getElementById("messagesListContainer");
+  const countEl = document.getElementById("msgCount");
+  if (!container) return;
+
+  if (!FIREBASE_DB_URL) {
+    container.innerHTML = `<p style="text-align:center; color:#64748b; font-size:13px;">قاعدة البيانات غير مضبوطة.</p>`;
+    return;
+  }
+
+  container.innerHTML = `<p style="text-align:center; color:#0f4e9a; font-size:13px;">جاري تحميل الرسائل...</p>`;
+
+  fetch(`${FIREBASE_DB_URL}/siteMessages.json`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data || typeof data !== "object") {
+        if (countEl) countEl.textContent = "0";
+        container.innerHTML = `<p style="text-align:center; color:#64748b; font-size:13px;">لا توجد رسائل واردة حالياً.</p>`;
+        return;
+      }
+
+      const items = Object.entries(data)
+        .map(([id, val]) => ({ id, ...(val || {}) }))
+        .sort((a, b) => new Date(b.sentAt || 0) - new Date(a.sentAt || 0));
+
+      if (countEl) countEl.textContent = String(items.length);
+
+      container.innerHTML = items.map(msg => {
+        const dateStr = msg.sentAt
+          ? new Date(msg.sentAt).toLocaleString("ar-YE", { timeZone: "Asia/Aden" })
+          : "";
+        return `
+          <div style="background:#ffffff; border:1px solid #cbd5e1; border-right:4px solid #0f4e9a; border-radius:6px; padding:10px; margin-bottom:10px; font-size:13px;">
+            <div style="font-weight:bold; color:#0f172a; margin-bottom:4px;">
+              ${escapeText(msg._subject || "رسالة زائر")} — <span style="color:#0f4e9a;">${escapeText(msg.name || "زائر")}</span>
+            </div>
+            <div style="font-size:11px; color:#64748b; margin-bottom:6px;">
+              ${escapeText(msg.email || "")}${dateStr ? ` • ${escapeText(dateStr)}` : ""}
+            </div>
+            <p style="margin:0; color:#1e293b; white-space:pre-line; line-height:1.5;">${escapeText(msg.message || "")}</p>
+          </div>
+        `;
+      }).join("");
+    })
+    .catch(() => {
+      container.innerHTML = `<p style="text-align:center; color:#c62828; font-size:13px;">تعذر تحميل الرسائل الآن.</p>`;
+    });
 }
 
 function recordNewsView(newsId) {
