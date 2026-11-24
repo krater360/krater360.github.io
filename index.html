@@ -689,7 +689,6 @@
       <span id="tickerText">الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن   ★   بشرى ساره لموظفي لحج بشأن خروج التعزيزات   ★   استقالات عديده من كليه الشرطه بحضرموت   ★   الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية   ★   تغيير العقيدة النووية الإيرانية.. هل تتراجع طهران عن فتوى تحريم القنبلة تحت الضغط؟   ★   قصف هستيري حوثي على هدن   ★   أهلاً بكم في الانطلاقة الرسمية لموقع krater360 — مساحة حرة للأخبار والتحليلات والمقالات المستقلة.</span>
     </div>
   </div>
-
   <div class="container">
     <div class="news-card" id="news-1795468006655">
       <img src="https://krater360.github.io/images/1795468002358-1-1795467854662.jpg" alt="تعميم أمني في ساحل حضرموت لحظر لعبة GTA 6 ومطالب بتطبيق الخطوة في عدن لحماية النشء" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
@@ -900,7 +899,6 @@
         <button type="button" class="btn-delete-post" onclick="deletePost('news-1795428076522')">حذف المنشور</button>
       </div>
     </div>
-
     <div class="news-card" id="news-1795427847550">
       <img src="https://krater360.github.io/images/1795427840397-1-1795427708303.jpg" alt="تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين</h2>
@@ -1025,7 +1023,7 @@
     </div>
 
     <div class="news-card" id="news-1795357745757">
-      <img src="https://krater360.github.io/images/1795357740872-1795357649043.jpg" alt="الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
+      <img src="https://krater360.github.io/images/1795357740872-1-1795357649043.jpg" alt="الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
       <h2>الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية</h2>
       <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
       <div class="news-body">
@@ -1178,20 +1176,34 @@ const GITHUB_REPO = "krater360.github.io";
 const GITHUB_BRANCH = "main";
 const GITHUB_FOLDER = "images";
 const SITE_MAIL_TO = "Cojee2829@gmail.com";
+
 const TOKEN_STORAGE_KEY = "krater360_gh_token_new";
+const LEGACY_TOKEN_KEYS = ["krater360_gh_token", "github_token", "gh_token"];
+
+function clearStoredGithubTokens() {
+  localStorage.removeItem(TOKEN_STORAGE_KEY);
+  LEGACY_TOKEN_KEYS.forEach(k => localStorage.removeItem(k));
+}
+
+function cleanGithubTokenValue(rawValue) {
+  return String(rawValue || "").replace(/[^A-Za-z0-9_]/g, "").trim();
+}
 
 function getSavedGithubToken(forcePrompt = false) {
-  let token = (localStorage.getItem(TOKEN_STORAGE_KEY) || "").trim();
+  let token = cleanGithubTokenValue(localStorage.getItem(TOKEN_STORAGE_KEY));
 
   if (!token || forcePrompt) {
     const entered = prompt("أدخل رمز GitHub Token الخاص برفع الصور:", token);
     if (entered === null) {
       return "";
     }
-    const clean = entered.trim();
+    const clean = cleanGithubTokenValue(entered);
     if (clean) {
       localStorage.setItem(TOKEN_STORAGE_KEY, clean);
       token = clean;
+    } else {
+      alert("الرمز المدخل غير صالح أو فارغ.");
+      return "";
     }
   }
 
@@ -1199,12 +1211,12 @@ function getSavedGithubToken(forcePrompt = false) {
 }
 
 function resetGithubToken() {
-  localStorage.removeItem(TOKEN_STORAGE_KEY);
+  clearStoredGithubTokens();
   const newToken = getSavedGithubToken(true);
   if (newToken) {
-    alert("تم تحديث رمز GitHub Token بنجاح.");
+    alert("تم مسح التوكن السابق وحفظ التوكن الجديد في المتصفح بنجاح.");
   } else {
-    alert("تم مسح رمز GitHub Token.");
+    alert("تم مسح رمز GitHub Token من المتصفح.");
   }
 }
 
@@ -1779,7 +1791,6 @@ function loadFirebasePosts() {
     .then(r => r.json())
     .then(data => {
       if (!data || typeof data !== "object") return;
-      // نرتب من الأقدم للأحدث عند الإدراج في المقدمة حتى يصبح الأحدث هو الأول فعلياً
       const list = Object.values(data).sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
       list.forEach(post => renderDynamicPost(post, true));
       formatDatesToAden();
@@ -2006,6 +2017,8 @@ function copyNewsLink(id) {
 }
 
 window.addEventListener("DOMContentLoaded", function () {
+  LEGACY_TOKEN_KEYS.forEach(k => localStorage.removeItem(k));
+
   const dateInput = document.getElementById("newPostDate");
   if (dateInput) {
     dateInput.value = getAdenTodayISO();
