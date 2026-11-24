@@ -1186,15 +1186,9 @@ function getSavedGithubToken() {
       token = entered.trim();
       localStorage.setItem(storageKey, token);
     }
-  }
 
   return token;
 }
-
-  }
-  return "";
-}
-
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
