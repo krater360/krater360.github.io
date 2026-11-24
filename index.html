@@ -1177,8 +1177,20 @@ const GITHUB_FOLDER = "images";
 const SITE_MAIL_TO = "Cojee2829@gmail.com";
 
 function getSavedGithubToken() {
-  if (typeof GITHUB_TOKEN !== "undefined" && typeof GITHUB_TOKEN === "string" && GITHUB_TOKEN.trim()) {
-    return GITHUB_TOKEN.trim();
+  const storageKey = "krater360_gh_token";
+  let token = (localStorage.getItem(storageKey) || "").trim();
+
+  if (!token) {
+    const entered = prompt("أدخل رمز GitHub Token الخاص برفع الصور (سيُحفظ في متصفح هذا الجهاز فقط):");
+    if (entered && entered.trim()) {
+      token = entered.trim();
+      localStorage.setItem(storageKey, token);
+    }
+  }
+
+  return token;
+}
+
   }
   return "";
 }
