@@ -3,732 +3,443 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نشر وتعديل الأخبار - krater360</title>
+  <title>سجل النشر والإعلانات | krater360</title>
+  <meta name="robots" content="noindex, nofollow">
   <style>
+    * { box-sizing: border-box; }
     body {
-      font-family: Tahoma, Arial, sans-serif;
-      background-color: #f4f6f9;
-      color: #222;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
       margin: 0;
-      padding: 15px;
+      padding: 16px;
+      background: #f2f5ff;
+      color: #1e293b;
     }
-    .box {
-      max-width: 780px;
-      margin: 0 auto 25px auto;
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .login-box, .panel {
       background: #ffffff;
+      border: 2px solid #0d47a1;
       border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      margin-bottom: 18px;
     }
-    h1, h2.section-title {
+    .login-box {
+      max-width: 380px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    .panel { display: none; }
+    h2, h3, h4 {
       margin-top: 0;
       color: #0d47a1;
-      font-size: 21px;
-      border-bottom: 2px solid #e3f2fd;
-      padding-bottom: 10px;
+    }
+    .box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 700px) {
+      .grid-2 { grid-template-columns: 1fr; }
     }
     label {
       display: block;
-      font-weight: bold;
-      margin-top: 14px;
-      margin-bottom: 6px;
-      font-size: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #475569;
+      margin-top: 8px;
     }
     input, textarea {
       width: 100%;
-      box-sizing: border-box;
-      padding: 10px;
-      border: 1px solid #ccc;
+      padding: 8px 10px;
+      margin-top: 4px;
+      border: 1px solid #cbd5e1;
       border-radius: 6px;
-      font-family: Tahoma, Arial, sans-serif;
-      font-size: 15px;
-    }
-    input[type="file"] {
-      padding: 8px;
-      background: #fafafa;
+      font-family: inherit;
       font-size: 14px;
     }
-    textarea {
-      min-height: 120px;
-      line-height: 1.7;
-    }
-    .preview-box {
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .preview-box img {
-      width: 110px;
-      height: 85px;
-      object-fit: cover;
+    .upload-box {
+      margin-top: 8px;
+      padding: 8px;
+      background: #eef4ff;
+      border: 1px dashed #1f5fa8;
       border-radius: 6px;
-      border: 1px solid #ddd;
-    }
-    .preview-box video {
-      max-width: 100%;
-      max-height: 220px;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      background: #000;
     }
     .btn {
-      margin-top: 16px;
-      width: 100%;
-      background-color: #1b5e20;
-      color: #fff;
       border: none;
-      padding: 13px;
-      font-size: 16px;
-      font-weight: bold;
       border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
       cursor: pointer;
-    }
-    .btn-secondary {
-      background-color: #0d47a1;
-      margin-top: 10px;
-    }
-    .btn-cancel {
-      background-color: #616161;
       margin-top: 8px;
     }
-    .btn:disabled {
-      background-color: #888;
-      cursor: not-allowed;
+    .btn-blue { background: #1f5fa8; }
+    .btn-green { background: #2e7d32; }
+    .btn-red { background: #c62828; }
+    .btn-gray { background: #64748b; }
+    .status {
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 6px;
     }
-    .msg {
-      margin-top: 12px;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    .note {
-      background: #e8f5e9;
-      border-right: 4px solid #2e7d32;
-      padding: 10px 12px;
-      margin-top: 16px;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-    .news-item {
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      padding: 12px;
-      margin-top: 10px;
-      background: #fafafa;
+    .post-item {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-right: 4px solid #0d47a1;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 10px;
-    }
-    .news-item-info {
-      flex: 1;
-    }
-    .news-item-title {
-      font-weight: bold;
-      font-size: 15px;
-      color: #111;
-    }
-    .news-item-meta {
-      font-size: 12px;
-      color: #555;
-      margin-top: 5px;
-      display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-    }
-    .views-pill {
-      background: #e3f2fd;
-      color: #0d47a1;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-weight: bold;
-    }
-    .edit-btn {
-      background: #0d47a1;
-      color: #fff;
-      border: none;
-      padding: 7px 14px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-    .edit-panel {
-      display: none;
-      margin-top: 16px;
-      padding: 15px;
-      border: 2px solid #0d47a1;
-      border-radius: 8px;
-      background: #f8fbff;
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>نشر الأخبار تلقائياً - krater360</h1>
-
-    <label>مفتاح GitHub Token (يُحفظ في متصفحك فقط)</label>
-    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-
-    <label>عنوان الخبر</label>
-    <input type="text" id="title" placeholder="اكتب عنوان الخبر هنا...">
-
-    <label>التاريخ</label>
-    <input type="text" id="date" value="22 نوفمبر 2026">
-
-    <label>رفع صورة أو أكثر من الهاتف (اختياري)</label>
-    <input type="file" id="imageFile" accept="image/*" multiple>
-    <div class="preview-box" id="previewBox"></div>
-
-    <label>رفع فيديو من الهاتف (اختياري)</label>
-    <input type="file" id="videoFile" accept="video/*">
-    <div class="preview-box" id="videoPreviewBox"></div>
-
-    <label>أو روابط صور أو فيديو مباشرة مفصولة بفاصلة أو سطر جديد (اختياري)</label>
-    <textarea id="image" style="min-height: 65px;" placeholder="https://example.com/img1.jpg&#10;https://example.com/video.mp4"></textarea>
-
-    <label>نص الخبر أو المقال</label>
-    <textarea id="body" placeholder="اكتب تفاصيل الخبر أو المقال هنا..."></textarea>
-
-    <button class="btn" id="publishBtn" onclick="publishNews()">نشر الخبر تلقائياً في الموقع</button>
-    <div class="msg" id="statusMsg"></div>
-
-    <div class="note">
-      <strong>ملاحظة:</strong> يدعم النشر رفع عدة صور وفيديو من الهاتف في خبر واحد، وتحديث شريط الأخبار، وإضافة زر نسخ الرابط المباشر لكل خبر. يُفضّل أن يكون الفيديو خفيف الحجم.
+  <div class="container">
+    <div class="login-box" id="loginBox">
+      <h2>دخول سجل النشر والإعلانات</h2>
+      <input type="password" id="passInput" placeholder="أدخل رمز الإدارة">
+      <button type="button" class="btn btn-blue" style="width:100%;" onclick="loginNow()">دخول</button>
     </div>
-  </div>
 
-  <div class="box">
-    <h2 class="section-title">إدارة وتعديل الأخبار ومشاهداتها (لك فقط)</h2>
-    <button type="button" class="btn btn-secondary" id="loadNewsBtn" onclick="loadPublishedNews()">عرض / تحديث قائمة الأخبار ومشاهداتها</button>
-    <div class="msg" id="manageMsg"></div>
-    <div id="newsList"></div>
+    <div class="panel" id="panel">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
+        <h3 style="margin:0;">إدارة النشر والإعلانات — krater360</h3>
+        <div>
+          <a href="https://krater360.github.io/" target="_blank" class="btn btn-blue" style="text-decoration:none; display:inline-block; margin-top:0;">عرض الموقع</a>
+          <button type="button" class="btn btn-gray" style="margin-top:0;" onclick="logoutNow()">خروج</button>
+        </div>
+      </div>
 
-    <div class="edit-panel" id="editPanel">
-      <h3 style="margin-top:0; color:#0d47a1;">تعديل الخبر المحدد</h3>
-      <input type="hidden" id="editNewsId">
+      <!-- إضافة خبر جديد إلى Firebase -->
+      <div class="box">
+        <h4>نشر خبر جديد (يُحفظ في Firebase)</h4>
+        <label>عنوان الخبر</label>
+        <input type="text" id="postTitle" placeholder="اكتب عنوان الخبر...">
 
-      <label>عنوان الخبر</label>
-      <input type="text" id="editTitle">
+        <label>رابط الصورة (اختياري)</label>
+        <input type="url" id="postImg" placeholder="https://krater360.github.io/images/...">
 
-      <label>التاريخ</label>
-      <input type="text" id="editDate">
+        <div class="upload-box">
+          <label style="margin-top:0;">رفع صورة من الهاتف إلى GitHub:</label>
+          <input type="file" id="postFile" accept="image/*">
+          <button type="button" class="btn btn-blue" onclick="uploadImg('postFile', 'postImg', 'postUploadStatus')">رفع صورة الخبر</button>
+          <div class="status" id="postUploadStatus"></div>
+        </div>
 
-      <label>إضافة صور جديدة من الهاتف للخبر (اختياري)</label>
-      <input type="file" id="editImageFiles" accept="image/*" multiple>
-      <div class="preview-box" id="editPreviewBox"></div>
+        <label>تاريخ الخبر</label>
+        <input type="date" id="postDate">
 
-      <label>إضافة أو استبدال فيديو من الهاتف (اختياري)</label>
-      <input type="file" id="editVideoFile" accept="video/*">
-      <div class="preview-box" id="editVideoPreviewBox"></div>
+        <label>نص الخبر (كل سطر يصبح فقرة)</label>
+        <textarea id="postBody" rows="5" placeholder="اكتب تفاصيل الخبر هنا..."></textarea>
 
-      <label>نص الخبر</label>
-      <textarea id="editBody"></textarea>
+        <button type="button" class="btn btn-green" onclick="publishPost()">حفظ ونشر الخبر</button>
+      </div>
 
-      <button type="button" class="btn" id="saveEditBtn" onclick="saveEditedNews()">حفظ التعديلات في الموقع</button>
-      <button type="button" class="btn btn-cancel" onclick="cancelEdit()">إلغاء التعديل</button>
-    </div>
-  </div>
-
-  <script>
-    const OWNER = "krater360";
-    const REPO = "krater360.github.io";
-    const FILE_PATH = "index.html";
-    const BRANCH = "main";
-    const FIREBASE_DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
-
-    const tokenInput = document.getElementById("ghToken");
-    const fileInput = document.getElementById("imageFile");
-    const videoFileInput = document.getElementById("videoFile");
-    const imageUrlInput = document.getElementById("image");
-    const previewBox = document.getElementById("previewBox");
-    const videoPreviewBox = document.getElementById("videoPreviewBox");
-    const editFileInput = document.getElementById("editImageFiles");
-    const editVideoFileInput = document.getElementById("editVideoFile");
-    const editPreviewBox = document.getElementById("editPreviewBox");
-    const editVideoPreviewBox = document.getElementById("editVideoPreviewBox");
-
-    const savedToken = localStorage.getItem("krater360_gh_token");
-    if (savedToken) tokenInput.value = savedToken;
-
-    tokenInput.addEventListener("input", () => {
-      localStorage.setItem("krater360_gh_token", tokenInput.value.trim());
-    });
-
-    function renderFilePreviews(files, containerEl) {
-      containerEl.innerHTML = "";
-      if (!files || !files.length) return;
-      Array.from(files).forEach(file => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const img = document.createElement("img");
-          img.src = e.target.result;
-          img.alt = file.name;
-          containerEl.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-      });
-    }
-
-    function renderVideoPreview(file, containerEl) {
-      containerEl.innerHTML = "";
-      if (!file) return;
-      const url = URL.createObjectURL(file);
-      const video = document.createElement("video");
-      video.src = url;
-      video.controls = true;
-      containerEl.appendChild(video);
-    }
-
-    fileInput.addEventListener("change", () => renderFilePreviews(fileInput.files, previewBox));
-    videoFileInput.addEventListener("change", () => renderVideoPreview(videoFileInput.files[0], videoPreviewBox));
-    editFileInput.addEventListener("change", () => renderFilePreviews(editFileInput.files, editPreviewBox));
-    editVideoFileInput.addEventListener("change", () => renderVideoPreview(editVideoFileInput.files[0], editVideoPreviewBox));
-
-    function escapeHtml(text) {
-      return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    }
-
-    function decodeHtmlEntities(text) {
-      const txt = document.createElement("textarea");
-      txt.innerHTML = text;
-      return txt.value;
-    }
-
-    function utf8ToBase64(str) {
-      const bytes = new TextEncoder().encode(str);
-      let bin = "";
-      for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
-      return btoa(bin);
-    }
-
-    function base64ToUtf8(b64) {
-      const bin = atob(b64.replace(/\n/g, ""));
-      const bytes = new Uint8Array(bin.length);
-      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-      return new TextDecoder().decode(bytes);
-    }
-
-    function fileToBase64Pure(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const result = String(reader.result || "");
-          const parts = result.split(",");
-          if (parts.length < 2) return reject(new Error("تعذر قراءة بيانات الملف."));
-          resolve(parts[1]);
-        };
-        reader.onerror = () => reject(new Error("حدث خطأ أثناء قراءة الملف من الهاتف."));
-        reader.readAsDataURL(file);
-      });
-    }
-
-    function sanitizeFileName(name, idx, fallbackPrefix) {
-      const dotIdx = name.lastIndexOf(".");
-      const rawBase = dotIdx > 0 ? name.slice(0, dotIdx) : name;
-      const rawExt = dotIdx > 0 ? name.slice(dotIdx + 1).toLowerCase() : "";
-      const safeBase = rawBase.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 25) || fallbackPrefix;
-      const safeExt = rawExt.replace(/[^a-z0-9]/g, "") || (fallbackPrefix === "vid" ? "mp4" : "jpg");
-      return `${Date.now()}-${idx}-${safeBase}.${safeExt}`;
-    }
-
-    async function uploadMediaToGitHub(file, token, idx, folder, fallbackPrefix, labelText) {
-      if (file.size > 24 * 1024 * 1024) {
-        throw new Error(`حجم ${labelText} (${file.name}) كبير جداً لرفعه مباشرة عبر GitHub.`);
-      }
-      const fileName = sanitizeFileName(file.name, idx, fallbackPrefix);
-      const mediaPath = `${folder}/${fileName}`;
-      const base64Content = await fileToBase64Pure(file);
-      const uploadUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${mediaPath}`;
-
-      const uploadRes = await fetch(uploadUrl, {
-        method: "PUT",
-        headers: {
-          Authorization: `token ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: `رفع ${labelText}: ${fileName}`,
-          content: base64Content,
-          branch: BRANCH
-        })
-      });
-
-      if (!uploadRes.ok) {
-        throw new Error(`فشل رفع ${labelText} (${file.name}) إلى GitHub.`);
-      }
-
-      return `https://${OWNER}.github.io/${mediaPath}`;
-    }
-
-    function uploadImageToGitHub(file, token, idx) {
-      return uploadMediaToGitHub(file, token, idx, "images", "news-img", "صورة خبر");
-    }
-
-    function uploadVideoToGitHub(file, token, idx = 1) {
-      return uploadMediaToGitHub(file, token, idx, "videos", "vid", "فيديو خبر");
-    }
-
-    function isVideoUrl(url) {
-      return /\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i.test(url);
-    }
-
-    async function fetchIndexHtml(token) {
-      const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`;
-      const getRes = await fetch(apiUrl, {
-        headers: { Authorization: `token ${token}` }
-      });
-      if (!getRes.ok) throw new Error("تعذر الوصول إلى ملف index.html. تأكد من صحة Token وصلاحية repo.");
-      const fileData = await getRes.json();
-      return {
-        apiUrl,
-        sha: fileData.sha,
-        html: base64ToUtf8(fileData.content)
-      };
-    }
-
-    async function saveIndexHtml(apiUrl, token, html, sha, message) {
-      const putRes = await fetch(apiUrl, {
-        method: "PUT",
-        headers: {
-          Authorization: `token ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message,
-          content: utf8ToBase64(html),
-          sha,
-          branch: BRANCH
-        })
-      });
-      if (!putRes.ok) throw new Error("فشل حفظ التعديل في GitHub.");
-    }
-
-    function buildImagesHtml(urls, altText) {
-      if (!urls.length) return "";
-      return "\n" + urls
-        .map(url => `      <img src="${escapeHtml(url)}" alt="${altText}" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">`)
-        .join("\n");
-    }
-
-    function buildVideosHtml(urls) {
-      if (!urls.length) return "";
-      return "\n" + urls
-        .map(url => `      <video src="${escapeHtml(url)}" controls preload="metadata" style="width:100%; max-height:440px; border-radius:6px; margin-bottom:12px; background:#000;"></video>`)
-        .join("\n");
-    }
-
-    async function fetchAllViewsFromFirebase() {
-      if (!FIREBASE_DB_URL) return {};
-      const res = await fetch(`${FIREBASE_DB_URL}/views.json`);
-      if (!res.ok) return {};
-      const data = await res.json();
-      return data && typeof data === "object" ? data : {};
-    }
-
-    async function publishNews() {
-      const token = tokenInput.value.trim();
-      const title = escapeHtml(document.getElementById("title").value.trim());
-      const date = escapeHtml(document.getElementById("date").value.trim());
-      const manualEntries = imageUrlInput.value
-        .split(/[\n,،]+/)
-        .map(u => u.trim())
-        .filter(Boolean);
-      const selectedFiles = Array.from(fileInput.files || []);
-      const selectedVideo = videoFileInput.files[0] || null;
-      const rawBody = document.getElementById("body").value.trim();
-      const statusMsg = document.getElementById("statusMsg");
-      const btn = document.getElementById("publishBtn");
-
-      if (!token) {
-        statusMsg.style.color = "#c62828";
-        statusMsg.textContent = "يرجى إدخال مفتاح GitHub Token أولاً.";
-        return;
-      }
-      if (!title || !rawBody) {
-        statusMsg.style.color = "#c62828";
-        statusMsg.textContent = "يرجى إدخال عنوان الخبر ونصه.";
-        return;
-      }
-
-      btn.disabled = true;
-      statusMsg.style.color = "#0d47a1";
-
-      try {
-        const finalImages = manualEntries.filter(u => !isVideoUrl(u));
-        const finalVideos = manualEntries.filter(u => isVideoUrl(u));
-
-        for (let i = 0; i < selectedFiles.length; i++) {
-          statusMsg.textContent = `جاري رفع الصورة ${i + 1} من ${selectedFiles.length}...`;
-          const uploadedUrl = await uploadImageToGitHub(selectedFiles[i], token, i + 1);
-          finalImages.push(uploadedUrl);
-        }
-
-        if (selectedVideo) {
-          statusMsg.textContent = "جاري رفع الفيديو إلى GitHub...";
-          const uploadedVideoUrl = await uploadVideoToGitHub(selectedVideo, token, 1);
-          finalVideos.push(uploadedVideoUrl);
-        }
-
-        statusMsg.textContent = "جاري جلب ملف الموقع وتحديث البطاقة وشريط الأخبار...";
-        const { apiUrl, sha, html } = await fetchIndexHtml(token);
-        let updatedHtml = html;
-
-        const marqueeRegex = /(<marquee[^>]*>)([\s\S]*?)(<\/marquee>)/i;
-        if (marqueeRegex.test(updatedHtml)) {
-          updatedHtml = updatedHtml.replace(marqueeRegex, (match, openTag, oldText, closeTag) => {
-            const cleanOld = oldText.trim();
-            const mergedText = cleanOld ? `${title}   ★   ${cleanOld}` : title;
-            return `${openTag}\n    ${mergedText}\n  ${closeTag}`;
-          });
-        }
-
-        if (!updatedHtml.includes("function copyNewsLink(")) {
-          const copyScript = `\n<script>\nfunction copyNewsLink(id) {\n  const url = window.location.origin + window.location.pathname + "#" + id;\n  if (navigator.clipboard && navigator.clipboard.writeText) {\n    navigator.clipboard.writeText(url).then(() => alert("تم نسخ رابط الخبر"));\n  } else {\n    const temp = document.createElement("input");\n    temp.value = url;\n    document.body.appendChild(temp);\n    temp.select();\n    document.execCommand("copy");\n    document.body.removeChild(temp);\n    alert("تم نسخ رابط الخبر");\n  }\n}\n<\/script>\n`;
-          if (updatedHtml.includes("</body>")) {
-            updatedHtml = updatedHtml.replace("</body>", copyScript + "</body>");
-          } else {
-            updatedHtml += copyScript;
-          }
-        }
-
-        const newsId = "news-" + Date.now();
-        const paragraphs = rawBody
-          .split(/\n+/)
-          .map(p => `      <p>${escapeHtml(p.trim())}</p>`)
-          .join("\n");
-
-        const imgsHtml = buildImagesHtml(finalImages, title);
-        const vidsHtml = buildVideosHtml(finalVideos);
-
-        const newCard = `    <div class="news-card" id="${newsId}">${imgsHtml}${vidsHtml}
-      <h2>${title}</h2>
-      <div class="news-date">${date}</div>
-${paragraphs}
-      <button type="button" onclick="copyNewsLink('${newsId}')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
-    </div>\n`;
-
-        const containerMarker = '<div class="container">';
-        const idx = updatedHtml.indexOf(containerMarker);
-        if (idx === -1) throw new Error('لم يتم العثور على <div class="container"> داخل index.html.');
-
-        const insertPos = idx + containerMarker.length;
-        updatedHtml =
-          updatedHtml.slice(0, insertPos) +
-          "\n" +
-          newCard +
-          updatedHtml.slice(insertPos);
-
-        await saveIndexHtml(apiUrl, token, updatedHtml, sha, `نشر خبر: ${title}`);
-
-        statusMsg.style.color = "#1b5e20";
-        statusMsg.textContent = "تم نشر الخبر بنجاح! سيظهر خلال دقيقة واحدة.";
-        document.getElementById("title").value = "";
-        imageUrlInput.value = "";
-        fileInput.value = "";
-        videoFileInput.value = "";
-        previewBox.innerHTML = "";
-        videoPreviewBox.innerHTML = "";
-        document.getElementById("body").value = "";
-      } catch (err) {
-        statusMsg.style.color = "#c62828";
-        statusMsg.textContent = "خطأ: " + err.message;
-      } finally {
-        btn.disabled = false;
-      }
-    }
-
-    async function loadPublishedNews() {
-      const token = tokenInput.value.trim();
-      const manageMsg = document.getElementById("manageMsg");
-      const listEl = document.getElementById("newsList");
-
-      if (!token) {
-        manageMsg.style.color = "#c62828";
-        manageMsg.textContent = "يرجى إدخال مفتاح GitHub Token أولاً.";
-        return;
-      }
-
-      manageMsg.style.color = "#0d47a1";
-      manageMsg.textContent = "جاري تحميل الأخبار وعدد المشاهدات...";
-      listEl.innerHTML = "";
-
-      try {
-        const [{ html }, viewsMap] = await Promise.all([
-          fetchIndexHtml(token),
-          fetchAllViewsFromFirebase()
-        ]);
-
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        const cards = Array.from(doc.querySelectorAll(".news-card"));
-
-        if (!cards.length) {
-          manageMsg.textContent = "لا توجد بطاقات أخبار (.news-card) في الملف.";
-          return;
-        }
-
-        let totalViews = 0;
-
-        cards.forEach((card, index) => {
-          const cardId = card.id || `card-idx-${index}`;
-          const viewCount = Number(viewsMap[cardId] || 0);
-          totalViews += viewCount;
-
-          const h2Text = card.querySelector("h2") ? card.querySelector("h2").textContent.trim() : "خبر بدون عنوان";
-          const dateText = card.querySelector(".news-date") ? card.querySelector(".news-date").textContent.trim() : "";
-          const bodyParagraphs = Array.from(card.querySelectorAll("p")).map(p => p.textContent.trim()).join("\n\n");
-          const existingImgs = Array.from(card.querySelectorAll("img")).map(img => img.getAttribute("src")).filter(Boolean);
-          const existingVids = Array.from(card.querySelectorAll("video")).map(vid => vid.getAttribute("src")).filter(Boolean);
-
-          const row = document.createElement("div");
-          row.className = "news-item";
-
-          const info = document.createElement("div");
-          info.className = "news-item-info";
-          info.innerHTML = `
-            <div class="news-item-title">${escapeHtml(h2Text)}</div>
-            <div class="news-item-meta">
-              <span>${escapeHtml(dateText)}</span>
-              <span class="views-pill">👁️ ${viewCount} مشاهدة</span>
+      <!-- إضافة وتعديل الإعلانات في Firebase -->
+      <div class="box">
+        <h4>إضافة وتعديل الإعلانات (تُحفظ في Firebase)</h4>
+        <div class="grid-2">
+          <div>
+            <label>إعلان يمين — النص</label>
+            <input type="text" id="adRightText" placeholder="نص الإعلان الأيمن">
+            <label>إعلان يمين — رابط الصورة</label>
+            <input type="url" id="adRightImg" placeholder="https://...">
+            <div class="upload-box">
+              <label style="margin-top:0;">رفع صورة إعلان يمين:</label>
+              <input type="file" id="adRightFile" accept="image/*">
+              <button type="button" class="btn btn-blue" onclick="uploadImg('adRightFile', 'adRightImg', 'adRightStatus')">رفع صورة يمين</button>
+              <div class="status" id="adRightStatus"></div>
             </div>
-          `;
+            <label>إعلان يمين — رابط الوجهة</label>
+            <input type="url" id="adRightUrl" placeholder="https://...">
+          </div>
 
-          const editBtn = document.createElement("button");
-          editBtn.type = "button";
-          editBtn.className = "edit-btn";
-          editBtn.textContent = "تعديل";
-          editBtn.onclick = () => openEditPanel(cardId, index, h2Text, dateText, bodyParagraphs, existingImgs, existingVids);
+          <div>
+            <label>إعلان يسار — النص</label>
+            <input type="text" id="adLeftText" placeholder="نص الإعلان الأيسر">
+            <label>إعلان يسار — رابط الصورة</label>
+            <input type="url" id="adLeftImg" placeholder="https://...">
+            <div class="upload-box">
+              <label style="margin-top:0;">رفع صورة إعلان يسار:</label>
+              <input type="file" id="adLeftFile" accept="image/*">
+              <button type="button" class="btn btn-blue" onclick="uploadImg('adLeftFile', 'adLeftImg', 'adLeftStatus')">رفع صورة يسار</button>
+              <div class="status" id="adLeftStatus"></div>
+            </div>
+            <label>إعلان يسار — رابط الوجهة</label>
+            <input type="url" id="adLeftUrl" placeholder="https://...">
+          </div>
+        </div>
 
-          row.appendChild(info);
-          row.appendChild(editBtn);
-          listEl.appendChild(row);
-        });
+        <button type="button" class="btn btn-green" onclick="saveAds()">حفظ الإعلانات</button>
+        <button type="button" class="btn btn-gray" onclick="changeToken()">تغيير GitHub Token</button>
+      </div>
 
-        manageMsg.style.color = "#1b5e20";
-        manageMsg.textContent = `تم العثور على ${cards.length} خبر — إجمالي المشاهدات: ${totalViews} مشاهدة`;
-      } catch (err) {
-        manageMsg.style.color = "#c62828";
-        manageMsg.textContent = "خطأ: " + err.message;
-      }
+      <!-- سجل الأخبار المحفوظة في Firebase -->
+      <div class="box">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <h4 style="margin:0;">سجل الأخبار في Firebase</h4>
+          <button type="button" class="btn btn-gray" style="margin-top:0;" onclick="loadPostsLog()">تحديث السجل</button>
+        </div>
+        <div id="postsLog" style="margin-top:10px;">جاري التحميل...</div>
+      </div>
+    </div>
+  </div>
+<script>
+const FIREBASE_DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
+const ADMIN_PASSCODE = "9270268911";
+
+const GITHUB_OWNER = "krater360";
+const GITHUB_REPO = "krater360.github.io";
+const GITHUB_BRANCH = "main";
+const GITHUB_FOLDER = "images";
+const TOKEN_KEY = "krater360_gh_token_new";
+
+function escapeText(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function getTodayAden() {
+  try {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Aden",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).formatToParts(new Date());
+    const y = parts.find(p => p.type === "year")?.value || "2026";
+    const m = parts.find(p => p.type === "month")?.value || "11";
+    const d = parts.find(p => p.type === "day")?.value || "25";
+    return `${y}-${m}-${d}`;
+  } catch (_) {
+    return new Date().toISOString().slice(0, 10);
+  }
+}
+
+function loginNow() {
+  const pass = (document.getElementById("passInput").value || "").trim();
+  if (pass === ADMIN_PASSCODE) {
+    sessionStorage.setItem("k360_pub_auth", "1");
+    openPanel();
+  } else {
+    alert("رمز الإدارة غير صحيح");
+  }
+}
+
+function logoutNow() {
+  sessionStorage.removeItem("k360_pub_auth");
+  location.reload();
+}
+
+function openPanel() {
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("panel").style.display = "block";
+  document.getElementById("postDate").value = getTodayAden();
+  loadAds();
+  loadPostsLog();
+}
+
+function getToken(forcePrompt = false) {
+  let t = String(localStorage.getItem(TOKEN_KEY) || "").replace(/[^A-Za-z0-9_]/g, "").trim();
+  if (!t || forcePrompt) {
+    const entered = prompt("أدخل رمز GitHub Token الخاص برفع الصور:", t);
+    if (entered === null) return "";
+    t = String(entered || "").replace(/[^A-Za-z0-9_]/g, "").trim();
+    if (!t) {
+      alert("الرمز غير صالح");
+      return "";
     }
+    localStorage.setItem(TOKEN_KEY, t);
+  }
+  return t;
+}
 
-    let currentEditExistingImgs = [];
-    let currentEditExistingVids = [];
-    let currentEditIndex = -1;
+function changeToken() {
+  localStorage.removeItem(TOKEN_KEY);
+  const t = getToken(true);
+  if (t) alert("تم حفظ رمز GitHub Token الجديد");
+}
 
-    function openEditPanel(cardId, index, title, date, body, existingImgs, existingVids) {
-      currentEditExistingImgs = existingImgs || [];
-      currentEditExistingVids = existingVids || [];
-      currentEditIndex = index;
-      document.getElementById("editNewsId").value = cardId;
-      document.getElementById("editTitle").value = decodeHtmlEntities(title);
-      document.getElementById("editDate").value = decodeHtmlEntities(date);
-      document.getElementById("editBody").value = decodeHtmlEntities(body);
-      editFileInput.value = "";
-      editVideoFileInput.value = "";
-      editPreviewBox.innerHTML = "";
-      editVideoPreviewBox.innerHTML = "";
-      document.getElementById("editPanel").style.display = "block";
-      document.getElementById("editPanel").scrollIntoView({ behavior: "smooth" });
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result || "").split(",")[1] || "");
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadImg(fileId, inputId, statusId) {
+  const fileInput = document.getElementById(fileId);
+  const urlInput = document.getElementById(inputId);
+  const statusEl = document.getElementById(statusId);
+
+  if (!fileInput.files || !fileInput.files.length) {
+    statusEl.style.color = "#c62828";
+    statusEl.textContent = "اختر صورة أولاً";
+    return;
+  }
+
+  const file = fileInput.files[0];
+  const token = getToken();
+  if (!token) return;
+
+  statusEl.style.color = "#0f4e9a";
+  statusEl.textContent = "جاري رفع الصورة...";
+
+  try {
+    const content = await fileToBase64(file);
+    const ext = (file.name.split(".").pop() || "jpg").replace(/[^a-zA-Z0-9]/g, "") || "jpg";
+    const fileName = `${Date.now()}-img.${ext}`;
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FOLDER}/${fileName}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: `Upload ${fileName}`,
+        content: content,
+        branch: GITHUB_BRANCH
+      })
+    });
+    if (!res.ok) throw new Error("فشل الرفع");
+    urlInput.value = `https://${GITHUB_OWNER}.github.io/${GITHUB_FOLDER}/${fileName}`;
+    statusEl.style.color = "#2e7d32";
+    statusEl.textContent = "تم رفع الصورة بنجاح";
+  } catch (err) {
+    statusEl.style.color = "#c62828";
+    statusEl.textContent = "خطأ: " + err.message;
+  }
+}
+
+function publishPost() {
+  const titleEl = document.getElementById("postTitle");
+  const imgEl = document.getElementById("postImg");
+  const dateEl = document.getElementById("postDate");
+  const bodyEl = document.getElementById("postBody");
+
+  const title = (titleEl.value || "").trim();
+  const img = (imgEl.value || "").trim();
+  const date = (dateEl.value || "").trim() || getTodayAden();
+  const paragraphs = (bodyEl.value || "").trim().split(/\n+/).map(p => p.trim()).filter(Boolean);
+
+  if (!title || !paragraphs.length) {
+    alert("أدخل عنوان الخبر ونصه أولاً");
+    return;
+  }
+
+  const id = "news-" + Date.now();
+  const postData = { id, title, img, date, paragraphs, createdAt: Date.now() };
+
+  fetch(`${FIREBASE_DB_URL}/posts/${encodeURIComponent(id)}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(postData)
+  })
+    .then(r => {
+      if (!r.ok) throw new Error();
+      titleEl.value = "";
+      imgEl.value = "";
+      bodyEl.value = "";
+      dateEl.value = getTodayAden();
+      loadPostsLog();
+      alert("تم حفظ ونشر الخبر في Firebase بنجاح");
+    })
+    .catch(() => alert("تعذر النشر، تحقق من الاتصال أو قواعد Firebase"));
+}
+
+function loadAds() {
+  fetch(`${FIREBASE_DB_URL}/settings/headerAds.json`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data) return;
+      document.getElementById("adRightText").value = data.right?.text || "";
+      document.getElementById("adRightImg").value = data.right?.img || "";
+      document.getElementById("adRightUrl").value = data.right?.url || "";
+      document.getElementById("adLeftText").value = data.left?.text || "";
+      document.getElementById("adLeftImg").value = data.left?.img || "";
+      document.getElementById("adLeftUrl").value = data.left?.url || "";
+    })
+    .catch(() => {});
+}
+
+function saveAds() {
+  const payload = {
+    right: {
+      text: (document.getElementById("adRightText").value || "").trim(),
+      img: (document.getElementById("adRightImg").value || "").trim(),
+      url: (document.getElementById("adRightUrl").value || "").trim()
+    },
+    left: {
+      text: (document.getElementById("adLeftText").value || "").trim(),
+      img: (document.getElementById("adLeftImg").value || "").trim(),
+      url: (document.getElementById("adLeftUrl").value || "").trim()
     }
+  };
 
-    function cancelEdit() {
-      document.getElementById("editPanel").style.display = "none";
-      editFileInput.value = "";
-      editVideoFileInput.value = "";
-      editPreviewBox.innerHTML = "";
-      editVideoPreviewBox.innerHTML = "";
-    }
+  fetch(`${FIREBASE_DB_URL}/settings/headerAds.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+    .then(() => alert("تم حفظ الإعلانات في Firebase بنجاح"))
+    .catch(() => alert("تعذر حفظ الإعلانات"));
+}
 
-    async function saveEditedNews() {
-      const token = tokenInput.value.trim();
-      const cardId = document.getElementById("editNewsId").value;
-      const newTitle = escapeHtml(document.getElementById("editTitle").value.trim());
-      const newDate = escapeHtml(document.getElementById("editDate").value.trim());
-      const newBodyRaw = document.getElementById("editBody").value.trim();
-      const newFiles = Array.from(editFileInput.files || []);
-      const newVideo = editVideoFileInput.files[0] || null;
-      const manageMsg = document.getElementById("manageMsg");
-      const saveBtn = document.getElementById("saveEditBtn");
-
-      if (!token || !newTitle || !newBodyRaw) {
-        manageMsg.style.color = "#c62828";
-        manageMsg.textContent = "يرجى التأكد من إدخال المفتاح والعنوان ونص الخبر.";
+function loadPostsLog() {
+  const logEl = document.getElementById("postsLog");
+  fetch(`${FIREBASE_DB_URL}/posts.json`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data || typeof data !== "object") {
+        logEl.innerHTML = "<p>لا توجد أخبار محفوظة في Firebase حالياً.</p>";
         return;
       }
+      const list = Object.values(data).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      logEl.innerHTML = list.map(p => `
+        <div class="post-item">
+          <div>
+            <strong>${escapeText(p.title || "بدون عنوان")}</strong>
+            <div style="font-size:12px; color:#64748b;">${escapeText(p.date || "")}</div>
+          </div>
+          <button type="button" class="btn btn-red" style="margin-top:0;" onclick="deleteLogPost('${escapeText(p.id)}')">حذف</button>
+        </div>
+      `).join("");
+    })
+    .catch(() => {
+      logEl.innerHTML = "<p>تعذر تحميل سجل الأخبار.</p>";
+    });
+}
 
-      saveBtn.disabled = true;
-      manageMsg.style.color = "#0d47a1";
+function deleteLogPost(id) {
+  if (!confirm("هل تريد حذف هذا الخبر من Firebase؟")) return;
+  fetch(`${FIREBASE_DB_URL}/posts/${encodeURIComponent(id)}.json`, { method: "DELETE" })
+    .then(() => loadPostsLog());
+}
 
-      try {
-        const allImgs = [...currentEditExistingImgs];
-        const allVids = [...currentEditExistingVids];
-
-        for (let i = 0; i < newFiles.length; i++) {
-          manageMsg.textContent = `جاري رفع الصورة الجديدة ${i + 1} من ${newFiles.length}...`;
-          const url = await uploadImageToGitHub(newFiles[i], token, i + 1);
-          allImgs.push(url);
-        }
-
-        if (newVideo) {
-          manageMsg.textContent = "جاري رفع الفيديو الجديد إلى GitHub...";
-          const vidUrl = await uploadVideoToGitHub(newVideo, token, 1);
-          allVids.push(vidUrl);
-        }
-
-        manageMsg.textContent = "جاري حفظ التعديلات في index.html...";
-        const { apiUrl, sha, html } = await fetchIndexHtml(token);
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        const cards = Array.from(doc.querySelectorAll(".news-card"));
-        const targetCard = doc.getElementById(cardId) || cards[currentEditIndex];
-
-        if (!targetCard) throw new Error("تعذر العثور على بطاقة الخبر المحددة للتعديل.");
-
-        const actualId = targetCard.id || ("news-" + Date.now());
-        const paragraphsHtml = newBodyRaw
-          .split(/\n+/)
-          .map(p => `<p>${escapeHtml(p.trim())}</p>`)
-          .join("\n");
-
-        const imgsHtml = allImgs
-          .map(src => `<img src="${escapeHtml(src)}" alt="${newTitle}" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">`)
-          .join("\n");
-
-        const vidsHtml = allVids
-          .map(src => `<video src="${escapeHtml(src)}" controls preload="metadata" style="width:100%; max-height:440px; border-radius:6px; margin-bottom:12px; background:#000;"></video>`)
-          .join("\n");
-
-        targetCard.id = actualId;
-        targetCard.innerHTML = `
-${imgsHtml}
-${vidsHtml}
-<h2>${newTitle}</h2>
-<div class="news-date">${newDate}</div>
-${paragraphsHtml}
-<button type="button" onclick="copyNewsLink('${actualId}')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
-        `.trim();
-
-        const updatedFullHtml = "<!DOCTYPE html>\n" + doc.documentElement.outerHTML;
-        await saveIndexHtml(apiUrl, token, updatedFullHtml, sha, `تعديل خبر: ${newTitle}`);
-
-        manageMsg.style.color = "#1b5e20";
-        manageMsg.textContent = "تم حفظ التعديلات بنجاح! سيظهر التحديث خلال دقيقة.";
-        cancelEdit();
-        await loadPublishedNews();
-      } catch (err) {
-        manageMsg.style.color = "#c62828";
-        manageMsg.textContent = "خطأ: " + err.message;
-      } finally {
-        saveBtn.disabled = false;
-      }
-    }
-  </script>
+if (sessionStorage.getItem("k360_pub_auth") === "1") {
+  openPanel();
+}
+</script>
 </body>
 </html>
