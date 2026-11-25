@@ -1,4 +1,626 @@
-<style>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سجل النشر والإعلانات والرسائل | krater360</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #f2f5ff;
+      color: #1e293b;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .login-box, .panel {
+      background: #ffffff;
+      border: 2px solid #0d47a1;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      margin-bottom: 18px;
+    }
+    .login-box {
+      max-width: 380px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    .panel { display: none; }
+    h2, h3, h4 {
+      margin-top: 0;
+      color: #0d47a1;
+    }
+    .box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 700px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #475569;
+      margin-top: 8px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 4px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+    }
+    .upload-box {
+      margin-top: 8px;
+      padding: 8px;
+      background: #eef4ff;
+      border: 1px dashed #1f5fa8;
+      border-radius: 6px;
+    }
+    .btn {
+      border: none;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      margin-top: 8px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-blue { background: #1f5fa8; }
+    .btn-green { background: #2e7d32; }
+    .btn-red { background: #c62828; }
+    .btn-gray { background: #64748b; }
+    .status {
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+    .tabs-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .tab-active {
+      background: #0d47a1;
+      color: #ffffff;
+    }
+    .tab-inactive {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+    .post-item {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-right: 4px solid #0d47a1;
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .msg-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-right: 4px solid #0d47a1;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+    .msg-title {
+      font-weight: 700;
+      color: #0d47a1;
+      margin-bottom: 4px;
+    }
+    .msg-meta {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+    .msg-body {
+      margin: 0;
+      color: #1e293b;
+      white-space: pre-line;
+      line-height: 1.6;
+    }
+    .msg-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-box" id="loginBox">
+      <h2>دخول سجل النشر والإعلانات</h2>
+      <input type="password" id="passInput" placeholder="أدخل رمز الإدارة">
+      <button type="button" class="btn btn-blue" style="width:100%;" onclick="loginNow()">دخول</button>
+    </div>
+
+    <div class="panel" id="panel">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
+        <h3 style="margin:0;">إدارة النشر والإعلانات والرسائل — krater360</h3>
+        <div>
+          <a href="https://krater360.github.io/" target="_blank" class="btn btn-blue" style="margin-top:0;">عرض الموقع</a>
+          <button type="button" class="btn btn-gray" style="margin-top:0;" onclick="logoutNow()">خروج</button>
+        </div>
+      </div>
+
+      <!-- إضافة خبر جديد إلى Firebase -->
+      <div class="box">
+        <h4>نشر خبر جديد (يُحفظ في Firebase)</h4>
+        <label>عنوان الخبر</label>
+        <input type="text" id="postTitle" placeholder="اكتب عنوان الخبر...">
+
+        <label>رابط الصورة (اختياري)</label>
+        <input type="url" id="postImg" placeholder="https://krater360.github.io/images/...">
+
+        <div class="upload-box">
+          <label style="margin-top:0;">رفع صورة من الهاتف إلى GitHub:</label>
+          <input type="file" id="postFile" accept="image/*">
+          <button type="button" class="btn btn-blue" onclick="uploadImg('postFile', 'postImg', 'postUploadStatus')">رفع صورة الخبر</button>
+          <div class="status" id="postUploadStatus"></div>
+        </div>
+
+        <label>تاريخ الخبر</label>
+        <input type="date" id="postDate">
+
+        <label>نص الخبر (كل سطر يصبح فقرة)</label>
+        <textarea id="postBody" rows="5" placeholder="اكتب تفاصيل الخبر هنا..."></textarea>
+
+        <button type="button" class="btn btn-green" onclick="publishPost()">حفظ ونشر الخبر</button>
+      </div>
+
+      <!-- إضافة وتعديل الإعلانات في Firebase -->
+      <div class="box">
+        <h4>إضافة وتعديل الإعلانات (تُحفظ في Firebase)</h4>
+        <div class="grid-2">
+          <div>
+            <label>إعلان يمين — النص</label>
+            <input type="text" id="adRightText" placeholder="نص الإعلان الأيمن">
+            <label>إعلان يمين — رابط الصورة</label>
+            <input type="url" id="adRightImg" placeholder="https://...">
+            <div class="upload-box">
+              <label style="margin-top:0;">رفع صورة إعلان يمين:</label>
+              <input type="file" id="adRightFile" accept="image/*">
+              <button type="button" class="btn btn-blue" onclick="uploadImg('adRightFile', 'adRightImg', 'adRightStatus')">رفع صورة يمين</button>
+              <div class="status" id="adRightStatus"></div>
+            </div>
+            <label>إعلان يمين — رابط الوجهة</label>
+            <input type="url" id="adRightUrl" placeholder="https://...">
+          </div>
+
+          <div>
+            <label>إعلان يسار — النص</label>
+            <input type="text" id="adLeftText" placeholder="نص الإعلان الأيسر">
+            <label>إعلان يسار — رابط الصورة</label>
+            <input type="url" id="adLeftImg" placeholder="https://...">
+            <div class="upload-box">
+              <label style="margin-top:0;">رفع صورة إعلان يسار:</label>
+              <input type="file" id="adLeftFile" accept="image/*">
+              <button type="button" class="btn btn-blue" onclick="uploadImg('adLeftFile', 'adLeftImg', 'adLeftStatus')">رفع صورة يسار</button>
+              <div class="status" id="adLeftStatus"></div>
+            </div>
+            <label>إعلان يسار — رابط الوجهة</label>
+            <input type="url" id="adLeftUrl" placeholder="https://...">
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-green" onclick="saveAds()">حفظ الإعلانات</button>
+        <button type="button" class="btn btn-gray" onclick="changeToken()">تغيير GitHub Token</button>
+      </div>
+
+      <!-- تبويبات السجل والرسائل -->
+      <div class="tabs-bar">
+        <button type="button" id="tabPostsBtn" class="tab-btn tab-active" onclick="switchSection('posts')">📰 سجل الأخبار</button>
+        <button type="button" id="tabMessagesBtn" class="tab-btn tab-inactive" onclick="switchSection('messages')">📩 الرسائل (<span id="msgCount">0</span>)</button>
+      </div>
+
+      <!-- قسم سجل الأخبار والمشاهدات -->
+      <div class="box" id="postsSection">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <h4 style="margin:0;">سجل الأخبار في Firebase</h4>
+          <button type="button" class="btn btn-gray" style="margin-top:0;" onclick="loadPostsLog()">تحديث السجل</button>
+        </div>
+        <div id="postsLog" style="margin-top:10px;">جاري التحميل...</div>
+      </div>
+
+      <!-- قسم الرسائل الواردة -->
+      <div class="box" id="messagesSection" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <h4 style="margin:0;">📩 رسائل زوار موقع k360</h4>
+          <button type="button" class="btn btn-green" style="margin-top:0;" onclick="loadMessages()">تحديث الرسائل</button>
+        </div>
+        <div id="messagesList" style="margin-top:10px;">جاري التحميل...</div>
+      </div>
+    </div>
+  </div>
+<script>
+const FIREBASE_DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
+const ADMIN_PASSCODE = "9270268911";
+
+const GITHUB_OWNER = "krater360";
+const GITHUB_REPO = "krater360.github.io";
+const GITHUB_BRANCH = "main";
+const GITHUB_FOLDER = "images";
+const TOKEN_KEY = "krater360_gh_token_new";
+
+let messagesCache = {};
+
+function escapeText(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function getTodayAden() {
+  try {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Aden",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).formatToParts(new Date());
+    const y = parts.find(p => p.type === "year")?.value || "2026";
+    const m = parts.find(p => p.type === "month")?.value || "11";
+    const d = parts.find(p => p.type === "day")?.value || "25";
+    return `${y}-${m}-${d}`;
+  } catch (_) {
+    return new Date().toISOString().slice(0, 10);
+  }
+}
+
+function loginNow() {
+  const pass = (document.getElementById("passInput").value || "").trim();
+  if (pass === ADMIN_PASSCODE) {
+    sessionStorage.setItem("k360_pub_auth", "1");
+    openPanel();
+  } else {
+    alert("رمز الإدارة غير صحيح");
+  }
+}
+
+function logoutNow() {
+  sessionStorage.removeItem("k360_pub_auth");
+  location.reload();
+}
+
+function openPanel() {
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("panel").style.display = "block";
+  document.getElementById("postDate").value = getTodayAden();
+  loadAds();
+  loadPostsLog();
+  loadMessages();
+}
+
+function switchSection(section) {
+  const isMsg = section === "messages";
+  const postsSec = document.getElementById("postsSection");
+  const msgSec = document.getElementById("messagesSection");
+  const postsBtn = document.getElementById("tabPostsBtn");
+  const msgBtn = document.getElementById("tabMessagesBtn");
+
+  if (postsSec) postsSec.style.display = isMsg ? "none" : "block";
+  if (msgSec) msgSec.style.display = isMsg ? "block" : "none";
+
+  if (postsBtn) {
+    postsBtn.className = "tab-btn " + (isMsg ? "tab-inactive" : "tab-active");
+  }
+  if (msgBtn) {
+    msgBtn.className = "tab-btn " + (isMsg ? "tab-active" : "tab-inactive");
+  }
+
+  if (isMsg) {
+    loadMessages();
+  } else {
+    loadPostsLog();
+  }
+}
+
+function getToken(forcePrompt = false) {
+  let t = String(localStorage.getItem(TOKEN_KEY) || "").replace(/[^A-Za-z0-9_]/g, "").trim();
+  if (!t || forcePrompt) {
+    const entered = prompt("أدخل رمز GitHub Token الخاص برفع الصور:", t);
+    if (entered === null) return "";
+    t = String(entered || "").replace(/[^A-Za-z0-9_]/g, "").trim();
+    if (!t) {
+      alert("الرمز غير صالح");
+      return "";
+    }
+    localStorage.setItem(TOKEN_KEY, t);
+  }
+  return t;
+}
+
+function changeToken() {
+  localStorage.removeItem(TOKEN_KEY);
+  const t = getToken(true);
+  if (t) alert("تم حفظ رمز GitHub Token الجديد");
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result || "").split(",")[1] || "");
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadImg(fileId, inputId, statusId) {
+  const fileInput = document.getElementById(fileId);
+  const urlInput = document.getElementById(inputId);
+  const statusEl = document.getElementById(statusId);
+
+  if (!fileInput.files || !fileInput.files.length) {
+    statusEl.style.color = "#c62828";
+    statusEl.textContent = "اختر صورة أولاً";
+    return;
+  }
+
+  const file = fileInput.files[0];
+  const token = getToken();
+  if (!token) return;
+
+  statusEl.style.color = "#0f4e9a";
+  statusEl.textContent = "جاري رفع الصورة...";
+
+  try {
+    const content = await fileToBase64(file);
+    const ext = (file.name.split(".").pop() || "jpg").replace(/[^a-zA-Z0-9]/g, "") || "jpg";
+    const fileName = `${Date.now()}-img.${ext}`;
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FOLDER}/${fileName}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: `Upload ${fileName}`,
+        content: content,
+        branch: GITHUB_BRANCH
+      })
+    });
+    if (!res.ok) throw new Error("فشل الرفع");
+    urlInput.value = `https://${GITHUB_OWNER}.github.io/${GITHUB_FOLDER}/${fileName}`;
+    statusEl.style.color = "#2e7d32";
+    statusEl.textContent = "تم رفع الصورة بنجاح";
+  } catch (err) {
+    statusEl.style.color = "#c62828";
+    statusEl.textContent = "خطأ: " + err.message;
+  }
+}
+
+function publishPost() {
+  const titleEl = document.getElementById("postTitle");
+  const imgEl = document.getElementById("postImg");
+  const dateEl = document.getElementById("postDate");
+  const bodyEl = document.getElementById("postBody");
+
+  const title = (titleEl.value || "").trim();
+  const img = (imgEl.value || "").trim();
+  const date = (dateEl.value || "").trim() || getTodayAden();
+  const paragraphs = (bodyEl.value || "").trim().split(/\n+/).map(p => p.trim()).filter(Boolean);
+
+  if (!title || !paragraphs.length) {
+    alert("أدخل عنوان الخبر ونصه أولاً");
+    return;
+  }
+
+  const id = "news-" + Date.now();
+  const postData = { id, title, img, date, paragraphs, createdAt: Date.now() };
+
+  fetch(`${FIREBASE_DB_URL}/posts/${encodeURIComponent(id)}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(postData)
+  })
+    .then(r => {
+      if (!r.ok) throw new Error();
+      titleEl.value = "";
+      imgEl.value = "";
+      bodyEl.value = "";
+      dateEl.value = getTodayAden();
+      loadPostsLog();
+      alert("تم حفظ ونشر الخبر في Firebase بنجاح");
+    })
+    .catch(() => alert("تعذر النشر، تحقق من الاتصال أو قواعد Firebase"));
+}
+
+function loadAds() {
+  fetch(`${FIREBASE_DB_URL}/settings/headerAds.json`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data) return;
+      document.getElementById("adRightText").value = data.right?.text || "";
+      document.getElementById("adRightImg").value = data.right?.img || "";
+      document.getElementById("adRightUrl").value = data.right?.url || "";
+      document.getElementById("adLeftText").value = data.left?.text || "";
+      document.getElementById("adLeftImg").value = data.left?.img || "";
+      document.getElementById("adLeftUrl").value = data.left?.url || "";
+    })
+    .catch(() => {});
+}
+
+function saveAds() {
+  const payload = {
+    right: {
+      text: (document.getElementById("adRightText").value || "").trim(),
+      img: (document.getElementById("adRightImg").value || "").trim(),
+      url: (document.getElementById("adRightUrl").value || "").trim()
+    },
+    left: {
+      text: (document.getElementById("adLeftText").value || "").trim(),
+      img: (document.getElementById("adLeftImg").value || "").trim(),
+      url: (document.getElementById("adLeftUrl").value || "").trim()
+    }
+  };
+
+  fetch(`${FIREBASE_DB_URL}/settings/headerAds.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+    .then(() => alert("تم حفظ الإعلانات في Firebase بنجاح"))
+    .catch(() => alert("تعذر حفظ الإعلانات"));
+}
+
+function loadPostsLog() {
+  const logEl = document.getElementById("postsLog");
+  if (!logEl) return;
+
+  Promise.all([
+    fetch(`${FIREBASE_DB_URL}/posts.json`).then(r => r.json()).catch(() => ({})),
+    fetch(`${FIREBASE_DB_URL}/views.json`).then(r => r.json()).catch(() => ({}))
+  ])
+    .then(([postsData, viewsData]) => {
+      if (!postsData || typeof postsData !== "object") {
+        logEl.innerHTML = "<p>لا توجد أخبار محفوظة في Firebase حالياً.</p>";
+        return;
+      }
+
+      const viewsMap = (viewsData && typeof viewsData === "object") ? viewsData : {};
+      const list = Object.values(postsData).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+      logEl.innerHTML = list.map(p => {
+        const id = p.id || "";
+        const viewsCount = Number(viewsMap[id]) || 0;
+        return `
+          <div class="post-item">
+            <div>
+              <strong>${escapeText(p.title || "بدون عنوان")}</strong>
+              <div style="font-size:12px; color:#64748b;">
+                ${escapeText(p.date || "")} • المشاهدات: <strong>${viewsCount}</strong>
+              </div>
+            </div>
+            <button type="button" class="btn btn-red" style="margin-top:0;" onclick="deleteLogPost('${escapeText(id)}')">حذف</button>
+          </div>
+        `;
+      }).join("");
+    })
+    .catch(() => {
+      logEl.innerHTML = "<p>تعذر تحميل سجل الأخبار.</p>";
+    });
+}
+
+function deleteLogPost(id) {
+  if (!confirm("هل تريد حذف هذا الخبر من Firebase؟")) return;
+  fetch(`${FIREBASE_DB_URL}/posts/${encodeURIComponent(id)}.json`, { method: "DELETE" })
+    .then(() => loadPostsLog());
+}
+
+function replyToMessage(msgId) {
+  const m = messagesCache[msgId];
+  if (!m) return;
+  const email = String(m.email || "").trim();
+  if (!email) {
+    alert("لا يوجد بريد إلكتروني مسجل لهذا المرسل.");
+    return;
+  }
+  const subject = encodeURIComponent("رد على رسالتك — موقع krater360");
+  const body = encodeURIComponent(`\n\n--- الرسالة الأصلية ---\n${m.message || ""}`);
+  window.location.href = `mailto:${encodeURIComponent(email)}?subject=${subject}&body=${body}`;
+}
+
+function deleteMessage(msgId) {
+  if (!confirm("هل تريد حذف هذه الرسالة نهائياً من الموقع؟")) return;
+  fetch(`${FIREBASE_DB_URL}/siteMessages/${encodeURIComponent(msgId)}.json`, { method: "DELETE" })
+    .then(r => {
+      if (!r.ok) throw new Error();
+      loadMessages();
+    })
+    .catch(() => alert("تعذر حذف الرسالة، تحقق من الاتصال أو قواعد Firebase."));
+}
+
+function loadMessages() {
+  const box = document.getElementById("messagesList");
+  const countEl = document.getElementById("msgCount");
+  if (!box) return;
+
+  fetch(`${FIREBASE_DB_URL}/siteMessages.json`)
+    .then(r => r.json())
+    .then(data => {
+      messagesCache = {};
+      if (!data || typeof data !== "object") {
+        if (countEl) countEl.textContent = "0";
+        box.innerHTML = "<p style='color:#64748b;'>لا توجد رسائل واردة حالياً.</p>";
+        return;
+      }
+
+      const list = Object.entries(data)
+        .map(([id, val]) => {
+          const item = { id, ...(val || {}) };
+          messagesCache[id] = item;
+          return item;
+        })
+        .sort((a, b) => new Date(b.sentAt || 0) - new Date(a.sentAt || 0));
+
+      if (countEl) countEl.textContent = String(list.length);
+
+      box.innerHTML = list.map(m => {
+        const dateStr = m.sentAt
+          ? new Date(m.sentAt).toLocaleString("ar-YE", { timeZone: "Asia/Aden" })
+          : "";
+        return `
+          <div class="msg-card">
+            <div class="msg-title">${escapeText(m._subject || "رسالة من موقع k360")} — ${escapeText(m.name || "زائر")}</div>
+            <div class="msg-meta">${escapeText(m.email || "")}${dateStr ? ` • ${escapeText(dateStr)}` : ""}</div>
+            <p class="msg-body">${escapeText(m.message || "")}</p>
+            <div class="msg-actions">
+              <button type="button" class="btn btn-blue" style="margin-top:0;" onclick="replyToMessage('${escapeText(m.id)}')">رد عبر البريد</button>
+              <button type="button" class="btn btn-red" style="margin-top:0;" onclick="deleteMessage('${escapeText(m.id)}')">حذف الرسالة</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    })
+    .catch(() => {
+      box.innerHTML = "<p style='color:#c62828;'>تعذر تحميل الرسائل.</p>";
+    });
+}
+
+if (sessionStorage.getItem("k360_pub_auth") === "1") {
+  openPanel();
+}
+</script><style>
   .k360-contact-box {
     max-width: 680px;
     margin: 24px auto;
@@ -201,3 +823,5 @@ function submitValidatedMessage(event) {
     });
 }
 </script>
+</body>
+</html>
