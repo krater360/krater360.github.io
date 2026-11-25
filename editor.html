@@ -130,6 +130,12 @@
       gap: 10px;
       flex-wrap: wrap;
     }
+    .post-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
     .msg-card {
       background: #ffffff;
       border: 1px solid #cbd5e1;
@@ -279,6 +285,7 @@ const GITHUB_BRANCH = "main";
 const GITHUB_FOLDER = "images";
 const TOKEN_KEY = "krater360_gh_token_new";
 
+let postsCache = {};
 let messagesCache = {};
 
 function escapeText(str) {
@@ -503,6 +510,47 @@ function saveAds() {
     .catch(() => alert("تعذر حفظ الإعلانات"));
 }
 
+function copyPostText(id) {
+  const p = postsCache[id];
+  if (!p) return;
+
+  const title = String(p.title || "").trim();
+  const bodyText = Array.isArray(p.paragraphs)
+    ? p.paragraphs.join("\n\n")
+    : String(p.body || p.text || "").trim();
+
+  const fullText = [title, bodyText].filter(Boolean).join("\n\n");
+  if (!fullText) {
+    alert("لا يوجد نص لنسخه في هذا الخبر.");
+    return;
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(fullText)
+      .then(() => alert("تم نسخ الخبر بنجاح"))
+      .catch(() => fallbackCopyText(fullText));
+  } else {
+    fallbackCopyText(fullText);
+  }
+}
+
+function fallbackCopyText(text) {
+  const temp = document.createElement("textarea");
+  temp.value = text;
+  temp.setAttribute("readonly", "");
+  temp.style.position = "fixed";
+  temp.style.opacity = "0";
+  document.body.appendChild(temp);
+  temp.select();
+  try {
+    document.execCommand("copy");
+    alert("تم نسخ الخبر بنجاح");
+  } catch (_) {
+    alert("تعذر النسخ تلقائياً على هذا المتصفح");
+  }
+  document.body.removeChild(temp);
+}
+
 function loadPostsLog() {
   const logEl = document.getElementById("postsLog");
   if (!logEl) return;
@@ -512,13 +560,20 @@ function loadPostsLog() {
     fetch(`${FIREBASE_DB_URL}/views.json`).then(r => r.json()).catch(() => ({}))
   ])
     .then(([postsData, viewsData]) => {
+      postsCache = {};
       if (!postsData || typeof postsData !== "object") {
         logEl.innerHTML = "<p>لا توجد أخبار محفوظة في Firebase حالياً.</p>";
         return;
       }
 
       const viewsMap = (viewsData && typeof viewsData === "object") ? viewsData : {};
-      const list = Object.values(postsData).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      const list = Object.entries(postsData)
+        .map(([key, val]) => {
+          const item = { ...(val || {}), id: (val && val.id) || key };
+          postsCache[item.id] = item;
+          return item;
+        })
+        .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
       logEl.innerHTML = list.map(p => {
         const id = p.id || "";
@@ -531,7 +586,10 @@ function loadPostsLog() {
                 ${escapeText(p.date || "")} • المشاهدات: <strong>${viewsCount}</strong>
               </div>
             </div>
-            <button type="button" class="btn btn-red" style="margin-top:0;" onclick="deleteLogPost('${escapeText(id)}')">حذف</button>
+            <div class="post-actions">
+              <button type="button" class="btn btn-blue" style="margin-top:0;" onclick="copyPostText('${escapeText(id)}')">نسخ</button>
+              <button type="button" class="btn btn-red" style="margin-top:0;" onclick="deleteLogPost('${escapeText(id)}')">حذف</button>
+            </div>
           </div>
         `;
       }).join("");
