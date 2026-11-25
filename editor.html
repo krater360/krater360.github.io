@@ -408,23 +408,36 @@ function saveAds() {
 
 function loadPostsLog() {
   const logEl = document.getElementById("postsLog");
-  fetch(`${FIREBASE_DB_URL}/posts.json`)
-    .then(r => r.json())
-    .then(data => {
-      if (!data || typeof data !== "object") {
+  if (!logEl) return;
+
+  Promise.all([
+    fetch(`${FIREBASE_DB_URL}/posts.json`).then(r => r.json()).catch(() => ({})),
+    fetch(`${FIREBASE_DB_URL}/views.json`).then(r => r.json()).catch(() => ({}))
+  ])
+    .then(([postsData, viewsData]) => {
+      if (!postsData || typeof postsData !== "object") {
         logEl.innerHTML = "<p>لا توجد أخبار محفوظة في Firebase حالياً.</p>";
         return;
       }
-      const list = Object.values(data).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-      logEl.innerHTML = list.map(p => `
-        <div class="post-item">
-          <div>
-            <strong>${escapeText(p.title || "بدون عنوان")}</strong>
-            <div style="font-size:12px; color:#64748b;">${escapeText(p.date || "")}</div>
+
+      const viewsMap = (viewsData && typeof viewsData === "object") ? viewsData : {};
+      const list = Object.values(postsData).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+      logEl.innerHTML = list.map(p => {
+        const id = p.id || "";
+        const viewsCount = Number(viewsMap[id]) || 0;
+        return `
+          <div class="post-item">
+            <div>
+              <strong>${escapeText(p.title || "بدون عنوان")}</strong>
+              <div style="font-size:12px; color:#64748b;">
+                ${escapeText(p.date || "")} • المشاهدات: <strong>${viewsCount}</strong>
+              </div>
+            </div>
+            <button type="button" class="btn btn-red" style="margin-top:0;" onclick="deleteLogPost('${escapeText(id)}')">حذف</button>
           </div>
-          <button type="button" class="btn btn-red" style="margin-top:0;" onclick="deleteLogPost('${escapeText(p.id)}')">حذف</button>
-        </div>
-      `).join("");
+        `;
+      }).join("");
     })
     .catch(() => {
       logEl.innerHTML = "<p>تعذر تحميل سجل الأخبار.</p>";
