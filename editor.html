@@ -510,31 +510,26 @@ function saveAds() {
     .catch(() => alert("تعذر حفظ الإعلانات"));
 }
 
-function copyPostText(id) {
-  const p = postsCache[id];
-  if (!p) return;
+function getPostShareUrl(id) {
+  const p = postsCache[id] || {};
+  if (p.url) return String(p.url);
+  return `https://${GITHUB_OWNER}.github.io/?post=${encodeURIComponent(id)}`;
+}
 
-  const title = String(p.title || "").trim();
-  const bodyText = Array.isArray(p.paragraphs)
-    ? p.paragraphs.join("\n\n")
-    : String(p.body || p.text || "").trim();
-
-  const fullText = [title, bodyText].filter(Boolean).join("\n\n");
-  if (!fullText) {
-    alert("لا يوجد نص لنسخه في هذا الخبر.");
-    return;
-  }
+function copyPostLink(id) {
+  const link = getPostShareUrl(id);
+  if (!link) return;
 
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(fullText)
-      .then(() => alert("تم نسخ الخبر بنجاح"))
-      .catch(() => fallbackCopyText(fullText));
+    navigator.clipboard.writeText(link)
+      .then(() => alert("تم نسخ رابط الخبر:\n" + link))
+      .catch(() => fallbackCopyLink(link));
   } else {
-    fallbackCopyText(fullText);
+    fallbackCopyLink(link);
   }
 }
 
-function fallbackCopyText(text) {
+function fallbackCopyLink(text) {
   const temp = document.createElement("textarea");
   temp.value = text;
   temp.setAttribute("readonly", "");
@@ -544,9 +539,9 @@ function fallbackCopyText(text) {
   temp.select();
   try {
     document.execCommand("copy");
-    alert("تم نسخ الخبر بنجاح");
+    alert("تم نسخ رابط الخبر:\n" + text);
   } catch (_) {
-    alert("تعذر النسخ تلقائياً على هذا المتصفح");
+    prompt("انسخ الرابط يدوياً:", text);
   }
   document.body.removeChild(temp);
 }
@@ -587,7 +582,7 @@ function loadPostsLog() {
               </div>
             </div>
             <div class="post-actions">
-              <button type="button" class="btn btn-blue" style="margin-top:0;" onclick="copyPostText('${escapeText(id)}')">نسخ</button>
+              <button type="button" class="btn btn-blue" style="margin-top:0;" onclick="copyPostLink('${escapeText(id)}')">نسخ الرابط</button>
               <button type="button" class="btn btn-red" style="margin-top:0;" onclick="deleteLogPost('${escapeText(id)}')">حذف</button>
             </div>
           </div>
