@@ -1,1447 +1,362 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl"><head>
-  <meta property="og:site_name" content="K360" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="K360 | موقع الأخبار والتحليلات" />
-  <meta property="og:description" content="تغطيات إخبارية وتحليلات مستمرة على مدار الساعة." />
-  <meta property="og:image" content="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg" />
-
+<html lang="ar" dir="rtl">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>krater360 | موقع الأخبار والتحليلات والمقالات المستقلة</title>
-  <meta name="description" content="موقع krater360 الإخباري: تغطية مستمرة للأخبار المحلية والعربية والدولية، التحليلات، والمقالات المستقلة.">
-  <meta name="keywords" content="krater360, أخبار, مقالات مستقلة, تحليلات, أخبار عاجلة, عدن, لحج, حضرموت">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://krater360.github.io/">
-  <link rel="icon" type="image/svg+xml" href="https://krater360.github.io/favicon.svg">
+  <title>krater360 | تغطيات إخبارية وتحليلات</title>
+  <meta name="description" content="تغطيات إخبارية وتحليلات مستمرة على مدار الساعة عبر منصة krater360.">
   <meta property="og:locale" content="ar_AR">
-  <meta property="og:url" content="https://krater360.github.io/">
   <meta property="og:type" content="article">
-<meta property="og:title" content="krater360 | التحليلات والمقالات المستقلة">
-<meta property="og:description" content="تغطيات إخبارية وتحليلات مستمرة على مدار الساعة.">
-<meta property="og:image" content="https://krater360.github.io/images/logo.png">
-<meta property="og:image:secure_url" content="https://krater360.github.io/images/logo.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://krater360.github.io/images/logo.png">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "NewsMediaOrganization",
-        "@id": "https://krater360.github.io/#organization",
-        "name": "krater360",
-        "alternateName": "موقع krater360 الإخباري",
-        "url": "https://krater360.github.io/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://krater360.github.io/images/1795374007910-1-1795373674163.jpg"
-        }
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://krater360.github.io/#website",
-        "url": "https://krater360.github.io/",
-        "name": "krater360",
-        "inLanguage": "ar",
-        "publisher": {
-          "@id": "https://krater360.github.io/#organization"
-        }
-      }
-    ]
-  }
-  </script>
+  <meta property="og:site_name" content="krater360">
+  <meta property="og:url" content="https://krater360.github.io/">
+  <meta property="og:title" content="krater360 | تغطيات إخبارية وتحليلات">
+  <meta property="og:description" content="تغطيات إخبارية وتحليلات مستمرة على مدار الساعة.">
+  <meta property="og:image" content="https://krater360.github.io/images/logo.png">
+  <meta property="og:image:secure_url" content="https://krater360.github.io/images/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://krater360.github.io/images/logo.png">
   <style>
-    :root{
-      --blue:#0f4e9a;
-      --blue2:#1f5fa8;
-      --red:#c62828;
-      --card:#ffffff;
-      --text:#ffffff;
-      --muted:#d7e6ff;
-      --shadow:0 10px 25px rgba(0,0,0,.15);
-      --radius:12px;
-      --ink:#0f172a;
-      --dash: rgba(15,78,154,.45);
-    }
-
-    *{ box-sizing:border-box; }
-
-    body {
-      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    * { box-sizing: border-box; }
+    body.k360-protected {
       margin: 0;
       padding: 0;
-      background-color: #f2f5ff;
-      color: #222;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: #eef3fb;
+      color: #0f172a;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+    body.k360-protected input,
+    body.k360-protected textarea {
+      -webkit-user-select: text;
+      user-select: text;
+    }
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: auto;
     }
 
-    /* الواجهة العلوية وشعار k360 المكبر */
-    .top-hero{
-      background: linear-gradient(180deg, var(--blue), var(--blue2));
-      padding: 20px 14px 24px;
-      text-align: center;
+    .k360-hero {
+      background: linear-gradient(135deg, #0b3c8a 0%, #1565c0 65%, #0d47a1 100%);
+      color: #ffffff;
+      padding: 18px 14px 20px;
+      border-bottom: 4px solid #d32f2f;
+      box-shadow: 0 6px 20px rgba(11, 60, 138, 0.22);
     }
-
-    .hero-brand-wrap{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .hero-logo-lg{
-      width: 156px;
-      height: 156px;
-      max-width: 68vw;
-      object-fit: cover;
-      border-radius: 22px;
-      border: 4px solid rgba(255,255,255,.92);
-      box-shadow: 0 12px 28px rgba(0,0,0,.28);
-      background: #ffffff;
-    }
-
-    .brand{
-      color: var(--text);
-      font-weight: 900;
-      letter-spacing: .5px;
-      margin: 0;
-      font-size: 36px;
-      line-height: 1.15;
-      text-shadow: 0 3px 10px rgba(0,0,0,.25);
-    }
-
-    .subtitle{
-      color: var(--muted);
-      font-size: 14px;
-      margin: 0 0 14px;
-      opacity: .95;
-    }
-
-    .actions{
-      max-width: 420px;
+    .k360-wrap {
+      max-width: 900px;
       margin: 0 auto;
       padding: 0 12px;
     }
-
-    .action-box{
-      background: rgba(255,255,255,.18);
-      border: 1px solid rgba(255,255,255,.25);
-      color: #eaf3ff;
-      padding: 13px 14px;
-      border-radius: var(--radius);
+    .k360-brand-row {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      margin: 10px 0;
-      cursor: pointer;
-      user-select: none;
-      transition: .2s ease;
-      text-align: center;
-      text-decoration: none;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
     }
-    .action-box:hover{ transform: translateY(-1px); }
-    .action-box:focus{ outline: 3px solid rgba(255,255,255,.35); outline-offset: 2px; }
-
-    .redbar{
-      height: 14px;
-      background: var(--red);
+    .k360-brand-title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 0.2px;
     }
-
-    /* حاوية الإعلانات العلوية المتوافقة مع لوحة الإدارة */
-    .header-ads-bar{
-      max-width: 900px;
-      margin: 12px auto 0;
-      padding: 0 15px;
-    }
-    .header-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      align-items: center;
-    }
-    .header-ad-slot {
-      background: rgba(15,78,154,.06);
-      border: 1px dashed var(--dash);
-      border-radius: 12px;
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 10px;
-      text-align: center;
+    .k360-brand-sub {
+      margin: 3px 0 0;
       font-size: 12px;
-      color: #1f5fa8;
-      font-weight: 700;
-      overflow: hidden;
+      color: #e3f2fd;
     }
-    .header-ad-slot a {
-      color: #1f5fa8;
-      text-decoration: none;
+    .k360-top-actions {
       display: flex;
-      align-items: center;
-      justify-content: center;
       gap: 8px;
-      width: 100%;
+      flex-wrap: wrap;
     }
-    .header-ad-slot img {
-      max-height: 54px;
-      max-width: 100%;
-      border-radius: 6px;
-      object-fit: cover;
+    .k360-chip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
     }
-    @media (max-width: 700px) {
-      .header-grid {
-        grid-template-columns: 1fr;
-      }
-      .hero-logo-lg {
-        width: 136px;
-        height: 136px;
-      }
-      .brand {
-        font-size: 32px;
-      }
+    .k360-chip-btn:hover { background: rgba(255, 255, 255, 0.26); }
+
+    .k360-live-banner {
+      display: block;
+      text-decoration: none;
+      background: linear-gradient(90deg, #1d5ca8 0%, #2a6ec0 100%);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-bottom: 4px solid #d32f2f;
+      border-radius: 10px;
+      padding: 12px 16px;
+      text-align: center;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
     }
 
     /* شريط الأخبار المتحرك */
-    .ticker-wrap {
-      background-color: #d32f2f;
-      color: #fff;
-      padding: 8px 0;
-      font-size: 14px;
-      font-weight: bold;
+    .k360-ticker-bar {
+      display: flex;
+      align-items: stretch;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-right: 4px solid #d32f2f;
+      border-radius: 10px;
+      margin: 14px 0 0;
       overflow: hidden;
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+    }
+    .k360-ticker-label {
+      background: #d32f2f;
+      color: #ffffff;
+      padding: 9px 14px;
+      font-size: 12px;
+      font-weight: 800;
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+    }
+    .k360-ticker-track {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
       position: relative;
-      margin-top: 10px;
     }
-    .ticker-track {
-      display: inline-block;
-      padding-left: 100%;
-      animation: tickerMoveRight 45s linear infinite;
-      will-change: transform;
+    .k360-ticker-move {
+      display: inline-flex;
+      gap: 28px;
+      white-space: nowrap;
+      animation: k360TickerScroll 28s linear infinite;
+      font-size: 13
+      font-weight: 700;
+      color: #0f172a;
     }
-    .ticker-wrap:hover .ticker-track {
-      animation-play-state: paused;
+    .k360-ticker-move:hover { animation-play-state: paused; }
+    .k360-ticker-move a {
+      color: #0d47a1;
+      text-decoration: none;
     }
-    @keyframes tickerMoveRight {
+    .k360-ticker-move a:hover { text-decoration: underline; }
+    @keyframes k360TickerScroll {
       0% { transform: translateX(-100%); }
       100% { transform: translateX(100%); }
     }
 
-    /* المحتوى الرئيسي */
-    .container, .content {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 0 15px;
-    }
-
-    .ad-wrap{
-      margin: 12px 0;
-      padding: 0;
-    }
-    .ad-box{
-      background: rgba(15,78,154,.06);
-      border: 1px dashed var(--dash);
-      border-radius: 12px;
-      min-height: 86px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 4px;
-      padding: 10px;
-      text-align: center;
-    }
-    .ad-title{
-      font-weight: 900;
-      font-size: 12px;
-      color: #1f5fa8;
-      opacity: .9;
-    }
-    .ad-size{
-      font-size: 12px;
-      color: #6b7a99;
-    }
-
-    /* بطاقة الخبر */
-    .news-card {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 18px;
-      box-shadow: var(--shadow);
-      border: 1px solid #edf1ff;
-      border-right: 5px solid #0d47a1;
-    }
-    .news-card h2 {
-      margin-top: 0;
-      color: #0d47a1;
-      font-size: 20px;
-      line-height: 1.5;
-    }
-    .news-date {
-      font-size: 12px;
-      color: #777;
-      margin-bottom: 10px;
-    }
-    .news-body {
-      display: none;
-      margin-top: 10px;
-      border-top: 1px solid #eceff1;
-      padding-top: 10px;
-    }
-    .news-body.open {
-      display: block;
-    }
-    .news-card p {
-      line-height: 1.7;
-      font-size: 15px;
-    }
-    .news-actions {
-      margin-top: 12px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .btn-read-more {
-      background: #c62828;
-      color: #fff;
-      border: none;
-      padding: 7px 14px;
-      border-radius: 5px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .btn-copy-link {
-      background: #0d47a1;
-      color: #fff;
-      border: none;
-      padding: 7px 12px;
-      border-radius: 5px;
-      font-size: 13px;
-      cursor: pointer;
-    }
-    .btn-delete-post {
-      background: #37474f;
-      color: #fff;
-      border: none;
-      padding: 7px 12px;
-      border-radius: 5px;
-      font-size: 13px;
-      cursor: pointer;
-      display: none;
-    }
-    body.admin-mode .btn-delete-post {
-      display: inline-block;
-    }
-
-    /* لوحة الإدارة */
-    .admin-panel {
-      display: none;
-      background: #ffffff;
-      border: 2px solid #0d47a1;
-      border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-    }
-    body.admin-mode .admin-panel {
-      display: block;
-    }
-    .admin-panel h3 {
-      margin: 0 0 12px;
-      color: #0d47a1;
-      font-size: 17px;
-    }
-    .admin-grid {
+    .k360-ads-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
+      margin: 16px 0;
     }
-    @media (max-width: 700px) {
-      .admin-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    .admin-box {
-      background: #f8fafc;
+    @media (max-width: 680px) { .k360-ads-grid { grid-template-columns: 1fr; } }
+    .k360-ad-card {
+      background: #ffffff;
       border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      padding: 12px;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
     }
-    .admin-box h4 {
-      margin: 0 0 8px;
-      font-size: 14px;
-      color: #1e293b;
-    }
-    .admin-box label {
-      display: block;
-      font-size: 12px;
-      margin-top: 6px;
-      color: #475569;
-    }
-    .admin-box input,
-    .admin-box textarea {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 7px 9px;
-      margin-top: 3px;
-      border: 1px solid #cbd5e1;
-      border-radius: 4px;
-      font-family: inherit;
-      font-size: 13px;
-    }
-    .phone-upload-box {
-      margin-top: 8px;
-      padding: 8px;
-      background: #eef4ff;
-      border: 1px dashed #1f5fa8;
-      border-radius: 6px;
-    }
-    .btn-phone-upload {
-      margin-top: 6px;
-      background: #1f5fa8;
-      color: #fff;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 5px;
-      font-size: 12px;
+    .k360-ad-card a {
+      text-decoration: none;
+      color: #0d47a1;
       font-weight: 700;
-      cursor: pointer;
-    }
-    .upload-status-msg {
-      margin: 5px 0 0;
-      font-size: 12px;
-      color: #0f4e9a;
-      font-weight: 600;
-    }
-    .admin-actions {
-      margin-top: 12px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .btn-admin-save {
-      background: #2e7d32;
-      color: #fff;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 5px;
-      cursor: pointer;
       font-size: 13px;
-      font-weight: bold;
+      display: block;
     }
-    .btn-admin-reset {
-      background: #64748b;
-      color: #fff;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 13px;
+    .k360-ad-card img {
+      max-width: 100%;
+      max-height: 120px;
+      object-fit: cover;
+      border-radius: 7px;
+      margin-bottom: 6px;
     }
 
-    /* قسم رؤية المنشورات داخل إدارة الموقع */
-    .posts-overview-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 8px;
-    }
-    .post-overview-row {
+    .k360-news-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
-      padding: 8px 10px;
+      border: 1px solid #dbe4f0;
+      border-right: 5px solid #0d47a1;
+      border-radius: 12px;
+      padding: 0 0 16px;
+      margin: 18px 0;
+      box-shadow: 0 8px 22px rgba(13, 71, 161, 0.08);
+      overflow: hidden;
+    }
+    .k360-news-topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
       flex-wrap: wrap;
-      font-size: 13px;
-    }
-    .post-overview-title {
+      gap: 8px;
+      background: linear-gradient(90deg, #0d47a1 0%, #1976d2 100%);
+      color: #ffffff;
+      padding: 8px 15px;
+      font-size: 12px;
       font-weight: 700;
-      color: #0f172a;
-      flex: 1;
-      min-width: 180px;
     }
-    .post-overview-meta {
-      font-size: 12px;
-      color: #475569;
-    }
-    .post-overview-btns {
-      display: flex;
-      gap: 6px;
-    }
-    .btn-mini {
-      border: none;
-      border-radius: 4px;
-      padding: 4px 9px;
-      font-size: 12px;
-      cursor: pointer;
-      color: #fff;
-    }
-    .btn-mini-view { background: #0d47a1; }
-    .btn-mini-hide { background: #c62828; }
-    .btn-mini-show { background: #2e7d32; }
-
-    /* التعليقات */
-    .comments-section {
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 1px dashed #cfd8dc;
-    }
-    .comments-section h3 {
-      margin: 0 0 10px;
-      font-size: 15px;
-      color: #0d47a1;
-    }
-    .comment-form {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .comment-form input,
-    .comment-form textarea {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 8px 10px;
-      border: 1px solid #cfd8dc;
-      border-radius: 5px;
-      font-family: inherit;
-      font-size: 13px;
-    }
-    .comment-form textarea {
-      min-height: 68px;
-      resize: vertical;
-    }
-    .btn-comment-submit {
-      align-self: flex-start;
-      background: #1565c0;
-      color: #fff;
-      border: none;
-      padding: 7px 14px;
-      border-radius: 5px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .comments-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .comment-item {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-right: 3px solid #1565c0;
-      border-radius: 5px;
-      padding: 8px 10px;
-      font-size: 13px;
-    }
-    .comment-meta {
+    .k360-news-badge {
+      background: #d32f2f;
+      color: #ffffff;
+      padding: 2px 10px;
+      border-radius: 999px;
       font-size: 11px;
-      color: #64748b;
-      margin-bottom: 4px;
-      font-weight: bold;
     }
-    .comment-text {
-      margin: 0;
+    .k360-news-body { padding: 15px 16px 0; }
+    .k360-news-title {
+      margin: 0 0 10px;
+      font-size: 19px;
+      line-height: 1.45;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 1px dashed #cbd5e1;
+      padding-bottom: 8px;
+    }
+    .k360-news-media {
+      margin: 10px 0 14px;
+      padding: 5px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .k360-news-media img {
+      display: block;
+      width: 100%;
+      max-height: 450px;
+      object-fit: cover;
+      border-radius: 7px;
+    }
+    .k360-news-text p {
+      margin: 0 0 11px;
+      font-size: 15px;
+      line-height: 1.85;
       color: #1e293b;
-      line-height: 1.5;
-      white-space: pre-line;
     }
-
-    /* بريد الموقع لاستقبال الرسائل */
-    .site-mail-box {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 18px;
-      margin-top: 22px;
-      box-shadow: var(--shadow);
-      border: 1px solid #e2e8f0;
-      border-right: 5px solid #1f5fa8;
-    }
-    .site-mail-box h3 {
-      margin: 0 0 6px;
-      color: #0d47a1;
-      font-size: 18px;
-    }
-    .site-mail-box p.mail-desc {
-      margin: 0 0 12px;
-      font-size: 13px;
+    .k360-news-footer {
+      margin-top: 12px;
+      padding: 10px 16px 0;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
       color: #475569;
     }
-    .site-mail-form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .k360-copy-mini {
+      background: #0d47a1;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
     }
-    .site-mail-form input,
-    .site-mail-form textarea {
+
+    .k360-contact-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-top: 4px solid #0d47a1;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 24px 0 32px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+    .k360-contact-box h3 { margin: 0 0 6px; color: #0d47a1; font-size: 17px; }
+    .k360-field { margin-bottom: 10px; }
+    .k360-field label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 4px; color: #334155; }
+    .k360-field input, .k360-field textarea {
       width: 100%;
-      box-sizing: border-box;
-      padding: 9px 11px;
+      padding: 8px 10px;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       font-family: inherit;
       font-size: 14px;
     }
-    .site-mail-form textarea {
-      min-height: 92px;
-      resize: vertical;
-    }
-    .btn-mail-send {
-      align-self: flex-start;
-      background: #0f4e9a;
+    .k360-submit-btn {
+      background: #0d47a1;
       color: #fff;
       border: none;
-      padding: 9px 18px;
       border-radius: 6px;
-      font-size: 14px;
+      padding: 9px 16px;
+      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
     }
-    .mail-status {
-      font-size: 13px;
-      font-weight: 700;
-      margin-top: 4px;
-    }
-
-    footer {
-      background-color: #1a237e;
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-      margin-top: 30px;
-      font-size: 13px;
-    }
-    .admin-trigger {
-      background: transparent;
-      color: #bbdefb;
-      border: 1px solid rgba(187, 222, 251, 0.4);
-      padding: 3px 9px;
-      border-radius: 4px;
-      font-size: 11px;
-      cursor: pointer;
-      margin-right: 8px;
-    }
-    .k360-badge-box {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.22);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
-    }
-
-    .k360-svg-logo {
-      width: 210px;
-      height: auto;
-      display: block;
-    }
-
-    @media (max-width: 700px) {
-      .k360-svg-logo {
-        width: 185px;
-      }
-    }
-    .ticker-track {
-      animation-duration: 80s !important;
-    }.header-ad-slot {
-  position: relative;
-  overflow: hidden;
-  padding: 0 !important;
-  min-height: 95px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-ad-slot a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-}
-
-.header-ad-slot img {
-  width: 100%;
-  height: 100%;
-  min-height: 95px;
-  max-height: 145px;
-  object-fit: cover;
-  display: block;
-  border-radius: 8px;
-}
-
+    .k360-msg-status { margin-top: 8px; font-size: 12px; font-weight: 700; }
   </style>
 </head>
-<body>
-
-  <!-- الواجهة العلوية مع شعار k360 المكبر -->
-  <header class="top-hero">
-    <div class="hero-brand-wrap">
-      <h1 class="brand">k360</h1>
-    </div>
-    <div class="subtitle">منصة الأخبار والتحليلات والمقالات المستقلة</div>
-
-    <div class="actions">
-      <a class="action-box" href="https://www.goal.com/ar" target="_blank" rel="noopener noreferrer">
-        مباريات اليوم عبر المدير
-      </a>
-      <div class="action-box" role="button" tabindex="0" onclick="alert('http://www.youtube.com/channel/UCoJxQlG7KfJIW1zxK5O1bRQ')">
-        البث المباشر — قناة عدن المستقلة
+<body class="k360-protected">
+  <header class="k360-hero">
+    <div class="k360-wrap">
+      <div class="k360-brand-row">
+        <div>
+          <h1 class="k360-brand-title">krater360</h1>
+          <p class="k360-brand-sub">تغطيات إخبارية وتحليلات مستمرة على مدار الساعة</p>
+        </div>
+        <div class="k360-top-actions">
+          <button type="button" class="k360-chip-btn" onclick="loadLiveFeed(true)">🔄 تحديث الأخبار</button>
+          <a href="#k360ContactSection" class="k360-chip-btn">📩 تواصل معنا</a>
+        </div>
+      </div>
+      <a href="#newsFeed" class="k360-live-banner">البث المباشر — تغطية موقع krater360</a>
+      <div class="k360-ticker-bar">
+        <span class="k360-ticker-label">آخر الأخبار</span>
+        <div class="k360-ticker-track">
+          <div class="k360-ticker-move" id="newsTickerMove">جاري تحميل العناوين...</div>
+        </div>
       </div>
     </div>
   </header>
 
-  <div class="redbar"></div>
-
-  <!-- مساحات إعلانات الرأس المرتبطة بلوحة الإدارة -->
-  <div class="header-ads-bar">
-    <div class="header-grid">
-      <div class="header-ad-slot" id="headerAdRight">
-<script>
-  atOptions = {
-    'key' : '02fe15a1f8dbe9c33512a3e3ea1678b3',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script data-cfasync="false" src="https://bicea.org/22/02fe15a1f8dbe9c33512a3e3ea1678b3"></script>
-</div>
-      <div class="header-ad-slot" id="headerAdLeft">مساحة إعلانية يسار</div>
-    </div>
-  </div>
-
-  <!-- شريط الأخبار المتحرك -->
-  <div class="ticker-wrap">
-    <div class="ticker-track">
-      <span id="tickerText">الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن   ★   بشرى ساره لموظفي لحج بشأن خروج التعزيزات   ★   استقالات عديده من كليه الشرطه بحضرموت   ★   الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية   ★   تغيير العقيدة النووية الإيرانية.. هل تتراجع طهران عن فتوى تحريم القنبلة تحت الضغط؟   ★   قصف هستيري حوثي على هدن   ★   أهلاً بكم في الانطلاقة الرسمية لموقع krater360 — مساحة حرة للأخبار والتحليلات والمقالات المستقلة.</span>
-    </div>
-  </div>
-  <div class="container">
-    <div class="news-card" id="news-1795468006655">
-      <img src="https://krater360.github.io/images/1795468002358-1-1795467854662.jpg" alt="تعميم أمني في ساحل حضرموت لحظر لعبة GTA 6 ومطالب بتطبيق الخطوة في عدن لحماية النشء" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>تعميم أمني في ساحل حضرموت لحظر لعبة GTA 6 ومطالب بتطبيق الخطوة في عدن لحماية النشء</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>تعميم أمني في ساحل حضرموت لحظر لعبة GTA 6 ومطالب بتطبيق الخطوة في عدن لحماية النشء</p>
-      <p>تغطية خاصة وتحرك أمني وقانوني في ساحل حضرموت</p>
-      <p>أصدرت إدارة شرطة الآداب بأمن ساحل حضرموت تعميماً رسمياً موجهاً إلى مالكي محلات الألعاب وصالات الفيديو، بتاريخ 22 نوفمبر 2026م، يقضي بمنع بيع أو تداول أو تنزيل لعبة GTA 6 الجزء السادس بأي شكل من الأشكال، مع إحالة المخالفين إلى جهات الاختصاص.</p>
-      <p>المرجعية القانونية ومبررات القرار بحسب المذكرة</p>
-      <p>استند التعميم إلى ما تتضمنه اللعبة من مشاهد تعرٍ وإيحاءات جنسية وعنف وترويج لتعاطي المخدرات.</p>
-      <p>أشارت المذكرة إلى أحكام قانون العقوبات اليمني رقم 12 لسنة 1994م في المادتين 103 و199، والمتعلقة بمنع نشر أو تداول أي مواد تتنافى مع مبادئ العقيدة الإسلامية أو تخدش الآداب والأخلاق العامة.</p>
-      <p>وقفة توعوية لعدن وشبابها ودعوات لحماية النشء</p>
-      <p>إن اتخاذ خطوات رقابية لحماية النشء في عدن وبقية المحافظات من الألعاب الإلكترونية ذات المحتوى العنيف أو غير الأخلاقي بات ضرورة مجتمعية؛ فإلى جانب المخاطر السلوكية، تستنزف ألعاب الإدمان الإلكتروني مثل ببجي وغيرها أعمار الأطفال والشباب وتهدر أوقاتهم وطاقاتهم بعيداً عن التعليم وبناء المستقبل.</p>
-      <p>شاركونا رأيكم في التعليقات</p>
-      <p>هل تؤيدون تعميم هذا القرار في محلات وصالات الألعاب في عدن وتوسيع الرقابة لتشمل الألعاب الإلكترونية التي تسببت في إدمان الشباب والأطفال؟ اكتبوا آراءكم في التعليقات</p>
-      <button type="button" onclick="copyNewsLink('news-1795468006655')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
-    </div>
-
-    <div class="news-card" id="news-1795464265472">
-      <img src="https://krater360.github.io/images/1795464260133-1-1795464193687.jpg" alt="شرطه عدن تطيح بشبكه مخدرات خاصه بمخدر الشبو" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>شرطه عدن تطيح بشبكه مخدرات خاصه بمخدر الشبو</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>إدارة مكافحة المخدرات بالعاصمة عدن تطيح بشقيقين توأم وبحوزتهما عدة اكياس تحتوي على مادة الشبو المخدر بمديرية التواهي.</p>
-      <p>عدن/الإعلام الامني</p>
-      <p>تمكنت إدارة مكافحة المخدرات بشرطة عدن وقوات الأمن الوطن من ضبط شقيقين توأم، وذلك في مديرية التواهي، وبحوزتهما عدة أكياس صغيرة تحتوي على مادة الشبو المخدرة، في واقعة تكشف استمرار محاولات ترويج هذه السموم واستهداف المجتمع والشباب.</p>
-      <p>واوضح العقيد مياس الجعدني مدير إدارة مكافحة المخدرات بشرطة عدن وقوات الأمن الوطني ان هذه الضبطية تتبث اليقظة الأمنية والجهود الميدانية التي تبذلها إدارة مكافحة المخدرات لملاحقة المتورطين في حيازة وترويج المواد المخدرة، والتصدي لكل من يحاول نشر هذه الآفة الخطيرة بين أوساط المجتمع.</p>
-      <p>وأفاد العقيد مياس الجعدني ان المتهمين تم اللقاء القبض عليهم متلبسين وبحوزتهم المخدرات وذلك بالتنسيق مع نيابة الأمن والبحث وبحضور شرطة نسائية وقد تم اتخاذ الإجراءات القانونية اللازمة بحق المتهمين لكي ينالوا عقابهم المستحق..</p>
-      <p>وبين العقيد الجعدني ان أفة الشبو المخدر دخيلة على محافظتنا عدن بشكل عام وعلى مديرية التواهي بشكل خاص وانها مادة خطيرة جداً على شبابنا وتعد اخطر من الحشيش والحبوب المخدر لكونها تجعل متعاطيها عدواني للغاية..</p>
-      <p>وشكر العقيد مياس الجعدني مأمور مديرية التواهي الأستاذ رياض حسن على جهوده الطيبة والواضحة بتعاونه مع إدارة مكافحة المخدرات بتسهيل عملهم وذلك بالتنسيق فيما بينهم وبين روؤساء اللجان الشعبية في الحارات لكي يتم القبض على مروجين المخدرات بشكل ادق واسرع وأكد الجعدني ان حربهم مستمرة دوماً على تجار ومروجي السموم لحماية شباب عدن من خطر المخدرات.</p>
-      <p>الاثنين 23 نوفمبر 2026م</p>
-      <p>المكتب الإعلامي – إدارة أمن العاصمة عدن</p>
-      <button type="button" onclick="copyNewsLink('news-1795464265472')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
-    </div>
-
-    <div class="news-card" id="news-1795455614971">
-      <img src="https://krater360.github.io/images/1795455609590-1-1795455422722.jpg" alt="اتهامات مالية من وزير الكهرباء عدنان الكاف لرئيس المجلس الانتقالي عيدروس الزبيدي تثير جدلاً سياسياً" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>اتهامات مالية من وزير الكهرباء عدنان الكاف لرئيس المجلس الانتقالي عيدروس الزبيدي تثير جدلاً سياسياً</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>أثارت أنباء منسوبة لإفادة وزير الكهرباء والطاقة، عدنان الكاف، أمام البرنامج السعودي لتنمية وإعمار اليمن، جدلاً واسعاً في الأوساط السياسية، بعد أن تضمنت اتهامات لرئيس المجلس الانتقالي الجنوبي، عيدروس الزبيدي، بالاستيلاء على مبلغ مليوني دولار.</p>
-      <p>وأثارت هذه الاتهامات ردود فعل غاضبة لدى مؤيدي رئيس المجلس الانتقالي الجنوبي، حيث اعتبر منتقدو الوزير الكاف أن توجيه مثل هذه الاتهامات يمثل تنكراً للثقة والمناصب التي مُنحت له ولغيره من المسؤولين خلال فترة قيادة الزبيدي.</p>
-      <p>كما تساءلت تلك الأوساط عن توقيت إثارة هذه القضايا، مشيرةً إلى أن من يرفعون شعار محاربة الفساد اليوم كانوا يشغلون مواقع قيادية كأعضاء في هيئة رئاسة المجلس الانتقالي الجنوبي في فترات سابقة دون أن تصدر عنهم مواقف مماثلة آنذاك.</p>
-      <button type="button" onclick="copyNewsLink('news-1795455614971')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
-    </div>
-
-    <div class="news-card" id="news-1795443555689">
-      <img src="https://krater360.github.io/images/1795443546130-1-1795443445348.jpg" alt="المليشيات الحوثيه ترتكب محزرة مرووعه اليوم" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <img src="https://krater360.github.io/images/1795443550125-2-1795442428770.jpg" alt="المليشيات الحوثيه ترتكب محزرة مرووعه اليوم" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>المليشيات الحوثيه ترتكب محزرة مرووعه اليوم</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>المليشيات الحوثيه ترتكب مجزرة في سائلة المقاطرة</p>
-      <p>راح ضحيتها عدد من المواطنين بعد استهداف شاحنات قادمة من عدن باتجاه تعز من قبل مليشيات الحوثي بحسب المعلومات المتداولة إلى متى يظل المواطن يدفع الثمن ويُحرم حتى من حقه في الطريق والبحث عن لقمة عيشه</p>
-      <button type="button" onclick="copyNewsLink('news-1795443555689')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
-    </div>
-
-    <!-- إعلان علوي ضمن الواجهة (Native Banner) -->
-    <section class="ad-wrap" aria-label="إعلان علوي">
-      <div class="ad-box">
-        <script async fetchpriority="high" data-cfasync="false" src="https://bicea.org/21/d03f6df9b7d142995b4ef67f049f203d"></script>
-        <div id="container-d03f6df9b7d142995b4ef67f049f203d"></div>
-      </div>
-    </section>
-    <!-- لوحة إدارة الموقع -->
-    <div class="admin-panel" id="adminPanel">
-      <h3>لوحة إدارة الإعلانات والمنشورات</h3>
-      <div class="admin-grid">
-        <div class="admin-box">
-          <h4>إعلان رأس الصفحة (يمين)</h4>
-          <label>نص الإعلان</label>
-          <input type="text" id="adRightText" placeholder="مثال: أعلن معنا الآن">
-          <label>رابط الصورة (اختياري)</label>
-          <input type="url" id="adRightImg" placeholder="https://...">
-          <div class="phone-upload-box">
-            <label>تحميل صورة الإعلان من الهاتف:</label>
-            <input type="file" id="adRightFile" accept="image/*">
-            <button type="button" class="btn-phone-upload" onclick="uploadPhoneImage('adRightFile', 'adRightImg', 'adRightUploadStatus')">رفع صورة الإعلان (يمين)</button>
-            <p class="upload-status-msg" id="adRightUploadStatus"></p>
-          </div>
-          <label>رابط الوجهة عند النقر (اختياري)</label>
-          <input type="url" id="adRightUrl" placeholder="https://...">
+  <main class="k360-wrap">
+    <div class="k360-ads-grid" id="headerAdsBox"></div>
+    <section id="newsFeed"><p style="text-align:center; color:#475569;">جاري تحميل الأخبار...</p></section>
+    <section class="k360-contact-box" id="k360ContactSection">
+      <h3>تواصل معنا أو أرسل تعليقاً</h3>
+      <form id="k360ContactForm" onsubmit="submitValidatedMessage(event)">
+        <div class="k360-field">
+          <label for="senderName">الاسم الكامل</label>
+          <input type="text" id="senderName" required minlength="3" placeholder="اكتب اسمك هنا">
         </div>
-
-        <div class="admin-box">
-          <h4>إعلان رأس الصفحة (يسار)</h4>
-          <label>نص الإعلان</label>
-          <input type="text" id="adLeftText" placeholder="مثال: تغطية خاصة">
-          <label>رابط الصورة (اختياري)</label>
-          <input type="url" id="adLeftImg" placeholder="https://...">
-          <div class="phone-upload-box">
-            <label>تحميل صورة الإعلان من الهاتف:</label>
-            <input type="file" id="adLeftFile" accept="image/*">
-            <button type="button" class="btn-phone-upload" onclick="uploadPhoneImage('adLeftFile', 'adLeftImg', 'adLeftUploadStatus')">رفع صورة الإعلان (يسار)</button>
-            <p class="upload-status-msg" id="adLeftUploadStatus"></p>
-          </div>
-          <label>رابط الوجهة عند النقر (اختياري)</label>
-          <input type="url" id="adLeftUrl" placeholder="https://...">
+        <div class="k360-field">
+          <label for="senderEmail">بريد Gmail المعروف</label>
+          <input type="email" id="senderEmail" required placeholder="example@gmail.com">
         </div>
-      </div>
-
-      <div class="admin-box" style="margin-top:12px;">
-        <h4>نشر خبر جديد (يُحفظ في Firebase ويظهر أولاً)</h4>
-        <label>عنوان الخبر</label>
-        <input type="text" id="newPostTitle" placeholder="اكتب عنوان الخبر هنا...">
-        <label>رابط الصورة (اختياري)</label>
-        <input type="url" id="newPostImg" placeholder="https://krater360.github.io/images/...">
-        <div class="phone-upload-box">
-          <label>إدراج صورة للخبر من الهاتف:</label>
-          <input type="file" id="newPostFile" accept="image/*">
-          <button type="button" class="btn-phone-upload" onclick="uploadPhoneImage('newPostFile', 'newPostImg', 'newPostUploadStatus')">رفع صورة الخبر من الهاتف</button>
-          <p class="upload-status-msg" id="newPostUploadStatus"></p>
+        <div class="k360-field">
+          <label for="senderSubject">الموضوع</label>
+          <input type="text" id="senderSubject" placeholder="مثال: تعليق أو استفسار">
         </div>
-        <label>تاريخ الخبر (اختياري - الافتراضي اليوم)</label>
-        <input type="date" id="newPostDate" value="2026-11-23">
-        <label>نص الخبر (كل سطر يصبح فقرة)</label>
-        <textarea id="newPostBody" rows="4" placeholder="اكتب تفاصيل الخبر هنا..."></textarea>
-        <div class="admin-actions">
-          <button type="button" class="btn-admin-save" onclick="publishNewPost()">نشر الخبر الآن</button>
+        <div class="k360-field">
+          <label for="senderMessage">نص الرسالة أو التعليق</label>
+          <textarea id="senderMessage" rows="3" required minlength="5" placeholder="اكتب رسالتك هنا..."></textarea>
         </div>
-      </div>
-
-      <!-- تبويبات إدارة الموقع -->
-      <div style="display: flex; gap: 10px; margin: 15px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
-        <button type="button" onclick="switchAdminTab('posts')" id="tabPostsBtn" style="flex: 1; padding: 10px; background: #0f3460; color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-          📰 المنشورات
-        </button>
-        <button type="button" onclick="switchAdminTab('messages')" id="tabMessagesBtn" style="flex: 1; padding: 10px; background: #e2e8f0; color: #1e293b; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
-          📩 الرسائل (<span id="msgCount">0</span>)
-        </button>
-      </div>
-
-      <!-- رؤية المنشورات داخل إدارة الموقع -->
-      <div class="admin-box" style="margin-top:12px;" id="adminPostsOverviewBox">
-        <h4>رؤية المنشورات في إدارة الموقع</h4>
-        <div class="posts-overview-list" id="adminPostsOverviewList">
-          جاري تحميل قائمة المنشورات...
-        </div>
-      </div>
-
-      <!-- قسم الرسائل الواردة في الإدارة -->
-      <div id="adminMessagesSection" style="display: none; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 12px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-          <h4 style="margin: 0; color: #0f3460;">رسائل زوار موقع k360</h4>
-          <button type="button" onclick="loadMessagesFromGitHub()" style="padding: 5px 10px; background: #16a34a; color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">
-            🔄 تحديث
-          </button>
-        </div>
-        <div id="messagesListContainer">
-          <p style="text-align: center; color: #64748b; font-size: 14px;">اضغط على تبويب الرسائل أو تحديث لتحميلها.</p>
-        </div>
-      </div>
-
-      <div class="admin-actions">
-        <button type="button" class="btn-admin-save" onclick="saveAdsConfig()">حفظ وتعديل الإعلانات</button>
-        <button type="button" class="btn-admin-reset" onclick="resetGithubToken()">تغيير / مسح Token</button>
-        <button type="button" class="btn-admin-reset" onclick="renderAdminPostsOverview()">تحديث رؤية المنشورات</button>
-        <button type="button" class="btn-admin-reset" onclick="restoreAllPosts()">استعادة المنشورات المحذوفة</button>
-        <button type="button" class="btn-admin-reset" onclick="toggleAdminMode(false)">إغلاق لوحة الإدارة</button>
-      </div>
-    </div>
-    <!-- المنشورات (الجزء الأول) -->
-    <div class="news-card" id="news-1795434586104">
-      <img src="https://krater360.github.io/images/1795434580724-1-1795434455963.jpg" alt="تحرك ناقلات نفط إيرانية نحو خط الحظر الأمريكي في بحر العرب وسط تهديدات بتصعيد إقليمي" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>تحرك ناقلات نفط إيرانية نحو خط الحظر الأمريكي في بحر العرب وسط تهديدات بتصعيد إقليمي</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>تفيد معطيات متداولة بأن طليعة ناقلات النفط الإيرانية العملاقة تقترب من خط الحظر الذي تفرضه الولايات المتحدة عند مدخل بحر العرب جنوبي الساحل العماني، ضمن مساعٍ لنقل شحنات متجهة إلى الصين.</p>
-      <p>وبحسب المعلومات المتداولة، فإن طواقم الناقلات الأربع عشرة تضم بحارة متطوعين في حالة استعداد قصوى، بالتوازي مع حديث عن توجيه الحرس الثوري الإيراني صواريخ باليستية نحو منشآت وموانئ نفطية في المنطقة، ومنح قادة المنصات صلاحية الرد المباشر في حال تعرضت الناقلات لأي اعتداء.</p>
-      <button type="button" onclick="copyNewsLink('news-1795434586104')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
-    </div>
-
-    <div class="news-card" id="news-1795433650742">
-      <img src="https://krater360.github.io/images/1795433636214-1-1795433601268.jpg" alt="بتوجيهات المحافظ شيخ.. بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن بإجمالي مبلغ قدره 413 مليون ريال." style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>بتوجيهات المحافظ شيخ.. بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن بإجمالي مبلغ قدره 413 مليون ريال.</h2>
-      <div class="news-date">22 نوفمبر 2026</div>
-      <p>بتوجيهات المحافظ شيخ..</p>
-      <p>بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن</p>
-      <p>بدأت اليوم الإثنين عملية صرف الحافز الشهري المقدم من السلطة المحلية في العاصمة عدن للمعلمين والمعلمات، في عموم مديريات العاصمة، عن شهر نوفمبر الجاري.</p>
-      <p>وأوضح وكيل العاصمة عدن لشؤون التعليم، عوض مبجر، أن توجيهات وزير الدولة، محافظ العاصمة عدن، عبدالرحمن شيخ، قضت بالبدء بعملية الصرف فورا، عقب استكمال إجراءات التوقيع على شيكات الصرف بإجمالي مبلغ قدره 413 مليون ريال.</p>
-      <button type="button" onclick="copyNewsLink('news-1795433650742')" style="margin-top:10px; background:#0d47a1; color:#fff; border:none; padding:6px 12px; border-radius:5px; font-size:13px; cursor:pointer;">نسخ رابط الخبر</button>
-    </div>
-
-    <div class="news-card" id="news-1795432333211">
-      <img src="https://krater360.github.io/images/1795432321288-1-IMG__.jpg" alt="زيلينسكي يعلن مسؤولية أوكرانيا عن ضرب سفينتين روسيتين قبالة سواحل ليبيا وإغراق الطراد ميركوري" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>زيلينسكي يعلن مسؤولية أوكرانيا عن ضرب سفينتين روسيتين قبالة سواحل ليبيا وإغراق الطراد ميركوري</h2>
-      <div class="news-date" data-date="2026-11-23">23 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>أعلن الرئيس الأوكراني فولوديمير زيلينسكي، اليوم الإثنين، مسؤولية قوات بلاده عن تنفيذ هجوم استهدف سفينتين تابعتين للبحرية الروسية قبالة سواحل ليبيا، في تطور يعكس اتساع نطاق العمليات الأوكرانية خارج منطقة البحر الأسود.</p>
-        <p>وأوضح زيلينسكي أن الجيش الأوكراني تمكن من إغراق الطراد الروسي ميركوري باستخدام سبعة زوارق مسيرة أوكرانية الصنع، مشيراً إلى أن العملية طالت كذلك سفينة الشحن الروسية أنجارا.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795432333211', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795432333211')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795432333211')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-1795428076522">
-      <img src="https://krater360.github.io/images/1795428073056-1-images92.jpeg" alt="انفراجه كبيرة بشأن صرف العلاوات والزيادة 20٪" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>انفراجه كبيرة بشأن صرف العلاوات والزيادة 20٪</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>*بشرى سارة لموظفي محافظة عدن بشأن خروج التعزيز المالي للزيادات لعدد من المرافق الحكومية*</p>
-        <p>بحسب المعلومات التي وصلتني، فقد تم إرسال التعزيز المالي الخاص بالزيادات المستحقة لعدد من المرافق الحكومية في محافظة عدن إلى البنك المركزي، وذلك تمهيداً لاستكمال الإجراءات المالية المتعلقة بصرف الزيادات للموظفين المستفيدين.</p>
-        <p>ونأمل استكمال بقية الإجراءات وصرف المستحقات في أقرب وقت، بما يسهم في تخفيف معاناة الموظفين وتحسين أوضاعهم المعيشية.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795428076522', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795428076522')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795428076522')">حذف المنشور</button>
-      </div>
-    </div>
-    <div class="news-card" id="news-1795427847550">
-      <img src="https://krater360.github.io/images/1795427840397-1-1795427708303.jpg" alt="تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>عاجل | تحرك سياسي وعسكري طارئ لبحث التطورات الميدانية</p>
-        <p>تعقد قيادات من القوات المسلحة الجنوبية والمجلس الانتقالي الجنوبي والأمانة العامة، عصر اليوم، اجتماعاً استثنائياً وطوارئياً للوقوف أمام المستجدات الميدانية والسياسية المتسارعة، وذلك في أعقاب التطورات الأخيرة التي شهدتها المديرية، والتي تمثل نحو 75% من إجمالي مساحة المحافظة.</p>
-        <p>ووفقاً لما ورد في نص الدعوة الصادرة عن الجهات المنظمة، يهدف هذا اللقاء رفيع المستوى إلى صياغة خطة تحرك جادة ومسؤولة، واتخاذ مواقف حازمة للتصدي لأي ترتيبات أو تفاهمات سياسية أو ميدانية قد تفضي إلى تسليم المحافظة لمليشيات الحوثي، مؤكدين أن مثل هذه التحركات تتم بمعزل عن إرادة أبناء المحافظة وتطلعاتهم.</p>
-        <p>وشدد البيان على رفض أي مساومات تمس أمن واستقرار المنطقة، موضحاً أن &quot;المحافظة ليست للبيع، وأن قرارها السيادي والميداني يجب أن يظل حصراً بيد أبنائها&quot;، وسط ترقب واسع في الأوساط السياسية والشعبية لما ستسفر عنه مخرجات هذا الاجتماع خلال الساعات القليلة المقبلة.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795427847550', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795427847550')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795427847550')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-1795406996756">
-      <img src="https://krater360.github.io/images/1795406992904-1-IMG-20261123-WA0000.jpg" alt="مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>أثارت وثيقة متداولة منسوبة إلى رئاسة مجلس القيادة الرئاسي، تتضمن توجيهاً إلى وزير المالية باعتماد مخصص شهري قدره خمسة آلاف ريال سعودي لصالح أحد الأشخاص تحت مسمى &quot;المواقف الوطنية&quot;، موجة انتقادات حادة وتساؤلات واسعة حول إدارة المال العام وأولويات الإنفاق.</p>
-        <p>وبحسب مضمون الخطاب المتداول، فإن التوجيه يقضي بصرف المبلغ الشهري بالعملة السعودية للمدعو عبد الإله الصايدي (أبو مرتاح) نظير وقوفه مع الوطن ضد المليشيات الانقلابية، مع المطالبة باستكمال إجراءات الصرف فوراً.</p>
-        <p>ويأتي التفاعل الغاضب مع هذه الوثيقة في ظل أوضاع معيشية واقتصادية ضاغطة، ومع استمرار شكاوى عدد من المقاتلين في الجبهات والعاملين في قطاعات مختلفة من تأخر أو انقطاع الرواتب، وهو ما اعتبره منتقدون مؤشراً على خلل واضح في ترتيب الأولويات وغياب معايير العدالة والشفافية في صرف المخصصات المالية.</p>
-        <p>ويرى مراقبون ومنتقدون أن استمرار اعتماد مخصصات فردية بالعملة الأجنبية دون إطار مؤسسي واضح ومعلن يعمّق حالة السخط الشعبي، ويضعف الثقة في آليات الرقابة المالية، خاصة في وقت تتزايد فيه الدعوات إلى ترشيد النفقات وتوجيه الموارد نحو الالتزامات الأساسية وحقوق المقاتلين والمواطنين.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795406996756', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795406996756')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795406996756')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-1795378247723">
-      <img src="https://krater360.github.io/images/1795378241972-1-1795378186808.jpg" alt="20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>20 مليار دولار.. تقديرات مثيرة للجدل حول قيمة السلاح الواصل للحوثيين في الساحل الغربي</p>
-        <p>أثارت تقديرات منسوبة إلى وكالة الاستخبارات الأمريكية حالة من الجدل والترقب، بعدما تحدثت عن وصول شحنات أسلحة إلى الحوثيين في منطقة الساحل الغربي تُقدّر قيمتها بنحو 20 مليار دولار.</p>
-        <p>وبحسب ما ورد في هذه التقديرات، فإن حجم التسليح المشار إليه يطرح تساؤلات واسعة حول طبيعة هذه الإمدادات وقيمتها الفعلية، ومدى تأثيرها على موازين القوى والمشهد الميداني والأمني في المنطقة، في ظل استمرار التوترات المرتبطة بملف السلاح والمسارات البحرية.</p>
-        <p>ولم يصدر حتى اللحظة تأكيد مستقل أو تفصيل رسمي يوضح آلية احتساب هذا الرقم أو تفاصيل الشحنات المقصودة، ما يجعل هذه التقديرات محل متابعة ونقاش واسع لدى المتابعين والمهتمين بالشأن الإقليمي.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795378247723', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795378247723')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795378247723')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-1795374032860">
-      <img src="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg" alt="عاجل.. القوات المسلحة الجنوبية تحبط هجوماً حوثياً في جبهات لحج وتحسم الجدل حول صفة المتحدث العسكري" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>عاجل.. القوات المسلحة الجنوبية تحبط هجوماً حوثياً في جبهات لحج وتحسم الجدل حول صفة المتحدث العسكري</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>أعلنت القوات المسلحة الجنوبية، اليوم الأحد 22 نوفمبر 2026م، عن تمكن وحداتها المرابطة في جبهات محافظة لحج من التصدي لهجوم شنته مليشيات الحوثي وإفشال محاولة تسلل استهدفت مواقعها، مؤكدة في الوقت ذاته حسم الجدل الإعلامي بشأن المتحدث العسكري الرسمي المعتمد.</p>
-        <p>إحباط هجوم وتسلل حوثي في لحج</p>
-        <p>أوضحت القوات المسلحة الجنوبية أن قواتها أحبطت محاولة التسلل والهجوم الحوثي ضمن سلسلة المحاولات العدائية المتكررة التي تستهدف جبهات الجنوب. وأشادت القيادة العسكرية بيقظة المقاتلين وثباتهم وجاهزيتهم القتالية العالية التي أفشلت أهداف المهاجمين، مشددة على استمرار أداء واجبها الوطني في الدفاع عن المواقع وحماية أمن واستقرار الجنوب.</p>
-        <p>توضيح رسمي حول المتحدث العسكري</p>
-        <p>وفي سياق متصل، وحرصاً من القوات المسلحة الجنوبية على منع أي التباس لدى وسائل الإعلام والرأي العام، أصدرت توضيحاً إعلامياً حددت فيه النقاط التالية:</p>
-        <p>عدم تمثيل العقيد ماجد النزيلي: أكدت القوات المسلحة الجنوبية أن العقيد الركن ماجد عبدالله النزيلي، الذي يتحدث بصفته المتحدث الرسمي باسم القوات المسلحة اليمنية، لا يمثل القوات المسلحة الجنوبية ولا تعبر تصريحاته أو مواقفه عن توجهاتها أو قيادتها.</p>
-        <p>المتحدث الرسمي المعتمد: شددت على أن المتحدث الرسمي المخوّل بإصدار التصريحات والبيانات والتوضيحات الرسمية باسم القوات المسلحة الجنوبية هو المقدم محمد النقيب.</p>
-        <p>الاستقلالية التنظيمية: أوضحت أن العقيد الركن المذكور لا يتبع هيئة الأركان العامة للقوات المسلحة الجنوبية ولا يخضع لقيادتها أو هيكلها التنظيمي، ولا يحمل أي صفة تخوله التحدث باسمها إعلامياً.</p>
-        <p>دعوة لتحري الدقة الإعلامية: دعت وسائل الإعلام المحلية والعربية والدولية، والصحفيين والناشطين، إلى تحري الدقة وعدم الخلط بين التشكيلات العسكرية، واعتماد البيانات الصادرة عن القنوات الرسمية للقوات المسلحة الجنوبية، وفي مقدمتها تصريحات المقدم محمد النقيب.</p>
-        <p>واختتمت القوات المسلحة الجنوبية بيانها الصادر من العاصمة عدن بالتأكيد على أن مواقفها وبياناتها تصدر حصراً عبر قنواتها المعتمدة، وأن أي تصريحات صادرة عن جهات أو شخصيات أخرى لا تمثلها ولا تعكس موقفها الرسمي.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795374032860', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795374032860')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795374032860')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-1795370347739">
-      <img src="https://krater360.github.io/images/1795370337853-1-1795370316795.jpg" alt="الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>أعربت دولة الإمارات عن إدانتها واستنكارها بأشد العبارات لتجدد الهجوم الإيراني العدواني الذي استهدف أراضي مملكة البحرين، مؤكدة تضامنها الكامل ووقوفها إلى جانب المنامة في مواجهة كل ما يمس أمنها وسلامتها.</p>
-        <p>انتهاك للسيادة وتهديد للاستقرار الإقليمي</p>
-        <p>وشددت دولة الإمارات في موقفها الرسمي على أن الهجوم الإيراني يمثل انتهاكاً صارخاً لسيادة مملكة البحرين ومبادئ القانون الدولي، فضلاً عن كونه تهديداً مباشراً لأمنها واستقرارها الوطني، وللسلم والأمن في المنطقة بأسرها.</p>
-        <p>تفاعل واسع على منصات التواصل الاجتماعي</p>
-        <p>أثار البيان الإماراتي وتطورات الموقف تفاعلاً ملحوظاً عبر منصات السوشيال ميديا، حيث تداول المغردون والنشطاء عبر منصة إكس وفيسبوك هاشتاغات تعبر عن التضامن الخليجي المشترك، وترفض أي اعتداءات تمس سيادة الدول واستقرار شعوبها، وسط مطالبات بتحرك دبلوماسي وإقليمي حازم لردع التصعيد.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795370347739', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795370347739')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795370347739')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-1795367125381">
-      <h2>بشرى ساره لموظفي لحج بشأن خروج التعزيزات</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>بشرى سارة لموظفي محافظة عدن بشأن خروج التعزيز المالي للزيادات لعدد من المرافق الحكومية*</p>
-        <p>بحسب المعلومات التي وصلتني، فقد تم إرسال التعزيز المالي الخاص بالزيادات المستحقة لعدد من المرافق الحكومية في محافظة عدن إلى البنك المركزي، وذلك تمهيداً لاستكمال الإجراءات المالية المتعلقة بصرف الزيادات للموظفين المستفيدين.</p>
-        <p>ونأمل استكمال بقية الإجراءات وصرف المستحقات في أقرب وقت، بما يسهم في تخفيف معاناة الموظفين وتحسين أوضاعهم المعيشية.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795367125381', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795367125381')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795367125381')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-1795367011757">
-      <img src="https://krater360.github.io/images/1795367006273-1795366948729.jpg" alt="استقالات عديده من كليه الشرطه بحضرموت" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>استقالات عديده من كليه الشرطه بحضرموت</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>استقالات جماعية في كلية الشرطة بحضرموت احتجاجًا على وقائع تزوير شهادات</p>
-        <p>قدم ثمانية من قيادات وأعضاء هيئة التدريس بكلية الشرطة في حضرموت استقالاتهم الجماعية من مهامهم وأعمالهم، احتجاجًا على ما وصفوه باختلالات إدارية وأكاديمية خطيرة، في مقدمتها وقائع تزوير شهادات أكاديمية ومنحها لأشخاص لم يلتحقوا بالكلية ولم يخضعوا لأي دراسة أو تأهيل أكاديمي.</p>
-        <p>وأوضح المستقيلون، في بيان موجه إلى عضو مجلس القيادة الرئاسي محافظ حضرموت سالم أحمد الخنبشي، أن وقائع التزوير مدعومة بمستندات وأدلة قدمت إلى الجهات المختصة للتحقيق فيها، مشيرين إلى وجود شبهات فساد مالي وإداري، وإقصاء للكفاءات الأكاديمية، وتهميش للقيادات المؤسسة للكلية.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795367011757', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795367011757')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795367011757')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-1795357745757">
-      <img src="https://krater360.github.io/images/1795357740872-1-1795357649043.jpg" alt="الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">
-      <h2>الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>في أجواء امتزجت فيها مشاعر الفرح بالحزن.. الجمعية الوطنية تودّع الدكتور طارق بازرعة</p>
-        <p>الأحد 22 نوفمبر 2026م</p>
-        <p>ودّعت الجمعية الوطنية للمجلس الانتقالي الجنوبي العربي، صباح اليوم، الدكتور طارق بازرعة، مساعد رئيس الجمعية ومقررها السابق، وأحد كوادرها القيادية التي عُرفت بالإخلاص والتفاني في أداء مهامها، وذلك بمناسبة انتقاله إلى فريق قيادة الأمانة العامة، بموجب القرار الرئاسي الصادر عن الرئيس عيدروس بن قاسم الزبيدي بتاريخ 18 نوفمبر 2026م، والقاضي بتعيينه رئيساً للهيئة السياسية في الأمانة العامة، في أجواءٍ امتزجت فيها مشاعر الفرح بالحزن، وسادتها روح الوفاء والتقدير.</p>
-        <p>وجاء حفل محمّلاً بمشاعر متباينة، بين فرحةٍ بانتقال الدكتور بازرعة إلى محطة جديدة في مسيرته القيادية، وحزنٍ على مغادرة شخصيةٍ تركت بصمات طيبة وحضوراً مميزاً في أروقة الجمعية الوطنية، وأسهمت بجهودها وعطائها في تعزيز مسيرة العمل المؤسسي وأداء مهامه.</p>
-        <p>وخلال الحفل، ألقى الأستاذ نصر صالح هرهرة، عضو هيئة رئاسة المجلس الانتقالي الجنوبي العربي، نائب رئيس الجمعية الوطنية، كلمةً عبّر فيها عن تقديره للدكتور طارق بازرعة، مشيداً بما قدّمه من جهود وإسهامات خلال فترة عمله في الجمعية، وما اتسمت به مسيرته من إخلاص وتفانٍ وروح المسؤولية، متمنياً له التوفيق والنجاح في مهامه القيادية الجديدة.</p>
-        <p>وأكد هرهرة في كلمته أن المجلس الانتقالي الجنوبي العربي يعمل ككيان مؤسسي واحد ومتكامل، تتعاضد فيه جميع الهيئات وتتكامل أدوارها وجهودها، بما يعزز وحدة العمل المؤسسي ويخدم الأهداف المشتركة، مشيراً إلى أن انتقال الكوادر بين الهيئات والمواقع القيادية يأتي في إطار هذا التكامل والترابط، ويعكس وحدة المؤسسة وتكامل مسؤولياتها.</p>
-        <p>ولم يكن حفل التوديع مجرد مناسبة لمغادرة موقع وظيفي، بقدر ما كان تعبيراً صادقاً عن عمق العلاقات الإنسانية وروح الوفاء التي تجمع زملاء العمل، وتقديراً لمسيرة عطاء تركت أثراً طيباً في نفوس زملائه، الذين حرصوا على مشاركته هذه اللحظة وتوديعه بما يليق بما قدّمه خلال سنوات عمله في الجمعية.</p>
-        <p>وفي ختام الحفل، قدّم الأستاذ نصر صالح هرهرة، نيابةً عن الجمعية الوطنية، درع تقدير ووفاء للدكتور طارق بازرعة، تقديراً لجهوده المخلصة ومواقفه النضالية الثابتة في أصعب الظروف، واعتزازاً بحضوره الفاعل وإسهاماته بوصفه أحد الرجال الذين كان لهم دور في إرساء دعائم المجلس الانتقالي الجنوبي العربي وتثبيت بنيانه المؤسسي.</p>
-        <p>وبين مشاعر الوداع وتطلعات المرحلة القادمة، يطوي الدكتور طارق بازرعة صفحةً من مسيرته في الجمعية الوطنية، ليفتح صفحةً جديدة في الأمانة العامة، حاملاً معه رصيداً من الخبرة والتجربة المؤسسية، فيما تبقى جهوده وإسهاماته حاضرة في ذاكرة زملائه، الذين ودّعوه بمشاعر التقدير والوفاء، وأمنيات صادقة بمواصلة النجاح والتوفيق في مسؤولياته القادمة.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795357745757', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795357745757')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795357745757')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-1795355763844">
-      <h2>تغيير العقيدة النووية الإيرانية.. هل تتراجع طهران عن فتوى تحريم القنبلة تحت الضغط؟</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>تشهد الساحة السياسية والإعلامية داخل إيران نقاشاً متصاعداً حول مستقبل العقيدة النووية للبلاد، وسط تساؤلات متزايدة بشأن ما إذا كانت طهران تتجه نحو مراجعة موقفها التاريخي الرافض لامتلاك السلاح النووي، في ظل الضغوط الأميركية المتواصلة وتصاعد التوترات الداخلية والإقليمية.</p>
-        <p>ولطالما استندت السياسة الرسمية الإيرانية إلى فتوى تحريم إنتاج واستخدام الأسلحة النووية، باعتبارها ركيزة أساسية للخطاب المعلن تجاه المجتمع الدولي، غير أن أصواتاً داخلية وخطابات سياسية بدأت تلوّح بإمكانية إعادة النظر في هذا التوجه، معتبرة أن معادلات الردع والتحديات الأمنية الراهنة تفرض مقاربات مختلفة.</p>
-        <p>ويرى مراقبون أن هذا الجدل يعكس حالة من التجاذب بين الحسابات الاستراتيجية والرغبة في إرسال رسائل ردع للخصوم، سواء فيما يتعلق بالملف النووي أو بمسارات التفاوض والضغوط الاقتصادية والسياسية المفروضة على طهران.</p>
-        <p>وفي المقابل، تبقى أي خطوة رسمية نحو تغيير العقيدة النووية محاطة بتداعيات إقليمية ودولية بالغة الحساسية، قد تفتح الباب أمام مرحلة جديدة من المواجهة أو التصعيد الدبلوماسي والعسكري في المنطقة.</p>
-        <p>كلمات مفتاحية مقترحة للسيو:</p>
-        <p>العقيدة النووية الإيرانية</p>
-        <p>فتوى تحريم القنبلة النووية إيران</p>
-        <p>البرنامج النووي الإيراني</p>
-        <p>الضغوط الأميركية على إيران</p>
-        <p>امتلاك إيران للسلاح النووي</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795355763844', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795355763844')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795355763844')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-default-1">
-      <h2>قصف هستيري حوثي على هدن</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>عاجل استشهاد اطفال بعدن الان بقصف حو ثي</p>
-        <p>استشهاد 3 أطفال وإصابة 7 آخرين جراء استهداف طائرة مسيّرة حوثية لهم في منطقة بئر أحمد بالعاصمة عدن</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-default-1', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-default-1')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-default-1')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-default-2">
-      <h2>مأمور صيرة يزور مجمع القطيع ويدعوا الى التبرع بالدم</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>برعاية وزير الدولة، محافظ العاصمة عدن، الأستاذ عبدالرحمن شيخ، دشّن مدير عام مديرية صيرة بالعاصمة عدن، الدكتور محمود نجيب بن جرادي، اليوم، في مجمع القطيع الصحي، حملة التبرع الطوعي بالدم، التي ينظمها المركز الوطني لنقل الدم وأبحاثه، تحت شعار: تبرعك بالدم يصنع الفرق.</p>
-        <p>وخلال التدشين، أكد بن جرادي أهمية إقامة هذه الحملة الإنسانية، لا سيما في ظل الظروف الاستثنائية التي تمر بها البلاد، وما تفرضه من ضرورة تعزيز مخزون الدم وتوفير الوحدات اللازمة لإنقاذ حياة المرضى والمصابين، مشيداً بالجهود التي يبذلها المركز الوطني لنقل الدم وأبحاثه في تنظيم الحملات التوعوية والإنسانية وتوفير الدم للمحتاجين.</p>
-        <p>ودعا بن جرادي جميع أفراد المجتمع إلى التفاعل الإيجابي مع الحملة والمبادرة إلى التبرع الطوعي بالدم، باعتباره عملاً إنسانياً نبيلاً يسهم في إنقاذ الأرواح، ويعزز قيم التكافل والتعاون المجتمعي.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-default-2', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-default-2')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-default-2')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-1795367441677">
-      <h2>انطلاق الموقع الرسمي بحلته الجديدة</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>نرحب بجميع القراء والمتابعين في منصتنا الجديدة والمستقلة بالكامل، حيث نقدم تغطية إخبارية ومقالات متنوعة بحرية واستقلالية تامة.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795367441677', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795367441677')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-1795367441677')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <div class="news-card" id="news-default-3">
-      <h2>عنوان الخبر أو المقال الثاني</h2>
-      <div class="news-date" data-date="2026-11-22">22 نوفمبر 2026</div>
-      <div class="news-body">
-        <p>يمكنك تعديل هذا النص بسهولة لإضافة أخبارك وتقاريرك اليومية مع إمكانية إضافة الصور والروابط لكل مقال.</p>
-      </div>
-      <div class="news-actions">
-        <button type="button" class="btn-read-more" onclick="toggleReadMore('news-default-3', this)">قراءة المزيد</button>
-        <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-default-3')">نسخ رابط الخبر</button>
-        <button type="button" class="btn-delete-post" onclick="deletePost('news-default-3')">حذف المنشور</button>
-      </div>
-    </div>
-
-    <!-- إعلان سفلي ضمن الواجهة -->
-    <section class="ad-wrap" aria-label="إعلان سفلي">
-      <div class="ad-box">
-        <div class="ad-title">Advertisement</div>
-        <div class="ad-size">مربع/سفلي (ضع كود AdSense/شبكتك هنا)</div>
-      </div>
-    </section>
-
-    <!-- بريد الموقع لاستقبال رسائل الزوار -->
-    <section class="site-mail-box" id="siteMailSection" aria-label="بريد الموقع">
-      <h3>بريد موقع k360 لاستقبال الرسائل</h3>
-      <p class="mail-desc">أرسل خبراً أو رسالة أو ملاحظة مباشرة إلى بريد الموقع.</p>
-      <form class="site-mail-form" id="siteMailForm" onsubmit="sendSiteMail(event)">
-        <input type="text" id="mailSenderName" placeholder="الاسم" required maxlength="80">
-        <input type="email" id="mailSenderEmail" placeholder="البريد الإلكتروني (اختياري)" maxlength="100">
-        <input type="text" id="mailSubject" placeholder="عنوان الرسالة" required maxlength="120">
-        <textarea id="mailMessage" placeholder="اكتب رسالتك هنا..." required maxlength="2000"></textarea>
-        <button type="submit" class="btn-mail-send" id="mailSendBtn">إرسال الرسالة</button>
-        <div class="mail-status" id="mailStatus"></div>
+        <button type="submit" class="k360-submit-btn" id="sendMsgBtn">إرسال</button>
+        <div class="k360-msg-status" id="contactStatusMsg"></div>
       </form>
     </section>
-
-  </div>
-
-  <footer>
-    جميع الحقوق محفوظة © 2026 - krater360
-    <button type="button" class="admin-trigger" onclick="handleAdminClick()">إدارة الموقع</button>
-  </footer>
-<script>
-  (function () {
-    const MAX_TICKER_ITEMS = 15;
-    const tickerEl = document.getElementById("tickerText");
-    if (!tickerEl) return;
-
-    const items = tickerEl.textContent
-      .split("★")
-      .map(s => s.trim())
-      .filter(Boolean);
-
-    if (items.length > MAX_TICKER_ITEMS) {
-      tickerEl.textContent = items.slice(0, MAX_TICKER_ITEMS).join("   ★   ");
-    }
-  })();
-</script>
+  </main>
 
 <script>
-const FIREBASE_DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
-const ADMIN_PASSCODE = "9270268911";
-
-// إعدادات رفع الصور من الهاتف إلى GitHub
-const GITHUB_OWNER = "krater360";
-const GITHUB_REPO = "krater360.github.io";
-const GITHUB_BRANCH = "main";
-const GITHUB_FOLDER = "images";
-const SITE_MAIL_TO = "Cojee2829@gmail.com";
-
-const TOKEN_STORAGE_KEY = "krater360_gh_token_new";
-const LEGACY_TOKEN_KEYS = ["krater360_gh_token", "github_token", "gh_token"];
-
-function clearStoredGithubTokens() {
-  localStorage.removeItem(TOKEN_STORAGE_KEY);
-  LEGACY_TOKEN_KEYS.forEach(k => localStorage.removeItem(k));
-}
-
-function cleanGithubTokenValue(rawValue) {
-  return String(rawValue || "").replace(/[^A-Za-z0-9_]/g, "").trim();
-}
-
-function getSavedGithubToken(forcePrompt = false) {
-  let token = cleanGithubTokenValue(localStorage.getItem(TOKEN_STORAGE_KEY));
-
-  if (!token || forcePrompt) {
-    const entered = prompt("أدخل رمز GitHub Token الخاص برفع الصور:", token);
-    if (entered === null) {
-      return "";
-    }
-    const clean = cleanGithubTokenValue(entered);
-    if (clean) {
-      localStorage.setItem(TOKEN_STORAGE_KEY, clean);
-      token = clean;
-    } else {
-      alert("الرمز المدخل غير صالح أو فارغ.");
-      return "";
-    }
-  }
-
-  return token;
-}
-
-function resetGithubToken() {
-  clearStoredGithubTokens();
-  const newToken = getSavedGithubToken(true);
-  if (newToken) {
-    alert("تم مسح التوكن السابق وحفظ التوكن الجديد في المتصفح بنجاح.");
-  } else {
-    alert("تم مسح رمز GitHub Token من المتصفح.");
-  }
-}
-
-function fileToBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = String(reader.result || "");
-      const parts = result.split(",");
-      resolve(parts.length > 1 ? parts[1] : "");
-    };
-    reader.onerror = err => reject(err);
-    reader.readAsDataURL(file);
-  });
-}
-
-async function uploadPhoneImage(fileInputId, targetUrlInputId, statusElId) {
-  const fileInput = document.getElementById(fileInputId);
-  const urlInput = document.getElementById(targetUrlInputId);
-  const statusEl = document.getElementById(statusElId);
-
-  if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
-    if (statusEl) {
-      statusEl.style.color = "#c62828";
-      statusEl.textContent = "اختر صورة من الهاتف أولاً.";
-    }
-    return;
-  }
-
-  const file = fileInput.files[0];
-  if (!file.type || !file.type.startsWith("image/")) {
-    if (statusEl) {
-      statusEl.style.color = "#c62828";
-      statusEl.textContent = "يُسمح برفع الصور فقط.";
-    }
-    return;
-  }
-
-  const token = getSavedGithubToken();
-  if (!token) {
-    if (statusEl) {
-      statusEl.style.color = "#c62828";
-      statusEl.textContent = "لم يتم إدخال رمز GitHub Token.";
-    }
-    return;
-  }
-
-  if (statusEl) {
-    statusEl.style.color = "#0f4e9a";
-    statusEl.textContent = "جاري رفع الصورة إلى الموقع...";
-  }
-
-  try {
-    const base64Content = await fileToBase64(file);
-    const ext = (file.name.split(".").pop() || "jpg").replace(/[^a-zA-Z0-9]/g, "") || "jpg";
-    const cleanBase = file.name
-      .replace(/\.[^/.]+$/, "")
-      .replace(/\s+/g, "-")
-      .replace(/[^a-zA-Z0-9_-]/g, "")
-      .slice(0, 30) || "img";
-    const fileName = `${Date.now()}-${cleanBase}.${ext}`;
-    const filePath = `${GITHUB_FOLDER}/${fileName}`;
-
-    const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${filePath}`;
-    const response = await fetch(apiUrl, {
-      method: "PUT",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Accept": "application/vnd.github+json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: `Upload ${fileName} from phone`,
-        content: base64Content,
-        branch: GITHUB_BRANCH
-      })
-    });
-
-    if (!response.ok) {
-      const errJson = await response.json().catch(() => ({}));
-      const errMsg = errJson.message || "فشل الرفع إلى GitHub";
-      if (response.status === 401 || /bad credentials/i.test(errMsg)) {
-        localStorage.removeItem(TOKEN_STORAGE_KEY);
-      }
-      throw new Error(errMsg);
-    }
-
-    const finalUrl = `https://${GITHUB_OWNER}.github.io/${GITHUB_FOLDER}/${fileName}`;
-    if (urlInput) {
-      urlInput.value = finalUrl;
-      urlInput.dispatchEvent(new Event("input", { bubbles: true }));
-      urlInput.dispatchEvent(new Event("change", { bubbles: true }));
-    }
-
-    if (statusEl) {
-      statusEl.style.color = "#2e7d32";
-      statusEl.textContent = "تم رفع الصورة وإدراج رابطها بنجاح.";
-    }
-  } catch (err) {
-    if (statusEl) {
-      statusEl.style.color = "#c62828";
-      statusEl.textContent = "خطأ أثناء الرفع: " + (err && err.message ? err.message : "تعذر الرفع");
-    }
-  }
-}
-
-function sendSiteMail(e) {
-  e.preventDefault();
-  const nameEl = document.getElementById("mailSenderName");
-  const emailEl = document.getElementById("mailSenderEmail");
-  const subjectEl = document.getElementById("mailSubject");
-  const msgEl = document.getElementById("mailMessage");
-  const btnEl = document.getElementById("mailSendBtn");
-  const statusEl = document.getElementById("mailStatus");
-
-  const senderName = (nameEl.value || "").trim();
-  const senderEmail = (emailEl.value || "").trim();
-  const subject = (subjectEl.value || "").trim();
-  const message = (msgEl.value || "").trim();
-
-  if (!senderName || !subject || !message) return;
-
-  btnEl.disabled = true;
-  btnEl.textContent = "جاري الإرسال...";
-  if (statusEl) {
-    statusEl.style.color = "#0f4e9a";
-    statusEl.textContent = "جاري إرسال رسالتك إلى بريد الموقع...";
-  }
-
-  const payload = {
-    name: senderName,
-    email: senderEmail || "غير محدد",
-    _subject: `رسالة من موقع k360: ${subject}`,
-    message: message,
-    _captcha: "false",
-    sentAt: new Date().toISOString()
-  };
-
-  if (FIREBASE_DB_URL) {
-    fetch(`${FIREBASE_DB_URL}/siteMessages.json`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    }).catch(() => {});
-  }
-
-  fetch(`https://formsubmit.co/ajax/${encodeURIComponent(SITE_MAIL_TO)}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify(payload)
-  })
-    .then(res => {
-      if (!res.ok) throw new Error("Mail error");
-      return res.json();
-    })
-    .then(() => {
-      nameEl.value = "";
-      emailEl.value = "";
-      subjectEl.value = "";
-      msgEl.value = "";
-      if (statusEl) {
-        statusEl.style.color = "#2e7d32";
-        statusEl.textContent = "تم إرسال رسالتك إلى بريد الموقع بنجاح.";
-      }
-    })
-    .catch(() => {
-      if (statusEl) {
-        statusEl.style.color = "#c62828";
-        statusEl.textContent = "تعذر الإرسال المباشر الآن، حاول مرة أخرى لاحقاً.";
-      }
-    })
-    .finally(() => {
-      btnEl.disabled = false;
-      btnEl.textContent = "إرسال الرسالة";
-    });
-}
+const DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
+const CACHE_POSTS_KEY = "k360_cached_posts_v1";
+const CACHE_VIEWS_KEY = "k360_cached_views_v1";
+const CACHE_ADS_KEY = "k360_cached_ads_v1";
 
 function escapeText(str) {
   return String(str || "")
@@ -1451,491 +366,72 @@ function escapeText(str) {
     .replace(/"/g, "&quot;");
 }
 
-function formatDatesToAden() {
-  document.querySelectorAll(".news-date").forEach(el => {
-    const raw = el.getAttribute("data-date");
-    const d = raw ? new Date(raw + "T12:00:00+03:00") : new Date();
-    if (!isNaN(d.getTime())) {
-      el.textContent = new Intl.DateTimeFormat("ar-YE", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        timeZone: "Asia/Aden"
-      }).format(d);
+function enableCopyProtection() {
+  document.addEventListener("contextmenu", e => {
+    if (!e.target.closest("input, textarea")) e.preventDefault();
+  });
+  document.addEventListener("copy", e => {
+    if (!e.target.closest("input, textarea")) e.preventDefault();
+  });
+  document.addEventListener("cut", e => {
+    if (!e.target.closest("input, textarea")) e.preventDefault();
+  });
+  document.addEventListener("dragstart", e => {
+    if (e.target.tagName === "IMG") e.preventDefault();
+  });
+  document.addEventListener("keydown", e => {
+    const insideField = !!e.target.closest("input, textarea");
+    if (!insideField && (e.ctrlKey || e.metaKey) && ["c", "u", "s", "a"].includes(String(e.key || "").toLowerCase())) {
+      e.preventDefault();
     }
   });
 }
 
-function renderAdSlot(slotEl, adData, fallbackLabel) {
-  if (!slotEl) return;
-  const text = (adData && adData.text) ? adData.text.trim() : "";
-  const img = (adData && adData.img) ? adData.img.trim() : "";
-  const url = (adData && adData.url) ? adData.url.trim() : "";
+function syncShareMetaForPost(post) {
+  if (!post) return;
+  const fallbackImg = "https://krater360.github.io/images/logo.png";
+  const imgUrl = (post.img && String(post.img).trim()) ? String(post.img).trim() : fallbackImg;
+  const titleText = (post.title && String(post.title).trim()) ? String(post.title).trim() : "krater360";
+  const descText = Array.isArray(post.paragraphs) && post.paragraphs.length
+    ? String(post.paragraphs[0]).trim()
+    : "تغطيات إخبارية وتحليلات مستمرة على مدار الساعة.";
 
-  if (!text && !img) {
-    slotEl.innerHTML = `<span>${escapeText(fallbackLabel)}</span>`;
-    return;
-  }
-
-  const content = `
-    ${img ? `<img src="${escapeText(img)}" alt="${escapeText(text || fallbackLabel)}">` : ""}
-    ${text ? `<span>${escapeText(text)}</span>` : ""}
-  `;
-
-  if (url) {
-    slotEl.innerHTML = `<a href="${escapeText(url)}" target="_blank" rel="noopener noreferrer">${content}</a>`;
-  } else {
-    slotEl.innerHTML = content;
-  }
-}
-
-function loadAdsConfig() {
-  const localRaw = localStorage.getItem("krater360_header_ads");
-  if (localRaw) {
-    try {
-      const parsed = JSON.parse(localRaw);
-      applyAdsToUI(parsed);
-    } catch (_) {}
-  }
-
-  if (!FIREBASE_DB_URL) return;
-  fetch(`${FIREBASE_DB_URL}/settings/headerAds.json`)
-    .then(r => r.json())
-    .then(data => {
-      if (data && typeof data === "object") {
-        localStorage.setItem("krater360_header_ads", JSON.stringify(data));
-        applyAdsToUI(data);
-      }
-    })
-    .catch(() => {});
-}
-
-function applyAdsToUI(data) {
-  const rightData = data.right || {};
-  const leftData = data.left || {};
-  renderAdSlot(document.getElementById("headerAdRight"), rightData, "إعلان يمين");
-  renderAdSlot(document.getElementById("headerAdLeft"), leftData, "إعلان يسار");
-
-  const rText = document.getElementById("adRightText");
-  const rImg = document.getElementById("adRightImg");
-  const rUrl = document.getElementById("adRightUrl");
-  const lText = document.getElementById("adLeftText");
-  const lImg = document.getElementById("adLeftImg");
-  const lUrl = document.getElementById("adLeftUrl");
-
-  if (rText) rText.value = rightData.text || "";
-  if (rImg) rImg.value = rightData.img || "";
-  if (rUrl) rUrl.value = rightData.url || "";
-  if (lText) lText.value = leftData.text || "";
-  if (lImg) lImg.value = leftData.img || "";
-  if (lUrl) lUrl.value = leftData.url || "";
-}
-
-function saveAdsConfig() {
-  const payload = {
-    right: {
-      text: document.getElementById("adRightText").value.trim(),
-      img: document.getElementById("adRightImg").value.trim(),
-      url: document.getElementById("adRightUrl").value.trim()
-    },
-    left: {
-      text: document.getElementById("adLeftText").value.trim(),
-      img: document.getElementById("adLeftImg").value.trim(),
-      url: document.getElementById("adLeftUrl").value.trim()
+  const setMeta = (selector, attr, val) => {
+    let el = document.querySelector(selector);
+    if (!el) {
+      el = document.createElement("meta");
+      if (selector.includes("property=")) el.setAttribute("property", selector.match(/property="([^"]+)"/)[1]);
+      else if (selector.includes("name=")) el.setAttribute("name", selector.match(/name="([^"]+)"/)[1]);
+      document.head.appendChild(el);
     }
+    el.setAttribute(attr, val);
   };
 
-  localStorage.setItem("krater360_header_ads", JSON.stringify(payload));
-  applyAdsToUI(payload);
+  setMeta('meta[property="og:title"]', "content", titleText);
+  setMeta('meta[property="og:description"]', "content", descText);
+  setMeta('meta[property="og:image"]', "content", imgUrl);
+  setMeta('meta[property="og:image:secure_url"]', "content", imgUrl);
+  setMeta('meta[name="twitter:image"]', "content", imgUrl);
+}
 
-  if (FIREBASE_DB_URL) {
-    fetch(`${FIREBASE_DB_URL}/settings/headerAds.json`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    })
-      .then(() => alert("تم حفظ وتحديث الإعلانات بنجاح"))
-      .catch(() => alert("تم الحفظ محلياً، تعذر المزامنة مع قاعدة البيانات"));
-  } else {
-    alert("تم حفظ وتحديث الإعلانات بنجاح");
+function copySingleLink(postId) {
+  const link = `https://krater360.github.io/?post=${encodeURIComponent(postId)}`;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(link).then(() => alert("تم نسخ رابط الخبر"));
   }
 }
 
-function getDeletedSet() {
-  const localDeleted = JSON.parse(localStorage.getItem("krater360_deleted_posts") || "[]");
-  return new Set(Array.isArray(localDeleted) ? localDeleted : Object.keys(localDeleted || {}));
-}
+function recordPostView(postId) {
+  if (!postId) return;
+  const viewedKey = "k360_viewed_" + postId;
+  if (sessionStorage.getItem(viewedKey)) return;
+  sessionStorage.setItem(viewedKey, "1");
 
-function applyDeletedPosts(deletedIds) {
-  const set = new Set(Array.isArray(deletedIds) ? deletedIds : Object.keys(deletedIds || {}));
-  document.querySelectorAll(".news-card").forEach(card => {
-    card.style.display = set.has(card.id) ? "none" : "";
-  });
-  renderAdminPostsOverview();
-}
-
-function loadDeletedPosts() {
-  const localDeleted = JSON.parse(localStorage.getItem("krater360_deleted_posts") || "[]");
-  applyDeletedPosts(localDeleted);
-
-  if (!FIREBASE_DB_URL) return;
-  fetch(`${FIREBASE_DB_URL}/settings/deletedPosts.json`)
-    .then(r => r.json())
-    .then(data => {
-      if (data) {
-        const ids = Array.isArray(data) ? data : Object.keys(data);
-        localStorage.setItem("krater360_deleted_posts", JSON.stringify(ids));
-        applyDeletedPosts(ids);
-      }
-    })
-    .catch(() => {});
-}
-
-function deletePost(newsId) {
-  if (!newsId) return;
-  if (!confirm("هل أنت متأكد من حذف هذا المنشور من الموقع؟")) return;
-
-  const current = JSON.parse(localStorage.getItem("krater360_deleted_posts") || "[]");
-  if (!current.includes(newsId)) current.push(newsId);
-  localStorage.setItem("krater360_deleted_posts", JSON.stringify(current));
-  applyDeletedPosts(current);
-
-  if (FIREBASE_DB_URL) {
-    fetch(`${FIREBASE_DB_URL}/settings/deletedPosts/${encodeURIComponent(newsId)}.json`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(true)
-    }).catch(() => {});
-  }
-}
-
-function restoreSinglePost(newsId) {
-  if (!newsId) return;
-  const current = JSON.parse(localStorage.getItem("krater360_deleted_posts") || "[]")
-    .filter(id => id !== newsId);
-  localStorage.setItem("krater360_deleted_posts", JSON.stringify(current));
-  applyDeletedPosts(current);
-
-  if (FIREBASE_DB_URL) {
-    fetch(`${FIREBASE_DB_URL}/settings/deletedPosts/${encodeURIComponent(newsId)}.json`, {
-      method: "DELETE"
-    }).catch(() => {});
-  }
-}
-
-function restoreAllPosts() {
-  if (!confirm("استعادة جميع المنشورات المخفية؟")) return;
-  localStorage.removeItem("krater360_deleted_posts");
-  applyDeletedPosts([]);
-  if (FIREBASE_DB_URL) {
-    fetch(`${FIREBASE_DB_URL}/settings/deletedPosts.json`, { method: "DELETE" }).catch(() => {});
-  }
-  alert("تمت استعادة المنشورات");
-}
-
-function renderAdminPostsOverview() {
-  const listEl = document.getElementById("adminPostsOverviewList");
-  if (!listEl) return;
-
-  const deletedSet = getDeletedSet();
-  const cards = Array.from(document.querySelectorAll(".news-card"));
-  if (!cards.length) {
-    listEl.innerHTML = `<p class="post-overview-meta">لا توجد منشورات حالياً.</p>`;
-    return;
-  }
-
-  const fetchViewsPromise = FIREBASE_DB_URL
-    ? fetch(`${FIREBASE_DB_URL}/views.json`).then(r => r.json()).catch(() => ({}))
-    : Promise.resolve({});
-
-  fetchViewsPromise.then(viewsMap => {
-    const viewsObj = (viewsMap && typeof viewsMap === "object") ? viewsMap : {};
-    listEl.innerHTML = cards.map((card, idx) => {
-      const id = card.id || ("news-item-" + idx);
-      const title = (card.querySelector("h2")?.textContent || "منشور بدون عنوان").trim();
-      const dateText = (card.querySelector(".news-date")?.textContent || "").trim();
-      const viewsCount = Number(viewsObj[id]) || 0;
-      const isHidden = deletedSet.has(id);
-
-      return `
-        <div class="post-overview-row">
-          <div class="post-overview-title">${escapeText(title)}</div>
-          <div class="post-overview-meta">
-            ${dateText ? `${escapeText(dateText)} • ` : ""}
-            المشاهدات: <strong>${viewsCount}</strong> •
-            الحالة: <strong>${isHidden ? "مخفي" : "ظاهر"}</strong>
-          </div>
-          <div class="post-overview-btns">
-            <button type="button" class="btn-mini btn-mini-view" onclick="jumpToPostFromAdmin('${escapeText(id)}')">عرض</button>
-            ${
-              isHidden
-                ? `<button type="button" class="btn-mini btn-mini-show" onclick="restoreSinglePost('${escapeText(id)}')">إظهار</button>`
-                : `<button type="button" class="btn-mini btn-mini-hide" onclick="deletePost('${escapeText(id)}')">إخفاء</button>`
-            }
-          </div>
-        </div>
-      `;
-    }).join("");
-  });
-}
-
-function jumpToPostFromAdmin(newsId) {
-  const card = document.getElementById(newsId);
-  if (!card) return;
-  restoreSinglePost(newsId);
-  card.style.display = "";
-  const btn = card.querySelector(".btn-read-more");
-  const bodyEl = card.querySelector(".news-body");
-  if (bodyEl && !bodyEl.classList.contains("open")) {
-    toggleReadMore(newsId, btn);
-  }
-  card.scrollIntoView({ behavior: "smooth", block: "center" });
-}
-
-function toggleAdminMode(enable) {
-  const active = Boolean(enable);
-  document.body.classList.toggle("admin-mode", active);
-  if (active) {
-    renderAdminPostsOverview();
-  }
-}
-
-function handleAdminClick() {
-  if (document.body.classList.contains("admin-mode")) {
-    toggleAdminMode(false);
-    return;
-  }
-  const code = prompt("أدخل رمز الإدارة:");
-  if (code === ADMIN_PASSCODE) {
-    toggleAdminMode(true);
-  } else if (code !== null) {
-    alert("رمز الإدارة غير صحيح");
-  }
-}
-
-function getAdenTodayISO() {
-  try {
-    const parts = new Intl.DateTimeFormat("en-CA", {
-      timeZone: "Asia/Aden",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit"
-    }).formatToParts(new Date());
-    const y = parts.find(p => p.type === "year")?.value || "2026";
-    const m = parts.find(p => p.type === "month")?.value || "11";
-    const d = parts.find(p => p.type === "day")?.value || "24";
-    return `${y}-${m}-${d}`;
-  } catch (_) {
-    return new Date().toISOString().slice(0, 10);
-  }
-}
-
-function publishNewPost() {
-  const titleEl = document.getElementById("newPostTitle");
-  const imgEl = document.getElementById("newPostImg");
-  const dateEl = document.getElementById("newPostDate");
-  const bodyEl = document.getElementById("newPostBody");
-
-  const title = (titleEl.value || "").trim();
-  const img = (imgEl.value || "").trim();
-  const rawDate = (dateEl.value || "").trim() || getAdenTodayISO();
-  const rawBody = (bodyEl.value || "").trim();
-
-  if (!title || !rawBody) {
-    alert("يرجى إدخال عنوان الخبر ونص الخبر.");
-    return;
-  }
-
-  const id = "news-" + Date.now();
-  const paragraphs = rawBody
-    .split(/\n+/)
-    .map(p => p.trim())
-    .filter(Boolean);
-
-  const postData = {
-    id: id,
-    title: title,
-    img: img,
-    date: rawDate,
-    paragraphs: paragraphs,
-    createdAt: Date.now()
-  };
-
-  if (!FIREBASE_DB_URL) {
-    renderDynamicPost(postData, true);
-    formatDatesToAden();
-    renderAdminPostsOverview();
-    titleEl.value = "";
-    imgEl.value = "";
-    dateEl.value = getAdenTodayISO();
-    bodyEl.value = "";
-    alert("تمت إضافة الخبر في مقدمة الموقع.");
-    return;
-  }
-
-  fetch(`${FIREBASE_DB_URL}/posts/${encodeURIComponent(id)}.json`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(postData)
-  })
-    .then(r => {
-      if (!r.ok) throw new Error("Failed");
-      renderDynamicPost(postData, true);
-      formatDatesToAden();
-      renderAdminPostsOverview();
-      titleEl.value = "";
-      imgEl.value = "";
-      dateEl.value = getAdenTodayISO();
-      bodyEl.value = "";
-      alert("تم نشر الخبر في مقدمة الموقع وحفظه في قاعدة البيانات بنجاح.");
-    })
-    .catch(() => {
-      alert("تعذر نشر الخبر، تحقق من اتصال الإنترنت وقواعد Firebase.");
-    });
-}
-
-// يضع الخبر الجديد في أعلى قائمة الأخبار (أول خبر في الموقع)
-function renderDynamicPost(post, prepend = true) {
-  const container = document.querySelector(".container");
-  if (!container || !post || !post.id) return;
-  if (document.getElementById(post.id)) return;
-
-  const card = document.createElement("div");
-  card.className = "news-card";
-  card.id = post.id;
-
-  const paragraphsHtml = (Array.isArray(post.paragraphs) ? post.paragraphs : [post.body || ""])
-    .filter(Boolean)
-    .map(p => `<p>${escapeText(p)}</p>`)
-    .join("");
-
-  card.innerHTML = `
-    ${post.img ? `<img src="${escapeText(post.img)}" alt="${escapeText(post.title)}" loading="lazy" style="width:100%; max-height:420px; object-fit:cover; border-radius:6px; margin-bottom:12px;">` : ""}
-    <h2>${escapeText(post.title)}</h2>
-    <div class="news-date" data-date="${escapeText(post.date || getAdenTodayISO())}"></div>
-    <div class="news-body">${paragraphsHtml}</div>
-    <div class="news-actions">
-      <button type="button" class="btn-read-more" onclick="toggleReadMore('${escapeText(post.id)}', this)">قراءة المزيد</button>
-      <button type="button" class="btn-copy-link" onclick="copyNewsLink('${escapeText(post.id)}')">نسخ رابط الخبر</button>
-      <button type="button" class="btn-delete-post" onclick="deletePost('${escapeText(post.id)}')">حذف المنشور</button>
-    </div>
-  `;
-
-  const firstNewsCard = container.querySelector(".news-card");
-  if (prepend && firstNewsCard) {
-    container.insertBefore(card, firstNewsCard);
-  } else if (prepend && container.firstChild) {
-    container.insertBefore(card, container.firstChild);
-  } else {
-    container.appendChild(card);
-  }
-}
-
-function loadFirebasePosts() {
-  if (!FIREBASE_DB_URL) return;
-  fetch(`${FIREBASE_DB_URL}/posts.json`)
-    .then(r => r.json())
-    .then(data => {
-      if (!data || typeof data !== "object") return;
-      const list = Object.values(data).sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
-      list.forEach(post => renderDynamicPost(post, true));
-      formatDatesToAden();
-      loadDeletedPosts();
-      if (document.body.classList.contains("admin-mode")) {
-        renderAdminPostsOverview();
-      }
-    })
-    .catch(() => {});
-}
-
-function switchAdminTab(tabName) {
-  const postsBox = document.getElementById("adminPostsOverviewBox");
-  const messagesSection = document.getElementById("adminMessagesSection");
-  const postsBtn = document.getElementById("tabPostsBtn");
-  const messagesBtn = document.getElementById("tabMessagesBtn");
-
-  const isMessages = tabName === "messages";
-
-  if (postsBox) postsBox.style.display = isMessages ? "none" : "block";
-  if (messagesSection) messagesSection.style.display = isMessages ? "block" : "none";
-
-  if (postsBtn) {
-    postsBtn.style.background = isMessages ? "#e2e8f0" : "#0f3460";
-    postsBtn.style.color = isMessages ? "#1e293b" : "#ffffff";
-  }
-  if (messagesBtn) {
-    messagesBtn.style.background = isMessages ? "#0f3460" : "#e2e8f0";
-    messagesBtn.style.color = isMessages ? "#ffffff" : "#1e293b";
-  }
-
-  if (isMessages) {
-    loadMessagesFromGitHub();
-  } else {
-    renderAdminPostsOverview();
-  }
-}
-
-function loadMessagesFromGitHub() {
-  const container = document.getElementById("messagesListContainer");
-  const countEl = document.getElementById("msgCount");
-  if (!container) return;
-
-  if (!FIREBASE_DB_URL) {
-    container.innerHTML = `<p style="text-align:center; color:#64748b; font-size:13px;">قاعدة البيانات غير مضبوطة.</p>`;
-    return;
-  }
-
-  container.innerHTML = `<p style="text-align:center; color:#0f4e9a; font-size:13px;">جاري تحميل الرسائل...</p>`;
-
-  fetch(`${FIREBASE_DB_URL}/siteMessages.json`)
-    .then(r => r.json())
-    .then(data => {
-      if (!data || typeof data !== "object") {
-        if (countEl) countEl.textContent = "0";
-        container.innerHTML = `<p style="text-align:center; color:#64748b; font-size:13px;">لا توجد رسائل واردة حالياً.</p>`;
-        return;
-      }
-
-      const items = Object.entries(data)
-        .map(([id, val]) => ({ id, ...(val || {}) }))
-        .sort((a, b) => new Date(b.sentAt || 0) - new Date(a.sentAt || 0));
-
-      if (countEl) countEl.textContent = String(items.length);
-
-      container.innerHTML = items.map(msg => {
-        const dateStr = msg.sentAt
-          ? new Date(msg.sentAt).toLocaleString("ar-YE", { timeZone: "Asia/Aden" })
-          : "";
-        return `
-          <div style="background:#ffffff; border:1px solid #cbd5e1; border-right:4px solid #0f4e9a; border-radius:6px; padding:10px; margin-bottom:10px; font-size:13px;">
-            <div style="font-weight:bold; color:#0f172a; margin-bottom:4px;">
-              ${escapeText(msg._subject || "رسالة زائر")} — <span style="color:#0f4e9a;">${escapeText(msg.name || "زائر")}</span>
-            </div>
-            <div style="font-size:11px; color:#64748b; margin-bottom:6px;">
-              ${escapeText(msg.email || "")}${dateStr ? ` • ${escapeText(dateStr)}` : ""}
-            </div>
-            <p style="margin:0; color:#1e293b; white-space:pre-line; line-height:1.5;">${escapeText(msg.message || "")}</p>
-          </div>
-        `;
-      }).join("");
-    })
-    .catch(() => {
-      container.innerHTML = `<p style="text-align:center; color:#c62828; font-size:13px;">تعذر تحميل الرسائل الآن.</p>`;
-    });
-}
-
-function recordNewsView(newsId) {
-  if (!FIREBASE_DB_URL || !newsId) return;
-  const seenKey = "krater360_v_" + newsId;
-  if (sessionStorage.getItem(seenKey)) return;
-  sessionStorage.setItem(seenKey, "1");
-
-  const url = `${FIREBASE_DB_URL}/views/${encodeURIComponent(newsId)}.json`;
-  fetch(url)
+  fetch(`${DB_URL}/views/${encodeURIComponent(postId)}.json`)
     .then(r => r.json())
     .then(current => {
       const nextVal = (Number(current) || 0) + 1;
-      return fetch(url, {
+      return fetch(`${DB_URL}/views/${encodeURIComponent(postId)}.json`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(nextVal)
@@ -1943,250 +439,193 @@ function recordNewsView(newsId) {
     })
     .catch(() => {});
 }
-
-function ensureCommentsBox(card, newsId) {
-  let box = card.querySelector(".comments-section");
-  if (box) return box;
-
-  box = document.createElement("div");
-  box.className = "comments-section";
-  box.innerHTML = `
-    <h3>تعليقات القرّاء</h3>
-    <form class="comment-form" onsubmit="submitComment(event, '${newsId}')">
-      <input type="text" name="author" placeholder="الاسم (اختياري)" maxlength="50">
-      <textarea name="comment" placeholder="اكتب تعليقك هنا..." required maxlength="500"></textarea>
-      <button type="submit" class="btn-comment-submit">إرسال التعليق</button>
-    </form>
-    <div class="comments-list" id="comments-${newsId}">جاري تحميل التعليقات...</div>
-  `;
-  card.appendChild(box);
-  loadComments(newsId);
-  return box;
 }
 
-function loadComments(newsId) {
-  const listEl = document.getElementById("comments-" + newsId);
-  if (!listEl || !FIREBASE_DB_URL) return;
+function renderTicker(list) {
+  const tickerEl = document.getElementById("newsTickerMove");
+  if (!tickerEl) return;
+  if (!list || !list.length) {
+    tickerEl.textContent = "أهلاً بكم في منصة krater360 الإخبارية";
+    return;
+  }
+  tickerEl.innerHTML = list.slice(0, 10).map(p => {
+    const id = encodeURIComponent(p.id || "");
+    const title = escapeText(p.title || "خبر");
+    return `<a href="?post=${id}">• ${title}</a>`;
+  }).join("");
+}
 
-  fetch(`${FIREBASE_DB_URL}/comments/${encodeURIComponent(newsId)}.json`)
-    .then(r => r.json())
-    .then(data => {
-      if (!data) {
-        listEl.innerHTML = `<p class="comment-text" style="color:#64748b;">لا توجد تعليقات بعد. كن أول من يعلق.</p>`;
-        return;
-      }
-      const items = Object.values(data).sort((a, b) => (b.time || 0) - (a.time || 0));
-      listEl.innerHTML = items.map(item => `
-        <div class="comment-item">
-          <div class="comment-meta">${escapeText(item.author || "زائر")} • ${escapeText(item.dateLabel || "")}</div>
-          <p class="comment-text">${escapeText(item.text || "")}</p>
+function renderAds(adsData) {
+  const box = document.getElementById("headerAdsBox");
+  if (!box || !adsData) return;
+  const slots = [adsData.right, adsData.left].filter(a => a && (a.text || a.img));
+  if (!slots.length) {
+    box.style.display = "none";
+    return;
+  }
+  box.style.display = "grid";
+  box.innerHTML = slots.map(ad => {
+    const imgHtml = ad.img ? `<img src="${escapeText(ad.img)}" alt="" loading="lazy">` : "";
+    const textHtml = `<span>${escapeText(ad.text || "")}</span>`;
+    const inner = ad.url
+      ? `<a href="${escapeText(ad.url)}" target="_blank" rel="noopener noreferrer">${imgHtml}${textHtml}</a>`
+      : `<div>${imgHtml}${textHtml}</div>`;
+    return `<div class="k360-ad-card">${inner}</div>`;
+  }).join("");
+}
+
+function renderNews(postsData, viewsData) {
+  const feedEl = document.getElementById("newsFeed");
+  if (!feedEl) return;
+
+  if (!postsData || typeof postsData !== "object") {
+    renderTicker([]);
+    feedEl.innerHTML = "<p style='text-align:center; color:#64748b;'>لا توجد أخبار منشورة حالياً.</p>";
+    return;
+  }
+
+  const viewsMap = (viewsData && typeof viewsData === "object") ? viewsData : {};
+  const params = new URLSearchParams(window.location.search);
+  const targetPostId = params.get("post");
+
+  let list = Object.entries(postsData)
+    .map(([key, val]) => ({ ...(val || {}), id: (val && val.id) || key }))
+    .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+  renderTicker(list);
+
+  let displayList = list;
+  if (targetPostId && postsData[targetPostId]) {
+    displayList = [{ ...(postsData[targetPostId] || {}), id: targetPostId }];
+    syncShareMetaForPost(displayList[0]);
+    recordPostView(targetPostId);
+  } else if (list[0]) {
+    syncShareMetaForPost(list[0]);
+  }
+
+  feedEl.innerHTML = displayList.map(post => {
+    const id = post.id || "";
+    const title = escapeText(post.title || "بدون عنوان");
+    const date = escapeText(post.date || "");
+    const views = Number(viewsMap[id]) || 0;
+    const imgHtml = (post.img && String(post.img).trim())
+      ? `<div class="k360-news-media"><img src="${escapeText(post.img)}" alt="${title}" loading="lazy"></div>`
+      : "";
+    const paragraphs = Array.isArray(post.paragraphs)
+      ? post.paragraphs
+      : String(post.body || "").split(/\n+/).filter(Boolean);
+    const bodyHtml = paragraphs.map(p => `<p>${escapeText(p)}</p>`).join("");
+
+    return `
+      <article class="k360-news-card" id="${escapeText(id)}">
+        <div class="k360-news-topbar">
+          <span class="k360-news-badge">krater360</span>
+          <span>${date}</span>
         </div>
-      `).join("");
-    })
-    .catch(() => {
-      listEl.innerHTML = `<p class="comment-text" style="color:#64748b;">تعذر تحميل التعليقات حالياً.</p>`;
-    });
+        <div class="k360-news-body">
+          <h2 class="k360-news-title">${title}</h2>
+          ${imgHtml}
+          <div class="k360-news-text">${bodyHtml}</div>
+        </div>
+        <div class="k360-news-footer">
+          <span>المشاهدات: <strong>${views}</strong></span>
+          <button type="button" class="k360-copy-mini" onclick="copySingleLink('${escapeText(id)}')">نسخ الرابط</button>
+        </div>
+      </article>
+    `;
+  }).join("");
 }
 
-function submitComment(e, newsId) {
-  e.preventDefault();
-  if (!FIREBASE_DB_URL) return;
+function loadLiveFeed(showToast = false) {
+  const cachedPosts = JSON.parse(localStorage.getItem(CACHE_POSTS_KEY) || "null");
+  const cachedViews = JSON.parse(localStorage.getItem(CACHE_VIEWS_KEY) || "null");
+  const cachedAds = JSON.parse(localStorage.getItem(CACHE_ADS_KEY) || "null");
 
-  const form = e.target;
-  const authorInput = form.querySelector('input[name="author"]');
-  const textInput = form.querySelector('textarea[name="comment"]');
-  const submitBtn = form.querySelector('button[type="submit"]');
+  if (cachedAds) renderAds(cachedAds);
+  if (cachedPosts) renderNews(cachedPosts, cachedViews);
 
-  const author = (authorInput.value || "").trim() || "زائر";
-  const text = (textInput.value || "").trim();
-  if (!text) return;
+  Promise.all([
+    fetch(`${DB_URL}/posts.json`).then(r => r.json()).catch(() => cachedPosts),
+    fetch(`${DB_URL}/views.json`).then(r => r.json()).catch(() => cachedViews),
+    fetch(`${DB_URL}/settings/headerAds.json`).then(r => r.json()).catch(() => cachedAds)
+  ]).then(([postsData, viewsData, adsData]) => {
+    if (postsData) localStorage.setItem(CACHE_POSTS_KEY, JSON.stringify(postsData));
+    if (viewsData) localStorage.setItem(CACHE_VIEWS_KEY, JSON.stringify(viewsData));
+    if (adsData) localStorage.setItem(CACHE_ADS_KEY, JSON.stringify(adsData));
+    renderAds(adsData);
+    renderNews(postsData, viewsData);
+    if (showToast) alert("تم تحديث الأخبار");
+  });
+}
 
-  submitBtn.disabled = true;
-  submitBtn.textContent = "جاري الإرسال...";
+function validateKnownGmail(rawEmail) {
+  const email = String(rawEmail || "").trim().toLowerCase();
+  if (!email.endsWith("@gmail.com")) return { ok: false, reason: "يُسمح فقط ببريد @gmail.com." };
+  const parts = email.split("@");
+  if (parts.length !== 2) return { ok: false, reason: "صيغة البريد غير صحيحة." };
+  const localPart = parts[0];
+  if (!/^[a-z0-9._-]+$/.test(localPart)) return { ok: false, reason: "البريد يحتوي على رموز غير مسموحة." };
+  if (localPart.startsWith(".") || localPart.endsWith(".") || localPart.includes("..")) return { ok: false, reason: "تنسيق النقاط غير صحيح." };
+  if (localPart.length < 4) return { ok: false, reason: "البريد قصير جداً." };
+  if (/^\d+$/.test(localPart)) return { ok: false, reason: "لا يُقبل بريد أرقام فقط." };
+  if (/(.)\1{3,}/.test(localPart)) return { ok: false, reason: "البريد يبدو عشوائياً." };
+  const blocked = ["test", "fake", "spam", "temp", "dummy", "asdf", "qwerty", "abc", "abcd", "1234", "12345", "noreply", "no-reply", "admin", "user"];
+  if (blocked.some(w => localPart === w || localPart.includes(w))) return { ok: false, reason: "يرجى استخدام بريد Gmail معروف." };
+  return { ok: true, email };
+}
 
-  const now = new Date();
-  const payload = {
-    author: author,
-    text: text,
-    time: now.getTime(),
-    dateLabel: now.toLocaleDateString("ar-YE", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Aden" })
-  };
+function submitValidatedMessage(event) {
+  event.preventDefault();
+  const nameEl = document.getElementById("senderName");
+  const emailEl = document.getElementById("senderEmail");
+  const subjectEl = document.getElementById("senderSubject");
+  const messageEl = document.getElementById("senderMessage");
+  const statusEl = document.getElementById("contactStatusMsg");
+  const btnEl = document.getElementById("sendMsgBtn");
 
-  fetch(`${FIREBASE_DB_URL}/comments/${encodeURIComponent(newsId)}.json`, {
+  const name = (nameEl.value || "").trim();
+  const subject = (subjectEl.value || "").trim() || "رسالة من موقع k360";
+  const message = (messageEl.value || "").trim();
+  const check = validateKnownGmail(emailEl.value);
+
+  if (!check.ok) {
+    statusEl.style.color = "#c62828";
+    statusEl.textContent = check.reason;
+    return;
+  }
+  if (name.length < 3 || message.length < 5) {
+    statusEl.style.color = "#c62828";
+    statusEl.textContent = "يرجى إدخال اسم واضح ونص لا يقل عن 5 أحرف.";
+    return;
+  }
+
+  btnEl.disabled = true;
+  statusEl.style.color = "#0f4e9a";
+  statusEl.textContent = "جاري الإرسال...";
+
+  fetch(`${DB_URL}/siteMessages.json`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
+    body: JSON.stringify({ name, email: check.email, _subject: subject, message, sentAt: new Date().toISOString() })
   })
     .then(r => {
-      if (!r.ok) throw new Error("Failed");
-      textInput.value = "";
-      loadComments(newsId);
+      if (!r.ok) throw new Error();
+      nameEl.value = "";
+      emailEl.value = "";
+      subjectEl.value = "";
+      messageEl.value = "";
+      statusEl.style.color = "#2e7d32";
+      statusEl.textContent = "تم إرسال رسالتك بنجاح.";
     })
     .catch(() => {
-      alert("تعذر إرسال التعليق، حاول مرة أخرى.");
+      statusEl.style.color = "#c62828";
+      statusEl.textContent = "تعذر الإرسال حالياً.";
     })
-    .finally(() => {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "إرسال التعليق";
-    });
+    .finally(() => { btnEl.disabled = false; });
 }
 
-function toggleReadMore(newsId, btnEl) {
-  const card = document.getElementById(newsId);
-  if (!card) return;
-  const bodyEl = card.querySelector(".news-body");
-  if (!bodyEl) return;
-
-  const isOpen = bodyEl.classList.toggle("open");
-  if (isOpen) {
-    if (btnEl) btnEl.textContent = "إخفاء التفاصيل";
-    ensureCommentsBox(card, newsId);
-    recordNewsView(newsId);
-  } else {
-    if (btnEl) btnEl.textContent = "قراءة المزيد";
-  }
-}
-
-function copyNewsLink(id) {
-  const url = window.location.origin + window.location.pathname + "#" + id;
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(url).then(() => alert("تم نسخ رابط الخبر"));
-  } else {
-    const temp = document.createElement("input");
-    temp.value = url;
-    document.body.appendChild(temp);
-    temp.select();
-    document.execCommand("copy");
-    document.body.removeChild(temp);
-    alert("تم نسخ رابط الخبر");
-  }
-}
-
-window.addEventListener("DOMContentLoaded", function () {
-  LEGACY_TOKEN_KEYS.forEach(k => localStorage.removeItem(k));
-
-  const dateInput = document.getElementById("newPostDate");
-  if (dateInput) {
-    dateInput.value = getAdenTodayISO();
-  }
-
-  formatDatesToAden();
-  loadAdsConfig();
-  loadDeletedPosts();
-  loadFirebasePosts();
-
-  if (window.location.hash) {
-    const targetId = window.location.hash.slice(1);
-    const card = document.getElementById(targetId);
-    if (card) {
-      const btn = card.querySelector(".btn-read-more");
-      toggleReadMore(targetId, btn);
-    }
-  }
-});
+enableCopyProtection();
+loadLiveFeed(false);
 </script>
-<script>
-(function () {
-  function fixAllNewsCards() {
-    document.querySelectorAll(".news-card").forEach(function (card, index) {
-      if (!card.id) card.id = "news-item-" + index;
-
-      var bodyEl = card.querySelector(".news-body");
-      var actionsEl = card.querySelector(".news-actions");
-
-      if (!bodyEl) {
-        var extraPs = [];
-        Array.prototype.slice.call(card.children).forEach(function (child) {
-          if (child.tagName === "P") extraPs.push(child);
-        });
-        if (extraPs.length > 0) {
-          bodyEl = document.createElement("div");
-          bodyEl.className = "news-body";
-          extraPs.forEach(function (p) {
-            bodyEl.appendChild(p);
-          });
-          card.appendChild(bodyEl);
-        }
-      }
-
-      if (!actionsEl) {
-        actionsEl = document.createElement("div");
-        actionsEl.className = "news-actions";
-        card.appendChild(actionsEl);
-      }
-
-      var oldInlineBtn = card.querySelector(":scope > button");
-      if (oldInlineBtn && !actionsEl.contains(oldInlineBtn)) {
-        actionsEl.appendChild(oldInlineBtn);
-      }
-
-      if (bodyEl && !actionsEl.querySelector(".btn-read-more")) {
-        var btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "btn-read-more";
-        btn.textContent = bodyEl.classList.contains("open") ? "إخفاء التفاصيل" : "قراءة المزيد";
-        btn.addEventListener("click", function () {
-          var opened = bodyEl.classList.toggle("open");
-          btn.textContent = opened ? "إخفاء التفاصيل" : "قراءة المزيد";
-          if (opened && typeof ensureCommentsBox === "function") {
-            ensureCommentsBox(card, card.id);
-          }
-          if (opened && typeof recordNewsView === "function") {
-            recordNewsView(card.id);
-          }
-        });
-        actionsEl.insertBefore(btn, actionsEl.firstChild);
-      }
-    });
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () {
-      fixAllNewsCards();
-      setTimeout(fixAllNewsCards, 600);
-      setTimeout(fixAllNewsCards, 1600);
-    });
-  } else {
-    fixAllNewsCards();
-    setTimeout(fixAllNewsCards, 600);
-    setTimeout(fixAllNewsCards, 1600);
-  }
-})();
-</script>
-<script>
-(function () {
-  function runTicker() {
-    var el = document.getElementById("tickerText");
-    if (!el) return;
-
-    var titles = Array.prototype.slice.call(document.querySelectorAll(".news-card"))
-      .filter(function (c) { return c.style.display !== "none"; })
-      .map(function (c) {
-        var h2 = c.querySelector("h2");
-        return h2 ? h2.textContent.trim() : "";
-      })
-      .filter(Boolean);
-
-    var oldItems = el.textContent.split("★").map(function (s) { return s.trim(); }).filter(Boolean);
-    var all = [];
-    var seen = {};
-
-    titles.concat(oldItems).forEach(function (t) {
-      if (!seen[t]) {
-        seen[t] = true;
-        all.push(t);
-      }
-    });
-
-    if (all.length) {
-      el.textContent = all.slice(0, 15).join("   ★   ");
-    }
-  }
-
-  setInterval(runTicker, 1500);
-  window.addEventListener("load", runTicker);
-})();
-</script>
-
-<script data-cfasync="false" src="https://bicea.org/14/371c3c390b56250327e975f32d1dab1c"></script>
-</body></html>
+</body>
+</html>
