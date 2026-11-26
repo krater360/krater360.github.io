@@ -1,199 +1,274 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+  <meta property="og:site_name" content="K360" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="K360 | موقع الأخبار والتحليلات" />
+  <meta property="og:description" content="تغطيات إخبارية وتحليلات مستمرة على مدار الساعة." />
+  <meta property="og:image" content="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg" />
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>krater360 | تغطيات إخبارية وتحليلات</title>
-  <meta name="description" content="تغطيات إخبارية وتحليلات مستمرة على مدار الساعة عبر منصة krater360.">
+  <title>krater360 | موقع الأخبار والتحليلات والمقالات المستقلة</title>
+  <meta name="description" content="موقع krater360 الإخباري: تغطية مستمرة للأخبار المحلية والعربية والدولية، التحليلات، والمقالات المستقلة.">
+  <meta name="keywords" content="krater360, أخبار, مقالات مستقلة, تحليلات, أخبار عاجلة, عدن, لحج, حضرموت">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://krater360.github.io/">
+  <link rel="icon" type="image/svg+xml" href="https://krater360.github.io/favicon.svg">
   <meta property="og:locale" content="ar_AR">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="krater360">
   <meta property="og:url" content="https://krater360.github.io/">
-  <meta property="og:title" content="krater360 | تغطيات إخبارية وتحليلات">
-  <meta property="og:description" content="تغطيات إخبارية وتحليلات مستمرة على مدار الساعة.">
-  <meta property="og:image" content="https://krater360.github.io/images/logo.png">
-  <meta property="og:image:secure_url" content="https://krater360.github.io/images/logo.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://krater360.github.io/images/logo.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "NewsMediaOrganization",
+        "@id": "https://krater360.github.io/#organization",
+        "name": "krater360",
+        "alternateName": "موقع krater360 الإخباري",
+        "url": "https://krater360.github.io/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://krater360.github.io/images/1795374007910-1-1795373674163.jpg"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://krater360.github.io/#website",
+        "url": "https://krater360.github.io/",
+        "name": "krater360",
+        "inLanguage": "ar",
+        "publisher": {
+          "@id": "https://krater360.github.io/#organization"
+        }
+      }
+    ]
+  }
+  </script>
   <style>
-    * { box-sizing: border-box; }
-    body.k360-protected {
-      margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-      background: #eef3fb;
-      color: #0f172a;
-      -webkit-user-select: none;
-      user-select: none;
-      -webkit-touch-callout: none;
-    }
-    body.k360-protected input,
-    body.k360-protected textarea {
-      -webkit-user-select: text;
-      user-select: text;
-    }
-    img {
-      -webkit-user-drag: none;
-      user-drag: none;
-      pointer-events: auto;
+    :root{
+      --blue:#0f4e9a;
+      --blue2:#1f5fa8;
+      --red:#c62828;
+      --card:#ffffff;
+      --text:#ffffff;
+      --muted:#d7e6ff;
+      --shadow:0 10px 25px rgba(0,0,0,.15);
+      --radius:12px;
+      --ink:#0f172a;
+      --dash: rgba(15,78,154,.45);
     }
 
-    .k360-hero {
-      background: linear-gradient(135deg, #0b3c8a 0%, #1565c0 65%, #0d47a1 100%);
-      color: #ffffff;
-      padding: 18px 14px 20px;
-      border-bottom: 4px solid #d32f2f;
-      box-shadow: 0 6px 20px rgba(11, 60, 138, 0.22);
+    *{ box-sizing:border-box; }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f5ff;
+      color: #222;
     }
-    .k360-wrap {
-      max-width: 900px;
+
+    /* الواجهة العلوية وشعار k360 */
+    .top-hero{
+      background: linear-gradient(180deg, var(--blue), var(--blue2));
+      padding: 20px 14px 24px;
+      text-align: center;
+    }
+
+    .hero-brand-wrap{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .brand{
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: .5px;
+      margin: 0;
+      font-size: 36px;
+      line-height: 1.15;
+      text-shadow: 0 3px 10px rgba(0,0,0,.25);
+    }
+
+    .subtitle{
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 14px;
+      opacity: .95;
+    }
+
+    .actions{
+      max-width: 420px;
       margin: 0 auto;
       padding: 0 12px;
     }
-    .k360-brand-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-    .k360-brand-title {
-      margin: 0;
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: 0.2px;
-    }
-    .k360-brand-sub {
-      margin: 3px 0 0;
-      font-size: 12px;
-      color: #e3f2fd;
-    }
-    .k360-top-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .k360-chip-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      color: #ffffff;
-      text-decoration: none;
-      padding: 7px 13px;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .k360-chip-btn:hover { background: rgba(255, 255, 255, 0.26); }
 
-    .k360-live-banner {
-      display: block;
-      text-decoration: none;
-      background: linear-gradient(90deg, #1d5ca8 0%, #2a6ec0 100%);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-bottom: 4px solid #d32f2f;
-      border-radius: 10px;
-      padding: 12px 16px;
+    .action-box{
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.25);
+      color: #eaf3ff;
+      padding: 13px 14px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin: 10px 0;
+      cursor: pointer;
+      user-select: none;
+      transition: .2s ease;
       text-align: center;
-      color: #ffffff;
-      font-size: 15px;
-      font-weight: 800;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+      text-decoration: none;
+    }
+    .action-box:hover{ transform: translateY(-1px); }
+    .action-box:focus{ outline: 3px solid rgba(255,255,255,.35); outline-offset: 2px; }
+
+    .redbar{
+      height: 14px;
+      background: var(--red);
+    }
+
+    /* حاوية الإعلانات العلوية */
+    .header-ads-bar{
+      max-width: 900px;
+      margin: 12px auto 0;
+      padding: 0 15px;
+    }
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+    .header-ad-slot {
+      position: relative;
+      background: rgba(15,78,154,.06);
+      border: 1px dashed var(--dash);
+      border-radius: 12px;
+      min-height: 95px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 !important;
+      text-align: center;
+      font-size: 12px;
+      color: #1f5fa8;
+      font-weight: 700;
+      overflow: hidden;
+    }
+    .header-ad-slot a {
+      color: #1f5fa8;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      height: 100%;
+    }
+    .header-ad-slot img {
+      width: 100%;
+      height: 100%;
+      min-height: 95px;
+      max-height: 145px;
+      max-width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 700px) {
+      .header-grid {
+        grid-template-columns: 1fr;
+      }
+      .brand {
+        font-size: 32px;
+      }
     }
 
     /* شريط الأخبار المتحرك */
-    .k360-ticker-bar {
-      display: flex;
-      align-items: stretch;
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-right: 4px solid #d32f2f;
-      border-radius: 10px;
-      margin: 14px 0 0;
+    .ticker-wrap {
+      background-color: #d32f2f;
+      color: #fff;
+      padding: 8px 0;
+      font-size: 14px;
+      font-weight: bold;
       overflow: hidden;
-      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
-    }
-    .k360-ticker-label {
-      background: #d32f2f;
-      color: #ffffff;
-      padding: 9px 14px;
-      font-size: 12px;
-      font-weight: 800;
       white-space: nowrap;
-      display: flex;
-      align-items: center;
-    }
-    .k360-ticker-track {
-      flex: 1;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
       position: relative;
+      margin-top: 10px;
     }
-    .k360-ticker-move {
-      display: inline-flex;
-      gap: 28px;
-      white-space: nowrap;
-      animation: k360TickerScroll 28s linear infinite;
-      font-size: 13
-      font-weight: 700;
-      color: #0f172a;
+    .ticker-track {
+      display: inline-block;
+      padding-left: 100%;
+      animation: tickerMoveRight 80s linear infinite;
+      will-change: transform;
     }
-    .k360-ticker-move:hover { animation-play-state: paused; }
-    .k360-ticker-move a {
-      color: #0d47a1;
-      text-decoration: none;
+    .ticker-wrap:hover .ticker-track {
+      animation-play-state: paused;
     }
-    .k360-ticker-move a:hover { text-decoration: underline; }
-    @keyframes k360TickerScroll {
+    @keyframes tickerMoveRight {
       0% { transform: translateX(-100%); }
       100% { transform: translateX(100%); }
     }
 
-    .k360-ads-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 16px 0;
-    }
-    @media (max-width: 680px) { .k360-ads-grid { grid-template-columns: 1fr; } }
-    .k360-ad-card {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      padding: 10px;
-      text-align: center;
-      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05);
-    }
-    .k360-ad-card a {
-      text-decoration: none;
-      color: #0d47a1;
-      font-weight: 700;
-      font-size: 13px;
-      display: block;
-    }
-    .k360-ad-card img {
-      max-width: 100%;
-      max-height: 120px;
-      object-fit: cover;
-      border-radius: 7px;
-      margin-bottom: 6px;
+    /* المحتوى الرئيسي */
+    .container, .content {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 15px;
     }
 
-    .k360-news-card {
-      background: #ffffff;
+    .ad-wrap{
+      margin: 12px 0;
+      padding: 0;
+    }
+    .ad-box{
+      background: rgba(15,78,154,.06);
+      border: 1px dashed var(--dash);
+      border-radius: 12px;
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+      padding: 10px;
+      text-align: center;
+    }
+    .ad-title{
+      font-weight: 900;
+      font-size: 12px;
+      color: #1f5fa8;
+      opacity: .9;
+    }
+    .ad-size{
+      font-size: 12px;
+      color: #6b7a99;
+    }
+
+    /* الإطار الإخباري الاحترافي لبطاقة الخبر */
+    .news-card {
+      position: relative;
+      background: var(--card);
+      border-radius: 14px;
+      padding: 0 0 18px 0;
+      margin: 20px auto;
+      box-shadow: 0 8px 24px rgba(13, 71, 161, 0.09);
       border: 1px solid #dbe4f0;
       border-right: 5px solid #0d47a1;
-      border-radius: 12px;
-      padding: 0 0 16px;
-      margin: 18px 0;
-      box-shadow: 0 8px 22px rgba(13, 71, 161, 0.08);
       overflow: hidden;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .news-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(13, 71, 161, 0.15);
     }
     .k360-news-topbar {
       display: flex;
@@ -203,26 +278,30 @@
       gap: 8px;
       background: linear-gradient(90deg, #0d47a1 0%, #1976d2 100%);
       color: #ffffff;
-      padding: 8px 15px;
+      padding: 8px 16px;
       font-size: 12px;
       font-weight: 700;
     }
     .k360-news-badge {
-      background: #d32f2f;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #c62828;
       color: #ffffff;
-      padding: 2px 10px;
+      padding: 3px 10px;
       border-radius: 999px;
       font-size: 11px;
     }
-    .k360-news-body { padding: 15px 16px 0; }
-    .k360-news-title {
-      margin: 0 0 10px;
-      font-size: 19px;
-      line-height: 1.45;
-      font-weight: 800;
-      color: #0f172a;
-      border-bottom: 1px dashed #cbd5e1;
-      padding-bottom: 8px;
+    .k360-news-badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #fff59d;
+      box-shadow: 0 0 6px #fff59d;
+    }
+    .k360-news-main {
+      padding: 16px 18px 0;
     }
     .k360-news-media {
       margin: 10px 0 14px;
@@ -235,128 +314,1042 @@
     .k360-news-media img {
       display: block;
       width: 100%;
-      max-height: 450px;
+      max-height: 440px;
       object-fit: cover;
       border-radius: 7px;
+      margin-bottom: 0 !important;
     }
-    .k360-news-text p {
-      margin: 0 0 11px;
+    .news-card h2 {
+      margin: 0 0 10px;
+      color: #0f172a;
+      font-size: 20px;
+      line-height: 1.5;
+      font-weight: 800;
+      border-bottom: 1px dashed #cbd5e1;
+      padding-bottom: 10px;
+    }
+    .news-date {
+      font-size: 12px;
+      color: #e3f2fd;
+      margin-bottom: 0;
+      font-weight: 700;
+    }
+    .news-body {
+      display: none;
+      margin-top: 12px;
+      border-top: 1px solid #eceff1;
+      padding-top: 12px;
+    }
+    .news-body.open {
+      display: block;
+    }
+    .news-card p {
+      line-height: 1.8;
       font-size: 15px;
-      line-height: 1.85;
       color: #1e293b;
+      margin: 0 0 11px;
     }
     .k360-news-footer {
-      margin-top: 12px;
-      padding: 10px 16px 0;
+      margin: 12px 18px 0;
+      padding-top: 10px;
       border-top: 1px solid #e2e8f0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
       font-size: 12px;
       color: #475569;
     }
-    .k360-copy-mini {
+    .k360-news-source {
+      font-weight: 800;
+      color: #0d47a1;
+    }
+    .news-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn-read-more {
+      background: #c62828;
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-copy-link {
       background: #0d47a1;
       color: #fff;
       border: none;
+      padding: 7px 12px;
+      border-radius: 5px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .btn-delete-post {
+      background: #37474f;
+      color: #fff;
+      border: none;
+      padding: 7px 12px;
+      border-radius: 5px;
+      font-size: 13px;
+      cursor: pointer;
+      display: none;
+    }
+    body.admin-mode .btn-delete-post {
+      display: inline-block;
+    }
+
+    /* لوحة الإدارة */
+    .admin-panel {
+      display: none;
+      background: #ffffff;
+      border: 2px solid #0d47a1;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    }
+    body.admin-mode .admin-panel {
+      display: block;
+    }
+    .admin-panel h3 {
+      margin: 0 0 12px;
+      color: #0d47a1;
+      font-size: 17px;
+    }
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 700px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+      .news-card h2 {
+        font-size: 17px;
+      }
+      .k360-news-main {
+        padding: 14px 14px 0;
+      }
+      .k360-news-footer {
+        margin: 12px 14px 0;
+      }
+    }
+    .admin-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
       border-radius: 6px;
-      padding: 5px 10px;
-      font-size: 11px;
+      padding: 12px;
+    }
+    .admin-box h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #1e293b;
+    }
+    .admin-box label {
+      display: block;
+      font-size: 12px;
+      margin-top: 6px;
+      color: #475569;
+    }
+    .admin-box input,
+    .admin-box textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 7px 9px;
+      margin-top: 3px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+    .phone-upload-box {
+      margin-top: 8px;
+      padding: 8px;
+      background: #eef4ff;
+      border: 1px dashed #1f5fa8;
+      border-radius: 6px;
+    }
+    .btn-phone-upload {
+      margin-top: 6px;
+      background: #1f5fa8;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
     }
-
-    .k360-contact-box {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-top: 4px solid #0d47a1;
-      border-radius: 10px;
-      padding: 16px;
-      margin: 24px 0 32px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    .upload-status-msg {
+      margin: 5px 0 0;
+      font-size: 12px;
+      color: #0f4e9a;
+      font-weight: 600;
     }
-    .k360-contact-box h3 { margin: 0 0 6px; color: #0d47a1; font-size: 17px; }
-    .k360-field { margin-bottom: 10px; }
-    .k360-field label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 4px; color: #334155; }
-    .k360-field input, .k360-field textarea {
-      width: 100%;
+    .admin-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-admin-save {
+      background: #2e7d32;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: bold;
+    }
+    .btn-admin-reset {
+      background: #64748b;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* قسم رؤية المنشورات داخل إدارة الموقع */
+    .posts-overview-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .post-overview-row {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
       padding: 8px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .post-overview-title {
+      font-weight: 700;
+      color: #0f172a;
+      flex: 1;
+      min-width: 180px;
+    }
+    .post-overview-meta {
+      font-size: 12px;
+      color: #475569;
+    }
+    .post-overview-btns {
+      display: flex;
+      gap: 6px;
+    }
+    .btn-mini {
+      border: none;
+      border-radius: 4px;
+      padding: 4px 9px;
+      font-size: 12px;
+      cursor: pointer;
+      color: #fff;
+    }
+    .btn-mini-view { background: #0d47a1; }
+    .btn-mini-hide { background: #c62828; }
+    .btn-mini-show { background: #2e7d32; }
+
+    /* التعليقات */
+    .comments-section {
+      margin: 16px 18px 0;
+      padding-top: 14px;
+      border-top: 1px dashed #cfd8dc;
+    }
+    .comments-section h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      color: #0d47a1;
+    }
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .comment-form input,
+    .comment-form textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px 10px;
+      border: 1px solid #cfd8dc;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+    .comment-form textarea {
+      min-height: 68px;
+      resize: vertical;
+    }
+    .btn-comment-submit {
+      align-self: flex-start;
+      background: #1565c0;
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .comments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .comment-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-right: 3px solid #1565c0;
+      border-radius: 5px;
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+    .comment-meta {
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 4px;
+      font-weight: bold;
+    }
+    .comment-text {
+      margin: 0;
+      color: #1e293b;
+      line-height: 1.5;
+      white-space: pre-line;
+    }
+
+    /* بريد الموقع لاستقبال الرسائل */
+    .site-mail-box {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid #e2e8f0;
+      border-right: 5px solid #1f5fa8;
+    }
+    .site-mail-box h3 {
+      margin: 0 0 6px;
+      color: #0d47a1;
+      font-size: 18px;
+    }
+    .site-mail-box p.mail-desc {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: #475569;
+    }
+    .site-mail-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .site-mail-form input,
+    .site-mail-form textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 9px 11px;
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       font-family: inherit;
       font-size: 14px;
     }
-    .k360-submit-btn {
-      background: #0d47a1;
+    .site-mail-form textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+    .btn-mail-send {
+      align-self: flex-start;
+      background: #0f4e9a;
       color: #fff;
       border: none;
+      padding: 9px 18px;
       border-radius: 6px;
-      padding: 9px 16px;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
       cursor: pointer;
     }
-    .k360-msg-status { margin-top: 8px; font-size: 12px; font-weight: 700; }
+    .mail-status {
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    footer {
+      background-color: #1a237e;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+      font-size: 13px;
+    }
+    .admin-trigger {
+      background: transparent;
+      color: #bbdefb;
+      border: 1px solid rgba(187, 222, 251, 0.4);
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: pointer;
+      margin-right: 8px;
+    }
   </style>
 </head>
-<body class="k360-protected">
-  <header class="k360-hero">
-    <div class="k360-wrap">
-      <div class="k360-brand-row">
-        <div>
-          <h1 class="k360-brand-title">krater360</h1>
-          <p class="k360-brand-sub">تغطيات إخبارية وتحليلات مستمرة على مدار الساعة</p>
-        </div>
-        <div class="k360-top-actions">
-          <button type="button" class="k360-chip-btn" onclick="loadLiveFeed(true)">🔄 تحديث الأخبار</button>
-          <a href="#k360ContactSection" class="k360-chip-btn">📩 تواصل معنا</a>
-        </div>
-      </div>
-      <a href="#newsFeed" class="k360-live-banner">البث المباشر — تغطية موقع krater360</a>
-      <div class="k360-ticker-bar">
-        <span class="k360-ticker-label">آخر الأخبار</span>
-        <div class="k360-ticker-track">
-          <div class="k360-ticker-move" id="newsTickerMove">جاري تحميل العناوين...</div>
-        </div>
+<body>
+
+  <!-- الواجهة العلوية مع شعار k360 -->
+  <header class="top-hero">
+    <div class="hero-brand-wrap">
+      <h1 class="brand">k360</h1>
+    </div>
+    <div class="subtitle">منصة الأخبار والتحليلات والمقالات المستقلة</div>
+
+    <div class="actions">
+      <a class="action-box" href="https://www.goal.com/ar" target="_blank" rel="noopener noreferrer">
+        مباريات اليوم عبر المدير
+      </a>
+      <div class="action-box" role="button" tabindex="0" onclick="alert('http://www.youtube.com/channel/UCoJxQlG7KfJIW1zxK5O1bRQ')">
+        البث المباشر — قناة عدن المستقلة
       </div>
     </div>
   </header>
 
-  <main class="k360-wrap">
-    <div class="k360-ads-grid" id="headerAdsBox"></div>
-    <section id="newsFeed"><p style="text-align:center; color:#475569;">جاري تحميل الأخبار...</p></section>
-    <section class="k360-contact-box" id="k360ContactSection">
-      <h3>تواصل معنا أو أرسل تعليقاً</h3>
-      <form id="k360ContactForm" onsubmit="submitValidatedMessage(event)">
-        <div class="k360-field">
-          <label for="senderName">الاسم الكامل</label>
-          <input type="text" id="senderName" required minlength="3" placeholder="اكتب اسمك هنا">
+  <div class="redbar"></div>
+
+  <!-- مساحات إعلانات الرأس المرتبطة بلوحة الإدارة -->
+  <div class="header-ads-bar">
+    <div class="header-grid">
+      <div class="header-ad-slot" id="headerAdRight">
+<script>
+  atOptions = {
+    'key' : '02fe15a1f8dbe9c33512a3e3ea1678b3',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script data-cfasync="false" src="https://bicea.org/22/02fe15a1f8dbe9c33512a3e3ea1678b3"></script>
+</div>
+      <div class="header-ad-slot" id="headerAdLeft">مساحة إعلانية يسار</div>
+    </div>
+  </div>
+
+  <!-- شريط الأخبار المتحرك -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span id="tickerText">الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن   ★   بشرى ساره لموظفي لحج بشأن خروج التعزيزات   ★   استقالات عديده من كليه الشرطه بحضرموت   ★   الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية   ★   تغيير العقيدة النووية الإيرانية.. هل تتراجع طهران عن فتوى تحريم القنبلة تحت الضغط؟   ★   قصف هستيري حوثي على هدن   ★   أهلاً بكم في الانطلاقة الرسمية لموقع krater360 — مساحة حرة للأخبار والتحليلات والمقالات المستقلة.</span>
+    </div>
+  </div>
+  <div class="container">
+    <!-- لوحة إدارة الموقع -->
+    <div class="admin-panel" id="adminPanel">
+      <h3>لوحة إدارة الإعلانات والمنشورات</h3>
+      <div class="admin-grid">
+        <div class="admin-box">
+          <h4>إعلان رأس الصفحة (يمين)</h4>
+          <label>نص الإعلان</label>
+          <input type="text" id="adRightText" placeholder="مثال: أعلن معنا الآن">
+          <label>رابط الصورة (اختياري)</label>
+          <input type="url" id="adRightImg" placeholder="https://...">
+          <div class="phone-upload-box">
+            <label>تحميل صورة الإعلان من الهاتف:</label>
+            <input type="file" id="adRightFile" accept="image/*">
+            <button type="button" class="btn-phone-upload" onclick="uploadPhoneImage('adRightFile', 'adRightImg', 'adRightUploadStatus')">رفع صورة الإعلان (يمين)</button>
+            <p class="upload-status-msg" id="adRightUploadStatus"></p>
+          </div>
+          <label>رابط الوجهة عند النقر (اختياري)</label>
+          <input type="url" id="adRightUrl" placeholder="https://...">
         </div>
-        <div class="k360-field">
-          <label for="senderEmail">بريد Gmail المعروف</label>
-          <input type="email" id="senderEmail" required placeholder="example@gmail.com">
+
+        <div class="admin-box">
+          <h4>إعلان رأس الصفحة (يسار)</h4>
+          <label>نص الإعلان</label>
+          <input type="text" id="adLeftText" placeholder="مثال: تغطية خاصة">
+          <label>رابط الصورة (اختياري)</label>
+          <input type="url" id="adLeftImg" placeholder="https://...">
+          <div class="phone-upload-box">
+            <label>تحميل صورة الإعلان من الهاتف:</label>
+            <input type="file" id="adLeftFile" accept="image/*">
+            <button type="button" class="btn-phone-upload" onclick="uploadPhoneImage('adLeftFile', 'adLeftImg', 'adLeftUploadStatus')">رفع صورة الإعلان (يسار)</button>
+            <p class="upload-status-msg" id="adLeftUploadStatus"></p>
+          </div>
+          <label>رابط الوجهة عند النقر (اختياري)</label>
+          <input type="url" id="adLeftUrl" placeholder="https://...">
         </div>
-        <div class="k360-field">
-          <label for="senderSubject">الموضوع</label>
-          <input type="text" id="senderSubject" placeholder="مثال: تعليق أو استفسار">
+      </div>
+
+      <div class="admin-box" style="margin-top:12px;">
+        <h4>نشر خبر جديد (يُحفظ في Firebase ويظهر أولاً)</h4>
+        <label>عنوان الخبر</label>
+        <input type="text" id="newPostTitle" placeholder="اكتب عنوان الخبر هنا...">
+        <label>رابط الصورة (اختياري)</label>
+        <input type="url" id="newPostImg" placeholder="https://krater360.github.io/images/...">
+        <div class="phone-upload-box">
+          <label>إدراج صورة للخبر من الهاتف:</label>
+          <input type="file" id="newPostFile" accept="image/*">
+          <button type="button" class="btn-phone-upload" onclick="uploadPhoneImage('newPostFile', 'newPostImg', 'newPostUploadStatus')">رفع صورة الخبر من الهاتف</button>
+          <p class="upload-status-msg" id="newPostUploadStatus"></p>
         </div>
-        <div class="k360-field">
-          <label for="senderMessage">نص الرسالة أو التعليق</label>
-          <textarea id="senderMessage" rows="3" required minlength="5" placeholder="اكتب رسالتك هنا..."></textarea>
+        <label>تاريخ الخبر (اختياري - الافتراضي اليوم)</label>
+        <input type="date" id="newPostDate" value="2026-11-23">
+        <label>نص الخبر (كل سطر يصبح فقرة)</label>
+        <textarea id="newPostBody" rows="4" placeholder="اكتب تفاصيل الخبر هنا..."></textarea>
+        <div class="admin-actions">
+          <button type="button" class="btn-admin-save" onclick="publishNewPost()">نشر الخبر الآن</button>
         </div>
-        <button type="submit" class="k360-submit-btn" id="sendMsgBtn">إرسال</button>
-        <div class="k360-msg-status" id="contactStatusMsg"></div>
-      </form>
+      </div>
+
+      <!-- تبويبات إدارة الموقع -->
+      <div style="display: flex; gap: 10px; margin: 15px 0; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
+        <button type="button" onclick="switchAdminTab('posts')" id="tabPostsBtn" style="flex: 1; padding: 10px; background: #0f3460; color: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+          📰 المنشورات
+        </button>
+        <button type="button" onclick="switchAdminTab('messages')" id="tabMessagesBtn" style="flex: 1; padding: 10px; background: #e2e8f0; color: #1e293b; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+          📩 الرسائل (<span id="msgCount">0</span>)
+        </button>
+      </div>
+
+      <!-- رؤية المنشورات داخل إدارة الموقع -->
+      <div class="admin-box" style="margin-top:12px;" id="adminPostsOverviewBox">
+        <h4>رؤية المنشورات في إدارة الموقع</h4>
+        <div class="posts-overview-list" id="adminPostsOverviewList">
+          جاري تحميل قائمة المنشورات...
+        </div>
+      </div>
+
+      <!-- قسم الرسائل الواردة في الإدارة -->
+      <div id="adminMessagesSection" style="display: none; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #cbd5e1; margin-top: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h4 style="margin: 0; color: #0f3460;">رسائل زوار موقع k360</h4>
+          <button type="button" onclick="loadMessagesFromGitHub()" style="padding: 5px 10px; background: #16a34a; color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">
+            🔄 تحديث
+          </button>
+        </div>
+        <div id="messagesListContainer">
+          <p style="text-align: center; color: #64748b; font-size: 14px;">اضغط على تبويب الرسائل أو تحديث لتحميلها.</p>
+        </div>
+      </div>
+
+      <div class="admin-actions">
+        <button type="button" class="btn-admin-save" onclick="saveAdsConfig()">حفظ وتعديل الإعلانات</button>
+        <button type="button" class="btn-admin-reset" onclick="resetGithubToken()">تغيير / مسح Token</button>
+        <button type="button" class="btn-admin-reset" onclick="renderAdminPostsOverview()">تحديث رؤية المنشورات</button>
+        <button type="button" class="btn-admin-reset" onclick="restoreAllPosts()">استعادة المنشورات المحذوفة</button>
+        <button type="button" class="btn-admin-reset" onclick="toggleAdminMode(false)">إغلاق لوحة الإدارة</button>
+      </div>
+    </div>
+
+    <!-- المنشورات -->
+    <div class="news-card" id="news-1795468006655">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>تعميم أمني في ساحل حضرموت لحظر لعبة GTA 6 ومطالب بتطبيق الخطوة في عدن لحماية النشء</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795468002358-1-1795467854662.jpg" alt="تعميم أمني في ساحل حضرموت لحظر لعبة GTA 6 ومطالب بتطبيق الخطوة في عدن لحماية النشء">
+        </div>
+        <div class="news-body">
+          <p>تعميم أمني في ساحل حضرموت لحظر لعبة GTA 6 ومطالب بتطبيق الخطوة في عدن لحماية النشء</p>
+          <p>تغطية خاصة وتحرك أمني وقانوني في ساحل حضرموت</p>
+          <p>أصدرت إدارة شرطة الآداب بأمن ساحل حضرموت تعميماً رسمياً موجهاً إلى مالكي محلات الألعاب وصالات الفيديو، بتاريخ 22 نوفمبر 2026م، يقضي بمنع بيع أو تداول أو تنزيل لعبة GTA 6 الجزء السادس بأي شكل من الأشكال، مع إحالة المخالفين إلى جهات الاختصاص.</p>
+          <p>المرجعية القانونية ومبررات القرار بحسب المذكرة</p>
+          <p>استند التعميم إلى ما تتضمنه اللعبة من مشاهد تعرٍ وإيحاءات جنسية وعنف وترويج لتعاطي المخدرات.</p>
+          <p>أشارت المذكرة إلى أحكام قانون العقوبات اليمني رقم 12 لسنة 1994م في المادتين 103 و199، والمتعلقة بمنع نشر أو تداول أي مواد تتنافى مع مبادئ العقيدة الإسلامية أو تخدش الآداب والأخلاق العامة.</p>
+          <p>وقفة توعوية لعدن وشبابها ودعوات لحماية النشء</p>
+          <p>إن اتخاذ خطوات رقابية لحماية النشء في عدن وبقية المحافظات من الألعاب الإلكترونية ذات المحتوى العنيف أو غير الأخلاقي بات ضرورة مجتمعية؛ فإلى جانب المخاطر السلوكية، تستنزف ألعاب الإدمان الإلكتروني مثل ببجي وغيرها أعمار الأطفال والشباب وتهدر أوقاتهم وطاقاتهم بعيداً عن التعليم وبناء المستقبل.</p>
+          <p>شاركونا رأيكم في التعليقات</p>
+          <p>هل تؤيدون تعميم هذا القرار في محلات وصالات الألعاب في عدن وتوسيع الرقابة لتشمل الألعاب الإلكترونية التي تسببت في إدمان الشباب والأطفال؟ اكتبوا آراءكم في التعليقات</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795468006655', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795468006655')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795468006655')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795468006655">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795464265472">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>شرطه عدن تطيح بشبكه مخدرات خاصه بمخدر الشبو</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795464260133-1-1795464193687.jpg" alt="شرطه عدن تطيح بشبكه مخدرات خاصه بمخدر الشبو">
+        </div>
+        <div class="news-body">
+          <p>إدارة مكافحة المخدرات بالعاصمة عدن تطيح بشقيقين توأم وبحوزتهما عدة اكياس تحتوي على مادة الشبو المخدر بمديرية التواهي.</p>
+          <p>عدن/الإعلام الامني</p>
+          <p>تمكنت إدارة مكافحة المخدرات بشرطة عدن وقوات الأمن الوطن من ضبط شقيقين توأم، وذلك في مديرية التواهي، وبحوزتهما عدة أكياس صغيرة تحتوي على مادة الشبو المخدرة، في واقعة تكشف استمرار محاولات ترويج هذه السموم واستهداف المجتمع والشباب.</p>
+          <p>واوضح العقيد مياس الجعدني مدير إدارة مكافحة المخدرات بشرطة عدن وقوات الأمن الوطني ان هذه الضبطية تتبث اليقظة الأمنية والجهود الميدانية التي تبذلها إدارة مكافحة المخدرات لملاحقة المتورطين في حيازة وترويج المواد المخدرة، والتصدي لكل من يحاول نشر هذه الآفة الخطيرة بين أوساط المجتمع.</p>
+          <p>وأفاد العقيد مياس الجعدني ان المتهمين تم اللقاء القبض عليهم متلبسين وبحوزتهم المخدرات وذلك بالتنسيق مع نيابة الأمن والبحث وبحضور شرطة نسائية وقد تم اتخاذ الإجراءات القانونية اللازمة بحق المتهمين لكي ينالوا عقابهم المستحق..</p>
+          <p>وبين العقيد الجعدني ان أفة الشبو المخدر دخيلة على محافظتنا عدن بشكل عام وعلى مديرية التواهي بشكل خاص وانها مادة خطيرة جداً على شبابنا وتعد اخطر من الحشيش والحبوب المخدر لكونها تجعل متعاطيها عدواني للغاية..</p>
+          <p>وشكر العقيد مياس الجعدني مأمور مديرية التواهي الأستاذ رياض حسن على جهوده الطيبة والواضحة بتعاونه مع إدارة مكافحة المخدرات بتسهيل عملهم وذلك بالتنسيق فيما بينهم وبين روؤساء اللجان الشعبية في الحارات لكي يتم القبض على مروجين المخدرات بشكل ادق واسرع وأكد الجعدني ان حربهم مستمرة دوماً على تجار ومروجي السموم لحماية شباب عدن من خطر المخدرات.</p>
+          <p>الاثنين 23 نوفمبر 2026م</p>
+          <p>المكتب الإعلامي – إدارة أمن العاصمة عدن</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795464265472', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795464265472')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795464265472')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795464265472">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795455614971">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>اتهامات مالية من وزير الكهرباء عدنان الكاف لرئيس المجلس الانتقالي عيدروس الزبيدي تثير جدلاً سياسياً</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795455609590-1-1795455422722.jpg" alt="اتهامات مالية من وزير الكهرباء عدنان الكاف لرئيس المجلس الانتقالي عيدروس الزبيدي تثير جدلاً سياسياً">
+        </div>
+        <div class="news-body">
+          <p>أثارت أنباء منسوبة لإفادة وزير الكهرباء والطاقة، عدنان الكاف، أمام البرنامج السعودي لتنمية وإعمار اليمن، جدلاً واسعاً في الأوساط السياسية، بعد أن تضمنت اتهامات لرئيس المجلس الانتقالي الجنوبي، عيدروس الزبيدي، بالاستيلاء على مبلغ مليوني دولار.</p>
+          <p>وأثارت هذه الاتهامات ردود فعل غاضبة لدى مؤيدي رئيس المجلس الانتقالي الجنوبي، حيث اعتبر منتقدو الوزير الكاف أن توجيه مثل هذه الاتهامات يمثل تنكراً للثقة والمناصب التي مُنحت له ولغيره من المسؤولين خلال فترة قيادة الزبيدي.</p>
+          <p>كما تساءلت تلك الأوساط عن توقيت إثارة هذه القضايا، مشيرةً إلى أن من يرفعون شعار محاربة الفساد اليوم كانوا يشغلون مواقع قيادية كأعضاء في هيئة رئاسة المجلس الانتقالي الجنوبي في فترات سابقة دون أن تصدر عنهم مواقف مماثلة آنذاك.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795455614971', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795455614971')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795455614971')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795455614971">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795443555689">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>المليشيات الحوثيه ترتكب محزرة مرووعه اليوم</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795443546130-1-1795443445348.jpg" alt="المليشيات الحوثيه ترتكب محزرة مرووعه اليوم">
+          <img src="https://krater360.github.io/images/1795443550125-2-1795442428770.jpg" alt="المليشيات الحوثيه ترتكب محزرة مرووعه اليوم" style="margin-top:8px;">
+        </div>
+        <div class="news-body">
+          <p>المليشيات الحوثيه ترتكب مجزرة في سائلة المقاطرة</p>
+          <p>راح ضحيتها عدد من المواطنين بعد استهداف شاحنات قادمة من عدن باتجاه تعز من قبل مليشيات الحوثي بحسب المعلومات المتداولة إلى متى يظل المواطن يدفع الثمن ويُحرم حتى من حقه في الطريق والبحث عن لقمة عيشه</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795443555689', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795443555689')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795443555689')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795443555689">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <!-- إعلان علوي ضمن الواجهة (Native Banner) -->
+    <section class="ad-wrap" aria-label="إعلان علوي">
+      <div class="ad-box">
+        <script async fetchpriority="high" data-cfasync="false" src="https://bicea.org/21/d03f6df9b7d142995b4ef67f049f203d"></script>
+        <div id="container-d03f6df9b7d142995b4ef67f049f203d"></div>
+      </div>
     </section>
-  </main>
+
+    <div class="news-card" id="news-1795434586104">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>تحرك ناقلات نفط إيرانية نحو خط الحظر الأمريكي في بحر العرب وسط تهديدات بتصعيد إقليمي</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795434580724-1-1795434455963.jpg" alt="تحرك ناقلات نفط إيرانية نحو خط الحظر الأمريكي في بحر العرب وسط تهديدات بتصعيد إقليمي">
+        </div>
+        <div class="news-body">
+          <p>تفيد معطيات متداولة بأن طليعة ناقلات النفط الإيرانية العملاقة تقترب من خط الحظر الذي تفرضه الولايات المتحدة عند مدخل بحر العرب جنوبي الساحل العماني، ضمن مساعٍ لنقل شحنات متجهة إلى الصين.</p>
+          <p>وبحسب المعلومات المتداولة، فإن طواقم الناقلات الأربع عشرة تضم بحارة متطوعين في حالة استعداد قصوى، بالتوازي مع حديث عن توجيه الحرس الثوري الإيراني صواريخ باليستية نحو منشآت وموانئ نفطية في المنطقة، ومنح قادة المنصات صلاحية الرد المباشر في حال تعرضت الناقلات لأي اعتداء.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795434586104', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795434586104')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795434586104')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795434586104">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795433650742">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>بتوجيهات المحافظ شيخ.. بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن بإجمالي مبلغ قدره 413 مليون ريال.</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795433636214-1-1795433601268.jpg" alt="بتوجيهات المحافظ شيخ.. بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن بإجمالي مبلغ قدره 413 مليون ريال.">
+        </div>
+        <div class="news-body">
+          <p>بتوجيهات المحافظ شيخ..</p>
+          <p>بدء صرف الحافز الشهري للمعلمين والمعلمات في العاصمة عدن</p>
+          <p>بدأت اليوم الإثنين عملية صرف الحافز الشهري المقدم من السلطة المحلية في العاصمة عدن للمعلمين والمعلمات، في عموم مديريات العاصمة، عن شهر نوفمبر الجاري.</p>
+          <p>وأوضح وكيل العاصمة عدن لشؤون التعليم، عوض مبجر، أن توجيهات وزير الدولة، محافظ العاصمة عدن، عبدالرحمن شيخ، قضت بالبدء بعملية الصرف فورا، عقب استكمال إجراءات التوقيع على شيكات الصرف بإجمالي مبلغ قدره 413 مليون ريال.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795433650742', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795433650742')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795433650742')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795433650742">المشاهدات: 0</span>
+      </div>
+    </div>
+    <div class="news-card" id="news-1795432333211">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date" data-date="2026-11-23">23 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>زيلينسكي يعلن مسؤولية أوكرانيا عن ضرب سفينتين روسيتين قبالة سواحل ليبيا وإغراق الطراد ميركوري</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795432321288-1-IMG__.jpg" alt="زيلينسكي يعلن مسؤولية أوكرانيا عن ضرب سفينتين روسيتين قبالة سواحل ليبيا وإغراق الطراد ميركوري" loading="lazy">
+        </div>
+        <div class="news-body">
+          <p>أعلن الرئيس الأوكراني فولوديمير زيلينسكي، اليوم الإثنين، مسؤولية قوات بلاده عن تنفيذ هجوم استهدف سفينتين تابعتين للبحرية الروسية قبالة سواحل ليبيا، في تطور يعكس اتساع نطاق العمليات الأوكرانية خارج منطقة البحر الأسود.</p>
+          <p>وأوضح زيلينسكي أن الجيش الأوكراني تمكن من إغراق الطراد الروسي ميركوري باستخدام سبعة زوارق مسيرة أوكرانية الصنع، مشيراً إلى أن العملية طالت كذلك سفينة الشحن الروسية أنجارا.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795432333211', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795432333211')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795432333211')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795432333211">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795428076522">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date" data-date="2026-11-22">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>انفراجه كبيرة بشأن صرف العلاوات والزيادة 20٪</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795428073056-1-images92.jpeg" alt="انفراجه كبيرة بشأن صرف العلاوات والزيادة 20٪" loading="lazy">
+        </div>
+        <div class="news-body">
+          <p>*بشرى سارة لموظفي محافظة عدن بشأن خروج التعزيز المالي للزيادات لعدد من المرافق الحكومية*</p>
+          <p>بحسب المعلومات التي وصلتني، فقد تم إرسال التعزيز المالي الخاص بالزيادات المستحقة لعدد من المرافق الحكومية في محافظة عدن إلى البنك المركزي، وذلك تمهيداً لاستكمال الإجراءات المالية المتعلقة بصرف الزيادات للموظفين المستفيدين.</p>
+          <p>ونأمل استكمال بقية الإجراءات وصرف المستحقات في أقرب وقت، بما يسهم في تخفيف معاناة الموظفين وتحسين أوضاعهم المعيشية.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795428076522', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795428076522')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795428076522')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795428076522">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795427847550">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date" data-date="2026-11-22">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795427840397-1-1795427708303.jpg" alt="تطورات عسكرية متسارعة.. اجتماع حاسم للمجلس الانتقالي والقوات الجنوبية لمنع تسليم المحافظة للحوثيين" loading="lazy">
+        </div>
+        <div class="news-body">
+          <p>عاجل | تحرك سياسي وعسكري طارئ لبحث التطورات الميدانية</p>
+          <p>تعقد قيادات من القوات المسلحة الجنوبية والمجلس الانتقالي الجنوبي والأمانة العامة، عصر اليوم، اجتماعاً استثنائياً وطوارئياً للوقوف أمام المستجدات الميدانية والسياسية المتسارعة، وذلك في أعقاب التطورات الأخيرة التي شهدتها المديرية، والتي تمثل نحو 75% من إجمالي مساحة المحافظة.</p>
+          <p>ووفقاً لما ورد في نص الدعوة الصادرة عن الجهات المنظمة، يهدف هذا اللقاء رفيع المستوى إلى صياغة خطة تحرك جادة ومسؤولة، واتخاذ مواقف حازمة للتصدي لأي ترتيبات أو تفاهمات سياسية أو ميدانية قد تفضي إلى تسليم المحافظة لمليشيات الحوثي، مؤكدين أن مثل هذه التحركات تتم بمعزل عن إرادة أبناء المحافظة وتطلعاتهم.</p>
+          <p>وشدد البيان على رفض أي مساومات تمس أمن واستقرار المنطقة، موضحاً أن &quot;المحافظة ليست للبيع، وأن قرارها السيادي والميداني يجب أن يظل حصراً بيد أبنائها&quot;، وسط ترقب واسع في الأوساط السياسية والشعبية لما ستسفر عنه مخرجات هذا الاجتماع خلال الساعات القليلة المقبلة.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795427847550', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795427847550')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795427847550')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795427847550">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795406996756">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date" data-date="2026-11-22">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795406992904-1-IMG-20261123-WA0000.jpg" alt="مخصصات بالريال السعودي وسط أزمة الرواتب: وثيقة تثير غضباً واسعاً وتضع الأولويات المالية تحت المجهر" loading="lazy">
+        </div>
+        <div class="news-body">
+          <p>أثارت وثيقة متداولة منسوبة إلى رئاسة مجلس القيادة الرئاسي، تتضمن توجيهاً إلى وزير المالية باعتماد مخصص شهري قدره خمسة آلاف ريال سعودي لصالح أحد الأشخاص تحت مسمى &quot;المواقف الوطنية&quot;، موجة انتقادات حادة وتساؤلات واسعة حول إدارة المال العام وأولويات الإنفاق.</p>
+          <p>وبحسب مضمون الخطاب المتداول، فإن التوجيه يقضي بصرف المبلغ الشهري بالعملة السعودية للمدعو عبد الإله الصايدي (أبو مرتاح) نظير وقوفه مع الوطن ضد المليشيات الانقلابية، مع المطالبة باستكمال إجراءات الصرف فوراً.</p>
+          <p>ويأتي التفاعل الغاضب مع هذه الوثيقة في ظل أوضاع معيشية واقتصادية ضاغطة، ومع استمرار شكاوى عدد من المقاتلين في الجبهات والعاملين في قطاعات مختلفة من تأخر أو انقطاع الرواتب، وهو ما اعتبره منتقدون مؤشراً على خلل واضح في ترتيب الأولويات وغياب معايير العدالة والشفافية في صرف المخصصات المالية.</p>
+          <p>ويرى مراقبون ومنتقدون أن استمرار اعتماد مخصصات فردية بالعملة الأجنبية دون إطار مؤسسي واضح ومعلن يعمّق حالة السخط الشعبي، ويضعف الثقة في آليات الرقابة المالية، خاصة في وقت تتزايد فيه الدعوات إلى ترشيد النفقات وتوجيه الموارد نحو الالتزامات الأساسية وحقوق المقاتلين والمواطنين.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795406996756', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795406996756')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795406996756')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795406996756">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795378247723">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date" data-date="2026-11-22">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795378241972-1-1795378186808.jpg" alt="20 مليار دولار.. تقديرات استخباراتية أمريكية حول شحنات السلاح للحوثيين في الساحل الغربي" loading="lazy">
+        </div>
+        <div class="news-body">
+          <p>20 مليار دولار.. تقديرات مثيرة للجدل حول قيمة السلاح الواصل للحوثيين في الساحل الغربي</p>
+          <p>أثارت تقديرات منسوبة إلى وكالة الاستخبارات الأمريكية حالة من الجدل والترقب، بعدما تحدثت عن وصول شحنات أسلحة إلى الحوثيين في منطقة الساحل الغربي تُقدّر قيمتها بنحو 20 مليار دولار.</p>
+          <p>وبحسب ما ورد في هذه التقديرات، فإن حجم التسليح المشار إليه يطرح تساؤلات واسعة حول طبيعة هذه الإمدادات وقيمتها الفعلية، ومدى تأثيرها على موازين القوى والمشهد الميداني والأمني في المنطقة، في ظل استمرار التوترات المرتبطة بملف السلاح والمسارات البحرية.</p>
+          <p>ولم يصدر حتى اللحظة تأكيد مستقل أو تفصيل رسمي يوضح آلية احتساب هذا الرقم أو تفاصيل الشحنات المقصودة، ما يجعل هذه التقديرات محل متابعة ونقاش واسع لدى المتابعين والمهتمين بالشأن الإقليمي.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795378247723', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795378247723')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795378247723')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795378247723">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795374032860">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date" data-date="2026-11-22">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>عاجل.. القوات المسلحة الجنوبية تحبط هجوماً حوثياً في جبهات لحج وتحسم الجدل حول صفة المتحدث العسكري</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795374007910-1-1795373674163.jpg" alt="عاجل.. القوات المسلحة الجنوبية تحبط هجوماً حوثياً في جبهات لحج وتحسم الجدل حول صفة المتحدث العسكري" loading="lazy">
+        </div>
+        <div class="news-body">
+          <p>أعلنت القوات المسلحة الجنوبية، اليوم الأحد 22 نوفمبر 2026م، عن تمكن وحداتها المرابطة في جبهات محافظة لحج من التصدي لهجوم شنته مليشيات الحوثي وإفشال محاولة تسلل استهدفت مواقعها، مؤكدة في الوقت ذاته حسم الجدل الإعلامي بشأن المتحدث العسكري الرسمي المعتمد.</p>
+          <p>إحباط هجوم وتسلل حوثي في لحج</p>
+          <p>أوضحت القوات المسلحة الجنوبية أن قواتها أحبطت محاولة التسلل والهجوم الحوثي ضمن سلسلة المحاولات العدائية المتكررة التي تستهدف جبهات الجنوب. وأشادت القيادة العسكرية بيقظة المقاتلين وثباتهم وجاهزيتهم القتالية العالية التي أفشلت أهداف المهاجمين، مشددة على استمرار أداء واجبها الوطني في الدفاع عن المواقع وحماية أمن واستقرار الجنوب.</p>
+          <p>توضيح رسمي حول المتحدث العسكري</p>
+          <p>وفي سياق متصل، وحرصاً من القوات المسلحة الجنوبية على منع أي التباس لدى وسائل الإعلام والرأي العام، أصدرت توضيحاً إعلامياً حددت فيه النقاط التالية:</p>
+          <p>عدم تمثيل العقيد ماجد النزيلي: أكدت القوات المسلحة الجنوبية أن العقيد الركن ماجد عبدالله النزيلي، الذي يتحدث بصفته المتحدث الرسمي باسم القوات المسلحة اليمنية، لا يمثل القوات المسلحة الجنوبية ولا تعبر تصريحاته أو مواقفه عن توجهاتها أو قيادتها.</p>
+          <p>المتحدث الرسمي المعتمد: شددت على أن المتحدث الرسمي المخوّل بإصدار التصريحات والبيانات والتوضيحات الرسمية باسم القوات المسلحة الجنوبية هو المقدم محمد النقيب.</p>
+          <p>الاستقلالية التنظيمية: أوضحت أن العقيد الركن المذكور لا يتبع هيئة الأركان العامة للقوات المسلحة الجنوبية ولا يخضع لقيادتها أو هيكلها التنظيمي، ولا يحمل أي صفة تخوله التحدث باسمها إعلامياً.</p>
+          <p>دعوة لتحري الدقة الإعلامية: دعت وسائل الإعلام المحلية والعربية والدولية، والصحفيين والناشطين، إلى تحري الدقة وعدم الخلط بين التشكيلات العسكرية، واعتماد البيانات الصادرة عن القنوات الرسمية للقوات المسلحة الجنوبية، وفي مقدمتها تصريحات المقدم محمد النقيب.</p>
+          <p>واختتمت القوات المسلحة الجنوبية بيانها الصادر من العاصمة عدن بالتأكيد على أن مواقفها وبياناتها تصدر حصراً عبر قنواتها المعتمدة، وأن أي تصريحات صادرة عن جهات أو شخصيات أخرى لا تمثلها ولا تعكس موقفها الرسمي.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795374032860', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795374032860')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795374032860')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795374032860">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795370347739">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date" data-date="2026-11-22">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795370337853-1-1795370316795.jpg" alt="الإمارات تدين بشدة تجدد الهجوم الإيراني على البحرين وتؤكد: انتهاك صارخ للسيادة وتهديد للأمن" loading="lazy">
+        </div>
+        <div class="news-body">
+          <p>أعربت دولة الإمارات عن إدانتها واستنكارها بأشد العبارات لتجدد الهجوم الإيراني العدواني الذي استهدف أراضي مملكة البحرين، مؤكدة تضامنها الكامل ووقوفها إلى جانب المنامة في مواجهة كل ما يمس أمنها وسلامتها.</p>
+          <p>انتهاك للسيادة وتهديد للاستقرار الإقليمي</p>
+          <p>وشددت دولة الإمارات في موقفها الرسمي على أن الهجوم الإيراني يمثل انتهاكاً صارخاً لسيادة مملكة البحرين ومبادئ القانون الدولي، فضلاً عن كونه تهديداً مباشراً لأمنها واستقرارها الوطني، وللسلم والأمن في المنطقة بأسرها.</p>
+          <p>تفاعل واسع على منصات التواصل الاجتماعي</p>
+          <p>أثار البيان الإماراتي وتطورات الموقف تفاعلاً ملحوظاً عبر منصات السوشيال ميديا، حيث تداول المغردون والنشطاء عبر منصة إكس وفيسبوك هاشتاغات تعبر عن التضامن الخليجي المشترك، وترفض أي اعتداءات تمس سيادة الدول واستقرار شعوبها، وسط مطالبات بتحرك دبلوماسي وإقليمي حازم لردع التصعيد.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795370347739', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795370347739')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795370347739')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795370347739">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795367125381">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date" data-date="2026-11-22">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>بشرى ساره لموظفي لحج بشأن خروج التعزيزات</h2>
+        <div class="news-body">
+          <p>بشرى سارة لموظفي محافظة عدن بشأن خروج التعزيز المالي للزيادات لعدد من المرافق الحكومية*</p>
+          <p>بحسب المعلومات التي وصلتني، فقد تم إرسال التعزيز المالي الخاص بالزيادات المستحقة لعدد من المرافق الحكومية في محافظة عدن إلى البنك المركزي، وذلك تمهيداً لاستكمال الإجراءات المالية المتعلقة بصرف الزيادات للموظفين المستفيدين.</p>
+          <p>ونأمل استكمال بقية الإجراءات وصرف المستحقات في أقرب وقت، بما يسهم في تخفيف معاناة الموظفين وتحسين أوضاعهم المعيشية.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795367125381', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795367125381')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795367125381')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795367125381">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795367011757">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date" data-date="2026-11-22">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>استقالات عديده من كليه الشرطه بحضرموت</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795367006273-1795366948729.jpg" alt="استقالات عديده من كليه الشرطه بحضرموت" loading="lazy">
+        </div>
+        <div class="news-body">
+          <p>استقالات جماعية في كلية الشرطة بحضرموت احتجاجًا على وقائع تزوير شهادات</p>
+          <p>قدم ثمانية من قيادات وأعضاء هيئة التدريس بكلية الشرطة في حضرموت استقالاتهم الجماعية من مهامهم وأعمالهم، احتجاجًا على ما وصفوه باختلالات إدارية وأكاديمية خطيرة، في مقدمتها وقائع تزوير شهادات أكاديمية ومنحها لأشخاص لم يلتحقوا بالكلية ولم يخضعوا لأي دراسة أو تأهيل أكاديمي.</p>
+          <p>وأوضح المستقيلون، في بيان موجه إلى عضو مجلس القيادة الرئاسي محافظ حضرموت سالم أحمد الخنبشي، أن وقائع التزوير مدعومة بمستندات وأدلة قدمت إلى الجهات المختصة للتحقيق فيها، مشيرين إلى وجود شبهات فساد مالي وإداري، وإقصاء للكفاءات الأكاديمية، وتهميش للقيادات المؤسسة للكلية.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795367011757', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795367011757')">نسخ رابط الخبر</button>
+          <button type="button" class="btn-delete-post" onclick="deletePost('news-1795367011757')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795367011757">المشاهدات: 0</span>
+      </div>
+    </div>
+
+    <div class="news-card" id="news-1795357745757">
+      <div class="k360-news-topbar">
+        <span class="k360-news-badge">krater360 • تغطية إخبارية</span>
+        <span class="news-date" data-date="2026-11-22">22 نوفمبر 2026</span>
+      </div>
+      <div class="k360-news-main">
+        <h2>الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية</h2>
+        <div class="k360-news-media">
+          <img src="https://krater360.github.io/images/1795357740872-1-1795357649043.jpg" alt="الجمعية الوطنية تقيم حفل توديع وتكريم للدكتور طارق بازرعة بمناسبة تعيينه رئيساً للهيئة السياسية" loading="lazy">
+        </div>
+        <div class="news-body">
+          <p>في أجواء امتزجت فيها مشاعر الفرح بالحزن.. الجمعية الوطنية تودّع الدكتور طارق بازرعة</p>
+          <p>الأحد 22 نوفمبر 2026م</p>
+          <p>ودّعت الجمعية الوطنية للمجلس الانتقالي الجنوبي العربي، صباح اليوم، الدكتور طارق بازرعة، مساعد رئيس الجمعية ومقررها السابق، وأحد كوادرها القيادية التي عُرفت بالإخلاص والتفاني في أداء مهامها، وذلك بمناسبة انتقاله إلى فريق قيادة الأمانة العامة، بموجب القرار الرئاسي الصادر عن الرئيس عيدروس بن قاسم الزبيدي بتاريخ 18 نوفمبر 2026م، والقاضي بتعيينه رئيساً للهيئة السياسية في الأمانة العامة، في أجواءٍ امتزجت فيها مشاعر الفرح بالحزن، وسادتها روح الوفاء والتقدير.</p>
+          <p>وجاء حفل محمّلاً بمشاعر متباينة، بين فرحةٍ بانتقال الدكتور بازرعة إلى محطة جديدة في مسيرته القيادية، وحزنٍ على مغادرة شخصيةٍ تركت بصمات طيبة وحضوراً مميزاً في أروقة الجمعية الوطنية، وأسهمت بجهودها وعطائها في تعزيز مسيرة العمل المؤسسي وأداء مهامه.</p>
+          <p>وخلال الحفل، ألقى الأستاذ نصر صالح هرهرة، عضو هيئة رئاسة المجلس الانتقالي الجنوبي العربي، نائب رئيس الجمعية الوطنية، كلمةً عبّر فيها عن تقديره للدكتور طارق بازرعة، مشيداً بما قدّمه من جهود وإسهامات خلال فترة عمله في الجمعية، وما اتسمت به مسيرته من إخلاص وتفانٍ وروح المسؤولية، متمنياً له التوفيق والنجاح في مهامه القيادية الجديدة.</p>
+          <p>وأكد هرهرة في كلمته أن المجلس الانتقالي الجنوبي العربي يعمل ككيان مؤسسي واحد ومتكامل، تتعاضد فيه جميع الهيئات وتتكامل أدوارها وجهودها، بما يعزز وحدة العمل المؤسسي ويخدم الأهداف المشتركة، مشيراً إلى أن انتقال الكوادر بين الهيئات والمواقع القيادية يأتي في إطار هذا التكامل والترابط، ويعكس وحدة المؤسسة وتكامل مسؤولياتها.</p>
+          <p>ولم يكن حفل التوديع مجرد مناسبة لمغادرة موقع وظيفي، بقدر ما كان تعبيراً صادقاً عن عمق العلاقات الإنسانية وروح الوفاء التي تجمع زملاء العمل، وتقديراً لمسيرة عطاء تركت أثراً طيباً في نفوس زملائه، الذين حرصوا على مشاركته هذه اللحظة وتوديعه بما يليق بما قدّمه خلال سنوات عمله في الجمعية.</p>
+          <p>وفي ختام الحفل، قدّم الأستاذ نصر صالح هرهرة، نيابةً عن الجمعية الوطنية، درع تقدير ووفاء للدكتور طارق بازرعة، تقديراً لجهوده المخلصة ومواقفه النضالية الثابتة في أصعب الظروف، واعتزازاً بحضوره الفاعل وإسهاماته بوصفه أحد الرجال الذين كان لهم دور في إرساء دعائم المجلس الانتقالي الجنوبي العربي وتثبيت بنيانه المؤسسي.</p>
+          <p>وبين مشاعر الوداع وتطلعات المرحلة القادمة، يطوي الدكتور طارق بازرعة صفحةً من مسيرته في الجمعية الوطنية، ليفتح صفحةً جديدة في الأمانة العامة، حاملاً معه رصيداً من الخبرة والتجربة المؤسسية، فيما تبقى جهوده وإسهاماته حاضرة في ذاكرة زملائه، الذين ودّعوه بمشاعر التقدير والوفاء، وأمنيات صادقة بمواصلة النجاح والتوفيق في مسؤولياته القادمة.</p>
+        </div>
+        <div class="news-actions">
+          <button type="button" class="btn-read-more" onclick="toggleReadMore('news-1795357745757', this)">قراءة المزيد</button>
+          <button type="button" class="btn-copy-link" onclick="copyNewsLink('news-1795357745757')">نسخ رابط الخبر</button>
+          <button type="button"
+ class="btn-delete-post" onclick="deletePost('news-1795357745757')">حذف المنشور</button>
+        </div>
+      </div>
+      <div class="k360-news-footer">
+        <span class="k360-news-source">منصة krater360</span>
+        <span class="k360-post-views" data-post-id="news-1795357745757">المشاهدات: 0</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="k360-contact-box" id="k360ContactSection">
+    <h3>تواصل معنا أو أرسل تعليقاً</h3>
+    <form id="k360ContactForm" onsubmit="submitValidatedMessage(event)">
+      <div class="k360-field">
+        <label for="senderName">الاسم الكامل</label>
+        <input type="text" id="senderName" required minlength="3" placeholder="اكتب اسمك هنا">
+      </div>
+      <div class="k360-field">
+        <label for="senderEmail">بريد Gmail المعروف</label>
+        <input type="email" id="senderEmail" required placeholder="example@gmail.com">
+      </div>
+      <div class="k360-field">
+        <label for="senderSubject">الموضوع</label>
+        <input type="text" id="senderSubject" placeholder="مثال: تعليق أو استفسار">
+      </div>
+      <div class="k360-field">
+        <label for="senderMessage">نص الرسالة أو التعليق</label>
+        <textarea id="senderMessage" rows="3" required minlength="5" placeholder="اكتب رسالتك هنا..."></textarea>
+      </div>
+      <button type="submit" class="k360-submit-btn" id="sendMsgBtn">إرسال</button>
+      <div class="k360-msg-status" id="contactStatusMsg"></div>
+    </form>
+  </section>
+</main>
 
 <script>
 const DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
-const CACHE_POSTS_KEY = "k360_cached_posts_v1";
-const CACHE_VIEWS_KEY = "k360_cached_views_v1";
-const CACHE_ADS_KEY = "k360_cached_ads_v1";
 
 function escapeText(str) {
   return String(str || "")
@@ -387,38 +1380,29 @@ function enableCopyProtection() {
   });
 }
 
-function syncShareMetaForPost(post) {
-  if (!post) return;
-  const fallbackImg = "https://krater360.github.io/images/logo.png";
-  const imgUrl = (post.img && String(post.img).trim()) ? String(post.img).trim() : fallbackImg;
-  const titleText = (post.title && String(post.title).trim()) ? String(post.title).trim() : "krater360";
-  const descText = Array.isArray(post.paragraphs) && post.paragraphs.length
-    ? String(post.paragraphs[0]).trim()
-    : "تغطيات إخبارية وتحليلات مستمرة على مدار الساعة.";
-
-  const setMeta = (selector, attr, val) => {
-    let el = document.querySelector(selector);
-    if (!el) {
-      el = document.createElement("meta");
-      if (selector.includes("property=")) el.setAttribute("property", selector.match(/property="([^"]+)"/)[1]);
-      else if (selector.includes("name=")) el.setAttribute("name", selector.match(/name="([^"]+)"/)[1]);
-      document.head.appendChild(el);
-    }
-    el.setAttribute(attr, val);
-  };
-
-  setMeta('meta[property="og:title"]', "content", titleText);
-  setMeta('meta[property="og:description"]', "content", descText);
-  setMeta('meta[property="og:image"]', "content", imgUrl);
-  setMeta('meta[property="og:image:secure_url"]', "content", imgUrl);
-  setMeta('meta[name="twitter:image"]', "content", imgUrl);
+function toggleReadMore(cardId, btn) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  const body = card.querySelector(".news-body");
+  if (!body) return;
+  const expanded = body.classList.toggle("expanded");
+  if (btn) btn.textContent = expanded ? "إخفاء التفاصيل" : "قراءة المزيد";
 }
 
-function copySingleLink(postId) {
+function copyNewsLink(postId) {
   const link = `https://krater360.github.io/?post=${encodeURIComponent(postId)}`;
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(link).then(() => alert("تم نسخ رابط الخبر"));
+    navigator.clipboard.writeText(link).then(() => alert("تم نسخ رابط الخبر:\n" + link));
+  } else {
+    prompt("انسخ الرابط يدوياً:", link);
   }
+}
+
+function deletePost(postId) {
+  if (!confirm("هل تريد حذف هذا المنشور؟")) return;
+  const card = document.getElementById(postId);
+  if (card) card.remove();
+  fetch(`${DB_URL}/posts/${encodeURIComponent(postId)}.json`, { method: "DELETE" }).catch(() => {});
 }
 
 function recordPostView(postId) {
@@ -437,125 +1421,53 @@ function recordPostView(postId) {
         body: JSON.stringify(nextVal)
       });
     })
+    .then(() => loadViewsCounts())
     .catch(() => {});
 }
+
+function loadViewsCounts() {
+  fetch(`${DB_URL}/views.json`)
+    .then(r => r.json())
+    .then(viewsData => {
+      const map = (viewsData && typeof viewsData === "object") ? viewsData : {};
+      document.querySelectorAll(".k360-post-views").forEach(el => {
+        const pid = el.getAttribute("data-post-id");
+        if (pid) el.innerHTML = `المشاهدات: <strong>${Number(map[pid]) || 0}</strong>`;
+      });
+    })
+    .catch(() => {});
 }
 
-function renderTicker(list) {
+function populateTickerFromCards() {
   const tickerEl = document.getElementById("newsTickerMove");
   if (!tickerEl) return;
-  if (!list || !list.length) {
-    tickerEl.textContent = "أهلاً بكم في منصة krater360 الإخبارية";
-    return;
-  }
-  tickerEl.innerHTML = list.slice(0, 10).map(p => {
-    const id = encodeURIComponent(p.id || "");
-    const title = escapeText(p.title || "خبر");
-    return `<a href="?post=${id}">• ${title}</a>`;
-  }).join("");
-}
-
-function renderAds(adsData) {
-  const box = document.getElementById("headerAdsBox");
-  if (!box || !adsData) return;
-  const slots = [adsData.right, adsData.left].filter(a => a && (a.text || a.img));
-  if (!slots.length) {
-    box.style.display = "none";
-    return;
-  }
-  box.style.display = "grid";
-  box.innerHTML = slots.map(ad => {
-    const imgHtml = ad.img ? `<img src="${escapeText(ad.img)}" alt="" loading="lazy">` : "";
-    const textHtml = `<span>${escapeText(ad.text || "")}</span>`;
-    const inner = ad.url
-      ? `<a href="${escapeText(ad.url)}" target="_blank" rel="noopener noreferrer">${imgHtml}${textHtml}</a>`
-      : `<div>${imgHtml}${textHtml}</div>`;
-    return `<div class="k360-ad-card">${inner}</div>`;
-  }).join("");
-}
-
-function renderNews(postsData, viewsData) {
-  const feedEl = document.getElementById("newsFeed");
-  if (!feedEl) return;
-
-  if (!postsData || typeof postsData !== "object") {
-    renderTicker([]);
-    feedEl.innerHTML = "<p style='text-align:center; color:#64748b;'>لا توجد أخبار منشورة حالياً.</p>";
-    return;
-  }
-
-  const viewsMap = (viewsData && typeof viewsData === "object") ? viewsData : {};
-  const params = new URLSearchParams(window.location.search);
-  const targetPostId = params.get("post");
-
-  let list = Object.entries(postsData)
-    .map(([key, val]) => ({ ...(val || {}), id: (val && val.id) || key }))
-    .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-
-  renderTicker(list);
-
-  let displayList = list;
-  if (targetPostId && postsData[targetPostId]) {
-    displayList = [{ ...(postsData[targetPostId] || {}), id: targetPostId }];
-    syncShareMetaForPost(displayList[0]);
-    recordPostView(targetPostId);
-  } else if (list[0]) {
-    syncShareMetaForPost(list[0]);
-  }
-
-  feedEl.innerHTML = displayList.map(post => {
-    const id = post.id || "";
-    const title = escapeText(post.title || "بدون عنوان");
-    const date = escapeText(post.date || "");
-    const views = Number(viewsMap[id]) || 0;
-    const imgHtml = (post.img && String(post.img).trim())
-      ? `<div class="k360-news-media"><img src="${escapeText(post.img)}" alt="${title}" loading="lazy"></div>`
-      : "";
-    const paragraphs = Array.isArray(post.paragraphs)
-      ? post.paragraphs
-      : String(post.body || "").split(/\n+/).filter(Boolean);
-    const bodyHtml = paragraphs.map(p => `<p>${escapeText(p)}</p>`).join("");
-
-    return `
-      <article class="k360-news-card" id="${escapeText(id)}">
-        <div class="k360-news-topbar">
-          <span class="k360-news-badge">krater360</span>
-          <span>${date}</span>
-        </div>
-        <div class="k360-news-body">
-          <h2 class="k360-news-title">${title}</h2>
-          ${imgHtml}
-          <div class="k360-news-text">${bodyHtml}</div>
-        </div>
-        <div class="k360-news-footer">
-          <span>المشاهدات: <strong>${views}</strong></span>
-          <button type="button" class="k360-copy-mini" onclick="copySingleLink('${escapeText(id)}')">نسخ الرابط</button>
-        </div>
-      </article>
-    `;
-  }).join("");
-}
-
-function loadLiveFeed(showToast = false) {
-  const cachedPosts = JSON.parse(localStorage.getItem(CACHE_POSTS_KEY) || "null");
-  const cachedViews = JSON.parse(localStorage.getItem(CACHE_VIEWS_KEY) || "null");
-  const cachedAds = JSON.parse(localStorage.getItem(CACHE_ADS_KEY) || "null");
-
-  if (cachedAds) renderAds(cachedAds);
-  if (cachedPosts) renderNews(cachedPosts, cachedViews);
-
-  Promise.all([
-    fetch(`${DB_URL}/posts.json`).then(r => r.json()).catch(() => cachedPosts),
-    fetch(`${DB_URL}/views.json`).then(r => r.json()).catch(() => cachedViews),
-    fetch(`${DB_URL}/settings/headerAds.json`).then(r => r.json()).catch(() => cachedAds)
-  ]).then(([postsData, viewsData, adsData]) => {
-    if (postsData) localStorage.setItem(CACHE_POSTS_KEY, JSON.stringify(postsData));
-    if (viewsData) localStorage.setItem(CACHE_VIEWS_KEY, JSON.stringify(viewsData));
-    if (adsData) localStorage.setItem(CACHE_ADS_KEY, JSON.stringify(adsData));
-    renderAds(adsData);
-    renderNews(postsData, viewsData);
-    if (showToast) alert("تم تحديث الأخبار");
+  const items = [];
+  document.querySelectorAll("#newsFeed .news-card").forEach(card => {
+    const id = card.id || "";
+    const h2 = card.querySelector("h2");
+    const title = h2 ? h2.textContent.trim() : "";
+    if (title) {
+      items.push(`<a href="?post=${encodeURIComponent(id)}">• ${escapeText(title)}</a>`);
+    }
   });
+  tickerEl.innerHTML = items.length ? items.join("") : "أهلاً بكم في منصة krater360 الإخبارية";
+}
+
+function handleQueryPostFilter() {
+  const params = new URLSearchParams(window.location.search);
+  const targetId = params.get("post");
+  if (!targetId) return;
+  const targetCard = document.getElementById(targetId);
+  if (!targetCard) return;
+
+  document.querySelectorAll("#newsFeed .news-card").forEach(card => {
+    if (card.id !== targetId) card.style.display = "none";
+    else {
+      const body = card.querySelector(".news-body");
+      if (body) body.classList.add("expanded");
+    }
+  });
+  recordPostView(targetId);
 }
 
 function validateKnownGmail(rawEmail) {
@@ -625,7 +1537,9 @@ function submitValidatedMessage(event) {
 }
 
 enableCopyProtection();
-loadLiveFeed(false);
+populateTickerFromCards();
+handleQueryPostFilter();
+loadViewsCounts();
 </script>
 </body>
 </html>
