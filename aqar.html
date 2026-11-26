@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سوق عدن للعقارات والسيارات | krater360</title>
+  <style>
+    :root {
+      --blue: #0b3c8a;
+      --blue2: #1565c0;
+      --red: #d32f2f;
+      --green: #1b5e20;
+      --bg: #eef3fb;
+      --card: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #cbd5e1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    /* الواجهة الضخمة العلوية */
+    .mega-hero {
+      background: linear-gradient(135deg, #07285e 0%, var(--blue) 55%, var(--blue2) 100%);
+      color: #ffffff;
+      padding: 28px 16px;
+      border-bottom: 6px solid var(--red);
+      box-shadow: 0 10px 28px rgba(7, 40, 94, 0.25);
+    }
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 14px;
+    }
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .hero-mega-title {
+      margin: 0;
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: 0.2px;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    }
+    .hero-sub {
+      margin: 8px 0 0;
+      font-size: 14px;
+      color: #e3f2fd;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .hero-btn {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.38);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 9px 14px;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .hero-btn:hover { background: rgba(255, 255, 255, 0.26); }
+    @media (max-width: 720px) {
+      .hero-mega-title { font-size: 25px; }
+    }
+
+    /* بوابة القسم قبل الإضافة */
+    .oath-gate {
+      background: #ffffff;
+      border: 2px solid var(--blue);
+      border-top: 5px solid var(--red);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 20px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+    }
+    .oath-gate h2 { margin: 0 0 8px; color: var(--blue); font-size: 18px; }
+    .oath-text {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-right: 4px solid var(--red);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .oath-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .oath-row input {
+      flex: 1;
+      min-width: 190px;
+      padding: 9px 11px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    /* الواجهة المقسومة نصين */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 20px;
+      align-items: start;
+    }
+    @media (max-width: 820px) {
+      .split-grid { grid-template-columns: 1fr; }
+    }
+    .panel-box {
+      background: var(--card);
+      border: 1px solid #dbe4f0;
+      border-top: 4px solid var(--blue);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+    }
+    .panel-box.search-side { border-top-color: var(--red); }
+    .panel-box h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      color: var(--blue);
+    }
+    .panel-box.search-side h2 { color: #991b1b; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      background: #ffffff;
+    }
+    textarea { min-height: 82px; resize: vertical; }
+
+    .btn {
+      border: none;
+      border-radius: 8px;
+      padding: 9px 15px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    .btn-blue { background: var(--blue2); }
+    .btn-green { background: var(--green); }
+    .btn-red { background: var(--red); }
+    .btn-gray { background: #64748b; }
+    .btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+
+    .locked-notice {
+      background: #fff8e1;
+      border: 1px dashed #d97706;
+      color: #92400e;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+    #addFormContainer { display: none; }
+    body.oath-unlocked #addFormContainer { display: block; }
+    body.oath-unlocked #lockedAddNotice { display: none; }
+
+    /* خانة العرض الكبيرة بالأسفل */
+    .listings-section { margin-top: 28px; }
+    .listings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .listings-header h2 { margin: 0; font-size: 20px; color: var(--blue); }
+    .count-pill {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--blue);
+    }
+
+    /* مربع أبيض كبير لكل معروض مع فاصل سطرين بين كل معروض والآخر */
+    .big-white-card {
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      border-right: 6px solid var(--blue);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 0 auto 28px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 12px;
+    }
+    .serial-tag {
+      background: #0d47a1;
+      color: #ffffff;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .type-tag {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .date-tag { font-size: 12px; color: var(--muted); font-weight: 700; }
+    .item-main-title { margin: 0 0 8px; font-size: 20px; font-weight: 900; color: var(--ink); }
+    .item-meta-line { font-size: 14px; color: #334155; margin-bottom: 8px; font-weight: 700; }
+    .item-price-highlight { font-size: 16px; font-weight: 900; color: var(--green); margin-bottom: 10px; }
+    .item-specs {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #1e293b;
+      white-space: pre-line;
+      margin-bottom: 12px;
+    }
+    .item-photos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .item-photos img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .owner-controls { display: none; gap: 8px; flex-wrap: wrap; }
+    body.owner-admin-mode .owner-controls { display: inline-flex; }
+  </style>
+</head>
+<body>
+  <header class="mega-hero">
+    <div class="wrap">
+      <div class="hero-top">
+        <div>
+          <h1 class="hero-mega-title">سوق عدن للعقارات والسيارات</h1>
+          <p class="hero-sub">منصة متكاملة لعرض وطلب العقارات والسيارات وغيرها — krater360</p>
+        </div>
+        <div class="hero-actions">
+          <a href="https://krater360.github.io/" class="hero-btn">الرئيسية</a>
+          <button type="button" class="hero-btn" onclick="toggleOwnerAdmin()">إدارة وتعديل</button>
+        </div>
+      </div>
+
+      <!-- بوابة القسم المطلوبة قبل الدخول لإضافة معروض -->
+      <section class="oath-gate" id="oathGate">
+        <h2>القسم والالتزام قبل عرض العقار أو السيارة</h2>
+        <div class="oath-text">
+          أقر وأتعهد بأنني سأدفع حق الموقع عند إتمام البيعة:
+          <strong>أقل من مليون 1%</strong> — و<strong>أكثر من 2 مليون 0.5%</strong>.
+          لفتح خانة الإضافة اكتب عبارة: <strong>أقسم بالله</strong>.
+        </div>
+        <div class="oath-row">
+          <input type="text" id="oathInput" placeholder="اكتب: أقسم بالله">
+          <button type="button" class="btn btn-blue" onclick="checkOathUnlock()">فتح الإضافة</button>
+          <button type="button" class="btn btn-gray" onclick="lockOathGate()">إقفال</button>
+        </div>
+        <div id="oathStatus" style="margin-top:6px; font-size:12px; font-weight:800; color:#c62828;"></div>
+      </section>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- واجهة مقسومة نصين -->
+    <div class="split-grid">
+      <!-- النصف الأول: إضافة إعلان عقار أو سيارة أو غيرها -->
+      <section class="panel-box">
+        <h2>إضافة إعلان (عقار / سيارة / أخرى)</h2>
+        <div class="locked-notice" id="lockedAddNotice">
+          يرجى أداء القسم وكتابة (أقسم بالله) في الأعلى لفتح نموذج الإضافة.
+        </div>
+
+        <div id="addFormContainer">
+          <form id="itemForm" onsubmit="saveListingItem(event)">
+            <label for="itemName">اسم العقار أو السيارة أو غيرها</label>
+            <input type="text" id="itemName" required placeholder="مثال: أرض في المنصورة أو سيارة كورولا">
+
+            <label for="itemLocation">الموقع</label>
+            <input type="text" id="itemLocation" required placeholder="مثال: عدن - الشيخ عثمان">
+
+            <label for="itemSpecs">المواصفات</label>
+            <textarea id="itemSpecs" required placeholder="اكتب المساحة أو الموديل والحالة وكافة المواصفات..."></textarea>
+
+            <label for="itemType">النوع (إيجار أو بيع أو أخرى)</label>
+            <select id="itemType" required>
+              <option value="بيع">بيع</option>
+              <option value="إيجار">إيجار</option>
+              <option value="أخرى">أخرى</option>
+            </select>
+
+            <label for="itemPrice">المبلغ المعروض به</label>
+            <input type="text" id="itemPrice" required placeholder="مثال: 950,000 أو 4,500,000">
+
+            <label for="sellerPhone">رقم البائع</label>
+            <input type="text" id="sellerPhone" required placeholder="مثال: 77xxxxxxx">
+
+            <label for="itemImages">إضافة الصور (ضع كل رابط صورة في سطر أو ارفع من الهاتف)</label>
+            <textarea id="itemImages" rows="3" placeholder="https://krater360.github.io/images/1.jpg&#10;https://krater360.github.io/images/2.jpg"></textarea>
+
+            <div style="margin-top:8px; padding:8px; background:#f8fafc; border:1px dashed var(--border); border-radius:8px;">
+              <label style="margin-top:0;">رفع صورة أو أكثر مباشرة إلى GitHub (اختياري):</label>
+              <input type="file" id="itemFileUpload" accept="image/*" multiple>
+              <button type="button" class="btn btn-blue" style="margin-top:6px;" onclick="uploadSelectedImagesToGitHub()">رفع الصور المختارة</button>
+              <div id="uploadMsg" style="margin-top:4px; font-size:12px; font-weight:700; color:var(--blue);"></div>
+            </div>
+
+            <div class="btn-row">
+              <button type="submit" class="btn btn-green" id="saveItemBtn">حفظ ونشر المعروض</button>
+              <button type="button" class="btn btn-gray" onclick="cancelEditItem()">إلغاء التعديل</button>
+            </div>
+            <div id="itemSaveMsg" style="margin-top:8px; font-size:13px; font-weight:800;"></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- النصف الثاني: البحث عن عقار أو سيارة وتحديد السعر المراد الشراء به -->
+      <section class="panel-box search-side">
+        <h2>البحث عن عقار أو سيارة وطلب الشراء</h2>
+        <form id="searchBuyForm" onsubmit="applySearchAndSaveRequest(event)">
+          <label for="searchName">اسم العقار أو السيارة المطلوبة</label>
+          <input type="text" id="searchName" placeholder="مثال: شقة، أرض، باص، هايلوكس...">
+
+          <label for="searchLocation">الموقع المطلوب</label>
+          <input type="text" id="searchLocation" placeholder="مثال: عدن - خورمكسر أو كريتر">
+
+          <label for="searchSpecs">المواصفات المطلوبة</label>
+          <textarea id="searchSpecs" placeholder="اكتب المواصفات التي تبحث عنها..."></textarea>
+
+          <label for="targetBuyPrice">السعر المراد الشراء به</label>
+          <input type="text" id="targetBuyPrice" placeholder="مثال: 1,500,000 أو حد أقصى 3,000,000">
+
+          <div class="btn-row">
+            <button type="submit" class="btn btn-red">بحث وتصفية المعروضات</button>
+            <button type="button" class="btn btn-gray" onclick="resetSearchFilters()">عرض الكل</button>
+          </div>
+          <div id="searchStatusMsg" style="margin-top:8px; font-size:12px; font-weight:800; color:#0d47a1;"></div>
+        </form>
+      </section>
+    </div>
+
+    <!-- خانة العرض الكبيرة بالأسفل -->
+    <section class="listings-section">
+      <div class="listings-header">
+        <h2>المعروضات في السوق</h2>
+        <span class="count-pill">إجمالي المعروضات: <span id="totalItemsCount">0</span></span>
+      </div>
+      <div id="listingsContainer">
+        <p style="text-align:center; color:var(--muted);">جاري تحميل المعروضات...</p>
+      </div>
+    </section>
+  </main>
+<script>
+const DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
+const OWNER_PASSCODE = "9270268911";
+const OATH_KEY = "k360_aden_market_oath";
+
+const GH_OWNER = "krater360";
+const GH_REPO = "krater360.github.io";
+const GH_BRANCH = "main";
+const GH_FOLDER = "images";
+const GH_TOKEN_KEY = "krater360_gh_token_new";
+
+let allListings = [];
+let editingItemId = "";
+
+function normalizeArabic(str) {
+  return String(str || "")
+    .replace(/[\u064B-\u065F\u0670]/g, "")
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ى/g, "ي")
+    .replace(/ة/g, "ه")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function escapeHtml(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function getTodayDateText() {
+  try {
+    return new Date().toLocaleDateString("ar-YE", { timeZone: "Asia/Aden" });
+  } catch (_) {
+    return new Date().toISOString().slice(0, 10);
+  }
+}
+
+function checkOathUnlock() {
+  const input = document.getElementById("oathInput");
+  const status = document.getElementById("oathStatus");
+  if (normalizeArabic(input.value) === "اقسم بالله") {
+    sessionStorage.setItem(OATH_KEY, "1");
+    document.body.classList.add("oath-unlocked");
+    status.textContent = "";
+  } else {
+    status.textContent = "اكتب كلمة (أقسم بالله) بشكل صحيح لفتح خانة الإضافة.";
+  }
+}
+
+function lockOathGate() {
+  sessionStorage.removeItem(OATH_KEY);
+  document.body.classList.remove("oath-unlocked");
+  document.getElementById("oathInput").value = "";
+}
+
+function toggleOwnerAdmin() {
+  if (document.body.classList.contains("owner-admin-mode")) {
+    document.body.classList.remove("owner-admin-mode");
+    return;
+  }
+  const code = prompt("أدخل رمز صاحب الموقع للتعديل والحذف:");
+  if (code === OWNER_PASSCODE) {
+    document.body.classList.add("owner-admin-mode");
+    document.body.classList.add("oath-unlocked");
+    alert("تم تفعيل صلاحية التعديل والحذف لصاحب الموقع");
+  } else if (code !== null) {
+    alert("الرمز غير صحيح");
+  }
+}
+
+function fileToB64(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result || "").split(",")[1] || "");
+    r.onerror = reject;
+    r.readAsDataURL(file);
+  });
+}
+
+async function uploadSelectedImagesToGitHub() {
+  const fileEl = document.getElementById("itemFileUpload");
+  const imgsEl = document.getElementById("itemImages");
+  const msgEl = document.getElementById("uploadMsg");
+
+  if (!fileEl.files || !fileEl.files.length) {
+    msgEl.textContent = "اختر صورة أو أكثر أولاً.";
+    return;
+  }
+
+  let token = String(localStorage.getItem(GH_TOKEN_KEY) || "").replace(/[^A-Za-z0-9_]/g, "").trim();
+  if (!token) {
+    const entered = prompt("أدخل رمز GitHub Token لرفع الصور:");
+    if (!entered) return;
+    token = String(entered).replace(/[^A-Za-z0-9_]/g, "").trim();
+    localStorage.setItem(GH_TOKEN_KEY, token);
+  }
+
+  const urls = [];
+  for (let i = 0; i < fileEl.files.length; i++) {
+    const f = fileEl.files[i];
+    msgEl.textContent = `جاري رفع الصورة ${i + 1} من ${fileEl.files.length}...`;
+    const base64 = await fileToB64(f);
+    const ext = (f.name.split(".").pop() || "jpg").replace(/[^a-zA-Z0-9]/g, "") || "jpg";
+    const name = `${Date.now()}-${i + 1}-aqar.${ext}`;
+
+    const res = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FOLDER}/${name}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: `Upload ${name}`, content: base64, branch: GH_BRANCH })
+    });
+    if (!res.ok) throw new Error("فشل رفع الصورة");
+    urls.push(`https://${GH_OWNER}.github.io/${GH_FOLDER}/${name}`);
+  }
+
+  const existing = imgsEl.value.split(/\n+/).map(s => s.trim()).filter(Boolean);
+  imgsEl.value = existing.concat(urls).join("\n");
+  fileEl.value = "";
+  msgEl.textContent = `تم رفع ${urls.length} صورة بنجاح.`;
+}
+
+function saveListingItem(event) {
+  event.preventDefault();
+  const isOwnerMode = document.body.classList.contains("owner-admin-mode");
+  if (sessionStorage.getItem(OATH_KEY) !== "1" && !isOwnerMode) {
+    alert("يرجى أداء القسم بكتابة (أقسم بالله) أولاً");
+    return;
+  }
+
+  const name = document.getElementById("itemName").value.trim();
+  const location = document.getElementById("itemLocation").value.trim();
+  const specs = document.getElementById("itemSpecs").value.trim();
+  const type = document.getElementById("itemType").value;
+  const price = document.getElementById("itemPrice").value.trim();
+  const phone = document.getElementById("sellerPhone").value.trim();
+  const images = document.getElementById("itemImages").value.split(/\n+/).map(u => u.trim()).filter(Boolean);
+
+  const msgEl = document.getElementById("itemSaveMsg");
+  const btnEl = document.getElementById("saveItemBtn");
+  btnEl.disabled = true;
+  msgEl.style.color = "#0f4e9a";
+  msgEl.textContent = "جاري الحفظ...";
+
+  const id = editingItemId || ("market-" + Date.now());
+  const existingItem = allListings.find(x => x.id === id);
+  const record = {
+    id,
+    name,
+    location,
+    specs,
+    type,
+    price,
+    phone,
+    images,
+    dateText: existingItem?.dateText || getTodayDateText(),
+    createdAt: existingItem?.createdAt || Date.now(),
+    updatedAt: Date.now()
+  };
+
+  fetch(`${DB_URL}/marketItems/${encodeURIComponent(id)}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(record)
+  })
+    .then(r => {
+      if (!r.ok) throw new Error();
+      document.getElementById("itemForm").reset();
+      editingItemId = "";
+      msgEl.style.color = "#1b5e20";
+      msgEl.textContent = "تم حفظ المعروض بنجاح.";
+      loadListings();
+    })
+    .catch(() => {
+      msgEl.style.color = "#c62828";
+      msgEl.textContent = "تعذر الحفظ، تحقق من الاتصال أو قواعد Firebase.";
+    })
+    .finally(() => { btnEl.disabled = false; });
+}
+
+function startEditItem(id) {
+  const item = allListings.find(x => x.id === id);
+  if (!item) return;
+  editingItemId = item.id;
+  document.body.classList.add("oath-unlocked");
+  document.getElementById("itemName").value = item.name || "";
+  document.getElementById("itemLocation").value = item.location || "";
+  document.getElementById("itemSpecs").value = item.specs || "";
+  document.getElementById("itemType").value = item.type || "بيع";
+  document.getElementById("itemPrice").value = item.price || "";
+  document.getElementById("sellerPhone").value = item.phone || "";
+  document.getElementById("itemImages").value = (item.images || []).join("\n");
+  document.getElementById("itemSaveMsg").style.color = "#0d47a1";
+  document.getElementById("itemSaveMsg").textContent = "أنت الآن في وضع تعديل المعروض — اضغط حفظ ونشر المعروض لتأكيد التعديل.";
+  window.scrollTo({ top: 180, behavior: "smooth" });
+}
+
+function cancelEditItem() {
+  editingItemId = "";
+  document.getElementById("itemForm").reset();
+  document.getElementById("itemSaveMsg").textContent = "";
+}
+
+function deleteItemById(id) {
+  if (!confirm("هل تريد حذف هذا المعروض نهائياً؟")) return;
+  fetch(`${DB_URL}/marketItems/${encodeURIComponent(id)}.json`, { method: "DELETE" })
+    .then(() => loadListings())
+    .catch(() => alert("تعذر حذف المعروض"));
+}
+
+function parseNumericPrice(val) {
+  const digits = String(val || "").replace(/[^\d.]/g, "");
+  const num = Number(digits);
+  return Number.isFinite(num) && num > 0 ? num : null;
+}
+
+function applySearchAndSaveRequest(event) {
+  event.preventDefault();
+  const qName = normalizeArabic(document.getElementById("searchName").value);
+  const qLoc = normalizeArabic(document.getElementById("searchLocation").value);
+  const qSpecs = normalizeArabic(document.getElementById("searchSpecs").value);
+  const qPriceRaw = document.getElementById("targetBuyPrice").value.trim();
+  const qPriceNum = parseNumericPrice(qPriceRaw);
+
+  const filtered = allListings.filter(item => {
+    const matchName = !qName || normalizeArabic(item.name).includes(qName);
+    const matchLoc = !qLoc || normalizeArabic(item.location).includes(qLoc);
+    const matchSpecs = !qSpecs || normalizeArabic(item.specs).includes(qSpecs);
+    const itemPriceNum = parseNumericPrice(item.price);
+    const matchPrice = !qPriceNum || !itemPriceNum || itemPriceNum <= qPriceNum;
+    return matchName && matchLoc && matchSpecs && matchPrice;
+  });
+
+  renderListingsList(filtered);
+  document.getElementById("searchStatusMsg").textContent = `نتائج البحث المطابقة: ${filtered.length}`;
+
+  if (qName || qLoc || qSpecs || qPriceRaw) {
+    fetch(`${DB_URL}/buyRequests.json`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: document.getElementById("searchName").value.trim(),
+        location: document.getElementById("searchLocation").value.trim(),
+        specs: document.getElementById("searchSpecs").value.trim(),
+        targetPrice: qPriceRaw,
+        createdAt: Date.now()
+      })
+    }).catch(() => {});
+  }
+}
+
+function resetSearchFilters() {
+  document.getElementById("searchBuyForm").reset();
+  document.getElementById("searchStatusMsg").textContent = "";
+  renderListingsList(allListings);
+}
+
+function renderListingsList(list) {
+  const container = document.getElementById("listingsContainer");
+  const countEl = document.getElementById("totalItemsCount");
+  if (countEl) countEl.textContent = String(list.length);
+
+  if (!list.length) {
+    container.innerHTML = "<div class='big-white-card'><p style='text-align:center; margin:0; color:#475569;'>لا توجد معروضات مطابقة حالياً.</p></div>";
+    return;
+  }
+
+  container.innerHTML = list.map((item, idx) => {
+    const serialNumber = item.serialNumber || (idx + 1);
+    const imgs = Array.isArray(item.images) ? item.images : [];
+    const photosHtml = imgs.length
+      ? `<div class="item-photos">${imgs.map(url => `<img src="${escapeHtml(url)}" alt="${escapeHtml(item.name)}" onclick="window.open(this.src, '_blank')">`).join("")}</div>`
+      : "";
+
+    return `
+      <article class="big-white-card" id="${escapeHtml(item.id)}">
+        <div class="card-top">
+          <span class="serial-tag">رقم المعروض: #${serialNumber}</span>
+          <span class="type-tag">النوع: ${escapeHtml(item.type || "بيع")}</span>
+          <span class="date-tag">التاريخ: ${escapeHtml(item.dateText || "")}</span>
+        </div>
+
+        <h3 class="item-main-title">${escapeHtml(item.name || "")}</h3>
+        <div class="item-meta-line">الموقع: ${escapeHtml(item.location || "")}</div>
+        <div class="item-price-highlight">المبلغ المعروض به: ${escapeHtml(item.price || "")}</div>
+
+        <div class="item-specs">${escapeHtml(item.specs || "")}</div>
+        ${photosHtml}
+
+        <div class="card-bottom">
+          <span>رقم البائع: ${escapeHtml(item.phone || "")}</span>
+          <div class="owner-controls">
+            <button type="button" class="btn btn-blue" onclick="startEditItem('${escapeHtml(item.id)}')">تعديل</button>
+            <button type="button" class="btn btn-red" onclick="deleteItemById('${escapeHtml(item.id)}')">حذف</button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function loadListings() {
+  fetch(`${DB_URL}/marketItems.json`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data || typeof data !== "object") {
+        allListings = [];
+        renderListingsList([]);
+        return;
+      }
+      const ordered = Object.entries(data)
+        .map(([key, val]) => ({ ...(val || {}), id: (val && val.id) || key }))
+        .sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+
+      allListings = ordered.map((item, index) => ({
+        ...item,
+        serialNumber: index + 1
+      })).reverse();
+
+      renderListingsList(allListings);
+    })
+    .catch(() => {
+      document.getElementById("listingsContainer").innerHTML = "<div class='big-white-card'><p style='text-align:center; margin:0; color:#c62828;'>تعذر تحميل المعروضات من Firebase.</p></div>";
+    });
+}
+
+if (sessionStorage.getItem(OATH_KEY) === "1") {
+  document.body.classList.add("oath-unlocked");
+}
+loadListings();
+</script>
+</body>
+</html>
