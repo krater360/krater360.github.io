@@ -79,7 +79,7 @@
       .hero-mega-title { font-size: 25px; }
     }
 
-    /* بوابة القسم قبل الإضافة */
+    /* بوابة القسم للجميع */
     .oath-gate {
       background: #ffffff;
       border: 2px solid var(--blue);
@@ -113,6 +113,17 @@
       font-size: 14px;
       font-weight: 700;
     }
+    .oath-badge-ok {
+      display: none;
+      margin-top: 8px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: #e8f5e9;
+      color: #1b5e20;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    body.oath-unlocked .oath-badge-ok { display: inline-block; }
     /* الواجهة المقسومة نصين */
     .split-grid {
       display: grid;
@@ -183,10 +194,11 @@
       font-size: 13px;
       font-weight: 700;
       text-align: center;
+      margin-bottom: 10px;
     }
-    #addFormContainer { display: none; }
-    body.oath-unlocked #addFormContainer { display: block; }
-    body.oath-unlocked #lockedAddNotice { display: none; }
+    .oath-gated-body { display: none; }
+    body.oath-unlocked .oath-gated-body { display: block; }
+    body.oath-unlocked .locked-notice { display: none; }
 
     /* لوحة الرسائل والرد عليها للأدمن */
     .admin-messages-box {
@@ -356,18 +368,19 @@
         </div>
       </div>
 
-      <!-- بوابة القسم المطلوبة قبل الدخول لإضافة معروض -->
+      <!-- بوابة القسم الإلزامية للجميع -->
       <section class="oath-gate" id="oathGate">
-        <h2>القسم والالتزام قبل عرض العقار أو السيارة</h2>
+        <h2>القسم والالتزام الإلزامي للجميع</h2>
         <div class="oath-text">
-          أقر وأتعهد بأنني سأدفع حق الموقع وقدره <strong>100 ريال سعودي</strong> في حال تمت البيعة.
-          لفتح خانة الإضافة اكتب عبارة: <strong>أقسم بالله</strong>.
+          أقسم بالله العظيم أنني ملتزم بدفع حق الموقع وقدره <strong>100 ريال سعودي</strong> في حال تمت البيعة.
+          الدخول لاستخدام الإضافة أو البحث أو إرسال الرسائل يتطلب كتابة عبارة: <strong>أقسم بالله</strong>.
         </div>
         <div class="oath-row">
           <input type="text" id="oathInput" placeholder="اكتب: أقسم بالله">
-          <button type="button" class="btn btn-blue" onclick="checkOathUnlock()">فتح الإضافة</button>
+          <button type="button" class="btn btn-blue" onclick="checkOathUnlock()">أداء القسم والدخول</button>
           <button type="button" class="btn btn-gray" onclick="lockOathGate()">إقفال</button>
         </div>
+        <div class="oath-badge-ok">تم أداء القسم — جميع خدمات الإضافة والبحث والرسائل مفتوحة</div>
         <div id="oathStatus" style="margin-top:6px; font-size:12px; font-weight:800; color:#c62828;"></div>
       </section>
     </div>
@@ -388,11 +401,11 @@
       <!-- النصف الأول: إضافة إعلان عقار أو سيارة أو غيرها -->
       <section class="panel-box">
         <h2>إضافة إعلان (عقار / سيارة / أخرى)</h2>
-        <div class="locked-notice" id="lockedAddNotice">
-          يرجى أداء القسم وكتابة (أقسم بالله) في الأعلى لفتح نموذج الإضافة.
+        <div class="locked-notice">
+          يجب أداء القسم وكتابة (أقسم بالله) في الأعلى أولاً لفتح خانة الإضافة.
         </div>
 
-        <div id="addFormContainer">
+        <div class="oath-gated-body" id="addFormContainer">
           <form id="itemForm" onsubmit="saveListingItem(event)">
             <label for="itemName">اسم العقار أو السيارة أو غيرها</label>
             <input type="text" id="itemName" required placeholder="مثال: أرض في المنصورة أو سيارة كورولا">
@@ -438,25 +451,31 @@
       <!-- النصف الثاني: البحث عن عقار أو سيارة وتحديد السعر المراد الشراء به -->
       <section class="panel-box search-side">
         <h2>البحث عن عقار أو سيارة وطلب الشراء</h2>
-        <form id="searchBuyForm" onsubmit="applySearchAndSaveRequest(event)">
-          <label for="searchName">اسم العقار أو السيارة المطلوبة</label>
-          <input type="text" id="searchName" placeholder="مثال: شقة، أرض، باص، هايلوكس...">
+        <div class="locked-notice">
+          يجب أداء القسم وكتابة (أقسم بالله) في الأعلى أولاً لفتح خانة البحث.
+        </div>
 
-          <label for="searchLocation">الموقع المطلوب</label>
-          <input type="text" id="searchLocation" placeholder="مثال: عدن - خورمكسر أو كريتر">
+        <div class="oath-gated-body" id="searchFormContainer">
+          <form id="searchBuyForm" onsubmit="applySearchAndSaveRequest(event)">
+            <label for="searchName">اسم العقار أو السيارة المطلوبة</label>
+            <input type="text" id="searchName" placeholder="مثال: شقة، أرض، باص، هايلوكس...">
 
-          <label for="searchSpecs">المواصفات المطلوبة</label>
-          <textarea id="searchSpecs" placeholder="اكتب المواصفات التي تبحث عنها..."></textarea>
+            <label for="searchLocation">الموقع المطلوب</label>
+            <input type="text" id="searchLocation" placeholder="مثال: عدن - خورمكسر أو كريتر">
 
-          <label for="targetBuyPrice">السعر المراد الشراء به</label>
-          <input type="text" id="targetBuyPrice" placeholder="مثال: 1,500,000 أو حد أقصى 3,000,000">
+            <label for="searchSpecs">المواصفات المطلوبة</label>
+            <textarea id="searchSpecs" placeholder="اكتب المواصفات التي تبحث عنها..."></textarea>
 
-          <div class="btn-row">
-            <button type="submit" class="btn btn-red">بحث وتصفية المعروضات</button>
-            <button type="button" class="btn btn-gray" onclick="resetSearchFilters()">عرض الكل</button>
-          </div>
-          <div id="searchStatusMsg" style="margin-top:8px; font-size:12px; font-weight:800; color:#0d47a1;"></div>
-        </form>
+            <label for="targetBuyPrice">السعر المراد الشراء به</label>
+            <input type="text" id="targetBuyPrice" placeholder="مثال: 1,500,000 أو حد أقصى 3,000,000">
+
+            <div class="btn-row">
+              <button type="submit" class="btn btn-red">بحث وتصفية المعروضات</button>
+              <button type="button" class="btn btn-gray" onclick="resetSearchFilters()">عرض الكل</button>
+            </div>
+            <div id="searchStatusMsg" style="margin-top:8px; font-size:12px; font-weight:800; color:#0d47a1;"></div>
+          </form>
+        </div>
       </section>
     </div>
 
@@ -497,7 +516,7 @@
 <script>
 const DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
 const OWNER_PASSCODE = "9270268911";
-const OATH_KEY = "k360_aden_market_oath";
+const OATH_KEY = "k360_aden_market_oath_all";
 
 const GH_OWNER = "krater360";
 const GH_REPO = "krater360.github.io";
@@ -534,6 +553,18 @@ function getTodayDateText() {
   }
 }
 
+function isEveryoneOathUnlocked() {
+  return sessionStorage.getItem(OATH_KEY) === "1" || document.body.classList.contains("owner-admin-mode");
+}
+
+function requireOathOrPrompt(customMsg = "يجب أداء القسم وكتابة (أقسم بالله) أولاً") {
+  if (isEveryoneOathUnlocked()) return true;
+  alert(customMsg);
+  const gate = document.getElementById("oathGate");
+  if (gate) gate.scrollIntoView({ behavior: "smooth" });
+  return false;
+}
+
 function checkOathUnlock() {
   const input = document.getElementById("oathInput");
   const status = document.getElementById("oathStatus");
@@ -542,7 +573,7 @@ function checkOathUnlock() {
     document.body.classList.add("oath-unlocked");
     status.textContent = "";
   } else {
-    status.textContent = "اكتب كلمة (أقسم بالله) بشكل صحيح لفتح خانة الإضافة.";
+    status.textContent = "اكتب كلمة (أقسم بالله) بشكل صحيح للدخول.";
   }
 }
 
@@ -550,6 +581,7 @@ function lockOathGate() {
   sessionStorage.removeItem(OATH_KEY);
   document.body.classList.remove("oath-unlocked");
   document.getElementById("oathInput").value = "";
+  resetSearchFilters();
 }
 
 function toggleOwnerAdmin() {
@@ -578,6 +610,7 @@ function fileToB64(file) {
 }
 
 async function uploadSelectedImagesToGitHub() {
+  if (!requireOathOrPrompt("يجب أداء القسم بكتابة (أقسم بالله) أولاً")) return;
   const fileEl = document.getElementById("itemFileUpload");
   const imgsEl = document.getElementById("itemImages");
   const msgEl = document.getElementById("uploadMsg");
@@ -624,11 +657,7 @@ async function uploadSelectedImagesToGitHub() {
 
 function saveListingItem(event) {
   event.preventDefault();
-  const isOwnerMode = document.body.classList.contains("owner-admin-mode");
-  if (sessionStorage.getItem(OATH_KEY) !== "1" && !isOwnerMode) {
-    alert("يرجى أداء القسم بكتابة (أقسم بالله) أولاً");
-    return;
-  }
+  if (!requireOathOrPrompt("يرجى أداء القسم بكتابة (أقسم بالله) أولاً")) return;
 
   const name = document.getElementById("itemName").value.trim();
   const location = document.getElementById("itemLocation").value.trim();
@@ -711,6 +740,7 @@ function deleteItemById(id) {
 }
 
 function openSendMessageModal(itemId, itemTitle) {
+  if (!requireOathOrPrompt("يجب أداء القسم وكتابة (أقسم بالله) قبل إرسال رسالة")) return;
   document.getElementById("msgTargetItemId").value = itemId || "";
   document.getElementById("msgTargetItemName").value = itemTitle || "";
   document.getElementById("modalItemTitle").textContent = "المعروض: " + (itemTitle || "");
@@ -724,6 +754,8 @@ function closeSendMessageModal() {
 
 function submitItemMessage(event) {
   event.preventDefault();
+  if (!requireOathOrPrompt("يجب أداء القسم وكتابة (أقسم بالله) قبل إرسال رسالة")) return;
+
   const itemId = document.getElementById("msgTargetItemId").value;
   const itemTitle = document.getElementById("msgTargetItemName").value;
   const senderName = document.getElementById("visitorMsgName").value.trim();
@@ -836,6 +868,8 @@ function parseNumericPrice(val) {
 
 function applySearchAndSaveRequest(event) {
   event.preventDefault();
+  if (!requireOathOrPrompt("يجب أداء القسم وكتابة (أقسم بالله) قبل استخدام البحث")) return;
+
   const qName = normalizeArabic(document.getElementById("searchName").value);
   const qLoc = normalizeArabic(document.getElementById("searchLocation").value);
   const qSpecs = normalizeArabic(document.getElementById("searchSpecs").value);
