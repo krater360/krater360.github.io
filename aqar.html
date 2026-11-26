@@ -51,7 +51,6 @@
       font-size: 36px;
       font-weight: 900;
       line-height: 1.3;
-      letter-spacing: 0.2px;
       text-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
     }
     .hero-sub {
@@ -100,7 +99,9 @@
       font-size: 13px;
       line-height: 1.8;
       margin-bottom: 10px;
+      color: var(--ink);
     }
+    .oath-text strong { color: #991b1b; }
     .oath-row { display: flex; gap: 8px; flex-wrap: wrap; }
     .oath-row input {
       flex: 1;
@@ -186,6 +187,57 @@
     #addFormContainer { display: none; }
     body.oath-unlocked #addFormContainer { display: block; }
     body.oath-unlocked #lockedAddNotice { display: none; }
+
+    /* لوحة الرسائل والرد عليها للأدمن */
+    .admin-messages-box {
+      display: none;
+      background: #ffffff;
+      border: 2px solid var(--blue);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 22px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.09);
+    }
+    body.owner-admin-mode .admin-messages-box { display: block; }
+    .msg-item-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-right: 4px solid var(--blue2);
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 12px;
+    }
+    .msg-reply-box {
+      margin-top: 8px;
+      background: #eef6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: #0f172a;
+    }
+
+    /* نافذة إرسال رسالة على معروض */
+    .message-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+    .message-modal-backdrop.open { display: flex; }
+    .message-modal-card {
+      background: #ffffff;
+      border-radius: 14px;
+      max-width: 480px;
+      width: 100%;
+      padding: 18px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+      border-top: 4px solid var(--blue);
+    }
 
     /* خانة العرض الكبيرة بالأسفل */
     .listings-section { margin-top: 28px; }
@@ -285,6 +337,7 @@
       font-size: 13px;
       font-weight: 800;
     }
+    .card-actions-group { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
     .owner-controls { display: none; gap: 8px; flex-wrap: wrap; }
     body.owner-admin-mode .owner-controls { display: inline-flex; }
   </style>
@@ -307,8 +360,7 @@
       <section class="oath-gate" id="oathGate">
         <h2>القسم والالتزام قبل عرض العقار أو السيارة</h2>
         <div class="oath-text">
-          أقر وأتعهد بأنني سأدفع حق الموقع عند إتمام البيعة:
-          <strong>أقل من مليون 1%</strong> — و<strong>أكثر من 2 مليون 0.5%</strong>.
+          أقر وأتعهد بأنني سأدفع حق الموقع وقدره <strong>100 ريال سعودي</strong> في حال تمت البيعة.
           لفتح خانة الإضافة اكتب عبارة: <strong>أقسم بالله</strong>.
         </div>
         <div class="oath-row">
@@ -322,6 +374,15 @@
   </header>
 
   <main class="wrap">
+    <!-- قسم إدارة الرسائل والرد عليها عبر الأدمن -->
+    <section class="admin-messages-box" id="adminMessagesPanel">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <h2 style="margin:0; color:var(--blue); font-size:18px;">رسائل المعروضات والرد عليها (أدمن)</h2>
+        <button type="button" class="btn btn-blue" onclick="loadAqarMessages()">تحديث الرسائل</button>
+      </div>
+      <div id="aqarMessagesList">جاري تحميل الرسائل...</div>
+    </section>
+
     <!-- واجهة مقسومة نصين -->
     <div class="split-grid">
       <!-- النصف الأول: إضافة إعلان عقار أو سيارة أو غيرها -->
@@ -410,6 +471,29 @@
       </div>
     </section>
   </main>
+
+  <!-- نافذة إرسال رسالة على معروض -->
+  <div class="message-modal-backdrop" id="sendMsgModal">
+    <div class="message-modal-card">
+      <h3 style="margin:0 0 6px; color:var(--blue);">إرسال رسالة حول المعروض</h3>
+      <div id="modalItemTitle" style="font-size:13px; font-weight:800; color:#475569; margin-bottom:10px;"></div>
+      <form onsubmit="submitItemMessage(event)">
+        <input type="hidden" id="msgTargetItemId">
+        <input type="hidden" id="msgTargetItemName">
+        <label for="visitorMsgName">اسمك</label>
+        <input type="text" id="visitorMsgName" required placeholder="اكتب اسمك">
+        <label for="visitorMsgPhone">رقم الهاتف أو البريد</label>
+        <input type="text" id="visitorMsgPhone" required placeholder="مثال: 77xxxxxxx">
+        <label for="visitorMsgText">نص الرسالة</label>
+        <textarea id="visitorMsgText" required placeholder="اكتب استفسارك أو رسالتك..."></textarea>
+        <div class="btn-row">
+          <button type="submit" class="btn btn-green">إرسال الرسالة</button>
+          <button type="button" class="btn btn-gray" onclick="closeSendMessageModal()">إغلاق</button>
+        </div>
+        <div id="visitorMsgStatus" style="margin-top:8px; font-size:12px; font-weight:800;"></div>
+      </form>
+    </div>
+  </div>
 <script>
 const DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
 const OWNER_PASSCODE = "9270268911";
@@ -473,11 +557,12 @@ function toggleOwnerAdmin() {
     document.body.classList.remove("owner-admin-mode");
     return;
   }
-  const code = prompt("أدخل رمز صاحب الموقع للتعديل والحذف:");
+  const code = prompt("أدخل رمز الأدمن للتعديل والحذف والرد على الرسائل:");
   if (code === OWNER_PASSCODE) {
     document.body.classList.add("owner-admin-mode");
     document.body.classList.add("oath-unlocked");
-    alert("تم تفعيل صلاحية التعديل والحذف لصاحب الموقع");
+    loadAqarMessages();
+    alert("تم تفعيل وضع الأدمن");
   } else if (code !== null) {
     alert("الرمز غير صحيح");
   }
@@ -608,7 +693,7 @@ function startEditItem(id) {
   document.getElementById("sellerPhone").value = item.phone || "";
   document.getElementById("itemImages").value = (item.images || []).join("\n");
   document.getElementById("itemSaveMsg").style.color = "#0d47a1";
-  document.getElementById("itemSaveMsg").textContent = "أنت الآن في وضع تعديل المعروض — اضغط حفظ ونشر المعروض لتأكيد التعديل.";
+  document.getElementById("itemSaveMsg").textContent = "وضع تعديل المعروض نشط — اضغط حفظ ونشر المعروض لتأكيد التعديل.";
   window.scrollTo({ top: 180, behavior: "smooth" });
 }
 
@@ -623,6 +708,124 @@ function deleteItemById(id) {
   fetch(`${DB_URL}/marketItems/${encodeURIComponent(id)}.json`, { method: "DELETE" })
     .then(() => loadListings())
     .catch(() => alert("تعذر حذف المعروض"));
+}
+
+function openSendMessageModal(itemId, itemTitle) {
+  document.getElementById("msgTargetItemId").value = itemId || "";
+  document.getElementById("msgTargetItemName").value = itemTitle || "";
+  document.getElementById("modalItemTitle").textContent = "المعروض: " + (itemTitle || "");
+  document.getElementById("visitorMsgStatus").textContent = "";
+  document.getElementById("sendMsgModal").classList.add("open");
+}
+
+function closeSendMessageModal() {
+  document.getElementById("sendMsgModal").classList.remove("open");
+}
+
+function submitItemMessage(event) {
+  event.preventDefault();
+  const itemId = document.getElementById("msgTargetItemId").value;
+  const itemTitle = document.getElementById("msgTargetItemName").value;
+  const senderName = document.getElementById("visitorMsgName").value.trim();
+  const senderPhone = document.getElementById("visitorMsgPhone").value.trim();
+  const messageText = document.getElementById("visitorMsgText").value.trim();
+  const statusEl = document.getElementById("visitorMsgStatus");
+
+  const msgId = "aqarmsg-" + Date.now();
+  const payload = {
+    id: msgId,
+    itemId,
+    itemTitle,
+    senderName,
+    senderPhone,
+    messageText,
+    adminReply: "",
+    sentAt: Date.now()
+  };
+
+  fetch(`${DB_URL}/aqarMessages/${encodeURIComponent(msgId)}.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+    .then(r => {
+      if (!r.ok) throw new Error();
+      statusEl.style.color = "#1b5e20";
+      statusEl.textContent = "تم إرسال رسالتك بنجاح.";
+      setTimeout(() => {
+        closeSendMessageModal();
+        document.getElementById("visitorMsgName").value = "";
+        document.getElementById("visitorMsgPhone").value = "";
+        document.getElementById("visitorMsgText").value = "";
+        if (document.body.classList.contains("owner-admin-mode")) loadAqarMessages();
+      }, 600);
+    })
+    .catch(() => {
+      statusEl.style.color = "#c62828";
+      statusEl.textContent = "تعذر إرسال الرسالة.";
+    });
+}
+
+function loadAqarMessages() {
+  const box = document.getElementById("aqarMessagesList");
+  if (!box) return;
+  fetch(`${DB_URL}/aqarMessages.json`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data || typeof data !== "object") {
+        box.innerHTML = "<p style='color:#64748b; font-size:13px;'>لا توجد رسائل حالياً.</p>";
+        return;
+      }
+      const list = Object.entries(data)
+        .map(([k, v]) => ({ ...(v || {}), id: (v && v.id) || k }))
+        .sort((a, b) => (b.sentAt || 0) - (a.sentAt || 0));
+
+      box.innerHTML = list.map(m => {
+        const replyHtml = m.adminReply
+          ? `<div class="msg-reply-box"><strong>رد الأدمن:</strong> ${escapeHtml(m.adminReply)}</div>`
+          : "";
+        return `
+          <div class="msg-item-card">
+            <div style="font-weight:800; color:var(--blue);">${escapeHtml(m.senderName || "مرسل")} — <span style="font-size:12px; color:#475569;">${escapeHtml(m.senderPhone || "")}</span></div>
+            <div style="font-size:12px; font-weight:700; color:#991b1b; margin:3px 0;">بخصوص: ${escapeHtml(m.itemTitle || "معروض")}</div>
+            <p style="margin:6px 0; font-size:14px;">${escapeHtml(m.messageText || "")}</p>
+            ${replyHtml}
+            <div style="margin-top:8px;">
+              <textarea id="replyInput-${escapeHtml(m.id)}" rows="2" placeholder="اكتب رد الأدمن هنا...">${escapeHtml(m.adminReply || "")}</textarea>
+              <div class="btn-row" style="margin-top:6px;">
+                <button type="button" class="btn btn-green" onclick="sendAdminReply('${escapeHtml(m.id)}')">حفظ الرد</button>
+                <button type="button" class="btn btn-red" onclick="deleteAqarMessage('${escapeHtml(m.id)}')">حذف الرسالة</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    })
+    .catch(() => {
+      box.innerHTML = "<p style='color:#c62828; font-size:13px;'>تعذر تحميل الرسائل.</p>";
+    });
+}
+
+function sendAdminReply(msgId) {
+  const ta = document.getElementById("replyInput-" + msgId);
+  if (!ta) return;
+  const replyText = ta.value.trim();
+  fetch(`${DB_URL}/aqarMessages/${encodeURIComponent(msgId)}/adminReply.json`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(replyText)
+  })
+    .then(() => {
+      alert("تم حفظ الرد");
+      loadAqarMessages();
+    })
+    .catch(() => alert("تعذر حفظ الرد"));
+}
+
+function deleteAqarMessage(msgId) {
+  if (!confirm("هل تريد حذف هذه الرسالة؟")) return;
+  fetch(`${DB_URL}/aqarMessages/${encodeURIComponent(msgId)}.json`, { method: "DELETE" })
+    .then(() => loadAqarMessages());
 }
 
 function parseNumericPrice(val) {
@@ -650,20 +853,6 @@ function applySearchAndSaveRequest(event) {
 
   renderListingsList(filtered);
   document.getElementById("searchStatusMsg").textContent = `نتائج البحث المطابقة: ${filtered.length}`;
-
-  if (qName || qLoc || qSpecs || qPriceRaw) {
-    fetch(`${DB_URL}/buyRequests.json`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: document.getElementById("searchName").value.trim(),
-        location: document.getElementById("searchLocation").value.trim(),
-        specs: document.getElementById("searchSpecs").value.trim(),
-        targetPrice: qPriceRaw,
-        createdAt: Date.now()
-      })
-    }).catch(() => {});
-  }
 }
 
 function resetSearchFilters() {
@@ -705,10 +894,13 @@ function renderListingsList(list) {
         ${photosHtml}
 
         <div class="card-bottom">
-          <span>رقم البائع: ${escapeHtml(item.phone || "")}</span>
-          <div class="owner-controls">
-            <button type="button" class="btn btn-blue" onclick="startEditItem('${escapeHtml(item.id)}')">تعديل</button>
-            <button type="button" class="btn btn-red" onclick="deleteItemById('${escapeHtml(item.id)}')">حذف</button>
+          <span>رقم البائع: ${escapeHtml(item.phone || "")} • حق الموقع عند البيع: 100 ريال سعودي</span>
+          <div class="card-actions-group">
+            <button type="button" class="btn btn-blue" onclick="openSendMessageModal('${escapeHtml(item.id)}', '${escapeHtml(item.name || "")}')">إرسال رسالة</button>
+            <div class="owner-controls">
+              <button type="button" class="btn btn-green" onclick="startEditItem('${escapeHtml(item.id)}')">تعديل</button>
+              <button type="button" class="btn btn-red" onclick="deleteItemById('${escapeHtml(item.id)}')">حذف</button>
+            </div>
           </div>
         </div>
       </article>
