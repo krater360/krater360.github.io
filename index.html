@@ -19,34 +19,6 @@
   <link rel="icon" type="image/svg+xml" href="https://krater360.github.io/favicon.svg">
   <meta property="og:locale" content="ar_AR">
   <meta property="og:url" content="https://krater360.github.io/">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "NewsMediaOrganization",
-        "@id": "https://krater360.github.io/#organization",
-        "name": "krater360",
-        "alternateName": "موقع krater360 الإخباري",
-        "url": "https://krater360.github.io/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://krater360.github.io/images/1795374007910-1-1795373674163.jpg"
-        }
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://krater360.github.io/#website",
-        "url": "https://krater360.github.io/",
-        "name": "krater360",
-        "inLanguage": "ar",
-        "publisher": {
-          "@id": "https://krater360.github.io/#organization"
-        }
-      }
-    ]
-  }
-  </script>
   <style>
     :root {
       --blue: #0b3c8a;
@@ -54,8 +26,8 @@
       --red: #d32f2f;
       --card: #ffffff;
       --muted: #e3f2fd;
-      --shadow: 0 8px 24px rgba(13, 71, 161, 0.09);
-      --radius: 12px;
+      --shadow: 0 10px 26px rgba(15, 23, 42, 0.14);
+      --radius: 14px;
       --ink: #0f172a;
       --dash: rgba(15, 78, 154, 0.45);
     }
@@ -86,7 +58,6 @@
       user-drag: none;
     }
 
-    /* الواجهة العلوية المطابقة للصورة المرفقة */
     .top-hero {
       background: linear-gradient(135deg, var(--blue) 0%, var(--blue2) 65%, #0d47a1 100%);
       padding: 18px 14px 20px;
@@ -158,7 +129,7 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
     }
 
-    /* شريط آخر الأخبار المتحرك */
+    /* شريط آخر الأخبار المتحرك بسرعة مخففة للنصف (48s) */
     .k360-ticker-bar {
       display: flex;
       align-items: stretch;
@@ -191,9 +162,9 @@
     }
     .k360-ticker-move {
       display: inline-flex;
-      gap: 28px;
+      gap: 32px;
       white-space: nowrap;
-      animation: k360TickerScroll 24s linear infinite;
+      animation: k360TickerScroll 48s linear infinite;
       font-size: 13px;
       font-weight: 700;
       color: var(--ink);
@@ -209,7 +180,6 @@
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
-    /* الإعلانات العلوية */
     .header-ads-bar {
       max-width: 900px;
       margin: 14px auto 0;
@@ -226,7 +196,7 @@
       background: rgba(15, 78, 154, 0.06);
       border: 1px dashed var(--dash);
       border-radius: 12px;
-      min-height: 90px;
+      min-height: 86px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -249,7 +219,7 @@
     }
     .header-ad-slot img {
       width: 100%;
-      max-height: 135px;
+      max-height: 130px;
       border-radius: 8px;
       object-fit: cover;
       display: block;
@@ -258,23 +228,21 @@
       .header-grid { grid-template-columns: 1fr; }
     }
 
-    /* المحتوى الرئيسي */
     .container, .content {
       max-width: 900px;
       margin: 18px auto 32px;
       padding: 0 12px;
     }
 
-    /* بطاقة الخبر */
+    /* إطار بطاقة الخبر المستوحى من التصميم المرفق */
     .news-card {
       position: relative;
-      background: var(--card);
-      border-radius: 14px;
-      padding: 0 0 16px 0;
-      margin: 18px auto;
+      background: linear-gradient(180deg, #6e2727 0%, #581e1e 46%, #ffffff 46%, #ffffff 100%);
+      border-radius: 18px;
+      padding: 14px 14px 16px;
+      margin: 20px auto;
       box-shadow: var(--shadow);
-      border: 1px solid #dbe4f0;
-      border-right: 5px solid #0d47a1;
+      border: 2px solid #8b3a3a;
       overflow: hidden;
     }
     .k360-news-topbar {
@@ -283,48 +251,52 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 8px;
-      background: linear-gradient(90deg, #0d47a1 0%, #1976d2 100%);
-      color: #ffffff;
-      padding: 8px 16px;
+      color: #ffe8e8;
       font-size: 12px;
       font-weight: 700;
+      margin-bottom: 10px;
     }
     .k360-news-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #c62828;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       color: #ffffff;
-      padding: 3px 10px;
+      padding: 3px 11px;
       border-radius: 999px;
       font-size: 11px;
     }
-    .k360-news-main { padding: 15px 16px 0; }
     .k360-news-media {
-      margin: 10px 0 14px;
-      padding: 5px;
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
+      margin: 0 0 14px;
+      padding: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 14px;
       overflow: hidden;
     }
     .k360-news-media img {
       display: block;
       width: 100%;
-      max-height: 440px;
+      max-height: 430px;
       object-fit: cover;
-      border-radius: 7px;
+      border-radius: 10px;
+    }
+    .k360-news-main {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 14px 15px 6px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
     }
     .news-card h2 {
       margin: 0 0 10px;
-      color: var(--ink);
-      font-size: 19px;
+      color: #1e1b18;
+      font-size: 20px;
       line-height: 1.5;
-      font-weight: 800;
-      border-bottom: 1px dashed #cbd5e1;
+      font-weight: 900;
+      border-bottom: 2px solid #f1e4e4;
       padding-bottom: 10px;
     }
-    .news-date { font-size: 12px; color: #e3f2fd; font-weight: 700; }
+    .news-date { font-size: 12px; color: #ffe8e8; font-weight: 700; }
     .news-body {
       display: none;
       margin-top: 12px;
@@ -339,8 +311,8 @@
       margin: 0 0 11px;
     }
     .k360-news-footer {
-      margin: 12px 16px 0;
-      padding-top: 10px;
+      margin-top: 12px;
+      padding: 10px 6px 0;
       border-top: 1px solid #e2e8f0;
       display: flex;
       justify-content: space-between;
@@ -350,9 +322,9 @@
       font-size: 12px;
       color: #475569;
     }
-    .k360-news-source { font-weight: 800; color: #0d47a1; }
+    .k360-news-source { font-weight: 800; color: #6e2727; }
 
-    /* إخفاء المشاهدات عن الزائر العادي وإظهارها فقط في وضع الإدارة */
+    /* إخفاء المشاهدات عن الزائر العادي */
     .k360-post-views { display: none; }
     body.admin-mode .k360-post-views { display: inline; }
 
@@ -364,11 +336,11 @@
       align-items: center;
     }
     .btn-read-more {
-      background: #c62828;
+      background: #7f1d1d;
       color: #fff;
       border: none;
       padding: 7px 14px;
-      border-radius: 5px;
+      border-radius: 6px;
       font-size: 13px;
       font-weight: bold;
       cursor: pointer;
@@ -378,7 +350,7 @@
       color: #fff;
       border: none;
       padding: 7px 12px;
-      border-radius: 5px;
+      border-radius: 6px;
       font-size: 13px;
       cursor: pointer;
     }
@@ -387,14 +359,13 @@
       color: #fff;
       border: none;
       padding: 7px 12px;
-      border-radius: 5px;
+      border-radius: 6px;
       font-size: 13px;
       cursor: pointer;
       display: none;
     }
     body.admin-mode .btn-delete-post { display: inline-block; }
 
-    /* نموذج تواصل معنا في آخر الصفحة */
     .site-mail-box {
       background: #ffffff;
       border-radius: 14px;
@@ -464,6 +435,9 @@
       cursor: pointer;
       margin-right: 8px;
     }
+    @media (max-width: 700px) {
+      .news-card h2 { font-size: 18px; }
+    }
   </style>
 </head>
 <body class="k360-protected">
@@ -499,7 +473,6 @@
   </div>
 
   <main class="container">
-    <!-- يتم جلب الأخبار بالكامل من Firebase (بدون أخبار ثابتة داخل الكود) -->
     <section id="newsFeed">
       <p style="text-align:center; color:#475569;">جاري تحميل الأخبار...</p>
     </section>
@@ -536,9 +509,9 @@
 
 <script>
 const DB_URL = "https://krater360-2019f-default-rtdb.firebaseio.com";
-const CACHE_POSTS_KEY = "k360_cached_posts_v2";
-const CACHE_VIEWS_KEY = "k360_cached_views_v2";
-const CACHE_ADS_KEY = "k360_cached_ads_v2";
+const CACHE_POSTS_KEY = "k360_cached_posts_v3";
+const CACHE_VIEWS_KEY = "k360_cached_views_v3";
+const CACHE_ADS_KEY = "k360_cached_ads_v3";
 
 function escapeText(str) {
   return String(str || "")
@@ -548,7 +521,7 @@ function escapeText(str) {
     .replace(/"/g, "&quot;");
 }
 
-function fetchWithTimeout(url, ms = 7000) {
+function fetchWithTimeout(url, ms = 8000) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), ms);
   return fetch(url, { signal: controller.signal })
@@ -723,19 +696,19 @@ function renderNews(postsData, viewsData) {
           <span class="k360-news-badge">${index === 0 && !targetPostId ? "الخبر الأبرز" : "krater360 • تغطية إخبارية"}</span>
           <span class="news-date">${date}</span>
         </div>
+        ${imgHtml}
         <div class="k360-news-main">
           <h2>${title}</h2>
-          ${imgHtml}
-          <div class="news-body ${isOpen ? "open" : ""}">${bodyHtml}</div>
+          <div class="news-body ${isLeadOpen ? "open" : ""}">${bodyHtml}</div>
           <div class="news-actions">
-            <button type="button" class="btn-read-more" onclick="toggleReadMore('${escapeText(id)}', this)">${isOpen ? "إخفاء التفاصيل" : "قراءة المزيد"}</button>
+            <button type="button" class="btn-read-more" onclick="toggleReadMore('${escapeText(id)}', this)">${isLeadOpen ? "إخفاء التفاصيل" : "قراءة المزيد"}</button>
             <button type="button" class="btn-copy-link" onclick="copyNewsLink('${escapeText(id)}')">نسخ رابط الخبر</button>
             <button type="button" class="btn-delete-post" onclick="deletePost('${escapeText(id)}')">حذف المنشور</button>
           </div>
-        </div>
-        <div class="k360-news-footer">
-          <span class="k360-news-source">منصة krater360</span>
-          <span class="k360-post-views">المشاهدات: <strong>${views}</strong></span>
+          <div class="k360-news-footer">
+            <span class="k360-news-source">منصة krater360</span>
+            <span class="k360-post-views">المشاهدات: <strong>${views}</strong></span>
+          </div>
         </div>
       </article>
     `;
